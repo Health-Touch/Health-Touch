@@ -2,6 +2,10 @@
     margin: 0;
 }
 
+body{
+    background-color: black;
+}
+
 #container_nav{
     display: flex;
 }
@@ -63,4 +67,36 @@
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-decoration: none;
     color: white;
+}
+
+.banner{
+    width: 100%;
+    height: 90vh;
+    background: linear-gradient(rgba(0,0,0,0.5), #020F1F),url(../IMG/banner.jpg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6;
+    display: flex;
+}
+
+.touch_banner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 80vh;
+}
+
+.touch_banner img{
+    width: 60%;
+}
+
+.texto_banner{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 80vh;
 }
