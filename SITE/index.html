@@ -3,37 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./css/navBar.css">
+    <link rel="stylesheet" href="./css/index.css">
+
     <title>Health Touch</title>
-    <link rel="stylesheet" href="./CSS/style.css">
+
 </head>
-<body>
-    <div id="container_nav">
-        <div id="container_logo_nav">
-            <div class="img_logo_nav">
-                <img class="logo_nav" src="./IMG/logo_health_touch.png" alt="">
-                <img class="logotipo_nav" src="./IMG/logotipo_health_touch.png" alt="">
+<body
+<div class="pagina_inicial">
+
+        <div class="container_header">
+            <div class="header">
+
+                <img class="logo" src="./img/Captura de tela 2023-08-30 103440.png" alt="Health"/>
+
+                    <div class="navbar">
+                        <li>
+                            <a href="contato.html">Home</a>
+                        </li>
+
+                        <li>
+                            <a href="sobre.html">Sobre</a>
+                        </li>
+
+                        <li>
+                            <a href="contato.html">Fale conosco</a>
+                        </li>
+
+                        <li>
+                            <a href="contato.html">Cadastrar</a>
+                        </li>
+                        
+                        <button onclick="btnLogin()" class="btn_login">
+                            <a class= "texto_button_login" href="login.html">Login</a>
+                        </button>
+                    </div>
+                    
             </div>
         </div>
-        <div id="container_menu_nav">
-            <div class="menu_nav">
-                <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Sobre Nós</a></li>
-                    <li><a href="">Login</a></li>
-                    <li><a href="">|</a></li>
-                    <li><a href="">Cadastro</a></li>
-                </ul>
+
+        <div class="container_introducao">
+
+            <div class="introducao">
+                <div class="texto_introducao">
+                    O MELHOR ATENDIMENTO <br>
+                    COMEÇA EM VOCÊ
+                </div>
             </div>
         </div>
-    </div>
-    <div class="banner">
-        <div class="touch_banner">
-            <img src="./IMG/totem_banner.png" alt="">
+        <div class="container_sobre">
+            <img src="img/totens.png" alt="">
+            <div class="sobre">
+                <div class="frase">Sobre nós</div>
+                <div class="texto_sobre">
+                    A Health Tech é um projeto que nasceu na Faculdade São Paulo Tech School, desenvolvido por uma equipe de estudantes em Sistemas de Informações. 
+                    Temos como objetivo desenvolver um sistema capaz de gerenciar o seu sistema de pré atendimento hospitalar, contribuindo com o bom funcionamento dos computadores que compõem seu serviço, para que assim, seus pacientes recebam o melhor atendimento.
+                </div>
+                <button onclick="btnSobre()" class="btn_sobre">
+                    <a class= "texto_button_sobre" href="login.html">Ler mais</a>
+                </button>
+            </div>
         </div>
-        <div class="texto_banner">
-            <h1>Sobre o Projeto</h1><br>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti quidem explicabo, voluptates numquam aperiam quibusdam voluptatem harum ex beatae ratione. Inventore tempora minus, ipsa quas tempore non earum! Eius, debitis?</p>
+
+      <div class="container_cards">
+        <div class="frase">Benefícios do sistema</div>
+        
+        <div class="cards">
+          <div class="box_cards"><img class="img_icon" src="img/garantia-da-qualidade.png"/><h3>Garantia de funcionamento</h3><span>Nosso sistema te informará com tempo para que evite falhas e cause transtornos em sua operação de atendimento. </span></div>
+          <div class="box_cards"><img class="img_icon"src="img/edificio-hospitalar.png"/><h3>Foco Hospitalar</h3><span>Nosso sistema foi criado para auxílio hospitalar. Prezamos pelo atendimento humanizado, e bem-estar dos seus pacientes.</span></div>
+          <div class="box_cards"><img class="img_icon" src="img/caixa-de-entrega.png"><h3>Qualidade de entrega</h3><span>Nos comprometemos em entregar o melhor, e procurar constante evolução em qualidade de serviço. </span></div>  
+
         </div>
-    </div>
+      </div>
+
+      <div class="container_contato">
+        <div class="frase">Localização e Contato</div>
+        
+        <div class="contato">
+            <div class="texto_contato">Telefone Fixo: 47 3268-5817</div>
+            <div class="texto_contato">Whatsapp: 47 3268-5817</div>
+
+            <div class="texto_contato">Instagram: @health_touch</div>
+            <div class="texto_contato">E-mail: contato.healthtouch.com.br</div>
+        </div>
+      </div>
+</div>
+
 </body>
 </html>
