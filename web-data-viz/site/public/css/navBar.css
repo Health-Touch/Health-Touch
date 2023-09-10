@@ -78,7 +78,9 @@
     border: none;
     color: #FFFFFF;
     width: 18%;
-    height: 9vh;
+    height: 7vh;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
     text-align: center;
     transition-duration: 0.4s;
     text-decoration: none;

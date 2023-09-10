@@ -43,47 +43,71 @@
         </div>
     </div>
 
-    <div class="alerta_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-        <span id="div_erros_login"></span>
-    </div>
-
-<div class="forms">
     <div class="wrapper active-popup">
         <span class="icon-close">
             <ion-icon name="close"></ion-icon>
         </span>
         <div class="form-box login">
             <h2>Login</h2>
-            <div action="#">
+            <form action="#">
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="mail"></ion-icon>
                     </span>
-                    <input id="email_input" type="email" required>
+                    <input type="email" required>
                     <label>Email</label>
                 </div>
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="lock-closed"></ion-icon>
                     </span>
-                    <input id="senha_input" type="password" required>
+                    <input type="password" required>
                     <label>Senha</label>
                 </div>
                 <div class="remember-forgot">
-                    <label><input id="lembre" type="checkbox">Lembre de mim</label>
+                    <label><input type="checkbox">Lembre de mim</label>
                     <a href="contato.html">Esqueceu a senha?</a>
                 </div>
-                <button onclick="entrar()" type="submit" class="btn">Login</button>
+                <button type="submit" class="btn">Login</button>
                 <div class="login-register">
-                    <p>Não tem uma conta? <a href="./cadastro.html" class="register-link">Registrar</a></p>
+                    <p>Não tem uma conta? <a href="#" class="register-link">Registrar</a></p>
                 </div>
-            </div>
+            </form>
         </div>
-            </div>
+        <div class="form-box register">
+            <h2>Registrar</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
+                    <input type="text" required>
+                    <label>Nome</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                    <input type="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" required>
+                    <label>Senha</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Eu concordo com os termos & condições</label>
+                </div>
+                <button type="submit" class="btn">Registrar</button>
+                <div class="login-register">
+                    <p>Já tem uma conta? <a href="#" class="login-link">Login</a></p>
+                </div>
+            </form>
         </div>
     </div>
-</div>
 
     <script src="js/login.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
