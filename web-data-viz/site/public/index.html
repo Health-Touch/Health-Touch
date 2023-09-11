@@ -6,19 +6,21 @@
 
     <link rel="stylesheet" href="./css/navBar.css">
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="css/mobilenav.css">
 
     <title>Health Touch</title>
 
 </head>
 <body>
     <div class="pagina_inicial">
-
+        <div class="imagem_mobile">
         <div class="container_header">
             <div class="header">
 
                 <img class="logo" src="./assets/img/logo_navbar.png" alt="Health"/>
-
-                    <div class="navbar">
+                
+                <div class="navbar">
+                        <span class="pc_menu">
                         <li>
                             <a href="index.html">Home</a>
                         </li>
@@ -30,19 +32,24 @@
                         <li>
                             <a href="contato.html">Fale conosco</a>
                         </li>
-
-                        <!-- <li>
-                            <a href="cadastro.html">Cadastrar</a>
-                        </li> -->
                         
                         <button onclick="btnLogin()" class="btn_login">
                             <a class= "texto_button_login" href="login.html">Login</a>
                         </button>
+                    </span>
+                        <div class="dropdown">
+                            <button class="dropbtn"><img class="logo" src="https://www.editorapindorama.com.br/images/menu_risco_branco.png" alt="Menu"/></button>
+                            <div class="dropdown-content">
+                              <a href="index.html">Home</a>
+                              <a href="sobre.html">Sobre</a>
+                              <a href="contato.html">Fale conosco</a>
+                              <a href="login.html" class="login_drop">Login</a>
+                            </div>
+                          </div>
                     </div>
-                    
-            </div>
+                </div>
         </div>
-
+    </div>
         <div class="container_introducao">
 
             <div class="introducao">

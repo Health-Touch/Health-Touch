@@ -252,10 +252,20 @@ right: 0;
 
 @media only screen and (max-width: 500px){
 
+.container_header{
+  position: fixed;
+  transition: ease-in-out 2s;
+  z-index: 4;
+}
+
 .container_introducao {
-    width: 100%;
-    height: 10vh;
-    display: flex;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  position: absolute;
+  top: 50vh;
+  left: 15px;
+  z-index: 3;
 }
 
 .introducao{
@@ -267,13 +277,13 @@ right: 0;
 
 .texto_introducao {
     display: flex;
-    color: #FF993B;
-    height: 10px;
-    width: 30%;
-    font-size: 10px;
+    color: #ff9a3b83;
+    height: auto;
+    width: 80%;
+    font-size: 45px;
     margin-bottom: 2%;
     text-shadow: rgb(197, 130, 68) 0.1em 0.1em 0.2em;
-    background-color: rgba(0, 0, 0, 0.474);
+    background-color: rgba(0, 0, 0, 0.397);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -284,10 +294,11 @@ right: 0;
     margin-bottom: 25%;
 }
 
+
 .container_sobre {
   background-color: #020F1F;
   width: 100%;
-  height: 40vh;
+  height: 80vh;
   display: flex;
   justify-content: end;
   align-content: end;
@@ -296,14 +307,14 @@ right: 0;
 }
 
 .container_sobre img{
-    height: 20vh;
+    height: 40vh;
     image-resolution: inherit;
     margin-right: 0%;
 }
 
 .sobre {
   display: flex;
-  height: 30vh;
+  height: 60vh;
   width: 80%;
   margin-right: 5%;
   flex-direction: column;
@@ -317,13 +328,13 @@ right: 0;
   color: #FF993B;
   text-decoration: underline;
   margin-bottom: 5%;
-  font-size: 20px;
+  font-size: 40px;
   text-shadow: rgb(197, 130, 68) 0.1em 0.1em 0.2em;
 }
 
 .texto_sobre {
   color: white;
-  font-size: 10px;
+  font-size: 16px;
   margin-bottom: 5%;
 }
 
@@ -344,7 +355,7 @@ right: 0;
 
 .btn_sobre .texto_button_sobre{
   text-decoration: none;
-  font-size: 15px;
+  font-size: 30px;
   color: #ffffff;
   transition: 0.3s;
   text-shadow: black 0.1em 0.1em 0.2em
@@ -380,13 +391,14 @@ opacity: 1;
 right: 0;
 }
 
+ /* --------------------------------------------------------------- */
 
 .container_cards {
-  background-image: url(../assets/img/Home.jpg);
+  background-image: url(../assets/img/bannerMobile.jpg);
   background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 210px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -400,17 +412,19 @@ right: 0;
 
 .cards {
   display: flex;
+  flex-direction: column;
+  position: relative;
   width: 100%;
   height: 200px;
   justify-content: space-around;
   align-content: center;
   align-items: center;
-
+  top: 32vh;
 }
 
 .box_cards{
-  width: 20%;
-  height: 100px;
+  width: 80%;
+  height: auto;
   background-color: #4c73b66d;
   border: rgba(255, 255, 255, 0.712) 2px solid;
   color: white;
@@ -421,13 +435,14 @@ right: 0;
   align-items: center;
   padding: 10px;
   border-radius: 10px;
-  font-size: 8px;
+  font-size: 20px;
   cursor: pointer;
+  margin-top: 30px;
 }
 
 .img_icon {
-  width: 25%;
-  height: 200px;
+  width: auto;
+  height: 70px;
 }
 
 .box_cards h3 {
@@ -449,7 +464,7 @@ right: 0;
 .container_contato {
   background-color: #020F1F;
     width: 100%;
-    height: 200px;
+    height: 280px;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -459,7 +474,7 @@ right: 0;
 
 .container_contato .frase {
   margin-top: 3%;
-  font-size: 16px;
+  font-size: 25px;
 }
 
 .contato {
@@ -469,7 +484,7 @@ right: 0;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-size: 15px;
+  font-size: 20px;
   margin-bottom: 5%;
   margin-left: 10%;
 }
