@@ -4,10 +4,6 @@ body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.pagina_inicial{
-    
-}
-
 .container_introducao {
     width: 100%;
     height: 100vh;
@@ -239,6 +235,74 @@ right: 0;
 
 
 
+@media only screen and (max-width: 1180px){
+
+  .container_sobre {
+    background-color: #020F1F;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: end;
+    align-content: end;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .container_sobre img{
+      height: 40vh;
+      image-resolution: inherit;
+      margin-right: 0%;
+  }
+  
+  .sobre {
+    display: flex;
+    height: 60vh;
+    width: 80%;
+    margin-right: 5%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: start;
+  }
+  
+  .frase {
+    display: flex;
+    color: #FF993B;
+    text-decoration: underline;
+    margin-bottom: 5%;
+    font-size: 40px;
+    text-shadow: rgb(197, 130, 68) 0.1em 0.1em 0.2em;
+  }
+  
+  .texto_sobre {
+    color: white;
+    font-size: 16px;
+    margin-bottom: 5%;
+  }
+  
+  .btn_sobre {
+    background-color: #26ABA7;
+    border: none;
+    color: #FFFFFF;
+    padding: 5px;
+    width: 200px;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.8;
+    border-radius: 10px;
+  }
+  
+  .btn_sobre .texto_button_sobre{
+    text-decoration: none;
+    font-size: 30px;
+    color: #ffffff;
+    transition: 0.3s;
+    text-shadow: black 0.1em 0.1em 0.2em
+  }
+}
 
 
 
@@ -250,8 +314,7 @@ right: 0;
 
 
 
-
-@media only screen and (max-width: 500px){
+@media only screen and (max-width: 550px){
 
 .container_header{
   position: fixed;
