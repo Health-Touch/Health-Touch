@@ -99,7 +99,7 @@
   .btn_login:hover {opacity: 5;}
 
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 500px){
 
   .container_header {
     width: 100%;
