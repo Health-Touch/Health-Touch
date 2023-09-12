@@ -10,8 +10,8 @@ fun main() {
 
     if(usuarioTeste == Usuario1.usuario && senhaTeste == Usuario1.senha){
         //Validação se os valores informados são correspondentes com os valores guardados na class para realizar o login
-        println("Usuário Logado")
+        println(Usuario1.logado())
     } else{
-        println("Erro no usuário e/ou senha")
+        println(Usuario1.erroLogin())
     }
 }

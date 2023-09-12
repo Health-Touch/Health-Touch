@@ -4,4 +4,11 @@ class Console {
 
     var usuario:String = "usuario@usuario"
     var senha:String = "senha1234"
+
+    fun logado():String{
+        return "Usuário logado!"
+    }
+    fun erroLogin(): String{
+        return "Erro no usuário e/ou senha"
+    }
 }
