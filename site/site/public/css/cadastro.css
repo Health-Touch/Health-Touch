@@ -66,6 +66,7 @@ body {
 .wrapper.active .form-box.register {
     transition: transform .18s ease;
     transform: translateX(0);
+    color: #162938;
 }
 
 .wrapper .icon-close {

@@ -44,6 +44,15 @@
     width: 9vw;
     height: 10vh;
 }
+
+.subDireitaCabecalho a {
+    list-style: none;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+}
 /* fim do cabeçalho */
 
 /* começo do banner */

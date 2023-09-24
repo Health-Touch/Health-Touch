@@ -16,7 +16,6 @@ body {
     align-items: center;
     align-self: center;
     margin-top: 3%;
-    
 }
 
 .wrapper {
@@ -140,7 +139,7 @@ body {
 }
 
 .remember-forgot a {
-    color: rgb(0, 0, 255);
+    color: #26ABA7;
     text-decoration: none;
 }
 
@@ -170,7 +169,7 @@ body {
 }
 
 .login-register p a {
-    color: rgb(0, 0, 255);
+    color: #26ABA7;
     text-decoration: none;
     font-weight: 600;
 }
@@ -317,7 +316,7 @@ body {
     .input-box input:valid~label {
         top: -5px;
     }
-    
+
     
     .input-box input {
         width: 100%;
@@ -346,6 +345,7 @@ body {
         margin: -15px 0 15px;
         display: flex;
         justify-content: space-between;
+        text-decoration: none;
     }
     
     .remember-forgot label input {
@@ -354,7 +354,6 @@ body {
     }
     
     .remember-forgot a {
-        color: rgb(0, 0, 255);
         text-decoration: none;
     }
     
