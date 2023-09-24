@@ -1,11 +1,13 @@
 body {
-    background: url(../assets/img/banner.jpg) no-repeat;
+    background: url(../assets/img/bannerPrincipalLogin.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     margin: 0;
     overflow-x: hidden;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 .forms {
