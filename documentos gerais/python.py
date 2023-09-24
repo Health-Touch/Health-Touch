@@ -158,7 +158,7 @@ if(resposta == "S" or resposta == "s"):
             enviar_email2()
    
        
-        connection = mysql_connection('localhost', 'testes', '12345678', 'HealthTouch')
+        connection = mysql_connection('localhost', 'root', 'sptech', 'HealthTouch')
 
         cpu = str(cpu1)
         mem = str(mem_used1)

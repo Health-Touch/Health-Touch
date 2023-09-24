@@ -1,0 +1,288 @@
+* {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* começo do cabeçalho */
+.paiCabecalho {
+    background-color: #020F1F;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filhoCabecalho {
+    width: 90vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.direitaCabecalho {
+    width: 20vw;
+    font-weight: bold;
+}
+
+.subDireitaCabecalho {
+    color: white;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-around; 
+}
+
+#menuIcon {
+    width: 1vw;
+    height: 2vh;
+}
+
+.esquerdaCabecalho {
+    width: 20vw;
+}
+
+#imgEsquerdaCabecalho {
+    width: 9vw;
+    height: 10vh;
+}
+/* fim do cabeçalho */
+
+/* começo do banner */
+.paiBanner {
+    display: flex;
+    height: 103vh;
+    background-repeat: no-repeat;
+    background-image: url(..//assets/img/bannerPrincipal.jpg);
+    background-size: 100%;
+}
+
+.divFilhoBanner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 23vh;
+    width: 50vw;
+    top: 30%;
+    left: 45%;
+    position: relative;
+}
+
+.pTituloBanner {
+    font-size: 40px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    text-shadow: 1px 2px 5px rgba(0, 0, 0, 1);
+}
+
+.divBoxBotaoBanner {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 15%;
+}
+
+.botaoBanner {
+    width: 20vw;
+    justify-content: space-around;
+    display: flex;
+}
+
+.botao1Banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8vw;
+    height: 6vh;
+    border-radius: 30px;
+    font-size: 12px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    border: 3px #ffffff solid;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botao2Banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8vw;
+    height: 6vh;
+    border-radius: 30px;
+    font-size: 12px;
+    background-color: #26ABA7;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botao2Banner:hover {
+    box-shadow: 0px 5px 20px rgb(0, 0, 0);
+    transform: translateY(-7px);
+}
+
+.botao1Banner:hover{
+    box-shadow: 0px 5px 20px rgb(0, 0, 0);
+    transform: translateY(-7px);
+}
+/* fim do banner */
+
+/* começo do contexto */
+.paiContexto {
+    background-color: #020F1F;
+    height: 180vh;
+    display: flex;
+    justify-content: center;
+}
+
+.filhoContexto {
+    width: 80%;
+    height: 180vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.divTituloContexto {
+    font-size: 35px;
+    color: white;
+    font-weight: bold;
+    line-height: 60px;
+}
+
+.divSubContexto {
+    color: #26ABA7;
+    font-weight: bold;
+}
+
+.paiBoxContexto {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: 6%;
+}
+
+.boxContexto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 18vw;
+    height: 45vh;
+    border-radius: 20px;
+    border: 2px solid white;
+    background-color: #020F1F;
+    position: relative;
+    top: 10%;
+}
+
+.tituloBox {
+    color: #ffffff;
+    font-weight: bold;
+    position: relative;
+    top: 5%;
+}
+
+.textoBox {
+    text-align: center;
+    width: 12vw;
+    color: #ffffff;
+    position: relative;
+    top: 10%;
+    font-size: 14px;
+}
+
+#botaoBox {
+    position: relative;
+    top: 17%;
+    width: 10vw;
+    height: 5vh;
+    border-radius: 30px;
+    font-size: 12px;
+    background-color: #26ABA7;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.divComoFunciona {
+    font-size: 27px;
+    color: white;
+    font-weight: bold;
+    line-height: 60px;
+    position: relative;
+    top: 20%;
+}
+
+.divSubComoFunciona {
+    color: #26ABA7;
+    font-weight: bold;
+    position: relative;
+    top: 20%;
+}
+
+.paiBoxComoFunciona {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: 23%;
+    width: 70vw;
+    height: 30vh;
+}
+
+.boxComoFunciona {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 20vw;
+    height: 30vh;
+}
+
+#imgComoFunciona {
+    width: 6vw;
+    height: 11vh;
+    position: relative;
+    top: -5%;
+}
+
+#pComoFunciona {
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+}
+/* fim do contexto */
+
+/* começo do beneficios */
+.divPaiBeneficios {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+    background-repeat: no-repeat;
+    background-image: url(..//assets/img/bannerCheckIn.jpg);
+    background-size: 100%;
+}
+
+#tituloBeneficios {
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    position: relative;
+    top: 5%;
+}
+
+#subTituloBeneficios {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    position: relative;
+    top: 6%;
+}
+
+
+/* fim do beneficios */
