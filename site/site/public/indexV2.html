@@ -1,214 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/indexV2.css">
-    <title>Document</title>
-    <link rel="shortcut icon" type="imagex/png" href="./assets/img/logo_icon.png">
-</head>
-<body>
-    
-<!-- começo do cabeçalho -->
-<div class="paiCabecalho">
-    <div class="filhoCabecalho">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/indexV2.css" />
+    <title>Home | Health Touch</title>
+    <link
+      rel="shortcut icon"
+      type="imagex/png"
+      href="./assets/img/logo_icon.png"
+    />
+  </head>
+  <body>
+    <!-- começo do cabeçalho -->
+    <div class="paiCabecalho">
+      <div class="filhoCabecalho">
         <div class="esquerdaCabecalho">
-            <img src="./assets/img/logo_navbar.png" id="imgEsquerdaCabecalho">
+          <img
+            src="./assets/img/logo_navbar.png"
+            id="imgEsquerdaCabecalho"
+            onclick="home()"
+          />
         </div>
 
         <div class="direitaCabecalho">
-            <div class="subDireitaCabecalho">
-                <div class="divSaibaMais"> <a href="">SAIBA MAIS</a> </div>
-                <div class="divCadastro"> <a href="cadastro.html">CADASTRO</a> </div>
-                <div class="divLogin"> <a href="login.html">LOGIN</a> </div>
+          <div class="subDireitaCabecalho">
+            <div class="divSaibaMais">
+              <a href="#saibaMais">SAIBA MAIS</a>
             </div>
+            <div class="divCadastro"><a href="login.html">CADASTRO</a></div>
+            <div class="divLogin"><a href="login.html">LOGIN</a></div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<!-- fim do cabeçalho -->
+    <!-- fim do cabeçalho -->
 
-<!-- começo do banner principal -->
-<div class="paiBanner">
-    <div class="divFilhoBanner">
-
-        <div class="tituloBanner"><p class="pTituloBanner">O MELHOR ATENDIMENTO <br> COMEÇA EM VOCÊ</p></div>
+    <!-- começo do banner principal -->
+    <div class="paiBanner">
+      <div class="divFilhoBanner">
+        <div class="tituloBanner">
+          <p class="pTituloBanner">
+            O MELHOR ATENDIMENTO <br />
+            COMEÇA EM VOCÊ
+          </p>
+        </div>
 
         <div class="divBoxBotaoBanner">
-            <div class="botaoBanner">
-                <button class="botao1Banner"><span>Saiba Mais</span></button>
-                <button class="botao2Banner"><span>Fale Conosco</span></button>
-            </div>
+          <div class="botaoBanner">
+            <button class="botao1Banner"><span>Saiba Mais</span></button>
+            <button class="botao2Banner"><span>Fale Conosco</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- fim do banner principal -->
+
+    <!-- começo do contexto -->
+    <div class="paiContexto">
+      <div class="filhoContexto">
+        <div class="divTituloContexto" id="saibaMais">
+          <p>ENTENDA NOSSO CONTEXTO</p>
+        </div>
+        <div class="divSubContexto">
+          <p>QUAL É O PROBLEMA QUE VAMOS RESOLVER?</p>
         </div>
 
-    </div>
-</div>
-<!-- fim do banner principal -->
-
-<!-- começo do contexto -->
-<div class="paiContexto">
-    <div class="filhoContexto">
-
-        <div class="divTituloContexto"><p>ENTENDA NOSSO CONTEXTO</p></div>
-        <div class="divSubContexto"><p>QUAL É O PROBLEMA QUE VAMOS RESOLVER?</p></div>
-
         <div class="paiBoxContexto">
-            <div class="boxContexto">
-                <div class="tituloBox"><p>Sistemas de Saúde</p></div> 
-                <div class="textoBox"><p> aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa </p></div>
-                <button id="botaoBox">Nosso Sistema</button>
+          <div class="boxContexto">
+            <div class="tituloBox"><p>Sistemas de Saúde</p></div>
+            <div class="textoBox">
+              <p>
+                aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+                aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+                aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+              </p>
             </div>
+            <button id="botaoBox">Nosso Sistema</button>
+          </div>
 
-            <div class="boxContexto">
-                <div class="tituloBox"><p>Sistemas de Saúde</p></div> 
-                <div class="textoBox"><p> aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa </p></div>
-                <button id="botaoBox">Nosso Sistema</button>
+          <div class="boxContexto">
+            <div class="tituloBox"><p>Sistemas de Saúde</p></div>
+            <div class="textoBox">
+              <p>
+                aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+                aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+                aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+              </p>
             </div>
+            <button id="botaoBox">Nosso Sistema</button>
+          </div>
 
-            <div class="boxContexto">
-                <div class="tituloBox"><p>Sistemas de Saúde</p></div> 
-                <div class="textoBox"><p> aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa </p></div>
-                <button id="botaoBox">Nosso Sistema</button>
+          <div class="boxContexto">
+            <div class="tituloBox"><p>Sistemas de Saúde</p></div>
+            <div class="textoBox">
+              <p>
+                aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+                aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+                aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+              </p>
             </div>
+            <button id="botaoBox">Nosso Sistema</button>
+          </div>
         </div>
 
         <div class="divComoFunciona"><p>E COMO NOSSO SISTEMA FUNCIONA?</p></div>
-        <div class="divSubComoFunciona"><p>ENTENDA COMO VAMOS RESOLVER SEU PROBLEMA</p></div>
-
-        <div class="paiBoxComoFunciona">
-            <div class="boxComoFunciona">
-                <img src="../public/assets/img/iconHardware.png" id="imgComoFunciona">
-                <p id="pComoFunciona">Monitoramento de Hardware</p>
-            </div>
-
-            <div class="boxComoFunciona">
-                <img src="../public/assets/img/iconDashboard.png" id="imgComoFunciona">
-                <p id="pComoFunciona">Dashboards Interativas</p>
-            </div>
-
-            <div class="boxComoFunciona">
-                <img src="../public/assets/img/iconAlerta.png" id="imgComoFunciona">
-                <p id="pComoFunciona">Avisos de Urgência</p>
-            </div>
+        <div class="divSubComoFunciona">
+          <p>ENTENDA COMO VAMOS RESOLVER SEU PROBLEMA</p>
         </div>
 
         <div class="paiBoxComoFunciona">
-            <div class="boxComoFunciona">
-                <img src="../public/assets/img/iconBancoDeDados.png" id="imgComoFunciona">
-                <p id="pComoFunciona">Armazenamento de Dados</p>
-            </div>
+          <div class="boxComoFunciona">
+            <img src="../assets/img/iconHardware.png" id="imgComoFunciona" />
+            <p id="pComoFunciona">Monitoramento de Hardware</p>
+          </div>
 
-            <div class="boxComoFunciona">
-                <img src="../public/assets/img/iconHelpDesk.png" id="imgComoFunciona">
-                <p id="pComoFunciona">Suporte ao Cliente</p>
-            </div>
+          <div class="boxComoFunciona">
+            <img src="./assets/img/iconDashboard.png" id="imgComoFunciona" />
+            <p id="pComoFunciona">Dashboards Interativas</p>
+          </div>
 
-            <div class="boxComoFunciona">
-                <img src="../public/assets/img/iconAdministrativo.png" id="imgComoFunciona">
-                <p id="pComoFunciona">Área Administrativa</p>
-            </div>
+          <div class="boxComoFunciona">
+            <img src="../assets/img/iconAlerta.png" id="imgComoFunciona" />
+            <p id="pComoFunciona">Avisos de Urgência</p>
+          </div>
         </div>
-        
+
+        <div class="paiBoxComoFunciona">
+          <div class="boxComoFunciona">
+            <img
+              src="../assets/img/iconBancoDeDados.png"
+              id="imgComoFunciona"
+            />
+            <p id="pComoFunciona">Armazenamento de Dados</p>
+          </div>
+
+          <div class="boxComoFunciona">
+            <img src="../assets/img/iconHelpDesk.png" id="imgComoFunciona" />
+            <p id="pComoFunciona">Suporte ao Cliente</p>
+          </div>
+
+          <div class="boxComoFunciona">
+            <img
+              src="../assets/img/iconAdministrativo.png"
+              id="imgComoFunciona"
+            />
+            <p id="pComoFunciona">Área Administrativa</p>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-<!-- fim do contexto -->
+    <!-- fim do contexto -->
 
-<!-- começo do beneficios -->
-<div class="divPaiBeneficios">
-    <p id="tituloBeneficios">BENEFÍCIOS DO SISTEMA</p>
-    <p id="subTituloBeneficios">BENEFÍCIOS DO SISTEMA</p>
+    <!-- começo do beneficios -->
+    <div class="divPaiBeneficios">
+      <p id="tituloBeneficios">BENEFÍCIOS DO SISTEMA</p>
+      <p id="subTituloBeneficios">BENEFÍCIOS DO SISTEMA</p>
 
-    <div class="boxPaiBeneficios">
-    <div class="boxBeneficios">
-        <img src="../public/assets/img/iconHospital.png" id="iconHospitalBeneficios">
-        <div class="tituloBoxBeneficios"><p>Sistemas de Saúde</p></div> 
-        <div class="textoBoxBeneficios"><p> aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa</p></div>
+      <div class="boxPaiBeneficios">
+        <div class="boxBeneficios">
+          <img
+            src="../assets/img/iconHospital.png"
+            id="iconHospitalBeneficios"
+          />
+          <div class="tituloBoxBeneficios"><p>Sistemas de Saúde</p></div>
+          <div class="textoBoxBeneficios">
+            <p>
+              aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+              aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+              aaaaaaaaaaaaaaaaaaaa
+            </p>
+          </div>
+        </div>
+
+        <div class="boxBeneficios">
+          <img
+            src="../assets/img/iconNegócio.png"
+            id="iconHospitalBeneficios"
+          />
+          <div class="tituloBoxBeneficios"><p>Continuidade do Negócio</p></div>
+          <div class="textoBoxBeneficios">
+            <p>
+              aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+              aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+              aaaaaaaaaaaaaaaaaaaa
+            </p>
+          </div>
+        </div>
+
+        <div class="boxBeneficios">
+          <img
+            src="../assets/img/iconBancoNuvem.png"
+            id="iconHospitalBeneficios"
+          />
+          <div class="tituloBoxBeneficios"><p>Integridade de Dados</p></div>
+          <div class="textoBoxBeneficios">
+            <p>
+              aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+              aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+              aaaaaaaaaaaaaaaaaaaa
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- fim do beneficios -->
 
-    <div class="boxBeneficios">
-        <img src="../public/assets/img/iconNegócio.png" id="iconHospitalBeneficios">
-        <div class="tituloBoxBeneficios"><p>Continuidade do Negócio</p></div> 
-        <div class="textoBoxBeneficios"><p> aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa</p></div>
-    </div>
+    <!-- começo da nossa equipe -->
+    <div class="divPaiNossaEquipe">
+      <p id="tituloNossaEquipe">CONHEÇA NOSSA EQUIPE</p>
+      <p id="subTituloNossaEquipe">
+        conheça os profissionais que vão resolver seu problema!!!
+      </p>
 
-    <div class="boxBeneficios">
-        <img src="../public/assets/img/iconBancoNuvem.png" id="iconHospitalBeneficios">
-        <div class="tituloBoxBeneficios"><p>Integridade de Dados</p></div> 
-        <div class="textoBoxBeneficios"><p> aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa</p></div>
-    </div>
-    </div>
-</div>
-<!-- fim do beneficios -->
-
-<!-- começo da nossa equipe -->
-<div class="divPaiNossaEquipe">
-    <p id="tituloNossaEquipe">CONHEÇA NOSSA EQUIPE</p>
-    <p id="subTituloNossaEquipe">conheça os profissionais que vão resolver seu problema!!!</p>
-
-    <div class="boxPaiEquipe">
-
-        <img src="../public/assets/img/setaBrancaDireita.png" id="setaEquipeDireita">
+      <div class="boxPaiEquipe">
+        <img src="../assets/img/setaBrancaDireita.png" id="setaEquipeDireita" />
 
         <div class="boxEquipe">
-            <img src="../public/assets/img/maria.jpeg" id="imgEquipe">
-            <div class="divSubEquipe">
-                <p id="tituloFotoEquipe">Maria Paula</p>
-                <p id="cargoFotoEquipe">Analista de Sistemas</p>
-            </div>
-        </div>
-    
-        <div class="boxEquipe">
-            <img src="../public/assets/img/yasmin.jpeg" id="imgEquipe">
-            <div class="divSubEquipe">
-                <p id="tituloFotoEquipe">Yasmin Yuri</p>
-                <p id="cargoFotoEquipe">Analista de Sistemas</p>
-            </div>  
-        </div>
-    
-        <div class="boxEquipe">
-            <img src="../public/assets/img/sanchez.jpeg" id="imgEquipe">
-            <div class="divSubEquipe">
-                <p id="tituloFotoEquipe">Gabriel Sanchez</p>
-                <p id="cargoFotoEquipe">Analista de Sistemas</p>
-            </div>
+          <img src="../assets/img/maria.jpeg" id="imgEquipe" />
+          <div class="divSubEquipe">
+            <p id="tituloFotoEquipe">Maria Paula</p>
+            <p id="cargoFotoEquipe">Analista de Sistemas</p>
+          </div>
         </div>
 
-        <img src="../public/assets/img/setaBrancaEsquerda.png" id="setaEquipeEsquerda">
+        <div class="boxEquipe">
+          <img src="../assets/img/yasmin.jpeg" id="imgEquipe" />
+          <div class="divSubEquipe">
+            <p id="tituloFotoEquipe">Yasmin Yuri</p>
+            <p id="cargoFotoEquipe">Analista de Sistemas</p>
+          </div>
+        </div>
+
+        <div class="boxEquipe">
+          <img src="../assets/img/sanchez.jpeg" id="imgEquipe" />
+          <div class="divSubEquipe">
+            <p id="tituloFotoEquipe">Gabriel Sanchez</p>
+            <p id="cargoFotoEquipe">Analista de Sistemas</p>
+          </div>
+        </div>
+
+        <img
+          src="../assets/img/setaBrancaEsquerda.png"
+          id="setaEquipeEsquerda"
+        />
+      </div>
     </div>
-</div>
-<!-- fim da nossa equioe -->
+    <!-- fim da nossa equioe -->
 
-<!-- começo do rodapé -->
-<div class="divPaiRodape">
-    <div class="divFilhoRodape">
-
+    <!-- começo do rodapé -->
+    <div class="divPaiRodape">
+      <div class="divFilhoRodape">
         <div class="esquerdaRodape">
-            <img src="../public/assets/img/logo_navbar.png" id="logoCabecalho">
-            <p id="textoCabecalho">aaaaaaaaaaaaaaaaaaaaaaaaa 
-                aaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            <img src="../public/assets/img/twitter.png" id="iconCabecalho">
-            <img src="../public/assets/img/facebook.png" id="iconCabecalho">
-            <img src="../public/assets/img/github.png" id="iconCabecalho">
-            <img src="../public/assets/img/linkedin.png" id="iconCabecalho">
+          <img src="../assets/img/logo_navbar.png" id="logoCabecalho" />
+          <p id="textoCabecalho">
+            aaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            aaaaaaaaaaaaaaaaaaaaaaaaa
+          </p>
+          <img src="../assets/img/twitter.png" id="iconCabecalho" />
+          <img src="../assets/img/facebook.png" id="iconCabecalho" />
+          <img src="../assets/img/github.png" id="iconCabecalho" />
+          <img src="../assets/img/linkedin.png" id="iconCabecalho" />
         </div>
 
         <div class="meioRodape">
-            <p id="tituloMeioCabecalho">Acesso Rápido</p>
-            <p id="pMeioCabecalho">Contato</p>
-            <p id="pMeioCabecalho">Nosso Sistema</p>
-            <p id="pMeioCabecalho">Cadastro</p>
-            <p id="pMeioCabecalho">Login</p>
+          <p id="tituloMeioCabecalho">Acesso Rápido</p>
+          <p id="pMeioCabecalho">Contato</p>
+          <p id="pMeioCabecalho">Nosso Sistema</p>
+          <p id="pMeioCabecalho">Cadastro</p>
+          <p id="pMeioCabecalho">Login</p>
         </div>
 
         <div class="direitaRodape">
-            <p id="tituloDireitaCabecalho">Deixe o Seu E-mail para contato</p>
-            <div class="divDireitaCabecalho"> <p>example@email.com</p> </div>
-            <button class="botaoDireitaCabecalho">Enviar</button>
+          <p id="tituloDireitaCabecalho">Deixe o Seu E-mail para contato</p>
+          <div class="divDireitaCabecalho"><p>example@email.com</p></div>
+          <button class="botaoDireitaCabecalho">Enviar</button>
         </div>
-
+      </div>
     </div>
-</div>
-<!-- fim do rodapé -->
-
-</body>
+    <!-- fim do rodapé -->
+  </body>
 </html>
+<script>
+  function home() {
+    window.location = '/indexV2.html'
+  }
+</script>
