@@ -215,7 +215,7 @@
 }
 
 .textoBox {
-    text-align: center;
+    text-align: start;
     width: 12vw;
     color: #ffffff;
     position: relative;
@@ -358,7 +358,7 @@
 }
 
 .textoBoxBeneficios {
-    text-align: center;
+    text-align: start;
     width: 12vw;
     color: #ffffff;
     position: relative;
