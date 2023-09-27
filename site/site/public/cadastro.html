@@ -1,258 +1,300 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-        <link rel="stylesheet" href="./css/navBar.css">
-        <link rel="stylesheet" href="./css/cadastro.css">
-        <link rel="stylesheet" href="css/mobilenav.css">
-        <script src="./js/funcoes.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="shortcut icon" type="imagex/png" href="./assets/img/logo_icon.png">
+    <link rel="stylesheet" href="./css/navBar.css" />
+    <link rel="stylesheet" href="./css/cadastro.css" />
+    <link rel="stylesheet" href="css/mobilenav.css" />
+    <link rel="stylesheet" href="css/indexV2.css" />
+    <script src="./js/funcoes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
 
-        <title>Health Touch</title>
-    
-    </head>
-<body>
+    <link
+      rel="shortcut icon"
+      type="imagex/png"
+      href="./assets/img/logo_icon.png"
+    />
 
-    <div class="container_header">
-        <div class="header">
-
-            <img class="logo" src="./assets/img/logo_navbar.png" alt="Health"/>
-
-                <div class="navbar">
-                    
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-
-                    <li>
-                        <a href="sobre.html">Sobre</a>
-                    </li>
-
-                    <li>
-                        <a href="fale _conosco.html">Fale conosco</a>
-                    </li>
-
-                    <!-- <li>
-                        <a href="cadastro.html">Cadastrar</a>
-                    </li> -->
-                    
-                    <button onclick="btnLogin()" class="btn_login">
-                        <a class= "texto_button_login" href="login.html">Login</a>
-                    </button>
-                </div>
-                
+    <title>Login | Health Touch</title>
+  </head>
+  <body>
+    <!-- começo do cabeçalho -->
+    <div class="paiCabecalho">
+      <div class="filhoCabecalho">
+        <div class="esquerdaCabecalho">
+          <img
+            src="./assets/img/logo_navbar.png"
+            id="imgEsquerdaCabecalho"
+            onclick="home()"
+          />
         </div>
-    </div>
 
-    <div class="alerta_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-        <span id="div_erros_login"></span>
-    </div>
-
-<div class="forms">
-    <div class="wrapper active-popup">
-        <span class="icon-close">
-            <ion-icon name="close"></ion-icon>
-        </span>
-
-        <div class="form-box login">
-            <h2>Registrar</h2>
-            <div action="#">
-                <div class="input-box">
-                    <span class="icon">
-                        <ion-icon name="person"></ion-icon>
-                    </span>
-                    <input id="nome_input_cad" type="text" required>
-                    <label>Nome</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon">
-                        <ion-icon name="mail"></ion-icon>
-                    </span>
-                    <input id="email_input_cad" type="email" required>
-                    <label>Email</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon">
-                        <ion-icon name="lock-closed"></ion-icon>
-                    </span>
-                    <input id="senha_input_cad" type="password" required>
-                    <label>Senha</label>
-                </div>
-                <div class="remember-forgot">
-                    <span><input id="termos" type="checkbox">Eu concordo com os <a id="termosCondições" onclick="visualizarTermos()">termos & condições</a></span>
-                </div>
-                <button onclick="cadastrar()" type="submit" class="btn">Registrar</button>
-                <div class="login-register">
-                    <p>Já tem uma conta? <a href="./login.html" class="login-link">Login</a></p>
-                </div>
+        <div class="direitaCabecalho">
+          <div class="subDireitaCabecalho">
+            <div class="divSaibaMais">
+              <a href="/indexV2.html#saibaMais">SAIBA MAIS</a>
             </div>
+            <div class="divCadastro"><a href="cadastro.html">CADASTRO</a></div>
+            <div class="divLogin"><a href="login.html">LOGIN</a></div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+    <!-- fim do cabeçalho -->
 
-    <script src="js/login.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    
-    
-</body>
+    <div class="wrapper active-popup">
+      <div class="form-box login">
+        <h2>Registrar</h2>
+        <form action="#">
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="person"></ion-icon>
+            </span>
+            <input type="text" id="input_nome" />
+            <label>Nome</label>
+          </div>
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="mail"></ion-icon>
+            </span>
+            <input type="text" id="input_email" />
+            <label>Email</label>
+          </div>
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="lock-closed"></ion-icon>
+            </span>
+            <input type="password" id="input_senha" />
+            <label>Senha</label>
+          </div>
+          <div class="remember-forgot">
+            <label
+              ><input type="checkbox" id="termos" />Eu concordo com os termos &
+              condições</label
+            >
+          </div>
+          <button onclick="cadastrar()" type="submit" class="btn">
+            Registrar
+          </button>
+          <div class="login-register">
+            <p>Já tem uma conta? <a href="#" class="login-link">Login</a></p>
+          </div>
+        </form>
+      </div>
+      <div class="form-box register">
+        <h2>Entrar</h2>
+        <form action="#">
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="mail"></ion-icon>
+            </span>
+            <input type="email" />
+            <label>Email</label>
+          </div>
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="lock-closed"></ion-icon>
+            </span>
+            <input type="password" />
+            <label>Senha</label>
+          </div>
+          <div class="remember-forgot">
+            <label><input type="checkbox" />Lembre de mim</label>
+            <a href="contato.html">Esqueceu a senha?</a>
+          </div>
+          <button type="submit" class="btn">Login</button>
+          <div class="login-register">
+            <p>
+              Não tem uma conta? <a href="#" class="register-link">Registrar</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/cadastro.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>
 <script>
+  function cadastrar() {
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = input_nome.value
+    var emailVar = input_email.value
+    var senhaVar = input_senha.value
+    var termos = document.getElementById('termos')
 
+    if (nomeVar == '' || emailVar == '' || senhaVar == '') {
+      Swal.fire({
+        title: 'Cadastro inválido!',
+        text: 'Por favor preencha todos os campos!',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      })
 
-function cadastrar() {
-
-//Recupere o valor da nova input pelo nome do id
-// Agora vá para o método fetch logo abaixo
-var nomeVar = nome_input_cad.value;
-var emailVar = email_input_cad.value;
-var senhaVar = senha_input_cad.value;
-
-if (nomeVar == "" || emailVar == "" || senhaVar == "") {
-    cardErro.style.display = "block"
-    mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-
-    
-    return false;
-} else if(termos.checked == false) {
-    cardErro.style.display = "block"
-    mensagem_erro.innerHTML = "Por favor, aceite os termos e condições antes de continuar";
-}
-else {
-    setInterval(sumirMensagem, 10000)
-
-// Enviando o valor da nova input
-fetch("/usuarios/cadastrar", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar
-    })
-}).then(function (resposta) {
-
-    console.log("resposta: ", resposta);
-
-    if (resposta.ok) {
-        cardErro.style.display = "block";
-
-        mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-        setTimeout(() => {
-            window.location = "cadastro.html";
-        }, "2000")
-
-        limparFormulario();
-        
+      return false
+    } else if (termos.checked == false) {
+      Swal.fire({
+        title: 'Por favor aceite os termos & condições!',
+        icon: 'warning',
+        confirmButtonText: 'OK'
+      })
     } else {
-        throw ("Houve um erro ao tentar realizar o cadastro!");
+      setInterval(sumirMensagem, 10000)
+
+      // Enviando o valor da nova input
+      fetch('/usuarios/cadastrar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          emailServer: emailVar,
+          senhaServer: senhaVar
+        })
+      })
+        .then(function (resposta) {
+          console.log('resposta: ', resposta)
+
+          if (resposta.ok) {
+            let timerInterval
+            Swal.fire({
+              title: 'Cadastro realizado com sucesso!',
+              html: 'Redirecionando para tela de Login em <b></b>...',
+              timer: 2000,
+              timerProgressBar: true,
+              didOpen: () => {
+                Swal.showLoading()
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+                  b.textContent = Swal.getTimerLeft()
+                }, 100)
+              },
+              willClose: () => {
+                clearInterval(timerInterval)
+              }
+            }).then(result => {
+              /* Read more about handling dismissals below */
+              if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+              }
+            })
+
+            setTimeout(() => {
+              window.location = 'login.html'
+            }, '2000')
+
+            limparFormulario()
+          } else {
+            throw 'Houve um erro ao tentar realizar o cadastro!'
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`)
+        })
+
+      return false
     }
-}).catch(function (resposta) {
-    console.log(`#ERRO: ${resposta}`);
-    
-});
+  }
 
-return false;
-}
-}
+  function entrar() {
+    // aguardar();
 
-function sumirMensagem() {
-cardErro.style.display = "none"
-}
+    var emailVar = input_email.value
+    var senhaVar = input_senha.value
 
+    if (emailVar == '' || senhaVar == '') {
+      cardErro.style.display = 'block'
+      mensagem_erro.innerHTML =
+        '(Mensagem de erro para todos os campos em branco)'
 
-function entrar() {
-// aguardar();
+      return false
+    } else {
+      setInterval(sumirMensagem, 10000)
+    }
 
-var emailVar = email_input.value;
-var senhaVar = senha_input.value;
+    console.log('FORM LOGIN: ', emailVar)
+    console.log('FORM SENHA: ', senhaVar)
 
-if (emailVar == "" || senhaVar == "") {
-    cardErro.style.display = "block"
-    mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-    
-    return false;
-}
-else {
-    setInterval(sumirMensagem, 10000)
-}
-
-console.log("FORM LOGIN: ", emailVar);
-console.log("FORM SENHA: ", senhaVar);
-
-fetch("/usuarios/autenticar", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
+    fetch('/usuarios/autenticar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
         emailServer: emailVar,
         senhaServer: senhaVar
+      })
     })
-}).then(function (resposta) {
-    console.log("ESTOU NO THEN DO entrar()!")
+      .then(function (resposta) {
+        console.log('ESTOU NO THEN DO entrar()!')
 
-    if (resposta.ok) {
-        console.log(resposta);
+        if (resposta.ok) {
+          console.log(resposta)
 
-        resposta.json().then(json => {
-            console.log(json);
-            console.log(JSON.stringify(json));
+          resposta.json().then(json => {
+            console.log(json)
+            console.log(JSON.stringify(json))
 
-            sessionStorage.EMAIL_USUARIO = json.email;
-            sessionStorage.NOME_USUARIO = json.nome;
-            sessionStorage.ID_USUARIO = json.idUsuario;
+            sessionStorage.EMAIL_USUARIO = json.email
+            sessionStorage.NOME_USUARIO = json.nome
+            sessionStorage.ID_USUARIO = json.idUsuario
 
-            if(lembre.checked == true) {
-                localStorage.setItem('EMAIL_USUARIO', json.email);
-                localStorage.setItem('NOME_USUARIO', json.nome);
-                localStorage.setItem('ID_USUARIO', json.idUsuario);
+            if (lembre.checked == true) {
+              localStorage.setItem('EMAIL_USUARIO', json.email)
+              localStorage.setItem('NOME_USUARIO', json.nome)
+              localStorage.setItem('ID_USUARIO', json.idUsuario)
             }
 
             setTimeout(function () {
-                window.location = "./dashboard/cards.html";
-            }, 1000); // apenas para exibir o loading
+              window.location = './dashboard/cards.html'
+            }, 1000) // apenas para exibir o loading
+          })
+        } else {
+          console.log('Houve um erro ao tentar realizar o login!')
 
-        });
-
-    } else {
-
-        console.log("Houve um erro ao tentar realizar o login!");
-
-        resposta.text().then(texto => {
-            console.error(texto);
+          resposta.text().then(texto => {
+            console.error(texto)
             // finalizarAguardar(texto);
-        });
-    }
+          })
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro)
+      })
 
-}).catch(function (erro) {
-    console.log(erro);
-})
+    return false
+  }
 
-return false;
-}
+  function sumirMensagem() {
+    cardErro.style.display = 'none'
+  }
 
-function sumirMensagem() {
-cardErro.style.display = "none"
-}
+  function visualizarTermos() {
+    cardErro.style.display = 'block'
+    mensagem_erro.innerHTML = `Ao assinar esses termos eu garanto que não causarei problemas, não hackearei o site e serei responsavel jogando genshin impact.`
+    setTimeout(sumirMensagem, 10000)
+  }
 
-function visualizarTermos() {
-cardErro.style.display = "block"
-mensagem_erro.innerHTML = `Ao assinar esses termos eu garanto que não causarei problemas, não hackearei o site e serei responsavel jogando genshin impact.`
-setTimeout(sumirMensagem, 10000)
-}
+  function btnLogin() {
+    window.location.href = 'login.html'
+  }
 
-function btnLogin() {
-        window.location.href = "login.html";
-    }
-
+  function home() {
+    window.location = '/indexV2.html'
+  }
 </script>
