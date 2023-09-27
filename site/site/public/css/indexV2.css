@@ -215,8 +215,8 @@
 }
 
 .textoBox {
-    text-align: start;
-    width: 12vw;
+    text-align: center;
+    width: 16vw;
     color: #ffffff;
     position: relative;
     top: 10%;
@@ -358,8 +358,8 @@
 }
 
 .textoBoxBeneficios {
-    text-align: start;
-    width: 12vw;
+    text-align: center;
+    width: 16vw;
     color: #ffffff;
     position: relative;
     top: 13%;
@@ -582,3 +582,263 @@
 
 
 /* fim do rodapé */
+/* COMEÇO MOBILE */
+@media only screen and (max-width: 600px){
+  /* começo do cabeçalho mobile */
+.paiCabecalho {
+    width: 106%;
+}
+
+.direitaCabecalho {
+    width: 47vw;
+    
+}
+
+#imgEsquerdaCabecalho {
+    width: 7rem;
+}
+/* fim do cabeçalho mobile */  
+
+/* começo do banner mobile */
+.paiBanner {
+    width: 106%;
+    height: 15rem;
+   
+}
+
+.divFilhoBanner {
+    top: 3%;
+}
+
+.pTituloBanner {
+    font-size: 25px;
+    line-height: 30px;
+    }
+
+.divBoxBotaoBanner {
+    position: relative;
+    top: 4%;
+    right: 10%;
+    width: 15rem;
+    
+}
+
+.botaoBanner {
+    width: 70vw;
+    justify-content: space-between;
+   
+}
+
+.botao1Banner {
+    width: 7rem;
+    height: 4vh;
+
+}
+
+.botao2Banner {
+    width: 7rem;
+    height: 4vh;
+
+}
+/* fim do banner mobile */
+
+/* começo do contexto mobile */
+.paiContexto {
+    width: 106%;
+    height: 110rem;
+    
+}
+
+.filhoContexto {
+    width: 80%;
+    height: 70rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.divTituloContexto {
+    font-size: 25px;   
+}
+
+.paiBoxContexto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 0%;
+    height: 90rem;
+    justify-content: space-between;
+    
+}
+
+.boxContexto {
+    width: 60vw;
+    height: 30vh;
+    position: relative;
+    top: 10%;
+    margin-bottom: 3rem;
+}
+.textoBox {
+    width: 50vw;
+}
+
+#botaoBox {
+    
+    width: 25vw;
+    height: 4vh;
+  
+}
+
+.divComoFunciona {
+    width: 100%;
+    font-size: 15px;
+    top: 10%;
+    left: 3%;
+    font-size: larger;
+}
+
+.divSubComoFunciona {
+    width: 100%;
+    font-size: 12px;
+    top: 10%;
+    left: 10%;
+}
+
+.paiBoxComoFunciona {
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    top: 10%;
+    width: 100vw;
+    height: 30rem;
+    flex-wrap: wrap;
+}
+
+.boxComoFunciona {
+    flex-direction: column;
+    width: 25vw;
+    height: 30vh;
+    position: relative;
+    left: 5%;
+}
+
+#imgComoFunciona {
+    width: 14vw;
+    height: 6vh;
+    
+}
+
+#pComoFunciona {
+    font-size: 17px;
+}
+/* fim do contexto mobile*/
+
+/* começo do beneficios mobile */
+.divPaiBeneficios {
+    height: 130vh;
+    width: 106%;
+    background-size: cover;
+    background-position: 50%;
+
+}
+
+#tituloBeneficios {
+    font-size: 25px;
+    top: 3%;
+}
+
+#subTituloBeneficios {
+    font-size: 15px;
+    top: 4%;
+}
+
+.boxPaiBeneficios {
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 7%;
+    left: 5%;
+}
+
+.boxBeneficios {
+    width: 60vw;
+    height: 30vh;
+    top: 2%;
+    margin-bottom: 30px;
+}
+
+
+
+#iconHospitalBeneficios {
+    width: 13vw;
+    height: 7vh;
+}
+
+.tituloBoxBeneficios {
+    position: relative;
+    top: 8%;
+}
+
+.textoBoxBeneficios {
+    width: 60vw;
+}
+/* fim do beneficios mobile */
+
+/* começo do rodapé */
+.divPaiRodape {
+    height: 45vh;
+    width: 106%;
+}
+
+.divFilhoRodape {
+    background-color: #020F1F;
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.esquerdaRodape {
+    width: 20vw;
+    height: 30vh;
+}
+
+#logoCabecalho {
+    width: 27vw;
+    height: 7vh;
+}
+
+#textoCabecalho {
+    font-size: 14px;
+    width: 35vw;
+    color: white;
+}
+
+#iconCabecalho {
+    width: 6vw;
+    height: 3vh;
+    position: relative;
+    top: 7%;
+}
+
+#tituloDireitaCabecalho {
+    font-size: 15px;
+    width: 15vh;
+}
+
+.divDireitaCabecalho {
+    height: 4vh;
+    width: 31vw;
+}
+
+.botaoDireitaCabecalho {
+    width: 25vw;
+    height: 3vh;
+}
+/* fim do rodapé */
+
+}
+/* FIM MOBILE */
