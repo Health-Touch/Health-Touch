@@ -456,6 +456,128 @@
 }
 /*fim nossa equipe */
 
+/* Começo do Plano */
+.divPlanoPai{
+    background-color: #020F1F;
+}
+
+.divPlanoFilho{
+    display: flex;
+    flex-direction: column;
+}
+
+.tituloPlano{
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.textoPlano{
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.caixas{
+    display: flex;
+    /* width: 80%;
+    margin: auto; */
+    justify-content: space-around;
+    margin: 50px 0;
+}
+
+.boxPlano{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 470px;
+    border: solid 2px #fff;
+    align-items: center;
+}
+
+.divDegrade{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(38,171,167);
+background: linear-gradient(180deg, rgba(38,171,167,1) 0%, rgba(38,171,167,0) 100%);
+width: 100%;
+}
+
+.nomePlano{
+    color: #fff;
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.precoPlano{
+    color: #fff;
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.iconPlano{
+    width: 95px;
+    height: 95px;
+}
+
+.beneficiosPlano{
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    justify-content: space-around;
+    margin: 20px 0;
+    width: 80%;
+}
+
+.beneficios{
+    display: flex;
+}
+
+.txtBeneficio{
+    color: #fff;
+    font-size: 16px;
+}
+
+.iconBeneficio{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.btnPlano{
+    color: #fff;
+    background-color: #26ABA7;
+    border-radius: 5px;
+    font-size: 18px;
+    width: 150px;
+    height: 50px;
+    border: none;
+}
+
+.boxPlano:hover{
+    background: rgb(38,171,167);
+    background: linear-gradient(0deg, rgba(38,171,167,1) 0%, rgba(38,171,167,0) 100%);
+
+.divDegrade{
+    background: rgb(38,171,167);
+    background-color: transparent;
+}
+
+.btnPlano{
+    background-color: #020F1F;
+    color: #fff;
+    cursor: pointer;
+}
+}
+
+/* Fim do Plano */
+
 /* começo do rodapé */
 .divPaiRodape {
     background-color: #020F1F;
