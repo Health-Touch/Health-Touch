@@ -410,7 +410,7 @@
     top: 10%;
 }
 
-#imgEquipe {
+.imgEquipe {
     width: 85%;
     height: 35vh;
     position: relative;
@@ -437,6 +437,7 @@
 #cargoFotoEquipe {
     color: white;
     font-size: 13px;
+    font-weight: bold;
 }
 
 #setaEquipeDireita {
@@ -445,6 +446,7 @@
     position: relative;
     top: 55%;
     right: 6%;
+    cursor: pointer;
 }
 
 #setaEquipeEsquerda {
@@ -453,6 +455,7 @@
     position: relative;
     top: 55%;
     left: 6%;
+    cursor: pointer;
 }
 /*fim nossa equipe */
 
