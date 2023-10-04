@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/baseDash.css">
+    <link rel="stylesheet" href="css/analiseDetalhada.css">
+    <title>Análise</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="divPai">
+        <!-- inicio menu lateral -->
+        <div class="divPaiLateral">
+            <div class="filhoLateral">
+
+                <div class="divNomeEmpresa">
+
+                    <p id="nomeEmpresa">Bem Vindo <br> Nome da Empresa</p>
+                </div>
+
+                <div class="divMainMenu">
+                    <p id="pMainMenu">MAIN MENU</p>
+                </div>
+
+                <div class="divPaiOpcoesMenu">
+                    <div class="divHome">
+                        <img id="iconMenuLateralHome" src="assets/img/iconHome.png">
+                        <div class="divEspaco"></div>
+                        <p id="pMenuLateral">Setores</p>
+                    </div>
+
+                    <div class="divEstatisticas">
+                        <img id="iconEstatiscasLateral" src="assets/img/estatisticasIcon.png">
+                        <div class="divEspaco"></div>
+                        <p id="pMenuLateral">Estatísticas <br> Gerais</p>
+                    </div>
+
+                    <div class="divDashboards">
+                        <img id="iconDashboardsLateral" src="assets/img/iconDashboard.png">
+                        <div class="divEspaco"></div>
+                        <p id="pMenuLateral">Dashboards <br> Detalhadas</p>
+                    </div>
+
+                    <div class="divComputador">
+                        <img id="iconComputadorLateral" src="assets/img/iconComputador.png">
+                        <div class="divEspaco"></div>
+                        <p id="pMenuLateral">Análise <br> Máquinas</p>
+                    </div>
+
+                    <div class="divCadastroComputador">
+                        <img id="iconComputadorCadLateral" src="assets/img/iconPcConfig.png">
+                        <div class="divEspaco"></div>
+                        <p id="pMenuLateral">Cadastro <br> Máquinas</p>
+                    </div>
+
+                    <div class="divAnaliseEquipe">
+                        <img id="iconAnaliseEquipe" src="assets/img/iconEquipe.png">
+                        <div class="divEspaco"></div>
+                        <p id="pMenuLateral">Funcionários</p>
+                    </div>
+
+                    <div class="divCadastroEquipe">
+                        <img id="iconCadastroEquipe" src="assets/img/IconEquipeConfig.png">
+                        <div class="divEspaco"></div>
+                        <p id="pMenuLateral">Cadastro <br> Funcionários</p>
+                    </div>
+                </div>
+
+                <div class="divEspacoV2"></div>
+
+                <div class="divHelp">
+                    <p id="pHelp">HELP</p>
+                </div>
+
+                <div class="divPaiHelpMenu">
+                    <div class="divHelpDesk">
+                        <img id="iconHelpDesk" src="assets/img/iconHelp.png">
+                        <div class="divEspaco"></div>
+                        <p id="pMenuLateral">HelpDesk</p>
+                    </div>
+
+                    <div class="divConfiguracoes">
+                        <img id="iconConfiguracoes" src="assets/img/iconConfig.png">
+                        <div class="divEspaco"></div>
+                        <p id="pMenuLateral">Configurações</p>
+                    </div>
+
+                    <img id="logoMenuLateral" src="assets/img/logoMenu.png">
+                </div>
+
+            </div>
+        </div>
+        <!-- fim do menu lateral -->
+
+        <!-- inicio do cabeçalho -->
+        <div class="divPaiCabecalho">
+            <div class="filhoCabecalho">
+
+                <div class="esquerdaCabecalho">
+                    <input type="text" class="inputLogin" placeholder="Pesquisar"></input>
+                    <img src="assets/img/lupa.png" class="lupaBusca">
+                </div>
+
+                <div class="direitaCabecalho">
+                    <img class="emailIconCabecalho" src="assets/img/iconEmail.png">
+                    <img class="sinoIconCabecalho" src="assets/img/notificacaoIcon.png">
+                    <div class="divPerfilCabecalho">
+                        <img class="iconPerfilCabecalho" src="assets/img/fotoPerfil.png">
+                        <div class="textosIcon">
+                            <p id="tituloPerfil">Anthony Bento</p>
+                            <p id="cargoPerfil">CEO</p>
+                        </div>
+                        <img class="setaPerfilCabecalho" src="assets/img/setaIcon.png">
+                    </div>
+                </div>
+
+            </div>
+            <!-- fim do cabeçalho -->
+
+            <!-- começo conteudo pagina -->
+            <div class="divPaiConteudo">
+                <div class="divFilhoAnalise">
+                    <div class="divTituloAnalise">
+                        <b>Análise Detalhada</b>
+                    </div>
+                    <div class="divSubtitulo">
+                        <p><b>Computador 1</b> Pediatra setor1</p>
+                        <button class="botaoTrocar">Trocar</button> <button class="botaoHist">Histórico</button>
+                    </div>
+                </div>
+                <div class="divDashs">
+                    <div class="dash">
+                        <div>
+                            <canvas id="myChart" style="position: relative; width: 110vh; height: 80vh;"></canvas>
+                        </div>
+
+                    </div>
+
+                    <div class="dash">
+                        <div>
+                            <canvas id="myChart1" style="position: relative; width: 110vh; height: 80vh;"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="dash">
+                        <div>
+                            <canvas id="myChart2" style="position: relative; width: 110vh; height: 80vh;"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="avisos">
+                        <div class="tituloAviso">Avisos Gerais</div>
+
+                        <div class="divPaiavisoCpu">
+                            <div class="avisoCpu"> CPU em 80% 
+                                <div class="avisoCpuImg"><img src="assets/img/aviso-orange.png" alt="alerta" class="imgAlerta"></div>
+                            </div>
+
+                        </div>
+                        <div class="divPaiavisoCpu">
+                            <div class="avisoCpu"> CPU em 90% 
+                                <div class="avisoCpuImg"><img src="assets/img/aviso-red.png" alt="alerta" class="imgAlerta"></div>
+                            </div>
+
+                        </div>
+                        <div class="divPaiavisoCpu">
+                            <div class="avisoCpu"> CPU em 70% 
+                                <div class="avisoCpuImg"><img src="assets/img/aviso.png" alt="alerta" class="imgAlerta"></div>
+                            </div>
+
+                        </div>
+                        <div class="divPaiavisoCpu">
+                            <div class="avisoCpu"> RAM em 70% 
+                                <div class="avisoCpuImg"><img src="assets/img/aviso.png" alt="alerta" class="imgAlerta"></div>
+                            </div>
+
+                        </div>
+                        <div class="divPaiavisoCpu">
+                            <div class="avisoCpu"> RAM em 90% 
+                                <div class="avisoCpuImg"><img src="assets/img/aviso-red.png" alt="alerta" class="imgAlerta"></div>
+                            </div>
+
+                        </div>
+                        <div class="divPaiavisoCpu">
+                            <div class="avisoCpu"> Disco em 80% 
+                                <div class="avisoCpuImg"><img src="assets/img/aviso-orange.png" alt="alerta" class="imgAlerta"></div>
+                            </div>
+
+                        </div>
+                        <div class="divPaiavisoCpu">
+                            <div class="avisoCpu"> DIsco em 90% 
+                                <div class="avisoCpuImg"><img src="assets/img/aviso-red.png" alt="alerta" class="imgAlerta"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="divPaiUsb">
+                    <div class="entradasUsb">
+                        <p>Entradas Usb</p>
+                        <div class="DivCampos">
+
+                        </div>
+                    </div>
+
+                    <div class="mensalUsb">
+                        <p>Uso Mensal Usb</p>
+                        <div>
+                            <canvas id="myChart3" style="position: relative; width: 110vh; height: 80vh;"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <!-- fim conteudo pagina -->
+
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            datasets: [{
+                label: 'Disco',
+                data: [30, 29, 28, 25, 22, 23],
+                backgroundColor: 'pink',
+                borderColor: 'pink',
+                borderWidth: 4
+
+
+            }
+
+            ]
+        }
+
+    });
+
+    const ctx1 = document.getElementById('myChart1');
+
+    new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            datasets: [{
+                label: 'cpu',
+                data: [10, 40, 28, 30, 22, 55],
+                backgroundColor: 'purple',
+                borderColor: 'pink',
+                borderWidth: 4
+
+
+            }
+
+            ]
+        }
+
+    });
+
+
+    const ctx2 = document.getElementById('myChart2');
+
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            datasets: [{
+                label: 'RAM',
+                data: [20, 34, 50, 44, 32, 25],
+                backgroundColor: 'blue',
+                borderColor: '#6969ff',
+                borderWidth: 4
+
+
+            }
+
+            ]
+        }
+
+    });
+
+    const ctx3 = document.getElementById('myChart3');
+
+    new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            datasets: [{
+                label: '',
+                data: [2, 1, 0, 3, 4, 1],
+                backgroundColor: 'pink',
+                borderColor: 'pink',
+                borderWidth: 4
+
+
+            }
+            ]
+        }
+
+    });
+
+
+
+
+</script>
