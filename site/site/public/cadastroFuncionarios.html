@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/cadastroMaquinas.css">
+    <link rel="stylesheet" href="css/cadastroFuncionarios.css">
     <title>Document</title>
 </head>
 <body>
@@ -82,6 +82,7 @@
                     </div>
 
                     <img id="logoMenuLateral" src="assets/img/logoMenu.png">
+                
                 </div>
 
             </div>
@@ -116,47 +117,52 @@
         <!-- começo conteudo pagina -->
         <div class="divPaiConteudo">
             <div class="divPaiCadastro">
+
+                <div class="divPaiPerfil">
+                    <img src="./assets/img/fotoPerfil.png" class="iconFotoPerfil">
+                    <button onclick="botaoCadastroMaquinas()" class="btnCadFunc">Atualizar Foto</button>
+                </div>
+
                 <div class="divFilhoCadastro">
-                    <img src="assets/img/pcCadastro.png" id="iconPcCadastro">
                     
                     <div class="divTitulosCadastro">
-                    <p id="tituloCadastroMaquinasV1">Cadastre suas <span id="tituloCadastroMaquinasV2">Máquinas</span> </p>
-                    
+                    <p id="tituloCadastroMaquinasV1">Cadastre sua <span id="tituloCadastroMaquinasV2">Equipe</span> </p>
                     </div>
 
                     <div class="paiSubCadastro">
                     <div class="divSo">
-                        <p id="pSo">SO:</p>
-                        <input type="text" class="inputCad" placeholder="Sistema Operacional"></input>
+                        <p id="pSo">Nome:</p>
+                        <input type="text" class="inputCad" placeholder="Nome"></input>
                     </div>
 
                     <div class="divSo">
-                        <p id="pSo">IP:</p>
-                        <input type="text" class="inputCad" placeholder="192.158.1.38."></input>
+                        <p id="pSo">Email:</p>
+                        <input type="text" class="inputCad" placeholder="Email"></input>
                     </div>
 
                     <div class="divSo">
-                        <p id="pSo">Modelo:</p>
-                        <input type="text" class="inputCad" placeholder="Marca da Sua Máquina"></input>
+                        <p id="pSo">CPF:</p>
+                        <input type="text" class="inputCad" placeholder="532.753.208-90"></input>
                     </div>
 
                     <div class="divSo">
-                        <p id="pSo">Setor:</p>
-                        <input type="text" class="inputCad" placeholder="Pediatria"></input>
+                        <p id="pSo">Senha:</p>
+                        <input type="text" class="inputCad" placeholder="************"></input>
                     </div>
 
                     <div class="divSo">
-                        <p id="pSo">Sala:</p>
-                        <input type="text" class="inputCad" placeholder="Sala 5"></input>
+                        <p id="pSo">Confirmar <br> Senha:</p>
+                        <input type="text" class="inputCad" placeholder="************"></input>
                     </div>
 
                     <div class="divSo">
-                        <p id="pSo">Andar:</p>
-                        <input type="text" class="inputCad" placeholder="3ºAndar"></input>
+                        <p id="pSo">Nivel <br> de Acesso:</p>
+                        <input type="text" class="inputCad" placeholder="Selecione um Nível de Acesso"></input>
                     </div>
 
                     </div>
                     <button onclick="botaoCadastroMaquinas()" class="btnCadMaq">Cadastre</button>
+                </div>
                 </div>
             </div>
         </div>
