@@ -346,12 +346,12 @@
 }
 
 .divPaiCadastro {
-    width: 35vw;
+    width: 38vw;
     height: 75vh;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background-color: white;
 }
@@ -364,19 +364,18 @@
     align-items: center;
 }
 
-#iconPcCadastro {
-    width: 3vw;
-    height: 6vh;
-}
-
 .divTitulosCadastro {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 20vw;
+    position: relative;
+    right: 30%;
 }
 
 #tituloCadastroMaquinasV1 {
     font-size: 23px;
+    position: relative;
+    top: 3vh;
 }
 
 #tituloCadastroMaquinasV2 {
@@ -400,7 +399,7 @@
 }
 
 #pSo {
-    font-size: 1rem;
+    font-size: 13px;
     color: grey;
 }
 
@@ -411,58 +410,13 @@
     align-items: center;
     position: relative;
     top: 10%;
-    /* background-color: #26ABA7; */
     padding: 1.5vh;
-}
-
-.divIp {
-    width: 18vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    top: 15%;
-}
-
-.divModelo {
-    width: 18vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    top: 20%;
-}
-
-.divSetor {
-    width: 18vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    top: 25%;
-}
-
-.divSala {
-    width: 18vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    top: 30%;
-}
-
-.divAndar {
-    width: 18vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    top: 35%;
 }
 
 .btnCadMaq {
     position: relative;
-    top: -5%;
+    top: -6%;
+    left: 5%;
     padding: 0.7rem;
     width: 10vw;
     height: 5vh;
@@ -470,13 +424,11 @@
     border-radius: 20px;
     border: none;
     color: white;
-    text-transform: uppercase;
-    font-weight: 800;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2vh;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .paiSubCadastro {
@@ -493,5 +445,43 @@
     width: 50vw;
     height: 100vh;
 }
+
+.divPaiPerfil {
+    width: 10vw;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fotoPai {
+    background-color: yellow;
+    width: 15vw;
+    height: 20vh;
+}
+
+.iconFotoPerfil {
+    width: 8vw;
+    height: 17vh;
+}
+
+.btnCadFunc {
+    position: relative;
+    top: 4%;
+    padding: 0.7rem;
+    width: 8vw;
+    height: 4vh;
+    background-color: #26ABA7;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5vh;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    
+}
+
 
 /* fim do conteudo */
