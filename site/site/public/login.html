@@ -1,167 +1,93 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <link rel="stylesheet" href="css/indexV2.css" />
+    <script src="./js/funcoes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="../js/login.js"></script>
 
-  
-  <link rel="stylesheet" href="./css/login.css" />
-  <link rel="stylesheet" href="css/indexV2.css" />
-  <script src="./js/funcoes.js"></script>
+    <link
+      rel="shortcut icon"
+      type="imagex/png"
+      href="./assets/img/logo_icon.png"
+    />
 
+    <title>Login | Health Touch</title>
+  </head>
 
-  <link rel="shortcut icon" type="imagex/png" href="./assets/img/logo_icon.png" />
+  <body>
+    <!-- começo do cabeçalho -->
+    <div class="paiCabecalho">
+      <div class="filhoCabecalho">
+        <div class="esquerdaCabecalho">
+          <img
+            src="./assets/img/logo_navbar.png"
+            id="imgEsquerdaCabecalho"
+            onclick="home()"
+          />
+        </div>
 
-  <title>Login | Health Touch</title>
-</head>
+        <div class="direitaCabecalho">
+          <div class="subDireitaCabecalho">
+            <div class="divSaibaMais">
+              <a href="/index.html#saibaMais">SAIBA MAIS</a>
+            </div>
 
-<body>
-  <!-- começo do cabeçalho -->
-  <div class="paiCabecalho">
-    <div class="filhoCabecalho">
-      <div class="esquerdaCabecalho">
-        <img src="./assets/img/logo_navbar.png" id="imgEsquerdaCabecalho" onclick="home()" />
-      </div>
-
-      <div class="direitaCabecalho">
-        <div class="subDireitaCabecalho">
-          <div class="divSaibaMais">
-            <a href="/index.html#saibaMais">SAIBA MAIS</a>
+            <div class="divLogin"><a href="login.html">LOGIN</a></div>
           </div>
-         
-          <div class="divLogin"><a href="login.html">LOGIN</a></div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- fim do cabeçalho -->
+    <!-- fim do cabeçalho -->
 
-  <div class="wrapper active-popup">
-    <span class="icon-close">
-      <ion-icon name="close"></ion-icon>
-    </span>
-    <div class="form-box login">
-      <h2>Login</h2>
-      <!-- <form action="#"> -->
-        <div class="input-box">
-          <span class="icon">
-            <ion-icon name="mail"></ion-icon>
-          </span>
-          <input type="email" id="input_email"/>
-          <label>Email</label>
+    <div class="pageLogin">
+      <div class="wrapper active-popup">
+        <span class="icon-close">
+          <ion-icon name="close"></ion-icon>
+        </span>
+        <div class="form-box login">
+          <h2>Login</h2>
+          <!-- <form action="#"> -->
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="mail"></ion-icon>
+            </span>
+            <input type="email" id="input_email" />
+            <label>Email</label>
+          </div>
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="lock-closed"></ion-icon>
+            </span>
+            <input type="password" id="input_senha" />
+            <label>Senha</label>
+          </div>
+          <div class="remember-forgot">
+            <label><input type="checkbox" />Lembre de mim</label>
+            <a href="contato.html">Esqueceu a senha?</a>
+          </div>
+          <button onclick="main()" class="btn">Login</button>
+          <div class="login-register">
+            <p>
+              Não tem uma conta? <a href="" class="register-link">Registrar</a>
+            </p>
+          </div>
         </div>
-        <div class="input-box">
-          <span class="icon">
-            <ion-icon name="lock-closed"></ion-icon>
-          </span>
-          <input type="password" id="input_senha" />
-          <label>Senha</label>
-        </div>
-        <div class="remember-forgot">
-          <label><input type="checkbox" />Lembre de mim</label>
-          <a href="contato.html">Esqueceu a senha?</a>
-        </div>
-        <button onclick="entrar()" class="btn">Login</button>
-        <div class="login-register">
-          <p>
-            Não tem uma conta? <a href="" class="register-link">Registrar</a>
-          </p>
-        </div>
+      </div>
     </div>
-   
-  </div>
 
-
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-</body>
-
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>
-<script>
-
-
-  function entrar() {
-    // aguardar();
-
-    console.log('Na func entrar')
-
-    var emailVar = input_email.value
-    var senhaVar = input_senha.value
-
-    if (emailVar == '' || senhaVar == '') {
-      // cardErro.style.display = 'block'
-      console.log(
-        '(Mensagem de erro para todos os campos em branco)'
-      )
-
-      return false
-    } else {
-      setInterval(sumirMensagem, 10000)
-    }
-
-    console.log('FORM LOGIN: ', emailVar)
-    console.log('FORM SENHA: ', senhaVar)
-
-    fetch('/usuarios/autenticar', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        emailServer: emailVar,
-        senhaServer: senhaVar
-      })
-    })
-      .then(function (resposta) {
-        console.log('ESTOU NO THEN DO entrar()!')
-
-        if (resposta.ok) {
-          console.log(resposta)
-
-          resposta.json().then(json => {
-            console.log(json)
-            console.log(JSON.stringify(json))
-
-            sessionStorage.EMAIL_USUARIO = json.email
-            sessionStorage.NOME_USUARIO = json.nome
-            sessionStorage.ID_USUARIO = json.idUsuario
-
-            setTimeout(function () {
-              window.location = 'index.html'
-            }, 1000) // apenas para exibir o loading
-          })
-        } else {
-          console.log('Houve um erro ao tentar realizar o login!')
-
-          resposta.text().then(texto => {
-            console.error(texto)
-            // finalizarAguardar(texto);
-          })
-        }
-      })
-      .catch(function (erro) {
-        console.log(erro)
-      })
-
-    return false
-  }
-
-  function sumirMensagem() {
-    // cardErro.style.display = 'none'
-  }
-
-  function visualizarTermos() {
-    // cardErro.style.display = 'block'
-    console.log(`Ao assinar esses termos eu garanto que não causarei problemas, não hackearei o site e serei responsavel jogando genshin impact.`)
-    setTimeout(sumirMensagem, 10000)
-  }
-
-  function btnLogin() {
-    window.location.href = 'login.html'
-  }
-
-  function home() {
-    window.location = '/index.html'
-  }
-</script>

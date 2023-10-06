@@ -497,7 +497,8 @@
     display: flex;
     flex-direction: column;
     width: 300px;
-    height: 470px;
+    /* height: 470px; */
+    height: 410px;
     border: solid 2px #fff;
     align-items: center;
 }
@@ -522,6 +523,10 @@ width: 100%;
     color: #fff;
     font-size: 50px;
     font-weight: 600;
+}
+
+.miniPreco{
+    font-size: 35px;
 }
 
 .iconPlano{

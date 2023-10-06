@@ -521,6 +521,11 @@
     font-size: x-small;
 }
 
+input[disabled] {
+    pointer-events: none;
+  }
+  
+
 .cpu{
     background: linear-gradient(90deg, rgba(114,240,172,1) 50%, rgba(221,221,221,1) 50%);
 }

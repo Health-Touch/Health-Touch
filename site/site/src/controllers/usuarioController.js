@@ -10,28 +10,29 @@ function autenticar(req, res) {
   } else if (senha == undefined) {
     res.status(400).send('Sua senha está indefinida!')
   } else {
-    usuarioModel.autenticar(email, senha)
-    .then(
-        function (resultado) {
-            console.log(`\nResultados encontrados: ${resultado.length}`);
-            console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+    usuarioModel
+      .autenticar(email, senha)
+      .then(function (resultado) {
+        console.log(`\nResultados encontrados: ${resultado.length}`)
+        console.log(`Resultados: ${JSON.stringify(resultado)}`) // transforma JSON em String
 
-            if (resultado.length == 1) {
-                console.log(resultado);
-                res.json(resultado[0]);
-            } else if (resultado.length == 0) {
-                res.status(403).send("Email e/ou senha inválido(s)");
-            } else {
-                res.status(403).send("Mais de um usuário com o mesmo login e senha!");
-            }
+        if (resultado.length == 1) {
+          console.log(resultado)
+          res.json(resultado[0]) // ?
+        } else if (resultado.length == 0) {
+          res.status(403).send('Email e/ou senha inválido(s)')
+        } else {
+          res.status(403).send('Mais de um usuário com o mesmo login e senha!')
         }
-    ).catch(
-        function (erro) {
-            console.log(erro);
-            console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
-            res.status(500).json(erro.sqlMessage);
-        }
-    );
+      })
+      .catch(function (erro) {
+        console.log(erro)
+        console.log(
+          '\nHouve um erro ao realizar o login! Erro: ',
+          erro.sqlMessage
+        )
+        res.status(500).json(erro.sqlMessage)
+      })
   }
 }
 
@@ -51,9 +52,9 @@ function cadastrar(req, res) {
     res.status(400).send('Seu cnpj está undefined!')
   } else if (status == undefined) {
     res.status(400).send('Sua status está undefined!')
-  }else if (contrato == undefined) {
+  } else if (contrato == undefined) {
     res.status(400).send('Sua contrato está undefined!')
-  }else if (telefone == undefined) {
+  } else if (telefone == undefined) {
     res.status(400).send('Sua telefone está undefined!')
   }
   //else if (empresaId == undefined) {
