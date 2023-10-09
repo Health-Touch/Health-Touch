@@ -58,7 +58,7 @@
     height: 40vh;
     position: relative;
     top: 8%;
-    left:5%;
+    left:1.0%;
     
     
 }
@@ -301,7 +301,8 @@
     margin: 10px 10%;
     
 }
-h2{
+span{
+    font-size: 40px;
     position: relative;
     top: 2%;
     left: 5%;
@@ -327,33 +328,33 @@ ul{
 #idTeste {
     /* font-size: 11px; */
     position: relative;
-    left: 8%;
+    left: 7.5%;
     z-index: 1;
 }
 
 #idTeste2 {
     font-size: 15px;
     position: relative;
-    left: 17%;
+    left: 16.7%;
     z-index:2
 }
 
 #idTeste3 {
     /* font-size: 11px; */
     position: relative;
-    left: 30%;
+    left: 27%;
     z-index:3
 }
 #idTeste4{
     /* font-size: 11px; */
     position: relative;
-    left: 40%;
+    left: 35%;
     z-index:4
 }
 #idTeste5{
     /* font-size: 11px; */
     position: relative;
-    left: 45%;
+    left: 40%;
     z-index:5
 }
 
@@ -363,6 +364,7 @@ ul{
     flex-direction: column;
     position: relative;
     top: 50px;
+    right:4%;
     width:87%;
     margin:4%;
     height: 600px;
@@ -379,38 +381,48 @@ ul{
     border-radius: 35px;
     padding: 15px 30px;
     border-radius: 20px;
-    margin:10px;
+    margin:20px;
+
     
 }
 #liNumero{
     position:relative;
     z-index:99;
-    left: 2%;
+    left: 5%;
 }
 #liSistema{
+    
     position:relative;
     z-index:98;
-    left: 14%;
+    left: 17%;
+    width:80px;
+    text-align:center;
 }
 #liSetor{
+    
+    width: 120px;
     position:relative;
     z-index:97;
-    left: 30%;
+    left: 28%;
+    text-align:center;
 }
 #liStatus{
     position:relative;
     z-index:97;
-    left: 38.5%;
+    left: 31.5%;
 }
 #liAndar{
+    
     position:relative;
     z-index:96;
-    left: 44.5%;
+    left: 36%;
+    width:30px;
+    text-align:center;
 }
 #liUpdate{
     position:relative;
     z-index:95;
-    left: 48%;
+    left: 40%;
     border-radius: 30px;
     width: 8%;
     height:110%;
@@ -420,9 +432,10 @@ ul{
     padding:2px 5px;
 }
 #liDelete{
+    
     position:relative;
     z-index:94;
-    left: 49%;
+    left: 41%;
     border-radius: 30px;
     width: 8%;
     height:110%;
@@ -431,19 +444,27 @@ ul{
     justify-content: center;
     padding:2px 5px;
 }
+#li3Pontos{
+    position:relative;
+    z-index:94;
+    left: 44%;
+    bottom: 40%;
+    font-size: 130%
+}
 
 .active{
     background-color: #1D8E0A;
-    border-radius:10px;
-    width:55px;
-    height: 22px;
-    text-align:center;
+    border-radius:20px;
+    width:70px;
+    height: 25px;
+    text-align: center;
 }
 #inactive{
     background-color: #8E0A0A;
-    border-radius:10px;
-    width:60px;
-    text-align:center;
+    border-radius:20px;
+    width:70px;
+    height: 25px;
+    text-align:center
 }
 
 /* fim do conteudo */
