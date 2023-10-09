@@ -132,32 +132,32 @@
                     <div class="paiSubCadastro">
                     <div class="divSo">
                         <p id="pSo">Nome:</p>
-                        <input type="text" class="inputCad" placeholder="Nome"></input>
+                        <input type="text" id="inputNome" class="inputCad" placeholder="Nome"></input>
                     </div>
 
                     <div class="divSo">
                         <p id="pSo">Email:</p>
-                        <input type="text" class="inputCad" placeholder="Email"></input>
+                        <input type="text" id="inputEmail" class="inputCad" placeholder="Email"></input>
                     </div>
 
                     <div class="divSo">
                         <p id="pSo">CPF:</p>
-                        <input type="text" class="inputCad" placeholder="532.753.208-90"></input>
+                        <input type="text" id="inputCPF" class="inputCad" placeholder="532.753.208-90"></input>
                     </div>
 
                     <div class="divSo">
                         <p id="pSo">Senha:</p>
-                        <input type="text" class="inputCad" placeholder="************"></input>
+                        <input type="text" id="inputSenha" class="inputCad" placeholder="************"></input>
                     </div>
 
                     <div class="divSo">
                         <p id="pSo">Confirmar <br> Senha:</p>
-                        <input type="text" class="inputCad" placeholder="************"></input>
+                        <input type="text" id="inputConfirmarSenha" class="inputCad" placeholder="************"></input>
                     </div>
 
                     <div class="divSo">
                         <p id="pSo">Nivel <br> de Acesso:</p>
-                        <input type="text" class="inputCad" placeholder="Selecione um Nível de Acesso"></input>
+                        <input type="text" id="inputNivelAcesso" class="inputCad" placeholder="Selecione um Nível de Acesso"></input>
                     </div>
 
                     </div>
@@ -174,3 +174,48 @@
 </html>
 
 <!-- <img src="assets/img/bannerHospital.png" id="imgConteudo"> -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+<script>
+    
+function botaoCadastroMaquinas () {
+        
+    var nome = inputNome.value
+    var cpf = inputCPF.value
+    var email = inputEmail.value
+    var senha = inputSenha.value
+    var confirmeSenha = inputConfirmarSenha.value
+    var acesso = inputNivelAcesso.senha
+
+        fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeServer: nome,
+            emailServer: email,
+            senhaServer: senha,
+        })
+    }).then(function (resposta) {
+
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            Swal.fire('CADASTRO DE FUNCIONÁRIO REALIZADO')
+
+            limparFormulario();
+          
+        } else {
+            Swal.fire('HOUVE UM ERRO AO TENTAR REALIZAR O CADASTRO')
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
+function sumirMensagem() {
+    cardErro.style.display = "none"
+}
+
+</script>
