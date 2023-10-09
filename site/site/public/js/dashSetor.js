@@ -2,14 +2,17 @@ function validarSessao() {
   var email = sessionStorage.EMAIL_USUARIO
   var nome = sessionStorage.NOME_USUARIO
   var cargo = sessionStorage.CARGO_USUARIO
+  var nomeEmpresa = sessionStorage.NOME_EMPRESA
 
   var tituloPerfil = document.getElementById('tituloPerfil')
   var cargoPerfil = document.getElementById('cargoPerfil')
+  var empresa = document.getElementById('empresa')
 
   if (email != null && nome != null) {
     // window.alert(`Seja bem-vindo, ${nome}!`);
     tituloPerfil.innerHTML = nome
     cargoPerfil.innerHTML = cargo
+    empresa.innerHTML = nomeEmpresa
 
     // finalizarAguardar();
   } else {

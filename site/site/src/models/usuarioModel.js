@@ -7,7 +7,7 @@ function autenticar(email, senha) {
     senha
   )
   var instrucao = `
-  SELECT idColaborador, nome, email, CPF, fkEmpresa as empresaId, nivelAcesso FROM Colaborador JOIN nivelAcesso ON Colaborador.fkNivelAcesso = nivelAcesso.idNivelAcesso WHERE email = '${email}' AND senha = '${senha}';
+  SELECT c.idColaborador, c.nome, c.email, c.CPF, c.fkEmpresa as empresaId, na.nivelAcesso, e.nomeFantasia as nomeEmpresa FROM Colaborador as c JOIN nivelAcesso as na ON c.fkNivelAcesso = na.idNivelAcesso join empresa as e on e.idEmpresa = c.fkEmpresa WHERE email = '${email}' AND senha = '${senha}';
     `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)

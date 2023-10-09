@@ -85,6 +85,7 @@ function entrar() {
           sessionStorage.CARGO_USUARIO = json.nivelAcesso
           sessionStorage.CPF_USUARIO = json.CPF
           sessionStorage.EMPRESA_USUARIO = json.empresaId
+          sessionStorage.NOME_EMPRESA = json.nomeEmpresa
 
           setTimeout(function () {
             window.location = '/dashSetor.html'

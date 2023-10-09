@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/indexV2.css" />
   <title>Home | Health Touch</title>
   <link rel="shortcut icon" type="imagex/png" href="./assets/img/logo_icon.png" />
+  <script src="js/index.js"></script>
 </head>
 
 <body>
@@ -198,7 +199,7 @@
   <div class="divPaiNossaEquipe">
     <p id="tituloNossaEquipe">CONHEÇA NOSSA EQUIPE</p>
     <p id="subTituloNossaEquipe">
-      conheça os profissionais que vão resolver seu problema!!!
+      Conheça os profissionais que vão resolver seu problema!!!
     </p>
 
     <div class="boxPaiEquipe">
@@ -241,16 +242,13 @@
       <div class="divPlanoFilho">
         <span class="tituloPlano">Nossos Planos de Assinatura</span>
         <span class="textoPlano"
-          >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus
-          harum libero facilis cum molestiae laborum! Dolores, aliquid
-          temporibus tenetur similique laboriosam fuga perspiciatis, quidem
-          nulla ullam nam repellat soluta corporis!</span
+          >Escolha o melhor plano que agrega a sua empresa e garanta a rentabilidade do seu negócio!</span
         >
         <div class="caixas">
           <div class="boxPlano">
             <div class="divDegrade">
-              <span class="nomePlano">Básico</span>
-              <span class="precoPlano">R$5<span class="miniPreco">,00</span></span>
+              <span class="nomePlano">Bronze</span>
+              <span class="precoPlano">R$100<span class="miniPreco">,00</span></span>
               <img
                 src="./assets/img/medalha-de-bronze.png"
                 alt=""
@@ -295,8 +293,8 @@
           </div>
           <div class="boxPlano">
             <div class="divDegrade">
-              <span class="nomePlano">Médio</span>
-              <span class="precoPlano">R$15<span class="miniPreco">,00</span></span>
+              <span class="nomePlano">Silver</span>
+              <span class="precoPlano">R$150<span class="miniPreco">,00</span></span>
               <img
                 src="./assets/img/medalha-de-prata.png"
                 alt=""
@@ -341,8 +339,8 @@
           </div>
           <div class="boxPlano">
             <div class="divDegrade">
-              <span class="nomePlano">Avançado</span>
-              <span class="precoPlano">R$50<span class="miniPreco">,00</span></span>
+              <span class="nomePlano">Gold</span>
+              <span class="precoPlano">R$250<span class="miniPreco">,00</span></span>
               <img
                 src="./assets/img/medalha-de-ouro.png"
                 alt=""
@@ -408,7 +406,6 @@
         <p id="tituloMeioCabecalho">Acesso Rápido</p>
         <p id="pMeioCabecalho">Contato</p>
         <p id="pMeioCabecalho">Nosso Sistema</p>
-        <p id="pMeioCabecalho">Cadastro</p>
         <p id="pMeioCabecalho">Login</p>
       </div>
 
@@ -426,50 +423,53 @@
 
 </html>
 <script>
-  function home() {
-    window.location = '/indexV2.html'
+  var ListaNome = [
+  'Anthony',
+  'Davi',
+  'Gabriel Nunes',
+  'Gabriel Sanchez',
+  'Maria Paula',
+  'Yasmin'
+]
+var listaImg = [
+  `./assets/img/tonyv3.jpeg`,
+  `./assets/img/davi.jpeg`,
+  `./assets/img/nunes.jpeg`,
+  `./assets/img/sanchez.jpeg`,
+  `./assets/img/maria.jpeg`,
+  `./assets/img/yasmin.jpeg`
+]
+var PosiçãoInicial = 0
+
+Proximo()
+
+function Proximo() {
+  if (PosiçãoInicial == 0) {
+    tituloFotoEquipe1.innerHTML = ''
+    tituloFotoEquipe2.innerHTML = ''
+    tituloFotoEquipe3.innerHTML = ''
+    tituloFotoEquipe1.innerHTML += ListaNome[PosiçãoInicial]
+    tituloFotoEquipe2.innerHTML += ListaNome[PosiçãoInicial + 1]
+    tituloFotoEquipe3.innerHTML += ListaNome[PosiçãoInicial + 2]
+
+    ImgCard1.src = listaImg[PosiçãoInicial]
+    ImgCard2.src = listaImg[PosiçãoInicial + 1]
+    ImgCard3.src = listaImg[PosiçãoInicial + 2]
+
+    PosiçãoInicial = 3
+  } else {
+    tituloFotoEquipe1.innerHTML = ''
+    tituloFotoEquipe2.innerHTML = ''
+    tituloFotoEquipe3.innerHTML = ''
+    tituloFotoEquipe1.innerHTML += ListaNome[PosiçãoInicial]
+    tituloFotoEquipe2.innerHTML += ListaNome[PosiçãoInicial + 1]
+    tituloFotoEquipe3.innerHTML += ListaNome[PosiçãoInicial + 2]
+
+    ImgCard1.src = listaImg[PosiçãoInicial]
+    ImgCard2.src = listaImg[PosiçãoInicial + 1]
+    ImgCard3.src = listaImg[PosiçãoInicial + 2]
+    PosiçãoInicial = 0
   }
- function btnLogin() {
-        window.location.href = "login.html";
-    }
-  
+}
 
-  var ListaNome = ['Anthony', 'Davi', 'Gabriel Nunes', 'Gabriel Sanchez', 'Maria Paula', 'Yasmin']
-  var listaImg = [`./assets/img/tonyv3.jpeg`, `./assets/img/davi.jpeg`, `./assets/img/nunes.jpeg`, `./assets/img/sanchez.jpeg`, `./assets/img/maria.jpeg`, `./assets/img/yasmin.jpeg`]
-  var PosiçãoInicial = 0
-
-  Proximo()
-
-  function Proximo() {
-
-    if (PosiçãoInicial == 0) {
-      tituloFotoEquipe1.innerHTML = ""
-      tituloFotoEquipe2.innerHTML = ""
-      tituloFotoEquipe3.innerHTML = ""
-      tituloFotoEquipe1.innerHTML += ListaNome[PosiçãoInicial]
-      tituloFotoEquipe2.innerHTML += ListaNome[PosiçãoInicial + 1]
-      tituloFotoEquipe3.innerHTML += ListaNome[PosiçãoInicial + 2]
-
-      ImgCard1.src = listaImg[PosiçãoInicial]
-      ImgCard2.src = listaImg[PosiçãoInicial + 1]
-      ImgCard3.src = listaImg[PosiçãoInicial + 2]
-
-      PosiçãoInicial = 3
-    }
-    else {
-      tituloFotoEquipe1.innerHTML = ""
-      tituloFotoEquipe2.innerHTML = ""
-      tituloFotoEquipe3.innerHTML = ""
-      tituloFotoEquipe1.innerHTML += ListaNome[PosiçãoInicial]
-      tituloFotoEquipe2.innerHTML += ListaNome[PosiçãoInicial + 1]
-      tituloFotoEquipe3.innerHTML += ListaNome[PosiçãoInicial + 2]
-
-      ImgCard1.src = listaImg[PosiçãoInicial]
-      ImgCard2.src = listaImg[PosiçãoInicial + 1]
-      ImgCard3.src = listaImg[PosiçãoInicial + 2]
-      PosiçãoInicial = 0
-
-    }
-
-  }
 </script>

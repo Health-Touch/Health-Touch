@@ -54,14 +54,14 @@
     text-decoration: none;
     color: white;
     font-weight: bold;
-    transition: all 0.3s ease 0s;
+    transition: all 0.3s ease-out 0s;
     cursor: pointer;
 }
 
 .subDireitaCabecalho a:hover{
     color: #26ABA7;
     box-shadow: 0px 2px 0px #26ABA7;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-out;
 }
 
 /* fim do cabeçalho */
@@ -238,7 +238,10 @@
 }
 
 #botaoBox:hover{
-    box-shadow: 0px 7px 15px 0 rgb(255, 255, 255, 0.65);
+    box-shadow: 4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
 
 .divComoFunciona {
@@ -385,7 +388,7 @@
 }
 
 #subTituloNossaEquipe {
-    font-size: 13px;
+    font-size: 18px;
     color: white;
     position: relative;
     top: 7%;
@@ -423,7 +426,7 @@
     justify-content: center;
     align-items: center;
     width: 85%;
-    height: 40vh;
+    height: 10vh;
     background-color: #26ABA7;
     position: relative;
     top: 5%;
@@ -482,7 +485,7 @@
     text-align: center;
     width: 80%;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .caixas{
@@ -575,6 +578,11 @@ width: 100%;
 .divDegrade{
     background: rgb(38,171,167);
     background-color: transparent;
+
+.iconPlano{
+    transition: all 0.65s;
+    transform: rotateY(360deg);
+}
 }
 
 .btnPlano{
@@ -716,32 +724,35 @@ width: 100%;
 @media only screen and (max-width: 600px){
   /* começo do cabeçalho mobile */
 .paiCabecalho {
-    width: 106%;
+    width: 100%;
+    height: 80%;
 }
 
 .direitaCabecalho {
     width: 47vw;
-    
 }
 
 #imgEsquerdaCabecalho {
     width: 7rem;
+    height: 4%;
 }
 /* fim do cabeçalho mobile */  
 
 /* começo do banner mobile */
 .paiBanner {
-    width: 106%;
-    height: 15rem;
-   
+    width: 100%;
+    height: 18rem;
+    background-size: cover;
+    background-position: 40%;
 }
 
 .divFilhoBanner {
     top: 3%;
+    left: 40%;
 }
 
 .pTituloBanner {
-    font-size: 25px;
+    font-size: 18px;
     line-height: 30px;
     }
 
@@ -754,19 +765,19 @@ width: 100%;
 }
 
 .botaoBanner {
-    width: 70vw;
+    width: 50vw;
     justify-content: space-between;
    
 }
 
 .botao1Banner {
-    width: 7rem;
+    width: 6rem;
     height: 4vh;
 
 }
 
 .botao2Banner {
-    width: 7rem;
+    width: 6rem;
     height: 4vh;
 
 }
@@ -774,21 +785,24 @@ width: 100%;
 
 /* começo do contexto mobile */
 .paiContexto {
-    width: 106%;
-    height: 110rem;
-    
+    width: 100%;
+    height: 95rem;   
 }
 
 .filhoContexto {
     width: 80%;
-    height: 70rem;
+    height: 50rem;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
 .divTituloContexto {
-    font-size: 25px;   
+    font-size: 20px;   
+}
+
+.divSubContexto{
+    font-size: 14px;
 }
 
 .paiBoxContexto {
@@ -796,7 +810,7 @@ width: 100%;
     flex-direction: column;
     align-items: center;
     position: relative;
-    top: 0%;
+    top: -5%;
     height: 90rem;
     justify-content: space-between;
     
@@ -821,18 +835,15 @@ width: 100%;
 }
 
 .divComoFunciona {
-    width: 100%;
-    font-size: 15px;
+    width: 110%;
+    font-size: 20px;
     top: 10%;
-    left: 3%;
-    font-size: larger;
 }
 
 .divSubComoFunciona {
-    width: 100%;
-    font-size: 12px;
+    width: 105%;
+    font-size: 14px;
     top: 10%;
-    left: 10%;
 }
 
 .paiBoxComoFunciona {
@@ -840,17 +851,17 @@ width: 100%;
     flex-direction: column-reverse;
     position: relative;
     top: 10%;
-    width: 100vw;
-    height: 30rem;
+    width: 100%;
+    height: 10rem;
     flex-wrap: wrap;
 }
 
 .boxComoFunciona {
     flex-direction: column;
-    width: 25vw;
+    /* width: 25vw; */
     height: 30vh;
     position: relative;
-    left: 5%;
+    left: 6%;
 }
 
 #imgComoFunciona {
@@ -860,17 +871,17 @@ width: 100%;
 }
 
 #pComoFunciona {
-    font-size: 17px;
+    font-size: 14px;
+    text-align: center;
 }
 /* fim do contexto mobile*/
 
 /* começo do beneficios mobile */
 .divPaiBeneficios {
-    height: 130vh;
-    width: 106%;
+    height: 119vh;
+    width: 100%;
     background-size: cover;
     background-position: 50%;
-
 }
 
 #tituloBeneficios {
@@ -916,47 +927,145 @@ width: 100%;
 }
 /* fim do beneficios mobile */
 
-/* começo do rodapé */
+/* Começo da equipe mobile */
+#tituloNossaEquipe{
+    font-size: 25px;
+}
+
+#subTituloNossaEquipe{
+    width: 80%;
+    font-size: 16px;
+    text-align: center;
+}
+
+.divPaiNossaEquipe{
+    height: 50vh;
+}
+
+.boxPaiEquipe{
+    width: 80%;
+    top: 5%;
+}
+
+#setaEquipeDireita,#setaEquipeEsquerda{
+    height: 4vh;
+}
+
+.boxEquipe{
+    width: 100%;
+    height: 30vh;
+}
+
+.divSubEquipe{
+    height: 15vh;
+    width: 90%;
+}
+
+#cargoFotoEquipe,#tituloFotoEquipe3,#tituloFotoEquipe1{
+    text-align: center;
+}
+
+.imgEquipe{
+    width: 90%;
+}
+
+/* Fim da equipe mobile */
+
+/* Começo dos Planos */
+.tituloPlano{
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.textoPlano{
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.caixas{
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.boxPlano{
+    width: 250px;
+    height: 325px;
+    margin: 15px 0;
+}
+
+.precoPlano{
+    font-size: 40px;
+}
+
+.miniPreco {
+    font-size: 33px;
+}
+
+.iconPlano {
+    width: 75px;
+    height: 75px;
+}
+/* Fim dos Planos */
+
+/* começo do rodapé*/
 .divPaiRodape {
-    height: 45vh;
-    width: 106%;
+    height: 22vh;
+    width: 100%;
 }
 
 .divFilhoRodape {
     background-color: #020F1F;
     width: 100%;
-    height: 40vh;
+    height: 20vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    margin: 0 10px;
 }
 
-.esquerdaRodape {
-    width: 20vw;
-    height: 30vh;
+.esquerdaRodape,.meioRodape,.direitaRodape {
+    width: 33.3%;
+    height: auto;
+    /* height: 30vh; */
+}
+
+.meioRodape{
+    margin-left: 15px;
+}
+
+#tituloMeioCabecalho{
+    font-size: 14px;
+}
+
+#pMeioCabecalho {
+    font-size: 12px;
 }
 
 #logoCabecalho {
-    width: 27vw;
+    width: 24vw;
     height: 7vh;
 }
 
 #textoCabecalho {
-    font-size: 14px;
+    font-size: 12px;
     width: 35vw;
     color: white;
+    margin-bottom: 15px;
 }
 
 #iconCabecalho {
-    width: 6vw;
-    height: 3vh;
+    width: 5vw;
+    height: 2.5vh;
     position: relative;
     top: 7%;
 }
 
+
 #tituloDireitaCabecalho {
-    font-size: 15px;
-    width: 15vh;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+    /* width: 15vh; */
 }
 
 .divDireitaCabecalho {
@@ -967,6 +1076,7 @@ width: 100%;
 .botaoDireitaCabecalho {
     width: 25vw;
     height: 3vh;
+    margin-top: 10px;
 }
 /* fim do rodapé */
 
