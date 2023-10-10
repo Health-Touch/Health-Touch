@@ -36,6 +36,37 @@ function autenticar(req, res) {
   }
 }
 
+function registrar(req, res) {
+  // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+  var NomeBotao = req.body.NomeBotaoServer;
+
+
+  // Faça as validações dos valores
+  if (NomeBotao == undefined) {
+      res.status(400).send("Seu nome está undefined!");
+  }  
+  else {
+      
+      // Passe os valores como parâmetro e vá para o arquivo inovacaoModel.js
+      usuarioModel.registrar(NomeBotao)
+          .then(
+              function (resultado) {
+                  res.json(resultado);
+              }
+          ).catch(
+              function (erro) {
+                  console.log(erro);
+                  console.log(
+                      "\nHouve um erro ao realizar o cadastro! Erro: ",
+                      erro.sqlMessage
+                  );
+                  res.status(500).json(erro.sqlMessage);
+              }
+          );
+  }
+}
+
+
 function cadastrar(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
   var nome = req.body.nomeServer
@@ -80,5 +111,6 @@ function cadastrar(req, res) {
 
 module.exports = {
   autenticar,
-  cadastrar
+  cadastrar,
+  registrar
 }

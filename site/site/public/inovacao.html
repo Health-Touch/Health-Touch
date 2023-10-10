@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INOVAÇÃO</title>
+</head>
+
+<body>
+    <button onclick="Btn1()"> Botão 1 </button>
+    <button onclick="Btn2()"> Botão 2 </button>
+    <button onclick="Btn3()"> Botão 3 </button>
+    <button onclick="Btn4()"> Botão 4 </button>
+
+    <div id="resultado"></div>
+</body>
+
+</html>
+<script>
+    var NomeBotao = ""
+
+    function Btn1() {
+        NomeBotao = "Botão 1"
+        resultado.innerHTML = NomeBotao
+        registrar()
+    }
+
+    function Btn2() {
+        NomeBotao = "Botão 2"
+        resultado.innerHTML = NomeBotao
+        registrar()
+    }
+
+    function Btn3() {
+        NomeBotao = "Botão 3"
+        resultado.innerHTML = NomeBotao
+        registrar()
+    }
+
+    function Btn4() {
+        NomeBotao = "Botão 4"
+        resultado.innerHTML = NomeBotao
+        registrar()
+    }
+
+    function registrar() {
+
+        var NomeBotaoVar = NomeBotao;
+
+        // Enviando o valor da nova input
+        console.log("Quantidade de acertos:", NomeBotaoVar)
+        console.log("to aqui")
+        fetch("/usuarios/registrar", {
+            
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                NomeBotaoServer: NomeBotaoVar
+               
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                // setTimeout(() => {
+                //     window.location = "dashboard/Menu.html";
+                // }, "2000")
+                console.log("okkk")
+                // limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+        return false;
+    }
+</script>
