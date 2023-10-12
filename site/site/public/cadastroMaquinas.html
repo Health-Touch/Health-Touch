@@ -127,12 +127,12 @@
                     <div class="paiSubCadastro">
                     <div class="divSo">
                         <p id="pSo">SO:</p>
-                        <input type="text" class="inputCad" placeholder="Sistema Operacional"></input>
+                        <input type="text" id="inputSo" class="inputCad" placeholder="Sistema Operacional"></input>
                     </div>
 
                     <div class="divSo">
                         <p id="pSo">IP:</p>
-                        <input type="text" class="inputCad" placeholder="192.158.1.38."></input>
+                        <input type="text" id="inputIp" class="inputCad" placeholder="192.158.1.38."></input>
                     </div>
 
                     <div class="divSo">
@@ -152,7 +152,7 @@
 
                     <div class="divSo">
                         <p id="pSo">Andar:</p>
-                        <input type="text" class="inputCad" placeholder="3ºAndar"></input>
+                        <input type="text" id="inputAndar" class="inputCad" placeholder="3ºAndar"></input>
                     </div>
 
                     </div>
@@ -168,3 +168,56 @@
 </html>
 
 <!-- <img src="assets/img/bannerHospital.png" id="imgConteudo"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+<script>
+    
+function botaoCadastroMaquinas () {
+        
+    var so = inputSo.value
+    var ip = inputIp.value
+    var andar = inputAndar.value
+    var fkMaqEmpresa = 1
+    var fkLocal = 1
+    var fkPlanoEmpresa = 1
+    var fkStatusMaquina = 1
+    var fkTipoMaquina = 1
+
+        fetch("/usuarios/cadastrarMaquina", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            soServer: so,
+            ipServer: ip,
+            andarServer: andar,
+            empresaMaqServer: fkMaqEmpresa,
+            localServer: fkLocal,
+            planoServer: fkPlanoEmpresa,
+            statusMaquinaServer: fkStatusMaquina,
+            tipoMaquinaServer: fkTipoMaquina
+        })
+    }).then(function (resposta) {
+
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            Swal.fire('CADASTRO DE MÁQUINA REALIZADO')
+
+            limparFormulario();
+          
+        } else {
+            Swal.fire('HOUVE UM ERRO AO TENTAR REALIZAR O CADASTRO')
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
+function sumirMensagem() {
+    cardErro.style.display = "none"
+}
+
+</script>

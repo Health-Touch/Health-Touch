@@ -28,5 +28,10 @@ router.post("/cadastrarFuncionario", function (req, res) {
     usuarioController.cadastrarFuncionario(req, res);
 })
 
+//Recebendo os dados do html e direcionando para a função cadastrar de cadFuncController.js
+router.post("/cadastrarMaquina", function (req, res) {
+    usuarioController.cadastrarMaquina(req, res);
+})
+
 
 module.exports = router;
