@@ -126,7 +126,7 @@
                 <div class="divFilhoCadastro">
                     
                     <div class="divTitulosCadastro">
-                    <p id="tituloCadastroMaquinasV1">Cadastre sua <span id="tituloCadastroMaquinasV2">Equipe</span> </p>
+                    <p id="tituloCadastroMaquinasV1">Cadastre sua <span id="tituloCadastroMaquinasV2">Equipe de Ti</span> </p>
                     </div>
 
                     <div class="paiSubCadastro">
@@ -155,11 +155,6 @@
                         <input type="text" id="inputConfirmarSenha" class="inputCad" placeholder="************"></input>
                     </div>
 
-                    <div class="divSo">
-                        <p id="pSo">Nivel <br> de Acesso:</p>
-                        <input type="text" id="inputNivelAcesso" class="inputCad" placeholder="Selecione um Nível de Acesso"></input>
-                    </div>
-
                     </div>
                     <button onclick="botaoCadastroFuncionarios()" class="btnCadMaq">Cadastre</button>
                 </div>
@@ -180,12 +175,12 @@
 function botaoCadastroFuncionarios () {
         
     var nome = inputNome.value
-    var cpf = inputCPF.value
     var email = inputEmail.value
     var senha = inputSenha.value
+    var cpf = inputCPF.value
     var fkEmpresa = 1;
     var fkStatus = 1;
-    var fkNivelAcesso = inputNivelAcesso.value;
+    var fkNivelAcesso = 3;
 
     var teste = sessionStorage.getItem('idEmpresa')
 
@@ -199,8 +194,8 @@ function botaoCadastroFuncionarios () {
             // Agora vá para o arquivo routes/usuario.js
             nomeServer: nome,
             emailServer: email,
-            cpfServer: cpf,
             senhaServer: senha,
+            cpfServer: cpf,
             empresaServer: fkEmpresa,
             statusServer: fkStatus,
             acessoServer: fkNivelAcesso,

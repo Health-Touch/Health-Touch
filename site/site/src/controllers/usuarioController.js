@@ -149,9 +149,9 @@ function cadastrarEndereco(req, res) {
 function cadastrarFuncionario(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
   var nome = req.body.nomeServer;
-  var cpf = req.body.cpfServer;
   var email = req.body.emailServer;
   var senha = req.body.senhaServer;
+  var cpf = req.body.cpfServer; 
   var fkEmpresa = req.body.empresaServer;
   var fkStatus = req.body.statusServer;
   var fkNivelAcesso = req.body.acessoServer;
@@ -161,12 +161,10 @@ function cadastrarFuncionario(req, res) {
       res.status(400).send("Seu nome está undefined!");
   } else if (cpf == undefined) {
       res.status(400).send("Seu cpf está undefined!");
-  } else if (fkUsuario == undefined) {
-      res.status(400).send("problema na fk");
   } else {
       
       // Passe os valores como parâmetro e vá para o arquivo cadFuncModels.js
-      usuarioModel.cadastrarFuncionario(nome, cpf, email, senha, fkEmpresa, fkStatus, fkNivelAcesso)
+      usuarioModel.cadastrarFuncionario(nome, email, senha, cpf, fkEmpresa, fkStatus, fkNivelAcesso)
           .then(
               function (resultado) {
                   res.json(resultado);

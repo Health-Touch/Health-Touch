@@ -26,6 +26,7 @@ function cadastrar(nome, cnpj, telefone) {
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
 }
+
 function cadastrarEndereco (cep, estado, cidade, rua, numero) {
   console.log(
     "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():",
@@ -63,8 +64,9 @@ function cadastrarFuncionario(nome, email, senha, cpf, fkEmpresa, fkStatus, fkNi
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
   var instrucao = `
-      INSERT INTO Colaborador (nome, email, senha, CPF, fkEmpresa, fkStatus fkNivelAcesso) VALUES ('${nome}', '${email}', '${senha}', '${cpf}' '${fkEmpresa}, '${fkStatus}, '${fkNivelAcesso}');
-  `;
+      INSERT INTO Colaborador (nome, email, senha, CPF, fkEmpresa, fkStatus, fkNivelAcesso) VALUES 
+      ('${nome}', '${email}', '${senha}', '${cpf}', '${fkEmpresa}', '${fkStatus}', '${fkNivelAcesso}');
+  `
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
 }
