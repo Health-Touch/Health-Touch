@@ -19,5 +19,14 @@ router.post("/cadastrarEndereco", function (req, res) {
     usuarioController.cadastrarEndereco(req, res);
 })
 
+router.get("/", function (req, res) {
+    usuarioController.testar(req, res);
+});
+
+//Recebendo os dados do html e direcionando para a função cadastrar de cadFuncController.js
+router.post("/cadastrarFuncionario", function (req, res) {
+    usuarioController.cadastrarFuncionario(req, res);
+})
+
 
 module.exports = router;

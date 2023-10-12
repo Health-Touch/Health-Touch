@@ -146,9 +146,48 @@ function cadastrarEndereco(req, res) {
   }
 }
 
+function cadastrarFuncionario(req, res) {
+  // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+  var nome = req.body.nomeServer;
+  var cpf = req.body.cpfServer;
+  var email = req.body.emailServer;
+  var senha = req.body.senhaServer;
+  var fkEmpresa = req.body.empresaServer;
+  var fkStatus = req.body.statusServer;
+  var fkNivelAcesso = req.body.acessoServer;
+
+  // Faça as validações dos valores
+  if (nome == undefined) {
+      res.status(400).send("Seu nome está undefined!");
+  } else if (cpf == undefined) {
+      res.status(400).send("Seu cpf está undefined!");
+  } else if (fkUsuario == undefined) {
+      res.status(400).send("problema na fk");
+  } else {
+      
+      // Passe os valores como parâmetro e vá para o arquivo cadFuncModels.js
+      usuarioModel.cadastrarFuncionario(nome, cpf, email, senha, fkEmpresa, fkStatus, fkNivelAcesso)
+          .then(
+              function (resultado) {
+                  res.json(resultado);
+              }
+          ).catch(
+              function (erro) {
+                  console.log(erro);
+                  console.log(
+                      "\nHouve um erro ao realizar o cadastro! Erro: ",
+                      erro.sqlMessage
+                  );
+                  res.status(500).json(erro.sqlMessage);
+              }
+          );
+  }
+}
+
 module.exports = {
   entrar,
   cadastrar,
   cadastrarEndereco,
+  cadastrarFuncionario,
   registrar
 }
