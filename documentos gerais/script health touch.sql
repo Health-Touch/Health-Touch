@@ -74,6 +74,8 @@ fkNivelAcesso int, constraint foreign key(fkNivelAcesso) references NivelAcesso(
 );
 
 select * from Colaborador;
+desc Colaborador;
+
 insert into Colaborador values (null, 'rafa', 'rafa@gmail.com', 'rafa123', 37637602885, 1, 1, 1) ;
 
 create table Telefone (
@@ -95,12 +97,14 @@ cidade varchar(45),
 fkEmpresa int, constraint foreign key(fkEmpresa) references Empresa(idEmpresa)
 );
 
-
 select * from Endereco;
 
 create table setor (
 idSetor int primary key auto_increment,
 nome varchar(45));
+
+insert into setor values
+(null, 'pediatria');
 
 select * from setor;
 
@@ -110,6 +114,9 @@ sala int,
 andar int,
 fkSetor int, constraint foreign key(fkSetor) references setor(idSetor)
 );
+
+insert into LocalSala values
+(null, 2, 3, 1);
 
 select * from LocalSala;
 
