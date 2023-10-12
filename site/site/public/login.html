@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="./css/login.css" />
     <link rel="stylesheet" href="css/indexV2.css" />
     <script src="./js/funcoes.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="sweetalert2.all.min.js"></script>
     <script src="./js/login.js"></script>
 
     <link
@@ -91,3 +89,88 @@
     ></script>
   </body>
 </html>
+<script>
+function entrar() {
+  // aguardar();
+
+  console.log('Na func entrar')
+
+  var emailVar = input_email.value
+  var senhaVar = input_senha.value
+
+  if (emailVar == '' || senhaVar == '') {
+    // cardErro.style.display = 'block'
+    console.log(
+      '(Mensagem de erro para todos os campos em branco)'
+    )
+
+    return false
+  } else {
+    setInterval(sumirMensagem, 10000)
+  }
+
+  console.log('FORM LOGIN: ', emailVar)
+  console.log('FORM SENHA: ', senhaVar)
+
+  fetch('/usuarios/autenticar', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      emailServer: emailVar,
+      senhaServer: senhaVar
+    })
+  })
+    .then(function (resposta) {
+      console.log('ESTOU NO THEN DO entrar()!')
+
+      if (resposta.ok) {
+        console.log(resposta)
+
+        resposta.json().then(json => {
+          console.log(json)
+          console.log(JSON.stringify(json))
+
+          sessionStorage.EMAIL_USUARIO = json.email
+          sessionStorage.NOME_USUARIO = json.nome
+          sessionStorage.ID_USUARIO = json.idUsuario
+
+          setTimeout(function () {
+            window.location = 'index.html'
+          }, 1000) // apenas para exibir o loading
+        })
+      } else {
+        console.log('Houve um erro ao tentar realizar o login!')
+
+        resposta.text().then(texto => {
+          console.error(texto)
+          // finalizarAguardar(texto);
+        })
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+    })
+
+  return false
+}
+
+function sumirMensagem() {
+  // cardErro.style.display = 'none'
+}
+
+function visualizarTermos() {
+  // cardErro.style.display = 'block'
+  console.log(`Ao assinar esses termos eu garanto que não causarei problemas, não hackearei o site e serei responsavel jogando genshin impact.`)
+  setTimeout(sumirMensagem, 10000)
+}
+
+function btnLogin() {
+  window.location.href = 'login.html'
+}
+
+function home() {
+  window.location = '/index.html'
+}
+</script>

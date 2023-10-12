@@ -13,7 +13,11 @@ router.post("/registrar", function (req, res) {
 })
 
 router.post("/autenticar", function (req, res) {
-    usuarioController.autenticar(req, res);
+    usuarioController.entrar(req, res);
 });
+router.post("/cadastrarEndereco", function (req, res) {
+    usuarioController.cadastrarEndereco(req, res);
+})
+
 
 module.exports = router;

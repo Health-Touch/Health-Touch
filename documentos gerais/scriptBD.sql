@@ -32,6 +32,7 @@ insert into Empresa values
 (null, 'teste', '12345678912345', '2023-10-10', 1191234567, 3);
 
 select * from Empresa;
+select max(idEmpresa) from Empresa;
 
 create table NivelAcesso (
 idNivelAcesso int primary key auto_increment,
@@ -73,6 +74,7 @@ fkNivelAcesso int, constraint foreign key(fkNivelAcesso) references NivelAcesso(
 );
 
 select * from Colaborador;
+insert into Colaborador values (null, 'rafa', 'rafa@gmail.com', 'rafa123', 37637602885, 1, 1, 1) ;
 
 create table Telefone (
 idTelefone int primary key auto_increment,
@@ -89,8 +91,10 @@ rua varchar(30),
 num int,
 estado varchar(30),
 CEP char(8),
+cidade varchar(45),
 fkEmpresa int, constraint foreign key(fkEmpresa) references Empresa(idEmpresa)
 );
+
 
 select * from Endereco;
 

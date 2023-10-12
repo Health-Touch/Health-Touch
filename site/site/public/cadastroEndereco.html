@@ -52,57 +52,78 @@
             <span class="icon">
               <ion-icon name="person"></ion-icon>
             </span>
-            <input type="text" id="input_nome" />
-            <label>Nome Fantasia</label>
-          </div>
-
-          <div class="input-box">
-            <span class="icon">
-              <ion-icon name="cnpjt"></ion-icon>
-            </span>
-            <input type="number" id="input_cnpj" />
-            <label>CNPJ</label>
+            <input type="number" id="input_Cep" />
+            <label>CEP</label>
           </div>
 
           <div class="input-box">
             <span class="icon">
               <ion-icon name="lock-closed"></ion-icon>
             </span>
-            <input type="number" id="input_telefone" />
-            <label>Telefone Fixo</label>
+            <input type="text" id="input_Estado" />
+            <label>Estado</label>
           </div>
+
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="lock-closed"></ion-icon>
+            </span>
+            <input type="text" id="input_Cidade" />
+            <label>Cidade</label>
+          </div>
+
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="lock-closed"></ion-icon>
+            </span>
+            <input type="text" id="input_Rua" />
+            <label>Rua</label>
+          </div>
+
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="lock-closed"></ion-icon>
+            </span>
+            <input type="number" id="input_Numero" />
+            <label>Número</label>
+          </div>
+
           <div class="remember-forgot">
             <label
               ><input type="checkbox" id="termos" />Eu concordo com os termos &
               condições</label
             >
           </div>
-          <button onclick="cadastrar()" type="submit" class="btn">
-            Registrar e Prosseguir
+          <button onclick="cadastrarEndereco()" type="submit" class="btn">
+            Registrar 
           </button>
           <div class="login-register">
             <p>Já tem uma conta? <a href="login.html" class="login-link">Login</a></p>
           </div>
-        
+       
       </div>
-      
+    
+      </div> 
     </div>
 
+  
   </body>
 </html>
 <script>
 
-  
-  function cadastrar() {
+
+  function cadastrarEndereco() {
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeVar = input_nome.value
-    var cnpjVar = input_cnpj.value
-    var telefoneVar = input_telefone.value
-
+    var cepVar = input_Cep.value
+    var estadoVar = input_Estado.value
+    var cidadeVar = input_Cidade.value
+    var ruaVar = input_Rua.value
+    var numeroVar = input_Numero.value
+   
     var termos = document.getElementById('termos')
 
-    if (nomeVar == '' || cnpjVar == '' || telefoneVar == '') {
+    if (cepVar == '' || estadoVar == '' || cidadeVar == '' || ruaVar == '' || numeroVar == '') {
       // cardErro.style.display = "block"
       console.log("Mensagem de erro para todos os campos em branco")
 
@@ -113,7 +134,8 @@
       setInterval(sumirMensagem, 10000)
 
       // Enviando o valor da nova input
-      fetch('/usuarios/cadastrar', {
+     
+      fetch('/usuarios/cadastrarEndereco', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -121,9 +143,13 @@
         body: JSON.stringify({
           // crie um atributo que recebe o valor recuperado aqui
           // Agora vá para o arquivo routes/usuario.js
-          nomeServer: nomeVar,
-          cnpjServer: cnpjVar,
-          telefoneServer: telefoneVar
+          cepServer: cepVar,
+          estadoServer: estadoVar,
+          cidadeServer: cidadeVar,
+          ruaServer: ruaVar,
+          numeroServer: numeroVar
+          
+          
         })
       })
         .then(function (resposta) {
@@ -131,23 +157,11 @@
 
           if (resposta.ok) {
             console.log("Cadastro realizado com sucesso! Redirecionando para tela de Login.")
-            resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
+            
 
-                    
-                    sessionStorage.ID_EMPRESA = json.idEmpresa;
-                    // sessionStorage.SOBRENOME_USUARIO = json.sobrenome;
-                    // sessionStorage.SENHA_USUARIO = json.senha;
-
-                    setTimeout(function () {
-                        window.location = "cadastroEndereco.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-    
-
-         
+            setTimeout(() => {
+              window.location = 'login.html'
+            }, '2000')
 
             limparFormulario()
           } else {
