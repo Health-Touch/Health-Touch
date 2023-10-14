@@ -46,46 +46,47 @@
 
     <div class="wrapper active-popup">
       <div class="form-box login">
-        <h2>Registrar</h2>
+        <h2>Cadastrar Rl</h2>
         <!-- <form action="#"> -->
           <div class="input-box">
             <span class="icon">
               <ion-icon name="person"></ion-icon>
             </span>
-            <input type="number" id="input_Cep" />
-            <label>CEP</label>
+            <input type="text" id="input_nomeRL" />
+            <label>Nome</label>
+          </div>
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="lock-closed"></ion-icon>
+            </span>
+            <input type="number" id="input_cpfRL" />
+            <label>CPF</label>
           </div>
 
           <div class="input-box">
             <span class="icon">
               <ion-icon name="lock-closed"></ion-icon>
             </span>
-            <input type="text" id="input_Estado" />
-            <label>Estado</label>
+            <input type="text" id="input_emailRL" />
+            <label>Email</label>
           </div>
 
           <div class="input-box">
             <span class="icon">
               <ion-icon name="lock-closed"></ion-icon>
             </span>
-            <input type="text" id="input_Cidade" />
-            <label>Cidade</label>
+            <input type="text" id="input_senhaRL" />
+            <label>Senha</label>
           </div>
+
+         
 
           <div class="input-box">
             <span class="icon">
               <ion-icon name="lock-closed"></ion-icon>
             </span>
-            <input type="text" id="input_Rua" />
-            <label>Rua</label>
-          </div>
-
-          <div class="input-box">
-            <span class="icon">
-              <ion-icon name="lock-closed"></ion-icon>
-            </span>
-            <input type="number" id="input_Numero" />
-            <label>Número</label>
+            <input type="text" id="input_confsenhaRL" />
+            <label>Confirmar Senha</label>
           </div>
 
           <div class="remember-forgot">
@@ -94,7 +95,7 @@
               condições</label
             >
           </div>
-          <button onclick="cadastrarEndereco()" type="submit" class="btn">
+          <button onclick="cadastrarRL()" type="submit" class="btn">
             Registrar 
           </button>
           <div class="login-register">
@@ -112,18 +113,20 @@
 <script>
 
 
-  function cadastrarEndereco() {
+  function cadastrarRL() {
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var cepVar = input_Cep.value
-    var estadoVar = input_Estado.value
-    var cidadeVar = input_Cidade.value
-    var ruaVar = input_Rua.value
-    var numeroVar = input_Numero.value
+    var nomeRLVar = input_nomeRL.value
+    var cpfRLVar = input_cpfRL.value
+    var emailRLVar = input_emailRL.value
+    var senhaRLVar = input_senhaRL.value
+    var ConfsenhaRLVar = input_confsenhaRL
+    var nivelRLVar = 1
+    var statusRLVar = 1
    
     var termos = document.getElementById('termos')
 
-    if (cepVar == '' || estadoVar == '' || cidadeVar == '' || ruaVar == '' || numeroVar == '') {
+    if (nomeRLVar == '' || cpfRLVar == '' || emailRLVar == '' || senhaRLVar == '' ||  ConfsenhaRLVar == '') {
       // cardErro.style.display = "block"
       console.log("Mensagem de erro para todos os campos em branco")
 
@@ -135,7 +138,7 @@
 
       // Enviando o valor da nova input
      
-      fetch('/usuarios/cadastrarEndereco', {
+      fetch('/usuarios/cadastrarRL', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -143,11 +146,12 @@
         body: JSON.stringify({
           // crie um atributo que recebe o valor recuperado aqui
           // Agora vá para o arquivo routes/usuario.js
-          cepServer: cepVar,
-          estadoServer: estadoVar,
-          cidadeServer: cidadeVar,
-          ruaServer: ruaVar,
-          numeroServer: numeroVar
+          nomeRLServer: nomeRLVar,
+          cpfRLServer: cpfRLVar,
+          emailRLServer: emailRLVar,
+          senhaRLServer: senhaRLVar,
+          nivelRLServer: nivelRLVar,
+          statusRLServer : statusRLVar
           
           
         })
@@ -160,7 +164,7 @@
             
 
             setTimeout(() => {
-              window.location = 'cadastroRL.html'
+              window.location = 'login.html'
             }, '2000')
 
             limparFormulario()

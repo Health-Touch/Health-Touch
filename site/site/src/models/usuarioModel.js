@@ -10,7 +10,7 @@ function entrar(email, senha) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrar(nome, cnpj, telefone) {
+function cadastrarEmpresa(nome, cnpj, telefone) {
   console.log(
     "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():",
     nome,
@@ -47,6 +47,26 @@ function cadastrarEndereco (cep, estado, cidade, rua, numero) {
   return database.executar(instrucao)
 }
 
+function cadastrarRl (nome, cpf, email, senha, nivel, status) {
+  console.log(
+    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():",
+    nome,
+    cpf,
+    email,
+    senha,
+    nivel,
+    status
+  )
+
+  // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+  //  e na ordem de inserção dos dados.
+  
+  var instrucao = `
+        INSERT INTO Colaborador (nome, email, senha, CPF, fkStatus,  fkNivelAcesso) VALUES ('${nome}', '${email}','${senha}', '${cpf}', '${status}', '${nivel}');
+    `
+  console.log('Executando a instrução SQL: \n' + instrucao)
+  return database.executar(instrucao)
+}
 function registrar(NomeBotao) {
 
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
@@ -87,8 +107,9 @@ function cadastrarMaquina(so, ip, andar, fkMaqEmpresa, fkLocal, fkPLanoEmpresa, 
 
 module.exports = {
   entrar,
-  cadastrar,
+  cadastrarEmpresa,
   cadastrarEndereco,
+  cadastrarRl,
   cadastrarFuncionario,
   cadastrarMaquina,
   registrar

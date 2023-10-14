@@ -68,7 +68,7 @@ function registrar(req, res) {
 }
 
 
-function cadastrar(req, res) {
+function cadastrarEmpresa(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
   var nome = req.body.nomeServer
   var cnpj = req.body.cnpjServer
@@ -89,7 +89,7 @@ function cadastrar(req, res) {
   else {
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     usuarioModel
-      .cadastrar(nome, cnpj, telefone)
+      .cadastrarEmpresa(nome, cnpj, telefone)
       .then(function (resultado) {
         res.json(resultado)
       })
@@ -145,6 +145,53 @@ function cadastrarEndereco(req, res) {
       })
   }
 }
+function cadastrarRL(req, res) {
+  // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+  var nome = req.body.nomeRLServer
+  var cpf = req.body.cpfRLServer
+  var email = req.body.emailRLServer
+  var senha = req.body.senhaRLServer
+  var nivel = req.body.nivelRLServer
+  var status = req.body.statusRLServer
+  
+  
+  //var empresaId = req.body.empresaServer;
+
+  // Faça as validações dos valores
+  if (nome == undefined) {
+    res.status(400).send('Seu nome está undefined!')
+  } else if (cpf == undefined) {
+    res.status(400).send('Seu cpf está undefined!')
+  }  else if (email == undefined) {
+    res.status(400).send('Seu email está undefined!')
+  } else if (senha == undefined) {
+    res.status(400).send('Sua senha está undefined!')
+  }else if (nivel == undefined) {
+    res.status(400).send('Seu nivel está undefined!')
+  }else if (status == undefined) {
+    res.status(400).send('Seu status está undefined!')
+  }
+  //else if (empresaId == undefined) {
+  // res.status(400).send("Sua empresa está undefined!");
+  //}
+  else {
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel
+      .cadastrarRl(nome, cpf, email, senha, nivel, status)
+      .then(function (resultado) {
+        res.json(resultado)
+      })
+      .catch(function (erro) {
+        console.log(erro)
+        console.log(
+          '\nHouve um erro ao realizar o cadastro! Erro: ',
+          erro.sqlMessage
+        )
+        res.status(500).json(erro.sqlMessage)
+      })
+  }
+}
+
 
 function cadastrarFuncionario(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -221,8 +268,9 @@ function cadastrarMaquina(req, res) {
 
 module.exports = {
   entrar,
-  cadastrar,
+  cadastrarEmpresa,
   cadastrarEndereco,
+  cadastrarRL,
   cadastrarFuncionario,
   cadastrarMaquina,
   registrar

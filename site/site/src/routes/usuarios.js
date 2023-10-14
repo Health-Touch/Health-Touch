@@ -4,8 +4,8 @@ var router = express.Router();
 var usuarioController = require("../controllers/usuarioController");
 
 //Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
-router.post("/cadastrar", function (req, res) {
-    usuarioController.cadastrar(req, res);
+router.post("/cadastrarEmpresa", function (req, res) {
+    usuarioController.cadastrarEmpresa(req, res);
 })
 
 router.post("/registrar", function (req, res) {
@@ -17,6 +17,9 @@ router.post("/autenticar", function (req, res) {
 });
 router.post("/cadastrarEndereco", function (req, res) {
     usuarioController.cadastrarEndereco(req, res);
+})
+router.post("/cadastrarRL", function (req, res) {
+    usuarioController.cadastrarRL(req, res);
 })
 
 router.get("/", function (req, res) {
