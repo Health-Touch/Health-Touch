@@ -70,6 +70,11 @@
 }
 
 .divPaiOpcoesMenu p{
+    color:white
+}
+.divPaiOpcoesMenu a {
+    text-decoration: none;
+    cursor:pointer;
     color:white;
     font-size: 11px;
 }
@@ -77,35 +82,36 @@
     width: 2vw;
     height: 4vh;
     /* Icon Quadraddo */
+    text-decoration: none;
+    cursor:pointer;
 }
 
 #pMenuHome{
     position:relative;
-    left:3%;
+    left:-4%;
 }
 #pMenuEstatistica{
     position:relative;
-    left:8%;
+    left:-3%;
 }
 #pMenuCadastroFuncionario{
     position:relative;
-    left:30%;
+    left:25%;
     
 }
 #pMenuCadastroMaquina{
     position:relative;
-    left:30%;
+    left:25%;
 }
 #pMenuFuncionarios{
     position:relative;
-    left:18%;
-    color:white;
+    left:15%;
+    color:rgb(5, 116, 116);
     font-size: 11px;
 }
 #pMenuMaquina{
     position:relative;
-    left:10%;
-    color:rgb(5, 116, 116);
+    right:2%;
 }
 
 
