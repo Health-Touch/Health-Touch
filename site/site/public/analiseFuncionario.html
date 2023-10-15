@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/analiseFuncionario.css">
-    <title>Document</title>
+    <title>Health Touch| Funcionários</title>
 </head>
 <body>
 
@@ -20,29 +20,39 @@
 
                 <div class="divMainMenu"><p id="pMainMenu">MAIN MENU</p></div>
 
-                <div class="divPaiOpcoesMenu">
-                    <div class="divHome">
-                        <img id="iconMenuLateralHome" src="assets/img/iconHome.png">
+                <div class="divPaiOpcoesMenu" >
+                    <div class="divHome" >
                         
-                        <p id="pMenuLateral">Home</p>
+                       <a href="AnaliseDetalhada.html"><img id="icon" src="assets/img/iconHome.png"></a> 
+                        <p id="pMenuHome" ><a href="AnaliseDetalhada.html">Home</a></p>
                     </div>
 
-                    <div class="divEstatisticas">
-                        <img id="iconEstatiscasLateral" src="assets/img/estatisticasIcon.png">
+                    <div class="divEstatisticas" href="">
+                        <img id="icon" src="assets/img/estatisticasIcon.png">
                       
-                        <p id="pMenuLateral">Estatísticas</p>
+                        <p id="pMenuEstatistica"><a href="#">Estatística</a></p>
                     </div>
 
-                    <div class="divCadastroComputador">
-                        <img id="iconComputadorCadLateral" src="assets/AnaliseMaquinas/cadastroIcon.png">
+                    <div class="divCadastroComputador" href="cadastroMaquinas.html">
+                        <img id="icon" src="assets/AnaliseMaquinas/cadastroIcon.png">
                         <!-- <div class="divEspaco"></div> -->
-                        <p id="pMenuLateral">Cadastro</p>
+                        <p id="pMenuCadastroFuncionario" ><a href="cadastroFuncionarios.html">Cadastro Funcionario</a></p>
                     </div>
 
-                    <div class="divComputador">
-                        <img id="iconComputadorCadLateral" src="assets/img/iconPcConfig.png">
+                    <div class="divComputador" href="analiseMaquinaTI.html">
+                        <img id="icon" src="assets/img/iconPcConfig.png">
                         
-                        <p id="pMenuLateral"> Máquinas</p>
+                        <p id="pMenuCadastroMaquina"><a href="cadastroMaquinas.html">Cadastro Maquina</a></p>
+                    </div>
+                    <div class="divFuncionarios" href="analiseFuncionarios.html">
+                        <img id="icon" src="assets/AnaliseMaquinas/iconFuncionarioVerde.png">
+                        
+                        <p id="pMenuFuncionarios"><a href="analiseFuncionario.html">Funcionarios</a></p>
+                    </div>
+                    <div class="divComputador" href="analiseMaquinaTI.html">
+                        <img id="icon" src="assets/img/iconComputador.png">
+                        <!-- <div class="divEspaco"></div> -->
+                        <p id="pMenuMaquina" ><a href="analiseMaquinaTI.html">Maquina</a></p>
                     </div>
                 </div>
 
@@ -50,19 +60,25 @@
                 <div class="divHelp"><p id="pHelp">HELP</p></div>
 
                 <div class="divPaiHelpMenu">
-                    <div class="divHelpDesk">
-                        <img id="iconHelpDesk" src="assets/img/iconHelp.png">
+                    <div class="divChat" href="#">
+                        <img id="icon" src="assets/AnaliseMaquinas/chatIcon.png">
                         <!-- <div class="divEspaco"></div> -->
-                        <p id="pMenuLateral">HelpDesk</p>
+                        <p id="pMenuChat">Chat</p>
                     </div>
 
-                    <div class="divConfiguracoes">
-                        <img id="iconConfiguracoes" src="assets/img/iconConfig.png">
+                    <div class="divHelpDesk" href="#">
+                        <img id="icon" src="assets/img/iconHelp.png">
                         <!-- <div class="divEspaco"></div> -->
-                        <p id="pMenuLateral">Configurações</p>
+                        <p id="pMenuSupport">Support</p>
                     </div>
 
-                    <img id="logoMenuLateral" src="assets/img/logoMenu.png">
+                    <div class="divConfiguracoes" href="#">
+                        <img id="icon" src="assets/img/iconConfig.png">
+                        <!-- <div class="divEspaco"></div> -->
+                        <p id="pMenuConfig">Configurações</p>
+                    </div>
+
+                    <!-- <img id="logoMenuLateral" src="assets/img/logoMenu.png"> -->
                 </div>
 
             </div>
@@ -96,7 +112,137 @@
 
         <!-- começo conteudo pagina -->
         <div class="divPaiConteudo">
+            <span>Análise de Funcionários</span>
             <div class="divPaiInformacao">
+                <div class="divFilhoInformacao">
+                    <ul class="divColuna">
+                        
+                        <li id="idTeste">ID</li>
+                        <li id="idTeste2">NOME</li>
+                        <li id="idTeste3">E-Mail</li>
+                        <li id="idTeste4">Status</li>
+                        <li id="idTeste5">Cargo</li>
+                    </ul>
+                </div>
+                <div class="divConteudo">
+                    <div class="divConteudoScroll">
+                        <div class="divfilhoConteudo">
+                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
+                            <li id="liNumero">001</li>
+                            <li id="linome">João Pessoa</li>
+                            <li id="liemail">João.Pessoa@sptech.school</li>
+                            <li id="liStatus" class="active">Ativo</li>
+                            <li id="liCargo">Gerente de Ti</li>
+                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
+                            <li id="liDelete" style="color:aliceblue">Desativar</li>
+                            <li id="li3Pontos">. . .</li>
+                        </div>
+                        <div class="divfilhoConteudo">
+                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
+                            <li id="liNumero">001</li>
+                            <li id="linome">João Pessoa</li>
+                            <li id="liemail">João.Pessoa@sptech.school</li>
+                            <li id="liStatus" class="active">Ativo</li>
+                            <li id="liCargo">Gerente de Ti</li>
+                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
+                            <li id="liDelete" style="color:aliceblue">Desativar</li>
+                            <li id="li3Pontos">. . .</li>
+                        </div>
+                        <div class="divfilhoConteudo">
+                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
+                            <li id="liNumero">001</li>
+                            <li id="linome">João Pessoa</li>
+                            <li id="liemail">João.Pessoa@sptech.school</li>
+                            <li id="liStatus" class="active">Ativo</li>
+                            <li id="liCargo">Gerente de Ti</li>
+                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
+                            <li id="liDelete" style="color:aliceblue">Desativar</li>
+                            <li id="li3Pontos">. . .</li>
+                        </div>
+                        <div class="divfilhoConteudo">
+                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
+                            <li id="liNumero">001</li>
+                            <li id="linome">João Pessoa</li>
+                            <li id="liemail">João.Pessoa@sptech.school</li>
+                            <li id="liStatus" class="active">Ativo</li>
+                            <li id="liCargo">Gerente de Ti</li>
+                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
+                            <li id="liDelete" style="color:aliceblue">Desativar</li>
+                            <li id="li3Pontos">. . .</li>
+                        </div>
+                        <div class="divfilhoConteudo">
+                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
+                            <li id="liNumero">001</li>
+                            <li id="linome">João Pessoa</li>
+                            <li id="liemail">João.Pessoa@sptech.school</li>
+                            <li id="liStatus" class="active">Ativo</li>
+                            <li id="liCargo">Gerente de Ti</li>
+                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
+                            <li id="liDelete" style="color:aliceblue">Desativar</li>
+                            <li id="li3Pontos">. . .</li>
+                        </div>
+                        <div class="divfilhoConteudo">
+                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
+                            <li id="liNumero">001</li>
+                            <li id="linome">João Pessoa</li>
+                            <li id="liemail">João.Pessoa@sptech.school</li>
+                            <li id="liStatus" class="active">Ativo</li>
+                            <li id="liCargo">Gerente de Ti</li>
+                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
+                            <li id="liDelete" style="color:aliceblue">Desativar</li>
+                            <li id="li3Pontos">. . .</li>
+                        </div>
+                        <div class="divfilhoConteudo">
+                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
+                            <li id="liNumero">001</li>
+                            <li id="linome">João Pessoa</li>
+                            <li id="liemail">João.Pessoa@sptech.school</li>
+                            <li id="liStatus" class="active">Ativo</li>
+                            <li id="liCargo">Gerente de Ti</li>
+                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
+                            <li id="liDelete" style="color:aliceblue">Desativar</li>
+                            <li id="li3Pontos">. . .</li>
+                        </div>
+                        <div class="divfilhoConteudo">
+                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
+                            <li id="liNumero">001</li>
+                            <li id="linome">João Pessoa</li>
+                            <li id="liemail">João.Pessoa@sptech.school</li>
+                            <li id="liStatus" class="active">Ativo</li>
+                            <li id="liCargo">Gerente de Ti</li>
+                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
+                            <li id="liDelete" style="color:aliceblue">Desativar</li>
+                            <li id="li3Pontos">. . .</li>
+                        </div>
+                        <div class="divfilhoConteudo">
+                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
+                            <li id="liNumero">001</li>
+                            <li id="linome">João Pessoa</li>
+                            <li id="liemail">João.Pessoa@sptech.school</li>
+                            <li id="liStatus" class="active">Ativo</li>
+                            <li id="liCargo">Gerente de Ti</li>
+                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
+                            <li id="liDelete" style="color:aliceblue">Desativar</li>
+                            <li id="li3Pontos">. . .</li>
+                        </div>
+                        <div class="divfilhoConteudo">
+                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
+                            <li id="liNumero">001</li>
+                            <li id="linome">João Pessoa</li>
+                            <li id="liemail">João.Pessoa@sptech.school</li>
+                            <li id="liStatus" class="active">Ativo</li>
+                            <li id="liCargo">Gerente de Ti</li>
+                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
+                            <li id="liDelete" style="color:aliceblue">Desativar</li>
+                            <li id="li3Pontos">. . .</li>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    </div>
+                </div>
+                
                 
             </div>
 
@@ -107,3 +253,6 @@
     </div>
 </body>
 </html>
+<script>
+
+</script>

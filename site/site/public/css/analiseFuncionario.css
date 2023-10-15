@@ -59,8 +59,16 @@
     position: relative;
     top: 8%;
     left:1.0%;
-    
-    
+}
+.divPaiOpcoesMenu p{
+    color:white;
+    font-size: 11px;
+}
+.divPaiOpcoesMenu a {
+    text-decoration: none;
+    cursor:pointer;
+    color:white;
+    font-size: 11px;
 }
 
 .divHome {
@@ -70,17 +78,43 @@
     width: 60%;
     margin:8%;
 }
-
-#iconMenuLateralHome {
+#icon {
     width: 2vw;
     height: 4vh;
     /* Icon Quadraddo */
+    text-decoration: none;
+    cursor:pointer;
 }
 
-#pMenuLateral {
-    color: white;
+#pMenuHome{
+    position:relative;
+    left:-4%;
+}
+#pMenuEstatistica{
+    position:relative;
+    left:-3%;
+    
+}
+#pMenuCadastroFuncionario{
+    position:relative;
+    left:25%;
+    
+}
+#pMenuCadastroMaquina{
+    position:relative;
+    left:25%;
+}
+#pMenuFuncionarios{
+    position:relative;
+    left:15%;
+    color:rgb(5, 116, 116);
     font-size: 11px;
 }
+#pMenuMaquina{
+    position:relative;
+    right:2%;
+}
+
 
 .divEstatisticas {
     display: flex;
@@ -88,13 +122,6 @@
     align-items: center;
     width: 73%;
     margin:8%;
-}
-
-#iconEstatiscasLateral {
-    width: 2vw;
-    height: 4vh;
-
-    /* Icon Quadraddo */
 }
 
 .divComputador{
@@ -112,10 +139,24 @@
     margin:8%
 }
 
-#iconComputadorCadLateral {
-    width: 2vw;
-    height: 4vh;
-    /* Icon Quadraddo */
+
+.divFuncionarios{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin:8%
+}
+
+
+.divChat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 7vw;
+    position: relative;
+    top: 5%;
+    margin:5%;
 }
 
 .divHelp {
@@ -136,9 +177,28 @@
 #pHelp {
     color: white;
     font-size: 12px;
-    font-weight: bold;
-    
+    font-weight: bold; 
 }
+#pMenuChat{
+    position:relative;
+    right:24%;
+    color:white;
+    font-size: 11px;
+}
+#pMenuConfig{
+    position:relative;
+    left:4%;
+    color:white;
+    font-size:13px;
+    font-size: 11px;
+}
+#pMenuSupport{
+    position:relative;
+    right:9%;
+    color:white;
+    font-size: 11px;
+}
+
 
 .divHelpDesk {
     display: flex;
@@ -150,10 +210,7 @@
     margin:5%;
 }
 
-#iconHelpDesk {
-    width: 2vw;
-    height: 4vh;
-}
+
 
 .divConfiguracoes {
     display: flex;
@@ -163,18 +220,6 @@
     position: relative;
     top: 35%;
     margin:5%;
-}
-
-#iconConfiguracoes {
-    width: 2vw;
-    height: 4vh;
-}
-
-#logoMenuLateral {
-    width: 7vw;
-    height: 8vh;
-    position: relative;
-    top: 70%;
 }
 
 .divEspacoV2 {
@@ -294,13 +339,177 @@
 
 /* começo do conteudo */
 .divPaiConteudo {
-    display:flex;
     width: 98.4%;
     height: 90%;
     background-color: #FFF;
     border-radius: 10px;
     margin: 10px;
     
+}
+span{
+    font-size: 40px;
+    position: relative;
+    top: 2%;
+    left: 5%;
+}
+ul{
+    list-style: none;
+    display: flex;
+    flex-direction:row;
+}
+.divPaiInformacao img{
+    height:30px;
+    width:30px;
+}
+
+.divColuna{
+    display:flex;
+    align-items: center;
+    position:relative;
+    top: 40px;
+    width: 70vw;
+}
+
+#idTeste {
+    /* font-size: 11px; */
+    position: relative;
+    left: 10%;
+    z-index: 1;
+}
+
+#idTeste2 {
+    font-size: 15px;
+    position: relative;
+    left: 19%;
+    z-index:2
+}
+
+#idTeste3 {
+    /* font-size: 11px; */
+    position: relative;
+    left: 38.5%;
+    z-index:3
+}
+#idTeste4{
+    /* font-size: 11px; */
+    position: relative;
+    left: 58%;
+
+}
+#idTeste5{
+
+    position: relative;
+    left: 64.5%;
+
+}
+
+.divConteudo{
+    /* background-color: #8E0A0A; */
+    display:flex;
+    flex-direction: column;
+    position: relative;
+    top: 50px;
+    right:2.6%;
+    width:98%;
+    margin:4%;
+    height: 500px;
+}
+
+.divConteudoScroll{
+    /* height:200%; */
+    /* background:red; */
+    max-height:100%;
+    overflow-y:scroll ;
+}
+.divConteudo li{
+    list-style: none;
+}
+.divfilhoConteudo{
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display:flex;
+    flex-direction:row;
+    width: 90%;
+    height: 20px;
+    border-radius: 35px;
+    padding: 15px 30px;
+    margin:20px;
+}
+
+#liNumero{
+    position:relative;
+    left: 3.5%;
+}
+#linome{
+    
+    position:relative;
+    left: 8%;
+    width:110px;
+    text-align:center;
+}
+#liemail{
+    width: 210px;
+    position:relative;
+    left: 17%;
+    text-align:center;
+}
+#liStatus{
+    
+    position:relative;
+    left: 25.5%;
+}
+#liCargo{
+    position:relative;
+    left: 27.5%;
+    width:100px;
+    text-align:center;
+}
+#liUpdate{
+    position:relative;
+    left: 30%;
+    border-radius: 30px;
+    width: 8%;
+    height:110%;
+    background-color:#020F1F;
+    display:flex;
+    justify-content: center;
+    padding:2px 5px;
+}
+
+#liDelete{
+    
+    position:relative;
+    z-index:94;
+    left: 31%;
+    border-radius: 30px;
+    width: 8%;
+    height:110%;
+    background-color:#020F1F;
+    display:flex;
+    justify-content: center;
+    padding:2px 5px;
+}
+
+#li3Pontos{
+
+    position:relative;
+    left:35%;
+    bottom: 40%;
+    font-size: 130%
+}
+
+.active{
+    background-color: #1D8E0A;
+    border-radius:20px;
+    width:70px;
+    height: 25px;
+    text-align: center;
+}
+#inactive{
+    background-color: #8E0A0A;
+    border-radius:20px;
+    width:70px;
+    height: 25px;
+    text-align:center
 }
 
 /* fim do conteudo */

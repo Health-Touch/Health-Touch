@@ -59,8 +59,6 @@
     position: relative;
     top: 8%;
     left:1.0%;
-    
-    
 }
 
 .divHome {
@@ -71,16 +69,45 @@
     margin:8%;
 }
 
-#iconMenuLateralHome {
+.divPaiOpcoesMenu p{
+    color:white;
+    font-size: 11px;
+}
+#icon {
     width: 2vw;
     height: 4vh;
     /* Icon Quadraddo */
 }
 
-#pMenuLateral {
-    color: white;
+#pMenuHome{
+    position:relative;
+    left:3%;
+}
+#pMenuEstatistica{
+    position:relative;
+    left:8%;
+}
+#pMenuCadastroFuncionario{
+    position:relative;
+    left:30%;
+    
+}
+#pMenuCadastroMaquina{
+    position:relative;
+    left:30%;
+}
+#pMenuFuncionarios{
+    position:relative;
+    left:18%;
+    color:white;
     font-size: 11px;
 }
+#pMenuMaquina{
+    position:relative;
+    left:10%;
+    color:rgb(5, 116, 116);
+}
+
 
 .divEstatisticas {
     display: flex;
@@ -88,13 +115,6 @@
     align-items: center;
     width: 73%;
     margin:8%;
-}
-
-#iconEstatiscasLateral {
-    width: 2vw;
-    height: 4vh;
-
-    /* Icon Quadraddo */
 }
 
 .divComputador{
@@ -112,10 +132,24 @@
     margin:8%
 }
 
-#iconComputadorCadLateral {
-    width: 2vw;
-    height: 4vh;
-    /* Icon Quadraddo */
+
+.divFuncionarios{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin:8%
+}
+
+
+.divChat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 7vw;
+    position: relative;
+    top: 5%;
+    margin:5%;
 }
 
 .divHelp {
@@ -136,9 +170,28 @@
 #pHelp {
     color: white;
     font-size: 12px;
-    font-weight: bold;
-    
+    font-weight: bold; 
 }
+#pMenuChat{
+    position:relative;
+    right:24%;
+    color:white;
+    font-size: 11px;
+}
+#pMenuConfig{
+    position:relative;
+    left:4%;
+    color:white;
+    font-size:13px;
+    font-size: 11px;
+}
+#pMenuSupport{
+    position:relative;
+    right:9%;
+    color:white;
+    font-size: 11px;
+}
+
 
 .divHelpDesk {
     display: flex;
@@ -150,10 +203,7 @@
     margin:5%;
 }
 
-#iconHelpDesk {
-    width: 2vw;
-    height: 4vh;
-}
+
 
 .divConfiguracoes {
     display: flex;
@@ -163,18 +213,6 @@
     position: relative;
     top: 35%;
     margin:5%;
-}
-
-#iconConfiguracoes {
-    width: 2vw;
-    height: 4vh;
-}
-
-#logoMenuLateral {
-    width: 7vw;
-    height: 8vh;
-    position: relative;
-    top: 70%;
 }
 
 .divEspacoV2 {
@@ -326,7 +364,6 @@ ul{
 }
 
 #idTeste {
-    /* font-size: 11px; */
     position: relative;
     left: 10%;
     z-index: 1;
@@ -365,9 +402,16 @@ ul{
     position: relative;
     top: 50px;
     right:2.6%;
-    width:87%;
+    width:90%;
     margin:4%;
-    height: 600px;
+    height: 500px;
+}
+.divConteudoScroll{
+    width:108%;
+    height:200%;
+    /* background:red; */
+    max-height:100%;
+    overflow-y:scroll ;
 }
 .divConteudo li{
     list-style: none;
@@ -376,14 +420,11 @@ ul{
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     display:flex;
     flex-direction:row;
-    width: 100%;
+    width: 1200px;
     height: 20px;
     border-radius: 35px;
     padding: 15px 30px;
-    border-radius: 20px;
-    margin:20px;
-
-    
+    margin:30px 20px 20px 20px ;
 }
 #liNumero{
     position:relative;
