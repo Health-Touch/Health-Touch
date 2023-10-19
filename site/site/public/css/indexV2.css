@@ -489,18 +489,29 @@
 }
 
 .caixas{
+    align-self: center;
+    align-items: center;
     display: flex;
+    width: 80%;
     /* width: 80%;
     margin: auto; */
-    justify-content: space-around;
+    justify-content: space-evenly;
     margin: 50px 0;
 }
 
-.boxPlano{
+.boxPlanoLado{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 340px;
+    border: solid 2px #fff;
+    align-items: center;
+}
+
+.boxPlanoMeio{
     display: flex;
     flex-direction: column;
     width: 300px;
-    /* height: 470px; */
     height: 410px;
     border: solid 2px #fff;
     align-items: center;
@@ -511,8 +522,8 @@
     flex-direction: column;
     align-items: center;
     background: rgb(38,171,167);
-background: linear-gradient(180deg, rgba(38,171,167,1) 0%, rgba(38,171,167,0) 100%);
-width: 100%;
+    background: linear-gradient(180deg, rgba(38,171,167,1) 0%, rgba(38,171,167,0) 100%);
+    width: 100%;
 }
 
 .nomePlano{
@@ -535,7 +546,17 @@ width: 100%;
 .iconPlano{
     width: 95px;
     height: 95px;
+    transition: all 0.65s;
+    transform: rotateY(360deg);
 }
+
+.iconPlanoLado{
+    width: 65px;
+    height: 65px;
+    transition: all 0.65s;
+    transform: rotateY(360deg);
+}
+
 
 .beneficiosPlano{
     display: flex;
@@ -544,6 +565,8 @@ width: 100%;
     justify-content: space-around;
     margin: 20px 0;
     width: 80%;
+    position: relative;
+    left: 15%;
 }
 
 .beneficios{
@@ -578,11 +601,6 @@ width: 100%;
 .divDegrade{
     background: rgb(38,171,167);
     background-color: transparent;
-
-.iconPlano{
-    transition: all 0.65s;
-    transform: rotateY(360deg);
-}
 }
 
 .btnPlano{
@@ -594,13 +612,93 @@ width: 100%;
 
 /* Fim do Plano */
 
+/* começo do contato */
+.divPaiContato {
+    height: 30vh;
+    background-color: #020F1F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divFilhoContato {
+    width: 70vw;
+    height: 20vh;
+    border-radius: 10px;
+    border: 1px solid #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.cimaContato {
+    width: 70vw;
+    height: 3vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.esquerdaCimaContato {
+    display: flex;
+    justify-content: space-around;
+    width: 15vw;
+    height: 5vh;
+    position: relative;
+    right: 2.7%;
+}
+
+#tituloContato {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+}
+
+#imgContato {
+    width: 2vw;
+    height: 4vh;
+}
+
+.baixoContato {
+    width: 70vw;
+    height: 4vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#subTituloContato {
+    font-size: 20px;
+    color: white;
+    position: relative;
+    right: 0.8%;
+}
+
+.esquerdaBaixoContato {
+    display: flex;
+    justify-content: space-around;
+    width: 17vw;
+    height: 5vh;
+    position: relative;
+    left: 1.5%;
+}
+
+#emailContato {
+    color: #ffffff;
+}
+
+#telefoneContato {
+    color: #ffffff;
+}
+/* fim do contato */
+
 /* começo do rodapé */
 .divPaiRodape {
     background-color: #020F1F;
     height: 40vh;
     display: flex;
     justify-content: center;
-    border-top: #26ABA7 1px solid;
 }
 
 .divFilhoRodape {
@@ -972,7 +1070,7 @@ width: 100%;
 /* Fim da equipe mobile */
 
 /* Começo dos Planos */
-.tituloPlano{
+.tituloPlano {
     font-size: 25px;
     margin-top: 10px;
 }
@@ -999,11 +1097,6 @@ width: 100%;
 
 .miniPreco {
     font-size: 33px;
-}
-
-.iconPlano {
-    width: 75px;
-    height: 75px;
 }
 /* Fim dos Planos */
 
