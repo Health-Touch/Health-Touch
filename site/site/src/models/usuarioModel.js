@@ -41,7 +41,7 @@ function cadastrarEndereco (cep, estado, cidade, rua, numero) {
   //  e na ordem de inserção dos dados.
   
   var instrucao = `
-        INSERT INTO Endereco (rua, num, estado, CEP,  cidade) VALUES ('${rua}', '${numero}','${estado}', '${cep}', '${cidade}');
+  INSERT INTO Endereco (rua, num, estado, CEP,  cidade, fkEmpresa) VALUES ('${rua}', '${numero}','${estado}', '${cep}', '${cidade}',(select MAX(idEmpresa) from empresa));
     `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -62,7 +62,7 @@ function cadastrarRl (nome, cpf, email, senha, nivel, status) {
   //  e na ordem de inserção dos dados.
   
   var instrucao = `
-        INSERT INTO Colaborador (nome, email, senha, CPF, fkStatus,  fkNivelAcesso) VALUES ('${nome}', '${email}','${senha}', '${cpf}', '${status}', '${nivel}');
+  INSERT INTO Colaborador (nome, email, senha, CPF, fkStatus,  fkNivelAcesso,fkEmpresa) VALUES ('${nome}', '${email}','${senha}', '${cpf}', '${status}', '${nivel}', (select MAX(idEmpresa) from empresa));
     `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)

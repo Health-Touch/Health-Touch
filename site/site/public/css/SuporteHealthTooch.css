@@ -58,6 +58,11 @@
     top: 8%;
 }
 
+.divPaiOpcoesMenu a{
+    text-decoration: none;
+}
+
+
 .divHome {
     display: flex;
     justify-content: space-between;
@@ -140,7 +145,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 8.5vw;
+    width: 7.2vw;
     position: relative;
     top: 20%;
 }
@@ -154,7 +159,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 8.5vw;
+    width: 6.7vw;
     position: relative;
     top: 25%;
 }
