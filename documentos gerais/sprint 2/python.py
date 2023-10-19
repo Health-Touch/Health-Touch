@@ -147,6 +147,7 @@ if(resposta == "S" or resposta == "s"):
             print('Um dispositivo de dado foi conectado as '+ dia.strftime('%d/%m/%Y %H:%M:%S'))
             usbInfo = 'Um dispositivo de dado foi conectado'
             usbPrint = True
+
             enviar_email()
 
         if(past == True and atual == False):
