@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/baseDash.css">
     <link rel="stylesheet" href="css/analiseFuncionario.css">
     <title>Health Touch| Funcionários</title>
 </head>
 <body>
 
     <div class="divPai">
-        <!-- inicio menu lateral -->
-        <div class="divPaiLateral">
+         <!-- inicio menu lateral -->
+         <div class="divPaiLateral">
             <div class="filhoLateral">
 
                 <div class="divNomeEmpresa">
@@ -20,66 +21,69 @@
 
                 <div class="divMainMenu"><p id="pMainMenu">MAIN MENU</p></div>
 
-                <div class="divPaiOpcoesMenu" >
-                    <div class="divHome" >
-                        <a href="AnaliseDetalhada.html"><img id="icon" src="assets/img/iconHome.png"></a> 
-                         <p id="pMenuHome" ><a href="AnaliseDetalhada.html">Home</a></p>
-                     </div>
- 
-                     <div class="divEstatisticas" href="">
-                         
-                         <a href="AnaliseDetalhada.html"><img id="icon" src="assets/img/estatisticasIcon.png"></a> 
-                       
-                         <p id="pMenuEstatistica"><a href="#">Estatística</a></p>
-                     </div>
- 
-                     <div class="divCadastroComputador" href="cadastroMaquinas.html">
-                         
-                         <a href="cadastroFuncionarios.html"><img id="icon" src="assets/AnaliseMaquinas/cadastroIcon.png"></a>
-                         <p id="pMenuCadastroFuncionario" ><a href="cadastroFuncionarios.html">Cadastro Funcionario</a></p>
-                     </div>
- 
-                     <div class="divComputador" href="analiseMaquinaTI.html">
-                         
-                         <a href="cadastroMaquinas.html"><img id="icon" src="assets/img/iconPcConfig.png"></a>
-                         <p id="pMenuCadastroMaquina"><a href="cadastroMaquinas.html">Cadastro Maquina</a></p>
-                     </div>
-                     <div class="divFuncionarios" href="analiseFuncionarios.html">
-                         
-                         <a href="analiseFuncionario.html"><img id="icon" src="assets/AnaliseMaquinas/iconFuncionarioVerde.png"></a>
-                         <p id="pMenuFuncionarios"><a href="analiseFuncionario.html">Funcionarios</a></p>
-                     </div>
-                     <div class="divComputador" href="analiseMaquinaTI.html">
-                         
-                         <a href="analiseMaquinaTI.html"><img id="icon" src="assets/img/iconComputador.png"></a>
-                         <!-- <div class="divEspaco"></div> -->
-                         <p id="pMenuMaquina" ><a href="analiseMaquinaTI.html">Maquina</a></p>
-                     </div>
+                <div class="divPaiOpcoesMenu">
+                    <div class="divHome">
+                        <img id="iconMenuLateralHome" src="assets/img/iconHome.png">
+                        <div class="divEspaco"></div>
+                        <a href="setores.html" id="pMenuLateral">Home</a>
+                    </div>
+
+                    <div class="divEstatisticas">
+                        <img id="iconEstatiscasLateral" src="assets/img/estatisticasIcon.png">
+                        <div class="divEspaco"></div>
+                        <a href="dashSetor.html" id="pMenuLateral">Estatisticas</a>
+                    </div>
+
+                    <div class="divDashboards">
+                        <img id="iconDashboardsLateral" src="assets/img/iconDashboard.png">
+                        <div class="divEspaco"></div>
+                        <a href="AnaliseDetalhada.html" id="pMenuLateral">Dashboards</a>
+                    </div>
+
+                    <div class="divComputador">
+                        <img id="iconComputadorLateral" src="assets/img/iconComputador.png">
+                        <div class="divEspaco"></div>
+                        <a href="cadastroMaquinas.html" id="pMenuLateral">Cadastro Máquinas</a>
+                    </div>
+
+                    <div class="divCadastroComputador">
+                        <img id="iconComputadorCadLateral" src="assets/img/iconPcConfig.png">
+                        <div class="divEspaco"></div>
+                        <a href="analiseMaquinaTI.html" id="pMenuLateral">Análise Máquinas</a>
+                    </div>
+
+                    <div class="divAnaliseEquipe">
+                        <img id="iconAnaliseEquipe" src="assets/img/iconEquipe.png">
+                        <div class="divEspaco"></div>
+                        <a href="cadastroFuncionarios.html" id="pMenuLateral">Cadastro Equipe</a>
+                    </div>
+
+                    <div class="divCadastroEquipe">
+                        <img id="iconCadastroEquipe" src="assets/img/IconEquipeConfig.png">
+                        <div class="divEspaco"></div>
+                        <a href="analiseFuncionario.html" id="pMenuLateral">Análise Equipe</a>
+                    </div>
                 </div>
 
                 <div class="divEspacoV2"></div>
+
                 <div class="divHelp"><p id="pHelp">HELP</p></div>
 
                 <div class="divPaiHelpMenu">
-                    <div class="divChat" href="#">
-                        <img id="icon" src="assets/AnaliseMaquinas/chatIcon.png">
-                        <!-- <div class="divEspaco"></div> -->
-                        <p id="pMenuChat">Chat</p>
+                    <div class="divHelpDesk">
+                        <img id="iconHelpDesk" src="assets/img/iconHelp.png">
+                        <div class="divEspaco"></div>
+                        <a href="SuporteHealthTooch.html" id="pMenuLateral">HelpDesk</a>
                     </div>
 
-                    <div class="divHelpDesk" href="#">
-                        <img id="icon" src="assets/img/iconHelp.png">
-                        <!-- <div class="divEspaco"></div> -->
-                        <p id="pMenuSupport">Support</p>
+                    <div class="divConfiguracoes">
+                        <img id="iconConfiguracoes" src="assets/img/iconConfig.png">
+                        <div class="divEspaco"></div>
+                        <a href="AtualizarUser.html" id="pMenuLateral">Configurações</a>
                     </div>
 
-                    <div class="divConfiguracoes" href="#">
-                        <img id="icon" src="assets/img/iconConfig.png">
-                        <!-- <div class="divEspaco"></div> -->
-                        <p id="pMenuConfig">Configurações</p>
-                    </div>
-
-                    <!-- <img id="logoMenuLateral" src="assets/img/logoMenu.png"> -->
+                    <img id="logoMenuLateral" src="assets/img/logoMenu.png">
+                
                 </div>
 
             </div>
