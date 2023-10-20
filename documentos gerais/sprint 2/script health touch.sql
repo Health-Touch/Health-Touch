@@ -1,6 +1,8 @@
-create database HealthTouch;
+#criar o db dps apagar a linha do create dtbse e deixar só a linha do use dt e as linhas das tabelas 
+# para deixar mais limpos o código deixar os select e desc no final do código de todos os create table e inserts
+# apertar no botão "raio amarelo para executar todo o script do banco de dados sem precisar usar o ctrl enter
+create database if not exists HealthTouch;
 use HealthTouch;
-drop database HealthTouch;
 
 create table Plano (
 idPlano Int primary key auto_increment,
