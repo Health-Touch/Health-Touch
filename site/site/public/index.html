@@ -40,8 +40,8 @@
 
       <div class="divBoxBotaoBanner">
         <div class="botaoBanner">
-          <button class="botao1Banner"><span>Saiba Mais</span></button>
-          <button class="botao2Banner"><span>Fale Conosco</span></button>
+          <a href="#saibaMais" class="botao1Banner"><span>Saiba Mais</span></a>
+          <a href="#redirecionamentoContato" class="botao2Banner"><span>Fale Conosco</span></a>
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@
               enquanto todos os hospitais particulares o possuem
             </p>
           </div>
-          <button id="botaoBox">Nosso Sistema</button>
+          <a href="#redirecionamentoSistema" id="botaoBox">Nosso Sistema</a>
         </div>
 
         <div class="boxContexto">
@@ -83,7 +83,7 @@
               Qualquer falha nesses sistemas comprometeria a capacidade do hospital em atender eficazmente.
             </p>
           </div>
-          <button id="botaoBox">Nosso Sistema</button>
+          <a href="#tituloNossaEquipe" id="botaoBoxMeio">Nossa Equipe</a>
         </div>
 
         <div class="boxContexto">
@@ -96,11 +96,11 @@
               aplicação extremamente eficiente para monitorar todo o hardware de uma máquina computacional.
             </p>
           </div>
-          <button id="botaoBox">Nosso Sistema</button>
+          <a href="#tituloBeneficios" id="botaoBox">Benefícios</a>
         </div>
       </div>
 
-      <div class="divComoFunciona">
+      <div class="divComoFunciona" id="redirecionamentoSistema">
         <p>E COMO NOSSO SISTEMA FUNCIONA?</p>
       </div>
       <div class="divSubComoFunciona">
@@ -221,7 +221,7 @@
       <div class="boxEquipe">
         <img src="" class="imgEquipe" id="ImgCard3"/>
         <div class="divSubEquipe">
-          <p id="tituloFotoEquipe3"></p>
+          <p id="tituloFotoEquipe3" class="tituloEquipe"></p>
           <p id="cargoFotoEquipe">Analista de Sistemas</p>
         </div>
       </div>
@@ -250,35 +250,35 @@
                 alt=""
                 class="iconPlanoLado"
               />
-              <span class="nomePlano">Plano PLus</span>
+              <span class="nomePlanoLado">Plano PLus</span>
             </div>
-            <div class="beneficiosPlano">
+            <div class="beneficiosPlanoLado">
               <div class="beneficios">
                 <img
                   src="./assets/img/checked.png"
                   alt=""
-                  class="iconBeneficio"
+                  class="iconBeneficioLado"
                 />
-                <span class="txtBeneficio">1-15 Máquinas</span>
+                <span class="txtBeneficioLado">1-15 Máquinas</span>
               </div>
               <div class="beneficios">
                 <img
                   src="./assets/img/cross.png"
                   alt=""
-                  class="iconBeneficio"
+                  class="iconBeneficioLado"
                 />
-                <span class="txtBeneficio">Inovação</span>
+                <span class="txtBeneficioLado">Inovação</span>
               </div>
               <div class="beneficios">
                 <img
                   src="./assets/img/cross.png"
                   alt=""
-                  class="iconBeneficio"
+                  class="iconBeneficioLado"
                 />
-                <span class="txtBeneficio">Acesso Total</span>
+                <span class="txtBeneficioLado">Acesso Total</span>
               </div>
             </div>
-            <button class="btnPlano">Contratar</button>
+            <button onclick="btnPlanos()" class="btnPlanoLado">Contratar</button>
           </div>
           <div class="boxPlanoMeio">
             <div class="divDegrade">
@@ -315,7 +315,7 @@
                 <span class="txtBeneficio">Acesso Total</span>
               </div>
             </div>
-            <button class="btnPlano">Contratar</button>
+            <button onclick="btnPlanos()" class="btnPlano">Contratar</button>
           </div>
           <div class="boxPlanoLado">
             <div class="divDegrade">
@@ -324,35 +324,35 @@
                 alt=""
                 class="iconPlanoLado"
               />
-              <span class="nomePlano">Plano Prime</span>
+              <span class="nomePlanoLado">Plano Prime</span>
             </div>
-            <div class="beneficiosPlano">
+            <div class="beneficiosPlanoLado">
               <div class="beneficios">
                 <img
                   src="./assets/img/checked.png"
                   alt=""
-                  class="iconBeneficio"
+                  class="iconBeneficioLado"
                 />
-                <span class="txtBeneficio">1-10 Máquinas</span>
+                <span class="txtBeneficioLado">1-10 Máquinas</span>
               </div>
               <div class="beneficios">
                 <img
                   src="./assets/img/checked.png"
                   alt=""
-                  class="iconBeneficio"
+                  class="iconBeneficioLado"
                 />
-                <span class="txtBeneficio">Inovação</span>
+                <span class="txtBeneficioLado">Inovação</span>
               </div>
               <div class="beneficios">
                 <img
                   src="./assets/img/checked.png"
                   alt=""
-                  class="iconBeneficio"
+                  class="iconBeneficioLado"
                 />
-                <span class="txtBeneficio">Acesso Total</span>
+                <span class="txtBeneficioLado">Acesso Total</span>
               </div>
             </div>
-            <button class="btnPlano">Contratar</button>
+            <button onclick="btnPlanos()" class="btnPlanoLado">Contratar</button>
           </div>
         </div>
       </div>
@@ -360,7 +360,7 @@
     <!-- Fim do Plano -->
 
     <!-- começo do contato -->
-    <div class="divPaiContato">
+    <div class="divPaiContato" id="redirecionamentoContato">
       <div class="divFilhoContato">
 
         <div class="cimaContato">
@@ -399,9 +399,9 @@
 
       <div class="meioRodape">
         <p id="tituloMeioCabecalho">Acesso Rápido</p>
-        <p id="pMeioCabecalho">Contato</p>
-        <p id="pMeioCabecalho">Nosso Sistema</p>
-        <p id="pMeioCabecalho">Login</p>
+        <a href="#tituloNossaEquipe" id="pMeioCabecalho">Equipe</a>
+        <a href="#redirecionamentoSistema" id="pMeioCabecalho">Nosso Sistema</a>
+        <a href="login.html" id="pMeioCabecalho">Login</a>
       </div>
 
       <div class="direitaRodape">
@@ -417,6 +417,7 @@
 </body>
 
 </html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 <script>
   var ListaNome = [
   'Anthony',
@@ -471,4 +472,13 @@ function home() {
   window.location = 'index.html'
 }
 
+function btnPlanos() {
+  Swal.fire('Entre em Contato Conosco')
+
+}
+
+function btnPlanos() {
+  Swal.fire('Entre em Contato Conosco')
+
+}
 </script>

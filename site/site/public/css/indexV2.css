@@ -20,8 +20,12 @@
 }
 
 .direitaCabecalho {
-    width: 20vw;
+    width: 15vw;
     font-weight: bold;
+}
+
+#alertText {
+    cursor: pointer;
 }
 
 .subDireitaCabecalho {
@@ -101,6 +105,10 @@
     justify-content: center;
     position: relative;
     top: 15%;
+}
+
+.divBoxBotaoBanner a {
+    text-decoration: none;
 }
 
 .botaoBanner {
@@ -224,8 +232,9 @@
 }
 
 #botaoBox {
-    position: relative;
-    top: 17%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 10vw;
     height: 5vh;
     border-radius: 30px;
@@ -235,13 +244,45 @@
     color: #ffffff;
     font-weight: bold;
     cursor: pointer;
+    transition: all 0.3s ease 0s;
+    position: relative;
+    top: 17%;
+    text-decoration: none;
 }
 
-#botaoBox:hover{
-    box-shadow: 4px 4px 6px 0 rgba(255,255,255,.5),
-              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+#botaoBox:hover {
+    box-shadow: 0px 5px 20px rgb(0, 0, 0);
+    transform: translateY(-7px);
+    background-color: #fff;
+    color: #26ABA7;
+    border: 3px #26ABA7 solid;
+}
+
+#botaoBoxMeio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10vw;
+    height: 5vh;
+    border-radius: 30px;
+    font-size: 12px;
+    background-color: #26ABA7;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    position: relative;
+    top: 23%;
+    text-decoration: none;
+}
+
+#botaoBoxMeio:hover {
+    box-shadow: 0px 5px 20px rgb(0, 0, 0);
+    transform: translateY(-7px);
+    background-color: #fff;
+    color: #26ABA7;
+    border: 3px #26ABA7 solid;
 }
 
 .divComoFunciona {
@@ -503,7 +544,7 @@
     display: flex;
     flex-direction: column;
     width: 250px;
-    height: 340px;
+    height: 320px;
     border: solid 2px #fff;
     align-items: center;
 }
@@ -533,6 +574,13 @@
     margin-top: 20px;
 }
 
+.nomePlanoLado{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
 .precoPlano{
     color: #fff;
     font-size: 50px;
@@ -547,14 +595,24 @@
     width: 95px;
     height: 95px;
     transition: all 0.65s;
+    transform: rotateY(0deg); /* Inicialmente, o elemento não está girado */
+}
+
+.iconPlano:hover{
+    transform: rotateY(360deg);
+}
+
+.iconPlanoLado:hover{
     transform: rotateY(360deg);
 }
 
 .iconPlanoLado{
     width: 65px;
     height: 65px;
-    transition: all 0.65s;
-    transform: rotateY(360deg);
+    transition: transform 0.65s;
+    transform: rotateY(0deg); /* Inicialmente, o elemento não está girado */
+    position: relative;
+    top: 6%;
 }
 
 
@@ -569,6 +627,18 @@
     left: 15%;
 }
 
+.beneficiosPlanoLado{
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    justify-content: space-around;
+    margin: 20px 0;
+    width: 80%;
+    position: relative;
+    left: 18%;
+    top: -3%;
+}
+
 .beneficios{
     display: flex;
 }
@@ -578,9 +648,21 @@
     font-size: 16px;
 }
 
+
+.txtBeneficioLado{
+    color: #fff;
+    font-size: 13px;
+}
+
 .iconBeneficio{
     width: 20px;
     height: 20px;
+    margin-right: 10px;
+}
+
+.iconBeneficioLado{
+    width: 17px;
+    height: 17px;
     margin-right: 10px;
 }
 
@@ -590,8 +672,40 @@
     border-radius: 5px;
     font-size: 18px;
     width: 150px;
-    height: 50px;
+    height: 40px;
     border: none;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+}
+
+.btnPlano:hover {
+    box-shadow: 0px 5px 20px rgb(0, 0, 0);
+    transform: translateY(-7px);
+    background-color: #fff;
+    color: #26ABA7;
+    border: 3px #26ABA7 solid;
+}
+
+.btnPlanoLado {
+    color: #fff;
+    background-color: #26ABA7;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100px;
+    height: 30px;
+    border: none;
+    position: relative;
+    top: -5%;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+}
+
+.btnPlanoLado:hover {
+    box-shadow: 0px 5px 20px rgb(0, 0, 0);
+    transform: translateY(-7px);
+    background-color: #fff;
+    color: #26ABA7;
+    border: 3px #26ABA7 solid;
 }
 
 .boxPlano:hover{
@@ -755,13 +869,13 @@
     margin: 7px;
     position: relative;
     right: 6%;
+    text-decoration: none;
 }
 
 #pMeioCabecalho:hover{
-    cursor: pointer;
+    color: #26ABA7;
     box-shadow: 0px 2px 0px #26ABA7;
-    transition: all 0.3s ease;
-    transform: translate(5px);
+    transition: all 0.3s ease-out;
   }
 
 .direitaRodape {
@@ -806,16 +920,20 @@
     font-weight: bold;
     cursor: pointer;
     position: relative;
-    top: 10%;
+    top: 14%;
     border: none;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
 }
 
 
 .botaoDireitaCabecalho:hover {
-    transform: scaleX(1.1);
-    transition: 0.5s;
-  }
-
+    box-shadow: 0px 5px 20px rgb(0, 0, 0);
+    transform: translateY(-7px);
+    background-color: #fff;
+    color: #26ABA7;
+    border: 3px #26ABA7 solid;
+}
 
 /* fim do rodapé */
 /* COMEÇO MOBILE */
@@ -859,19 +977,16 @@
     top: 4%;
     right: 10%;
     width: 15rem;
-    
 }
 
 .botaoBanner {
     width: 50vw;
     justify-content: space-between;
-   
 }
 
 .botao1Banner {
     width: 6rem;
     height: 4vh;
-
 }
 
 .botao2Banner {
@@ -921,6 +1036,7 @@
     top: 10%;
     margin-bottom: 3rem;
 }
+
 .textoBox {
     width: 50vw;
 }
@@ -1174,4 +1290,4 @@
 /* fim do rodapé */
 
 }
-/* FIM MOBILE */
+/* FIM MOBILE */ 

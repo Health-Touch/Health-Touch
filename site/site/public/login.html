@@ -31,12 +31,7 @@
         </div>
 
         <div class="direitaCabecalho">
-          <div class="subDireitaCabecalho">
-            <div class="divSaibaMais">
-              <a href="/index.html#saibaMais">SAIBA MAIS</a>
-            </div>
-
-            <div class="divLogin"><a href="login.html">LOGIN</a></div>
+    
           </div>
         </div>
       </div>
@@ -67,18 +62,19 @@
           </div>
           <div class="remember-forgot">
             <label><input type="checkbox" />Lembre de mim</label>
-            <a href="contato.html">Esqueceu a senha?</a>
+            <p id="alertTextSenha"><a class="register-link">Esqueci Minha Senha</a></p>
           </div>
           <button onclick="main()" class="btn">Login</button>
           <div class="login-register">
             <p>
-              Não tem uma conta? <a href="" class="register-link">Registrar</a>
+              <p id="alertText">Não tem uma conta? <a class="register-link">Cadastre-se</a></p>
             </p>
           </div>
         </div>
       </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
@@ -134,7 +130,7 @@ function entrar() {
 
           sessionStorage.EMAIL_USUARIO = json.email
           sessionStorage.NOME_USUARIO = json.nome
-          sessionStorage.ID_USUARIO = json.idUsuario
+          sessionStorage.ID_USUARIO = json.idUsuario  
 
           setTimeout(function () {
             window.location = 'index.html'
@@ -173,4 +169,13 @@ function btnLogin() {
 function home() {
   window.location = 'index.html'
 }
+
+document.getElementById('alertText').addEventListener('click', function() {
+    swal.fire("Entre em contato conosco para se cadastrar");
+  });
+
+  document.getElementById('alertTextSenha').addEventListener('click', function() {
+    swal.fire("Entre em contato conosco para redefinir sua senha");
+  });
+
 </script>
