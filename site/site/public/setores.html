@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="./css/setores.css">
 </head>
 
-<body>
-    <div class="divPai">
+<body onload="atualizarFeed()">
+    <div class="divPai" >
         <!-- inicio menu lateral -->
         <div class="divPaiLateral">
             <div class="filhoLateral">
 
                 <div class="divNomeEmpresa">
 
-                    <p id="nomeEmpresa">Bem Vindo <br> Nome da Empresa</p>
+                    <p id="nomeEmpresa">Bem Vindo <br><span>  Nome da Empresa </span></p>
                 </div>
 
                 <div class="divMainMenu"><p id="pMainMenu">MAIN MENU</p></div>
@@ -117,133 +117,119 @@
 
             <!-- começo conteudo pagina -->
             <div class="divPaiConteudo">
-                <div class="all">
-                    <!--Começo do Primeiro Card -->
-                    <div class="cardPai">
-                        <div class="cardFilho">
-                            <div class="cardTexto">
-                                <span class="txtUso">Setor 1</span>
-                                <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
-                            </div>
-                            <span class="infoCard">Pediatria</span>
-                        </div>
-                        <div class="statusCard">
-                            <span class="infoStatus"> Computador 1</span>
-                        </div>
-                    </div>
-                    <!--Final do Primeiro Card -->
-                    <!--Começo do Segundo Card -->
-                    <div class="cardPai">
-                        <div class="cardFilho">
-                            <div class="cardTexto">
-                                <span class="txtUso">Setor 1</span>
-                                <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
-                            </div>
-                            <span class="infoCard">Pediatria</span>
-                        </div>
-                        <div class="statusCard">
-                            <span class="infoStatus"> Computador 1</span>
-                        </div>
-                    </div>
-                    <!--Final do Segundo Card -->
-                    <!--Começo do Terceiro Card -->
-                    <div class="cardPai">
-                        <div class="cardFilho">
-                            <div class="cardTexto">
-                                <span class="txtUso">Setor 1</span>
-                                <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
-                            </div>
-                            <span class="infoCard">Pediatria</span>
-                        </div>
-                        <div class="statusCard">
-                            <span class="infoStatus"> Computador 1</span>
-                        </div>
-                    </div>
-                    <!--Final do Terceiro Card -->
-                    <!--Começo do Quarto Card -->
-                    <div class="cardPai">
-                        <div class="cardFilho">
-                            <div class="cardTexto">
-                                <span class="txtUso">Setor 1</span>
-                                <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
-                            </div>
-                            <span class="infoCard">Pediatria</span>
-                        </div>
-                        <div class="statusCard">
-                            <span class="infoStatus"> Computador 1</span>
-                        </div>
-                    </div>
-                    <!--Final do Quarto Card -->
+                <div class="all" id="all">
                 </div>
-
-
-
-                <!-- Parte de 2 -->
-                <div class="all">
-                    <!--Começo do Primeiro Card -->
-                    <div class="cardPai">
-                        <div class="cardFilho">
-                            <div class="cardTexto">
-                                <span class="txtUso">Setor 1</span>
-                                <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
-                            </div>
-                            <span class="infoCard">Pediatria</span>
-                        </div>
-                        <div class="statusCard">
-                            <span class="infoStatus"> Computador 1</span>
-                        </div>
-                    </div>
-                    <!--Final do Primeiro Card -->
-                    <!--Começo do Segundo Card -->
-                    <div class="cardPai">
-                        <div class="cardFilho">
-                            <div class="cardTexto">
-                                <span class="txtUso">Setor 1</span>
-                                <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
-                            </div>
-                            <span class="infoCard">Pediatria</span>
-                        </div>
-                        <div class="statusCard">
-                            <span class="infoStatus"> Computador 1</span>
-                        </div>
-                    </div>
-                    <!--Final do Segundo Card -->
-                    <!--Começo do Terceiro Card -->
-                    <div class="cardPai">
-                        <div class="cardFilho">
-                            <div class="cardTexto">
-                                <span class="txtUso">Setor 1</span>
-                                <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
-                            </div>
-                            <span class="infoCard">Pediatria</span>
-                        </div>
-                        <div class="statusCard">
-                            <span class="infoStatus"> Computador 1</span>
-                        </div>
-                    </div>
-                    <!--Final do Terceiro Card -->
-                    <!--Começo do Quarto Card -->
-                    <div class="cardPai">
-                        <div class="cardFilho">
-                            <div class="cardTexto">
-                                <span class="txtUso">Setor 1</span>
-                                <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
-                            </div>
-                            <span class="infoCard">Pediatria</span>
-                        </div>
-                        <div class="statusCard">
-                            <span class="infoStatus"> Computador 1</span>
-                        </div>
-                    </div>
-                    <!--Final do Quarto Card -->
-                </div>
-                <!-- Final da Parte 2 -->
-                
-
             </div>
-
         </div>
     </div>
 </body>
-
 </html>
+
+<script>
+    var Empresa = sessionStorage.NOME_FANTASIA_COLABORADOR;
+    nomeEmpresa.innerHTML = Empresa;
+
+    function atualizarFeed() {
+        fetch("/avisos/listar").then(function (resposta) {
+            
+            if (resposta.ok) {
+                // if (resposta.status == 204) {
+                //     var feed = document.getElementById("feed_container");
+                //     var mensagem = document.createElement("span");
+                //     mensagem.innerHTML = "Nenhum resultado encontrado."
+                //     feed.appendChild(mensagem);
+                //     throw "Nenhum resultado encontrado!!";
+                // }
+                console.log("ENTREII")
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+                    
+
+                    // var feed = document.getElementById("feed_container");
+                    // feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+
+                        var publicacao = resposta[i];
+                         
+                        
+                        all.innerHTML += ` 
+                        <div class="cardPai" onclick="mostrarComputadores(${publicacao.idSetor})">
+                            <div class="cardFilho">
+                                <div class="cardTexto">
+                                    <span class="txtUso" id="feed2" > Setor ${publicacao.idSetor}</span>
+                                    <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
+                                </div>
+                                <span class="infoCard" >${publicacao.nome}</span>
+                            </div>
+                            <input type="hidden" id="valorSetor" value=${i+1}>
+                        </div>`
+                    }
+                    // finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
+    }
+
+    function mostrarComputadores(idSetor) {
+        
+        // return id.get(parametro);
+         console.log(idSetor)
+         alert(idSetor)
+         sessionStorage.IDSETOR = idSetor
+        // nomeEmpresa.innerHTML = NumeroSetor; 
+        all.innerHTML = ``;
+
+        // var idSetor = 2
+        fetch("/avisos/listarComputadores",{
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            idSetorServer: idSetor
+        })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                // if (resposta.status == 204) {
+                //     var feed = document.getElementById("feed_container");
+                //     var mensagem = document.createElement("span");
+                //     mensagem.innerHTML = "Nenhum resultado encontrado."
+                //     feed.appendChild(mensagem);
+                //     throw "Nenhum resultado encontrado!!";
+                // }
+                console.log("ENTREII")
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+                    
+
+                    // var feed = document.getElementById("feed_container");
+                    // feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+
+                        var Computador = resposta[i];
+            
+                        all.innerHTML += ` 
+                            <p>Id Maquina: ${Computador.idMaquina}</p><br>
+                            <p>SO Maquina: ${Computador.SO}</p>
+                        `
+                    }
+                    // finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
+    }
+</script>

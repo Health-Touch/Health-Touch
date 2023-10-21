@@ -13,6 +13,27 @@ function listar(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
+function listarComputadores(req, res) {
+    var setor = req.body.idSetorServer;
+    if (setor == undefined) {
+        res.status(400).send('Seu setor está undefined!')
+    }
+    else{
+        avisoModel.listarComputadores(setor).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
+}
+
 function listarUsb(req, res) {
     avisoModel.listarUsb().then(function (resultado) {
         if (resultado.length > 0) {
@@ -141,6 +162,7 @@ function deletar(req, res) {
 
 module.exports = {
     listar,
+    listarComputadores,
     listarUsb,
     listarPorUsuario,
     pesquisarDescricao,

@@ -6,6 +6,11 @@ var avisoController = require("../controllers/avisoController");
 router.get("/listar", function (req, res) {
     avisoController.listar(req, res);
 });
+
+router.get("/listarComputadores", function (req, res) {
+    avisoController.listarComputadores(req, res);
+});
+
 router.get("/listarUsb", function (req, res) {
     avisoController.listarUsb(req, res);
 });
