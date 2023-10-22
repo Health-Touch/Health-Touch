@@ -34,8 +34,17 @@ router.post("/cadastrarFuncionario", function (req, res) {
 router.post("/cadastrarMaquina", function (req, res) {
     usuarioController.cadastrarMaquina(req, res);
 })
+
+router.post("/cadastrarLocal", function (req, res) {
+    usuarioController.cadastrarLocal(req, res);
+})
+
 router.post("/cadastrarSetores", function (req, res) {
     usuarioController.cadastrarSetores(req, res);
+})
+
+router.get("/listarSetores", function (req, res) {
+    usuarioController.listarSetores(req, res);
 })
 
 module.exports = router;

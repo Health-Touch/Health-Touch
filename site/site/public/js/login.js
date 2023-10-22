@@ -71,6 +71,7 @@ function entrar() {
           sessionStorage.NIVELACESSO_COLABORADOR = json.nivelAcesso
           sessionStorage.ID_EMPRESA_COLABORADOR = json.idEmpresa
           sessionStorage.NOME_FANTASIA_COLABORADOR = json.NomeFantasia
+          sessionStorage.PLANO_EMPRESA = json.idPlano
 
           setTimeout(function () {
             window.location = '/setores.html'

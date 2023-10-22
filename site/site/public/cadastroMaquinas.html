@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/cadastroMaquinas.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Document</title>
 </head>
-<body>
+
+<body onload="BuscarSetores()">
 
     <div class="divPai">
         <!-- inicio menu lateral -->
@@ -18,7 +21,9 @@
                     <p id="nomeEmpresa">Bem Vindo <br> Nome da Empresa</p>
                 </div>
 
-                <div class="divMainMenu"><p id="pMainMenu">MAIN MENU</p></div>
+                <div class="divMainMenu">
+                    <p id="pMainMenu">MAIN MENU</p>
+                </div>
 
                 <div class="divPaiOpcoesMenu">
                     <div class="divHome">
@@ -66,7 +71,9 @@
 
                 <div class="divEspacoV2"></div>
 
-                <div class="divHelp"><p id="pHelp">HELP</p></div>
+                <div class="divHelp">
+                    <p id="pHelp">HELP</p>
+                </div>
 
                 <div class="divPaiHelpMenu">
                     <div class="divHelpDesk">
@@ -82,7 +89,7 @@
                     </div>
 
                     <img id="logoMenuLateral" src="assets/img/logoMenu.png">
-                
+
                 </div>
 
             </div>
@@ -103,10 +110,10 @@
                     <img class="sinoIconCabecalho" src="assets/img/notificacaoIcon.png">
                     <div class="divPerfilCabecalho">
                         <img class="iconPerfilCabecalho" src="assets/img/fotoPerfil.png">
-                            <div class="textosIcon">
-                                <p id="tituloPerfil">Anthony Bento</p>
-                                <p id="cargoPerfil">CEO</p>
-                            </div>
+                        <div class="textosIcon">
+                            <p id="tituloPerfil">Anthony Bento</p>
+                            <p id="cargoPerfil">CEO</p>
+                        </div>
                         <img class="setaPerfilCabecalho" src="assets/img/setaIcon.png">
                     </div>
                 </div>
@@ -114,111 +121,200 @@
             </div>
             <!-- fim do cabeçalho -->
 
-        <!-- começo conteudo pagina -->
-        <div class="divPaiConteudo">
-            <div class="divPaiCadastro">
-                <div class="divFilhoCadastro">
-                    <img src="assets/img/pcCadastro.png" id="iconPcCadastro">
-                    
-                    <div class="divTitulosCadastro">
-                    <p id="tituloCadastroMaquinasV1">Cadastre suas <span id="tituloCadastroMaquinasV2">Máquinas</span> </p>
-                    
-                    </div>
+            <!-- começo conteudo pagina -->
+            <div class="divPaiConteudo">
+                <div class="divPaiCadastro">
+                    <div class="divFilhoCadastro">
+                        <img src="assets/img/pcCadastro.png" id="iconPcCadastro">
 
-                    <div class="paiSubCadastro">
-                    <div class="divSo">
-                        <p id="pSo">SO:</p>
-                        <input type="text" id="inputSo" class="inputCad" placeholder="Sistema Operacional"></input>
-                    </div>
+                        <div class="divTitulosCadastro">
+                            <p id="tituloCadastroMaquinasV1">Cadastre suas <span
+                                    id="tituloCadastroMaquinasV2">Máquinas</span> </p>
 
-                    <div class="divSo">
-                        <p id="pSo">IP:</p>
-                        <input type="text" id="inputIp" class="inputCad" placeholder="192.158.1.38."></input>
-                    </div>
+                        </div>
 
-                    <div class="divSo">
-                        <p id="pSo">Tipo:</p>
-                        <input type="text" class="inputCad" placeholder="Computador ou Toten"></input>
-                    </div>
+                        <div class="paiSubCadastro">
+                            <div class="divSo">
+                                <p id="pSo">SO:</p>
+                                <input type="text" id="inputSo" class="inputCad"
+                                    placeholder="Sistema Operacional"></input>
+                            </div>
 
-                    <div class="divSo">
-                        <p id="pSo">Setor:</p>
-                        <input type="text" class="inputCad" placeholder="Pediatria"></input>
-                    </div>
+                            <div class="divSo">
+                                <p id="pSo">IP:</p>
+                                <input type="text" id="inputIp" class="inputCad" placeholder="192.158.1.38."></input>
+                            </div>
 
-                    <div class="divSo">
-                        <p id="pSo">Sala:</p>
-                        <input type="text" class="inputCad" placeholder="Sala 5"></input>
-                    </div>
+                            <div class="divSo">
+                                <p id="pSo">Tipo:</p>
+                                <select id="inputTipoMaquina" class="inputCad">
+                                    <option value="0">Escolha um tipo</option>
+                                    <option value="1">Computador</option>
+                                    <option value="2">Toten</option>
+                                </select>
+                            </div>
 
-                    <div class="divSo">
-                        <p id="pSo">Andar:</p>
-                        <input type="text" id="inputAndar" class="inputCad" placeholder="3ºAndar"></input>
-                    </div>
+                            <div class="divSo">
+                                <p id="pSo">Setor:</p>
+                                <!-- <input type="text" class="inputCad" placeholder="Pediatria"></input> -->
+                                <select id="inputSetor" class="inputCad">
+                                    <option>Escolha um setor</option>
+                                </select>
+                            </div>
 
+                            <div class="divSo">
+                                <p id="pSo">Sala:</p>
+                                <input type="text" id="inputSala" class="inputCad" placeholder="Sala 5"></input>
+                            </div>
+
+                            <div class="divSo">
+                                <p id="pSo">Andar:</p>
+                                <input type="text" id="inputAndar" class="inputCad" placeholder="3ºAndar"></input>
+                            </div>
+
+                        </div>
+                        <button onclick="CadastrarLocalSala()" class="btnCadMaq">Cadastre</button>
                     </div>
-                    <button onclick="botaoCadastroMaquinas()" class="btnCadMaq">Cadastre</button>
                 </div>
             </div>
-        </div>
-        <!-- fim conteudo pagina -->
+            <!-- fim conteudo pagina -->
 
         </div>
     </div>
 </body>
+
 </html>
 
 <!-- <img src="assets/img/bannerHospital.png" id="imgConteudo"> -->
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 <script>
-    
-function botaoCadastroMaquinas () {
-        
-    var so = inputSo.value
-    var ip = inputIp.value
-    var andar = inputAndar.value
-    var fkMaqEmpresa = 1
-    var fkLocal = 1
-    var fkPlanoEmpresa = 1
-    var fkStatusMaquina = 1
-    var fkTipoMaquina = 1
+
+    function botaoCadastroMaquinas() {
+
+        var so = inputSo.value
+        var ip = inputIp.value
+        var fkMaqEmpresa = sessionStorage.ID_EMPRESA_COLABORADOR
+        // var fkLocal = 1 
+        var fkPlanoEmpresa = sessionStorage.PLANO_EMPRESA
+        var fkStatusMaquina = 1
+        var fkTipoMaquina = inputTipoMaquina.value
+        alert(fkTipoMaquina)
 
         fetch("/usuarios/cadastrarMaquina", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
-            soServer: so,
-            ipServer: ip,
-            andarServer: andar,
-            empresaMaqServer: fkMaqEmpresa,
-            localServer: fkLocal,
-            planoServer: fkPlanoEmpresa,
-            statusMaquinaServer: fkStatusMaquina,
-            tipoMaquinaServer: fkTipoMaquina
-        })
-    }).then(function (resposta) {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                soServer: so,
+                ipServer: ip,
+                empresaMaqServer: fkMaqEmpresa,
+                // localServer: fkLocal,
+                planoServer: fkPlanoEmpresa,
+                statusMaquinaServer: fkStatusMaquina,
+                tipoMaquinaServer: fkTipoMaquina
+            })
+        }).then(function (resposta) {
 
-        console.log("resposta: ", resposta);
+            console.log("resposta: ", resposta);
 
-        if (resposta.ok) {
-            Swal.fire('CADASTRO DE MÁQUINA REALIZADO')
+            if (resposta.ok) {
+                Swal.fire('CADASTRO DE MÁQUINA REALIZADO')
 
-            limparFormulario();
-          
-        } else {
-            Swal.fire('HOUVE UM ERRO AO TENTAR REALIZAR O CADASTRO')
-        }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-    });
-}
-function sumirMensagem() {
-    cardErro.style.display = "none"
-}
+                limparFormulario();
+
+            } else {
+                Swal.fire('HOUVE UM ERRO AO TENTAR REALIZAR O CADASTRO')
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function CadastrarLocalSala() {
+
+        var andar = inputAndar.value
+        // alert(andar)
+        var sala = inputSala.value
+        // alert(sala)
+        var fkSetor = inputSetor.value
+        // alert(fkSetor)
+        
+        fetch("/usuarios/cadastrarLocal", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                andarServer : andar,
+                salaServer : sala,
+                fkSetorServer : fkSetor
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                Swal.fire('CADASTRO DE MÁQUINA REALIZADO')
+
+                botaoCadastroMaquinas();
+
+            } else {
+                Swal.fire('HOUVE UM ERRO AO TENTAR REALIZAR O CADASTRO de LOCALLLLLLL')
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+
+    function BuscarSetores() {
+        fetch(`/usuarios/listarSetores`).then(function (resposta) {
+
+            if (resposta.ok) {
+                // if (resposta.status == 204) {
+                //     var feed = document.getElementById("feed_container");
+                //     var mensagem = document.createElement("span");
+                //     mensagem.innerHTML = "Nenhum resultado encontrado."
+                //     feed.appendChild(mensagem);
+                //     throw "Nenhum resultado encontrado!!";
+                // }
+                console.log("ENTREII")
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    const inputCad = document.getElementById('inputSetor');
+
+                    for (let i = 0; i < resposta.length; i++) {
+
+                        var setor = resposta[i];
+
+                        var OptionSetor = document.createElement("option");
+                        OptionSetor.setAttribute("Value", setor.idSetor)
+                        OptionSetor.innerHTML = setor.nome;
+                        inputSetor.appendChild(OptionSetor);
+
+                    }
+                    // finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
+    }
 
 </script>

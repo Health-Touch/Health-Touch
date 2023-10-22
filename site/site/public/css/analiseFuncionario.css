@@ -194,7 +194,7 @@ ul{
 .divConteudoScroll{
     /* height:200%; */
     /* background:red; */
-    max-height:100%;
+    max-height:80%;
     overflow-y:scroll ;
 }
 .divConteudo li{

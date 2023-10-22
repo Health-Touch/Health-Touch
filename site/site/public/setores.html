@@ -162,7 +162,7 @@
 
 
                         all.innerHTML += ` 
-                        <div class="cardPai" onclick="mostrarComputadores(${publicacao.idSetor}, ${publicacao.nome})">
+                        <div class="cardPai" onclick="mostrarComputadores(${publicacao.idSetor})">
                             <div class="cardFilho">
                                 <div class="cardTexto">
                                     <span class="txtUso" id="feed2" > Setor ${publicacao.idSetor}</span>
@@ -184,18 +184,17 @@
         });
     }
 
-    function mostrarComputadores(idSetor, nome) {
+    function mostrarComputadores(idSetor) {
 
         console.log(idSetor)
 
         alert(idSetor)
-        alert(nomeSetor)
+        // alert(nomeSetor)
         sessionStorage.IDSETOR = idSetor
-        sessionStorage.NOME_SETOR = nome
 
         all.innerHTML = ``;
 
-        fetch(`/avisos/listarComputadores/${idSetor}/${nome}`).then(function (resposta) {
+        fetch(`/avisos/listarComputadores/${idSetor}`).then(function (resposta) {
 
             if (resposta.ok) {
                 // if (resposta.status == 204) {
