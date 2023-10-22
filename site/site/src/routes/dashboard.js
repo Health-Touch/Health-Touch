@@ -5,8 +5,8 @@ var router = express.Router()
 var dashController = require('../controllers/dashController')
 
 //Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
-router.get('/autenticar', function (req, res) {
-  dashController.autenticar(req, res)
+router.get('/autenticar2', function (req, res) {
+  dashController.autenticar2(req, res)
 })
 
 router.get('/maquinas', function (req, res) {

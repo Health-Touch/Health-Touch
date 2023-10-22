@@ -1,9 +1,9 @@
 // Começo da dash setor
 var dashModel = require('../models/dashModel')
 
-function autenticar(req, res) {
+function autenticar2(req, res) {
   dashModel
-    .autenticar()
+    .autenticar2()
     .then(function (resultado) {
       console.log(`\nResultados encontrados: ${resultado.length}`)
       console.log(`Resultados: ${JSON.stringify(resultado)}`) // transforma JSON em String
@@ -300,7 +300,7 @@ function buscarInsightEmTempoReal(req, res) {
 }
 
 module.exports = {
-  autenticar,
+  autenticar2,
   buscarMaquinas,
   buscarUltimasMedidas,
   buscarMedidasEmTempoReal,
