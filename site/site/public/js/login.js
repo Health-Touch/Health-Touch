@@ -79,16 +79,16 @@ function entrar() {
           console.log(json)
           console.log(JSON.stringify(json))
 
-          sessionStorage.EMAIL_USUARIO = json.email
-          sessionStorage.NOME_USUARIO = json.nome
-          sessionStorage.ID_USUARIO = json.idColaborador
-          sessionStorage.CARGO_USUARIO = json.nivelAcesso
-          sessionStorage.CPF_USUARIO = json.CPF
-          sessionStorage.EMPRESA_USUARIO = json.empresaId
-          sessionStorage.NOME_EMPRESA = json.nomeEmpresa
+          sessionStorage.EMAIL_COLABORADOR = json.email
+          sessionStorage.NOME_COLABORADOR = json.nome
+          sessionStorage.ID_COLABORADOR = json.idColaborador
+          sessionStorage.SENHA_COLABORADOR = json.senha
+          sessionStorage.NIVELACESSO_COLABORADOR = json.nivelAcesso
+          sessionStorage.ID_EMPRESA_COLABORADOR = json.idEmpresa
+          sessionStorage.NOME_FANTASIA_COLABORADOR = json.NomeFantasia
 
           setTimeout(function () {
-            window.location = '/dashSetor.html'
+            window.location = '/setores.html'
           }, 2000) // apenas para exibir o loading
         })
       } else {
@@ -111,6 +111,18 @@ function entrar() {
     })
 
   return false
+}
+
+function esqueceuSenha() {
+  swal.fire('Entre em contato conosco para redefinir sua senha')
+}
+
+function criarConta() {
+  swal.fire('Entre em contato conosco para se cadastrar')
+}
+
+function home() {
+  window.location = 'index.html'
 }
 
 // Começo da dash setor

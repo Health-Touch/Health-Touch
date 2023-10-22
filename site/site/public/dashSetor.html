@@ -11,9 +11,10 @@
     type="imagex/png"
     href="./assets/img/logo_icon.png"
   />
-    <title>Análise Geral | Health Touch</title>
+    <title>Análise Máquina | Health Touch</title>
 </head>
-<body onload="validarSessao(), validarSetor(), validarStatusUsb(), cpuMensal(), ramMensal(), discoMensal(), insightCpu(), insightRam(), insightDisco(), analiseGeral(), exibirAlertas()">
+<!-- <body onload="validarSessao(), validarSetor(), validarStatusUsb(), cpuMensal(), ramMensal(), discoMensal(), insightCpu(), insightRam(), insightDisco(), analiseGeral(), exibirAlertas()"> -->
+<body onload="validarSessao(), validarSetor()">
     <div class="divPai">
         <!-- inicio menu lateral -->
         <div class="divPaiLateral">
@@ -21,7 +22,7 @@
 
                 <div class="divNomeEmpresa">
 
-                    <p id="nomeEmpresa">Bem Vindo <br> Nome da Empresa</p>
+                    <p id="nomeEmpresa">Bem Vindo<br><span id="empresa">Nome da Empresa</span></p>
                 </div>
 
                 <div class="divMainMenu"><p id="pMainMenu">MAIN MENU</p></div>
@@ -88,9 +89,8 @@
                     </div>
 
                     <img id="logoMenuLateral" src="assets/img/logoMenu.png">
-                
-                </div>
 
+                </div>
             </div>
         </div>
         <!-- fim do menu lateral -->
@@ -125,7 +125,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
                     <!-- começo conteudo pagina -->
         <div class="mainPai">
@@ -190,7 +189,7 @@
 
             <div class="boxes">
                 <div class="box">
-                    <span class="tituloBox">Análise Geral dos Componentes</span>
+                    <span class="tituloBox">Uso Atual dos Componentes</span>
                     <!-- <div class="infoBox"> -->
                         <span class="nomeComponente">CPU</span>
                         <div class="divUso">
@@ -214,27 +213,7 @@
                     <!-- </div> -->
                 </div>
                 <div class="box boxAvisos" id="boxAvisos">
-                    <span class="tituloBox">Avisos Gerais</span>
-                    <!-- <div class="infoAviso">
-                        <span class="tituloAviso">CPU chegou em 90%</span>
-                        <span class="dataAviso">02/10/2023 9:30:14</span>
-                        <img src="assets/img/aviso.png" alt="" class="iconAviso">
-                    </div>
-                    <div class="infoAviso">
-                        <span class="tituloAviso">Disco está em 70%</span>
-                        <span class="dataAviso">02/10/2023 9:30:14</span>
-                        <img src="assets/img/aviso-red.png" alt="" class="iconAviso">
-                    </div>
-                    <div class="infoAviso">
-                        <span class="tituloAviso">USB ATIVO</span>
-                        <span class="dataAviso">02/10/2023 9:30:14</span>
-                        <img src="assets/img/aviso-orange.png" alt="" class="iconAviso">
-                    </div>
-                    <div class="infoAviso">
-                        <span class="tituloAviso">USB ATIVO</span>
-                        <span class="dataAviso">02/10/2023 9:30:14</span>
-                        <img src="assets/img/aviso-orange.png" alt="" class="iconAviso">
-                    </div>
+                    <span class="tituloBox">Histórico de Avisos</span>
                     <div class="infoAviso">
                         <span class="tituloAviso">CPU chegou em 90%</span>
                         <span class="dataAviso">02/10/2023 9:30:14</span>
@@ -254,7 +233,27 @@
                         <span class="tituloAviso">USB ATIVO</span>
                         <span class="dataAviso">02/10/2023 9:30:14</span>
                         <img src="assets/img/aviso-orange.png" alt="" class="iconAviso">
-                    </div> -->
+                    </div>
+                    <div class="infoAviso">
+                        <span class="tituloAviso">CPU chegou em 90%</span>
+                        <span class="dataAviso">02/10/2023 9:30:14</span>
+                        <img src="assets/img/aviso.png" alt="" class="iconAviso">
+                    </div>
+                    <div class="infoAviso">
+                        <span class="tituloAviso">Disco está em 70%</span>
+                        <span class="dataAviso">02/10/2023 9:30:14</span>
+                        <img src="assets/img/aviso-red.png" alt="" class="iconAviso">
+                    </div>
+                    <div class="infoAviso">
+                        <span class="tituloAviso">USB ATIVO</span>
+                        <span class="dataAviso">02/10/2023 9:30:14</span>
+                        <img src="assets/img/aviso-orange.png" alt="" class="iconAviso">
+                    </div>
+                    <div class="infoAviso">
+                        <span class="tituloAviso">USB ATIVO</span>
+                        <span class="dataAviso">02/10/2023 9:30:14</span>
+                        <img src="assets/img/aviso-orange.png" alt="" class="iconAviso">
+                    </div>
                 </div>
             </div>
         </div>
@@ -262,18 +261,6 @@
         <!-- fim conteudo pagina -->
         </div>
         <!-- fim do cabeçalho -->
-
-
     </div>
 </body>
 </html>
-<script>
-    function exibirMenuPerfil() {
-  var menu = document.getElementById('menuPerfil')
-  if (menu.style.display === 'block') {
-    menu.style.display = 'none'
-  } else {
-    menu.style.display = 'block'
-  }
-}
-</script>

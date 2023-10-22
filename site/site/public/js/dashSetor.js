@@ -1,25 +1,3 @@
-function validarSessao() {
-  var email = sessionStorage.EMAIL_USUARIO
-  var nome = sessionStorage.NOME_USUARIO
-  var cargo = sessionStorage.CARGO_USUARIO
-  var nomeEmpresa = sessionStorage.NOME_EMPRESA
-
-  var tituloPerfil = document.getElementById('tituloPerfil')
-  var cargoPerfil = document.getElementById('cargoPerfil')
-  var empresa = document.getElementById('empresa')
-
-  if (email != null && nome != null) {
-    // window.alert(`Seja bem-vindo, ${nome}!`);
-    tituloPerfil.innerHTML = nome
-    cargoPerfil.innerHTML = cargo
-    empresa.innerHTML = nomeEmpresa
-
-    // finalizarAguardar();
-  } else {
-    window.location = '../login.html'
-  }
-}
-
 function validarSetor() {
   var idComputador = sessionStorage.ID_COMPUTADOR
   var setor = sessionStorage.NOME_SETOR
@@ -33,6 +11,15 @@ function validarSetor() {
   nomeSetor.innerHTML = setor
   idSala.innerHTML = sala
   // setInterval(100,window.location = '../dashSetor.html')
+}
+
+function exibirMenuPerfil() {
+  var menu = document.getElementById('menuPerfil')
+  if (menu.style.display === 'block') {
+    menu.style.display = 'none'
+  } else {
+    menu.style.display = 'block'
+  }
 }
 
 function validarStatusUsb() {

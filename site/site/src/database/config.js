@@ -22,7 +22,7 @@ var mySqlConfig = {
   host: 'localhost',
   database: 'HealthTouch',
   user: 'root',
-  password: 'biel2004'
+  password: '12345'
 }
 
 function executar(instrucao) {
@@ -71,7 +71,6 @@ function executar(instrucao) {
     })
   }
 }
-
 
 module.exports = {
   executar

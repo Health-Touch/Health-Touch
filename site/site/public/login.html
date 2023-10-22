@@ -8,7 +8,11 @@
   <link rel="stylesheet" href="./css/login.css" />
   <link rel="stylesheet" href="css/indexV2.css" />
   <script src="./js/funcoes.js"></script>
-  <!-- <script src="./js/login.js"></script> -->
+  <script src="./js/login.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
   <link rel="shortcut icon" type="imagex/png" href="./assets/img/logo_icon.png" />
 
@@ -55,119 +59,16 @@
         </div>
         <div class="remember-forgot">
           <label><input type="checkbox" />Lembre de mim</label>
-          <p id="alertTextSenha"><a class="register-link">Esqueci Minha Senha</a></p>
+          <p id="alertTextSenha" onclick="esqueceuSenha()"><a class="register-link">Esqueci Minha Senha</a></p>
         </div>
-        <button onclick="entrar()" class="btn">Login</button>
+        <button onclick="entrar(),buscarSetor()" class="btn">Login</button>
         <div class="login-register">
           <p>
-          <p id="alertText">Não tem uma conta? <a class="register-link">Cadastre-se</a></p>
+          <p id="alertText" onclick="criarConta()">Não tem uma conta? <a class="register-link">Cadastre-se</a></p>
           </p>
         </div>
       </div>
     </div>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
-
 </html>
-<script>
-  function entrar() {
-    // aguardar();
-
-    console.log('Na func entrar')
-
-    var emailVar = input_email.value
-    var senhaVar = input_senha.value
-
-    if (emailVar == '' || senhaVar == '') {
-      // cardErro.style.display = 'block'
-      console.log(
-        '(Mensagem de erro para todos os campos em branco)'
-      )
-
-      return false
-    } else {
-      setInterval(sumirMensagem, 10000)
-    }
-
-    console.log('FORM LOGIN: ', emailVar)
-    console.log('FORM SENHA: ', senhaVar)
-
-    fetch('/usuarios/autenticar', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        emailServer: emailVar,
-        senhaServer: senhaVar
-      })
-    })
-      .then(function (resposta) {
-        console.log('ESTOU NO THEN DO entrar()!')
-
-        if (resposta.ok) {
-          console.log(resposta)
-
-          resposta.json().then(json => {
-            console.log(json)
-            console.log(JSON.stringify(json))
-
-            sessionStorage.EMAIL_COLABORADOR = json.email
-            sessionStorage.NOME_COLABORADOR = json.nome
-            sessionStorage.ID_COLABORADOR = json.idColaborador
-            sessionStorage.SENHA_COLABORADOR = json.senha
-            sessionStorage.NIVELACESSO_COLABORADOR = json.nivelAcesso
-            sessionStorage.ID_EMPRESA_COLABORADOR = json.idEmpresa
-            sessionStorage.NOME_FANTASIA_COLABORADOR = json.NomeFantasia
-
-            setTimeout(function () {
-              window.location = 'AnaliseDetalhada.html'
-            }, 1000) // apenas para exibir o loading
-          })
-        } else {
-          console.log('Houve um erro ao tentar realizar o login!')
-
-          resposta.text().then(texto => {
-            console.error(texto)
-            // finalizarAguardar(texto);
-          })
-        }
-      })
-      .catch(function (erro) {
-        console.log(erro)
-      })
-
-    return false
-  }
-
-  function sumirMensagem() {
-    // cardErro.style.display = 'none'
-  }
-
-  function visualizarTermos() {
-    // cardErro.style.display = 'block'
-    console.log(`Ao assinar esses termos eu garanto que não causarei problemas, não hackearei o site e serei responsavel jogando genshin impact.`)
-    setTimeout(sumirMensagem, 10000)
-  }
-
-  function btnLogin() {
-    window.location.href = 'login.html'
-  }
-
-  function home() {
-    window.location = 'index.html'
-  }
-
-  // document.getElementById('alertText').addEventListener('click', function () {
-  //   swal.fire("Entre em contato conosco para se cadastrar");
-  // });
-
-  // document.getElementById('alertTextSenha').addEventListener('click', function () {
-  //   swal.fire("Entre em contato conosco para redefinir sua senha");
-  // });
-
-</script>

@@ -1,21 +1,22 @@
 // sessão
 function validarSessao() {
-  var email = sessionStorage.EMAIL_USUARIO
-  var nome = sessionStorage.NOME_USUARIO
-  var cargo = sessionStorage.CARGO_USUARIO
-
-  var sobrenome = sessionStorage.SOBRENOME_USUARIO
-  var senha = sessionStorage.SENHA_USUARIO
+  var email = sessionStorage.EMAIL_COLABORADOR
+  var colaborador = sessionStorage.NOME_COLABORADOR
+  var idColaborador = sessionStorage.ID_COLABORADOR
+  var senha = sessionStorage.SENHA_COLABORADOR
+  var cargo = sessionStorage.NIVELACESSO_COLABORADOR
+  var idEmpresa = sessionStorage.ID_EMPRESA_COLABORADOR
+  var empresa = sessionStorage.NOME_FANTASIA_COLABORADOR
 
   var tituloPerfil = document.getElementById('tituloPerfil')
   var cargoPerfil = document.getElementById('cargoPerfil')
-  var b_email = document.getElementById('b_email')
-  var b_senha = document.getElementById('b_senha')
+  var nomeEmpresa = document.getElementById('empresa')
 
-  if (email != null && nome != null) {
+  if (email != null && colaborador != null) {
     // window.alert(`Seja bem-vindo, ${nome}!`);
-    tituloPerfil.innerHTML = nome
+    tituloPerfil.innerHTML = colaborador
     cargoPerfil.innerHTML = cargo
+    nomeEmpresa.innerHTML = empresa
 
     // finalizarAguardar();
   } else {
