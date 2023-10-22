@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,12 @@
     <link rel="stylesheet" href="css/analiseFuncionario.css">
     <title>Health Touch| Funcionários</title>
 </head>
-<body>
+
+<body onload="atualizarTodosComputadores()">
 
     <div class="divPai">
-         <!-- inicio menu lateral -->
-         <div class="divPaiLateral">
+        <!-- inicio menu lateral -->
+        <div class="divPaiLateral">
             <div class="filhoLateral">
 
                 <div class="divNomeEmpresa">
@@ -19,7 +21,9 @@
                     <p id="nomeEmpresa">Bem Vindo <br> Nome da Empresa</p>
                 </div>
 
-                <div class="divMainMenu"><p id="pMainMenu">MAIN MENU</p></div>
+                <div class="divMainMenu">
+                    <p id="pMainMenu">MAIN MENU</p>
+                </div>
 
                 <div class="divPaiOpcoesMenu">
                     <div class="divHome">
@@ -67,7 +71,9 @@
 
                 <div class="divEspacoV2"></div>
 
-                <div class="divHelp"><p id="pHelp">HELP</p></div>
+                <div class="divHelp">
+                    <p id="pHelp">HELP</p>
+                </div>
 
                 <div class="divPaiHelpMenu">
                     <div class="divHelpDesk">
@@ -83,7 +89,7 @@
                     </div>
 
                     <img id="logoMenuLateral" src="assets/img/logoMenu.png">
-                
+
                 </div>
 
             </div>
@@ -104,10 +110,10 @@
                     <img class="sinoIconCabecalho" src="assets/img/notificacaoIcon.png">
                     <div class="divPerfilCabecalho">
                         <img class="iconPerfilCabecalho" src="assets/img/fotoPerfil.png">
-                            <div class="textosIcon">
-                                <p id="tituloPerfil">Anthony Bento</p>
-                                <p id="cargoPerfil">CEO</p>
-                            </div>
+                        <div class="textosIcon">
+                            <p id="tituloPerfil">Anthony Bento</p>
+                            <p id="cargoPerfil">CEO</p>
+                        </div>
                         <img class="setaPerfilCabecalho" src="assets/img/setaIcon.png">
                     </div>
                 </div>
@@ -115,149 +121,89 @@
             </div>
             <!-- fim do cabeçalho -->
 
-        <!-- começo conteudo pagina -->
-        <div class="divPaiConteudo">
-            <span>Análise de Funcionários</span>
-            <div class="divPaiInformacao">
-                <div class="divFilhoInformacao">
-                    <ul class="divColuna">
-                        
-                        <li id="idTeste">ID</li>
-                        <li id="idTeste2">NOME</li>
-                        <li id="idTeste3">E-Mail</li>
-                        <li id="idTeste4">Status</li>
-                        <li id="idTeste5">Cargo</li>
-                    </ul>
-                </div>
-                <div class="divConteudo">
-                    <div class="divConteudoScroll">
-                        <div class="divfilhoConteudo">
-                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
-                            <li id="liNumero">001</li>
-                            <li id="linome">João Pessoa</li>
-                            <li id="liemail">João.Pessoa@sptech.school</li>
-                            <li id="liStatus" class="active">Ativo</li>
-                            <li id="liCargo">Gerente de Ti</li>
-                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
-                            <li id="liDelete" style="color:aliceblue">Desativar</li>
-                            <li id="li3Pontos">. . .</li>
-                        </div>
-                        <div class="divfilhoConteudo">
-                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
-                            <li id="liNumero">001</li>
-                            <li id="linome">João Pessoa</li>
-                            <li id="liemail">João.Pessoa@sptech.school</li>
-                            <li id="liStatus" class="active">Ativo</li>
-                            <li id="liCargo">Gerente de Ti</li>
-                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
-                            <li id="liDelete" style="color:aliceblue">Desativar</li>
-                            <li id="li3Pontos">. . .</li>
-                        </div>
-                        <div class="divfilhoConteudo">
-                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
-                            <li id="liNumero">001</li>
-                            <li id="linome">João Pessoa</li>
-                            <li id="liemail">João.Pessoa@sptech.school</li>
-                            <li id="liStatus" class="active">Ativo</li>
-                            <li id="liCargo">Gerente de Ti</li>
-                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
-                            <li id="liDelete" style="color:aliceblue">Desativar</li>
-                            <li id="li3Pontos">. . .</li>
-                        </div>
-                        <div class="divfilhoConteudo">
-                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
-                            <li id="liNumero">001</li>
-                            <li id="linome">João Pessoa</li>
-                            <li id="liemail">João.Pessoa@sptech.school</li>
-                            <li id="liStatus" class="active">Ativo</li>
-                            <li id="liCargo">Gerente de Ti</li>
-                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
-                            <li id="liDelete" style="color:aliceblue">Desativar</li>
-                            <li id="li3Pontos">. . .</li>
-                        </div>
-                        <div class="divfilhoConteudo">
-                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
-                            <li id="liNumero">001</li>
-                            <li id="linome">João Pessoa</li>
-                            <li id="liemail">João.Pessoa@sptech.school</li>
-                            <li id="liStatus" class="active">Ativo</li>
-                            <li id="liCargo">Gerente de Ti</li>
-                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
-                            <li id="liDelete" style="color:aliceblue">Desativar</li>
-                            <li id="li3Pontos">. . .</li>
-                        </div>
-                        <div class="divfilhoConteudo">
-                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
-                            <li id="liNumero">001</li>
-                            <li id="linome">João Pessoa</li>
-                            <li id="liemail">João.Pessoa@sptech.school</li>
-                            <li id="liStatus" class="active">Ativo</li>
-                            <li id="liCargo">Gerente de Ti</li>
-                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
-                            <li id="liDelete" style="color:aliceblue">Desativar</li>
-                            <li id="li3Pontos">. . .</li>
-                        </div>
-                        <div class="divfilhoConteudo">
-                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
-                            <li id="liNumero">001</li>
-                            <li id="linome">João Pessoa</li>
-                            <li id="liemail">João.Pessoa@sptech.school</li>
-                            <li id="liStatus" class="active">Ativo</li>
-                            <li id="liCargo">Gerente de Ti</li>
-                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
-                            <li id="liDelete" style="color:aliceblue">Desativar</li>
-                            <li id="li3Pontos">. . .</li>
-                        </div>
-                        <div class="divfilhoConteudo">
-                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
-                            <li id="liNumero">001</li>
-                            <li id="linome">João Pessoa</li>
-                            <li id="liemail">João.Pessoa@sptech.school</li>
-                            <li id="liStatus" class="active">Ativo</li>
-                            <li id="liCargo">Gerente de Ti</li>
-                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
-                            <li id="liDelete" style="color:aliceblue">Desativar</li>
-                            <li id="li3Pontos">. . .</li>
-                        </div>
-                        <div class="divfilhoConteudo">
-                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
-                            <li id="liNumero">001</li>
-                            <li id="linome">João Pessoa</li>
-                            <li id="liemail">João.Pessoa@sptech.school</li>
-                            <li id="liStatus" class="active">Ativo</li>
-                            <li id="liCargo">Gerente de Ti</li>
-                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
-                            <li id="liDelete" style="color:aliceblue">Desativar</li>
-                            <li id="li3Pontos">. . .</li>
-                        </div>
-                        <div class="divfilhoConteudo">
-                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
-                            <li id="liNumero">001</li>
-                            <li id="linome">João Pessoa</li>
-                            <li id="liemail">João.Pessoa@sptech.school</li>
-                            <li id="liStatus" class="active">Ativo</li>
-                            <li id="liCargo">Gerente de Ti</li>
-                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
-                            <li id="liDelete" style="color:aliceblue">Desativar</li>
-                            <li id="li3Pontos">. . .</li>
-                        </div>
+            <!-- começo conteudo pagina -->
+            <div class="divPaiConteudo">
+                <span>Análise de Funcionários</span>
+                <div class="divPaiInformacao">
+                    <div class="divFilhoInformacao">
+                        <ul class="divColuna">
+                            <li id="idTeste">ID</li>
+                            <li id="idTeste2">NOME</li>
+                            <li id="idTeste3">E-Mail</li>
+                            <li id="idTeste4">Status</li>
+                            <li id="idTeste5">Cargo</li>
+                        </ul>
                     </div>
-                    
-                    
-                    
-                    </div>
-                </div>
-                
-                
-            </div>
+                    <div class="divConteudo">
+                        <div  class="divConteudoScroll"  id="divConteudoScroll">
 
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- fim conteudo pagina -->
-
-        </div>
     </div>
 </body>
+
 </html>
 <script>
+    function atualizarTodosComputadores() {
+        fetch("/avisos/listarTodosFuncionarios").then(function (resposta) {
 
+            if (resposta.ok) {
+                // if (resposta.status == 204) {
+                //     var feed = document.getElementById("feed_container");
+                //     var mensagem = document.createElement("span");
+                //     mensagem.innerHTML = "Nenhum resultado encontrado."
+                //     feed.appendChild(mensagem);
+                //     throw "Nenhum resultado encontrado!!";
+                // }
+                console.log("ENTREII")
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    for (let i = 0; i < resposta.length; i++) {
+
+                        var TodosFuncionarios = resposta[i];
+
+                        var Cargo = TodosFuncionarios.nivelAcesso
+
+                        if(Cargo == "RL")
+                        {
+                            Cargo = "Representante Legal"
+                        }
+                        else if(Cargo == "GT")
+                        {
+                            Cargo = "Gerente TI"
+                        }
+                        else{
+                            Cargo = "Equipe TI"
+                        }
+
+                        divConteudoScroll.innerHTML += `
+                        <div class="divfilhoConteudo" id="divfilhoConteudo" >
+                            <li><img id="Computador" src="assets/img/fotoPerfil.png" alt="foto-perfil"></li>
+                            <li id="liNumero">${TodosFuncionarios.idColaborador}</li>
+                            <li id="linome">${TodosFuncionarios.nome}</li>
+                            <li id="liemail">${TodosFuncionarios.email}</li>
+                            <li id="liStatus" class="active">${TodosFuncionarios.statusColaborador}</li>
+                            <li id="liCargo">${Cargo}</li>
+                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
+                            <li id="liDelete" style="color:aliceblue">Desativar</li>
+                            <li id="li3Pontos">. . .</li>
+                        </div> 
+                        `;
+                    }
+                    // finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
+    }
 </script>

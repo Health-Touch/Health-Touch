@@ -35,6 +35,34 @@ function listarComputadores(req, res) {
     }
 }
 
+function listarTodosComputadores(req, res) {
+    avisoModel.listarTodosComputadores().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function listarTodosFuncionarios(req, res) {
+    avisoModel.listarTodosFuncionarios().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function listarUsb(req, res) {
     avisoModel.listarUsb().then(function (resultado) {
         if (resultado.length > 0) {
@@ -164,6 +192,8 @@ function deletar(req, res) {
 module.exports = {
     listar,
     listarComputadores,
+    listarTodosComputadores,
+    listarTodosFuncionarios,
     listarUsb,
     listarPorUsuario,
     pesquisarDescricao,

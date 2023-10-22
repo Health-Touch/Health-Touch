@@ -35,4 +35,11 @@ router.delete("/deletar/:idAviso", function (req, res) {
     avisoController.deletar(req, res);
 });
 
+router.get("/listarTodosComputadores", function (req, res) {
+    avisoController.listarTodosComputadores(req, res);
+});
+
+router.get("/listarTodosFuncionarios", function (req, res) {
+    avisoController.listarTodosFuncionarios(req, res);
+});
 module.exports = router;

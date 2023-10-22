@@ -10,6 +10,31 @@ function listar() {
 }
 
 
+function listarTodosFuncionarios() {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n");
+    var instrucao = `
+    select Colaborador.idColaborador, Colaborador.nome, Colaborador.email, StatusColaborador.statusColaborador, NivelAcesso.nivelAcesso from Colaborador join NivelAcesso on idNivelAcesso = fkNivelAcesso
+							join StatusColaborador on idStatusColaborador = fkStatus order by idColaborador;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function listarTodosComputadores() {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n");
+    var instrucao = `
+    select  maquina.idMaquina, maquina.so, LocalSala.sala, LocalSala.andar,setor.nome, statusMaquina.statusMaquina from maquina 
+    join LocalSala on fklocal = idLocalSala
+        join setor on fksetor = idSetor
+            join empresa on fkEmpresa = idEmpresa 
+            join statusMaquina on fkStatusMaquina = idStatusMaquina order by idMaquina;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+
 function listarComputadores(idSetor) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n");
     var instrucao = `
@@ -21,10 +46,6 @@ function listarComputadores(idSetor) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
-
-
-
-
 
 function listarUsb() {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarUsb()");
@@ -109,6 +130,8 @@ function deletar(idAviso) {
 module.exports = {
     listar,
     listarComputadores,
+    listarTodosComputadores,
+    listarTodosFuncionarios,
     listarUsb,
     listarPorUsuario,
     pesquisarDescricao,

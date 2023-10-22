@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="css/analiseMaquinaTI.css">
     <title>Document</title>
 </head>
-<body>
+<body onload="atualizarTodosComputadores()">
 
-    <div class="divPai">
+    <div class="divPai" >
          <!-- inicio menu lateral -->
          <div class="divPaiLateral">
             <div class="filhoLateral">
@@ -127,21 +127,12 @@
                         <li id="idTeste3">Setor</li>
                         <li id="idTeste4">Status</li>
                         <li id="idTeste5">Andar</li>
+                        <!-- <li id="idTeste6">Sala</li> -->
                     </ul>
                 </div>
                 <div class="divConteudo">
-                    <div class="divConteudoScroll">
-                        <div class="divfilhoConteudo">
-                            <li><img id="Computador" src="assets/AnaliseMaquinas/computadorIcon.png" alt="Computador"></li>
-                            <li id="liNumero">001</li>
-                            <li id="liSistema">Windows</li>
-                            <li id="liSetor">Dermatologia</li>
-                            <li id="liStatus" class="active">Ativo</li>
-                            <li id="liAndar">05°</li>
-                            <li id="liUpdate" style="color:aliceblue" onclick="ativar()">Ativar</li>
-                            <li id="liDelete" style="color:aliceblue" onclick="desativar()">Desativar</li>
-                            <li id="li3Pontos">. . .</li>
-                        </div> 
+                    <div class="divConteudoScroll" id="divConteudoScroll">
+                       
                     </div>
                 </div>
                 
@@ -156,31 +147,51 @@
 </body>
 </html>
 <script>
-    function ativar() {
 
-        
-        textarea_descricao: ativar
-        fetch(`/ativar/ativar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                
-                descricao: textarea_descricao.value
-            })
-        }).then(function (resposta) {
+    function atualizarTodosComputadores() {
+        fetch("/avisos/listarTodosComputadores").then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/analiseMaquina.html"
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
+                // if (resposta.status == 204) {
+                //     var feed = document.getElementById("feed_container");
+                //     var mensagem = document.createElement("span");
+                //     mensagem.innerHTML = "Nenhum resultado encontrado."
+                //     feed.appendChild(mensagem);
+                //     throw "Nenhum resultado encontrado!!";
+                // }
+                console.log("ENTREII")
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    for (let i = 0; i < resposta.length; i++) {
+
+                        var TodosComputadores = resposta[i];
+
+                        divConteudoScroll.innerHTML += `
+                        <div class="divfilhoConteudo">
+                            <li><img id="Computador" src="assets/AnaliseMaquinas/computadorIcon.png" alt="Computador"></li>
+                            <li id="liNumero">${TodosComputadores.idMaquina}</li>
+                            <li id="liSistema">${TodosComputadores.so}</li>
+                            <li id="liSetor">${TodosComputadores.nome}</li>
+                            <li id="liStatus" class="active">${TodosComputadores.statusMaquina}</li>
+                            <li id="liAndar">${TodosComputadores.andar}°</li>
+                            <li id="liAndar">${TodosComputadores.sala}</li>
+                            <li id="liUpdate" style="color:aliceblue" onclick="ativar()">Ativar</li>
+                            <li id="liDelete" style="color:aliceblue" onclick="desativar()">Desativar</li>
+                            <li id="li3Pontos">. . .</li>
+                        </div> 
+                        `;
+                    }
+                    // finalizarAguardar();
+                });
             } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                throw ('Houve um erro na API!');
             }
         }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
+            console.error(resposta);
+            // finalizarAguardar();
         });
     }
+
 </script>
