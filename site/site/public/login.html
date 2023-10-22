@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./css/login.css" />
   <link rel="stylesheet" href="css/indexV2.css" />
   <script src="./js/funcoes.js"></script>
-  <script src="./js/login.js"></script>
+  <!-- <script src="./js/login.js"></script> -->
 
   <link rel="shortcut icon" type="imagex/png" href="./assets/img/logo_icon.png" />
 
@@ -57,7 +57,7 @@
           <label><input type="checkbox" />Lembre de mim</label>
           <p id="alertTextSenha"><a class="register-link">Esqueci Minha Senha</a></p>
         </div>
-        <button onclick="main()" class="btn">Login</button>
+        <button onclick="entrar()" class="btn">Login</button>
         <div class="login-register">
           <p>
           <p id="alertText">Não tem uma conta? <a class="register-link">Cadastre-se</a></p>
@@ -162,12 +162,12 @@
     window.location = 'index.html'
   }
 
-  document.getElementById('alertText').addEventListener('click', function () {
-    swal.fire("Entre em contato conosco para se cadastrar");
-  });
+  // document.getElementById('alertText').addEventListener('click', function () {
+  //   swal.fire("Entre em contato conosco para se cadastrar");
+  // });
 
-  document.getElementById('alertTextSenha').addEventListener('click', function () {
-    swal.fire("Entre em contato conosco para redefinir sua senha");
-  });
+  // document.getElementById('alertTextSenha').addEventListener('click', function () {
+  //   swal.fire("Entre em contato conosco para redefinir sua senha");
+  // });
 
 </script>
