@@ -1,6 +1,5 @@
 // Começo da dash setor
 var dashModel = require('../models/dashModel')
-var aquarioModel = require('../models/aquarioModel')
 
 function autenticar(req, res) {
   dashModel
@@ -28,217 +27,9 @@ function autenticar(req, res) {
     })
 }
 
-function statusUsb(req, res) {
+function buscarMaquinas(req, res) {
   dashModel
-    .statusUsb()
-    .then(function (resultado) {
-      console.log(`\nResultados encontrados: ${resultado.length}`)
-      console.log(`Resultados: ${JSON.stringify(resultado)}`) // transforma JSON em String
-
-      if (resultado.length == 1) {
-        console.log(resultado)
-        res.json(resultado[0]) // ?
-      } else if (resultado.length == 0) {
-        res.status(403).send('Email e/ou senha inválido(s)')
-      } else {
-        res.status(403).send('Mais de um usuário com o mesmo login e senha!')
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-      console.log(
-        '\nHouve um erro ao realizar o login! Erro: ',
-        erro.sqlMessage
-      )
-      res.status(500).json(erro.sqlMessage)
-    })
-}
-
-function usoCpuMensal(req, res) {
-  dashModel
-    .usoCpuMensal()
-    .then(function (resultado) {
-      console.log(`\nResultados encontrados: ${resultado.length}`)
-      console.log(`Resultados: ${JSON.stringify(resultado)}`) // transforma JSON em String
-
-      if (resultado.length == 1) {
-        console.log(resultado)
-        res.json(resultado[0]) // ?
-      } else if (resultado.length == 0) {
-        res.status(403).send('Email e/ou senha inválido(s)')
-      } else {
-        res.status(403).send('Mais de um usuário com o mesmo login e senha!')
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-      console.log(
-        '\nHouve um erro ao realizar o login! Erro: ',
-        erro.sqlMessage
-      )
-      res.status(500).json(erro.sqlMessage)
-    })
-}
-
-function usoRamMensal(req, res) {
-  dashModel
-    .usoRamMensal()
-    .then(function (resultado) {
-      console.log(`\nResultados encontrados: ${resultado.length}`)
-      console.log(`Resultados: ${JSON.stringify(resultado)}`) // transforma JSON em String
-
-      if (resultado.length == 1) {
-        console.log(resultado)
-        res.json(resultado[0]) // ?
-      } else if (resultado.length == 0) {
-        res.status(403).send('Email e/ou senha inválido(s)')
-      } else {
-        res.status(403).send('Mais de um usuário com o mesmo login e senha!')
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-      console.log(
-        '\nHouve um erro ao realizar o login! Erro: ',
-        erro.sqlMessage
-      )
-      res.status(500).json(erro.sqlMessage)
-    })
-}
-
-function usoDiscoMensal(req, res) {
-  dashModel
-    .usoDiscoMensal()
-    .then(function (resultado) {
-      console.log(`\nResultados encontrados: ${resultado.length}`)
-      console.log(`Resultados: ${JSON.stringify(resultado)}`) // transforma JSON em String
-
-      if (resultado.length == 1) {
-        console.log(resultado)
-        res.json(resultado[0]) // ?
-      } else if (resultado.length == 0) {
-        res.status(403).send('Email e/ou senha inválido(s)')
-      } else {
-        res.status(403).send('Mais de um usuário com o mesmo login e senha!')
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-      console.log(
-        '\nHouve um erro ao realizar o login! Erro: ',
-        erro.sqlMessage
-      )
-      res.status(500).json(erro.sqlMessage)
-    })
-}
-
-function buscarInsightCpu(req, res) {
-  dashModel
-    .buscarInsightCpu()
-    .then(function (resultado) {
-      console.log(`\nResultados encontrados: ${resultado.length}`)
-      console.log(`Resultados: ${JSON.stringify(resultado)}`) // transforma JSON em String
-
-      if (resultado.length == 1) {
-        console.log(resultado)
-        res.json(resultado[0]) // ?
-      } else if (resultado.length == 0) {
-        res.status(403).send('Email e/ou senha inválido(s)')
-      } else {
-        res.status(403).send('Mais de um usuário com o mesmo login e senha!')
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-      console.log(
-        '\nHouve um erro ao realizar o login! Erro: ',
-        erro.sqlMessage
-      )
-      res.status(500).json(erro.sqlMessage)
-    })
-}
-
-function buscarInsightRam(req, res) {
-  dashModel
-    .buscarInsightRam()
-    .then(function (resultado) {
-      console.log(`\nResultados encontrados: ${resultado.length}`)
-      console.log(`Resultados: ${JSON.stringify(resultado)}`) // transforma JSON em String
-
-      if (resultado.length == 1) {
-        console.log(resultado)
-        res.json(resultado[0]) // ?
-      } else if (resultado.length == 0) {
-        res.status(403).send('Email e/ou senha inválido(s)')
-      } else {
-        res.status(403).send('Mais de um usuário com o mesmo login e senha!')
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-      console.log(
-        '\nHouve um erro ao realizar o login! Erro: ',
-        erro.sqlMessage
-      )
-      res.status(500).json(erro.sqlMessage)
-    })
-}
-
-function buscarInsightDisco(req, res) {
-  dashModel
-    .buscarInsightDisco()
-    .then(function (resultado) {
-      console.log(`\nResultados encontrados: ${resultado.length}`)
-      console.log(`Resultados: ${JSON.stringify(resultado)}`) // transforma JSON em String
-
-      if (resultado.length == 1) {
-        console.log(resultado)
-        res.json(resultado[0]) // ?
-      } else if (resultado.length == 0) {
-        res.status(403).send('Email e/ou senha inválido(s)')
-      } else {
-        res.status(403).send('Mais de um usuário com o mesmo login e senha!')
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-      console.log(
-        '\nHouve um erro ao realizar o login! Erro: ',
-        erro.sqlMessage
-      )
-      res.status(500).json(erro.sqlMessage)
-    })
-}
-
-function buscarAnaliseGeral(req, res) {
-  dashModel
-    .buscarAnaliseGeral()
-    .then(function (resultado) {
-      console.log(`\nResultados encontrados: ${resultado.length}`)
-      console.log(`Resultados: ${JSON.stringify(resultado)}`) // transforma JSON em String
-
-      if (resultado.length == 1) {
-        console.log(resultado)
-        res.json(resultado[0]) // ?
-      } else if (resultado.length == 0) {
-        res.status(403).send('Email e/ou senha inválido(s)')
-      } else {
-        res.status(403).send('Mais de um usuário com o mesmo login e senha!')
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-      console.log(
-        '\nHouve um erro ao realizar o login! Erro: ',
-        erro.sqlMessage
-      )
-      res.status(500).json(erro.sqlMessage)
-    })
-}
-
-function buscarAvisos(req, res) {
-  dashModel
-    .buscarAvisos()
+    .buscarMaquinas()
     .then(function (resultado) {
       console.log(`\nResultados encontrados: ${resultado.length}`)
       console.log(`Resultados: ${JSON.stringify(resultado)}`) // transforma JSON em String
@@ -246,13 +37,13 @@ function buscarAvisos(req, res) {
       if (resultado.length >= 1) {
         console.log(resultado)
 
-        dashModel.buscarAvisos(resultado[0]).then(resultadoAvisos => {
-          if (resultadoAvisos.length > 0) {
+        dashModel.buscarMaquinas(resultado[0]).then(resultadoMaquinas => {
+          if (resultadoMaquinas.length > 0) {
             res.json({
-              aviso: resultadoAvisos
+              maquina: resultadoMaquinas
             })
           } else {
-            res.status(204).json({ aviso: [] })
+            res.status(204).json({ maquina: [] })
           }
         })
       } else if (resultado.length == 0) {
@@ -270,17 +61,255 @@ function buscarAvisos(req, res) {
       res.status(500).json(erro.sqlMessage)
     })
 }
-//Fim da dash setor
+
+//Analise atual
+function buscarUltimasMedidas(req, res) {
+  // const limite_linhas = 7;
+  var idDispositivo = req.params.idDispositivo
+
+  console.log(`Recuperando as ultimas medidas`)
+
+  dashModel
+    .buscarUltimasMedidas(idDispositivo)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log(
+        'Houve um erro ao buscar as ultimas medidas.',
+        erro.sqlMessage
+      )
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function buscarMedidasEmTempoReal(req, res) {
+  var idDispositivo = req.params.idDispositivo
+
+  console.log(`Recuperando medidas em tempo real`)
+
+  dashModel
+    .buscarMedidasEmTempoReal(idDispositivo)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log(
+        'Houve um erro ao buscar as ultimas medidas.',
+        erro.sqlMessage
+      )
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+//avisos
+function buscarUltimosAvisos(req, res) {
+  var idDispositivo = req.params.idDispositivo
+
+  console.log(`Recuperando as ultimas medidas`)
+
+  dashModel
+    .buscarUltimosAvisos(idDispositivo)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log(
+        'Houve um erro ao buscar as ultimas medidas.',
+        erro.sqlMessage
+      )
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function buscarAvisosEmTempoReal(req, res) {
+  var idDispositivo = req.params.idDispositivo
+
+  console.log(`Recuperando Avisos em tempo real`)
+
+  dashModel
+    .buscarAvisosEmTempoReal(idDispositivo)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log(
+        'Houve um erro ao buscar as ultimas medidas.',
+        erro.sqlMessage
+      )
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+//usb
+function buscarUltimosUsb(req, res) {
+  var idDispositivo = req.params.idDispositivo
+
+  console.log(`Recuperando os ultimos usbs`)
+
+  dashModel
+    .buscarUltimosUsb(idDispositivo)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar as ultimas usbs.', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function buscarUsbEmTempoReal(req, res) {
+  var idDispositivo = req.params.idDispositivo
+
+  console.log(`Recuperando Usb em tempo real`)
+
+  dashModel
+    .buscarUsbEmTempoReal(idDispositivo)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log(
+        'Houve um erro ao buscar as ultimas medidas.',
+        erro.sqlMessage
+      )
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+//media
+function buscarUltimosMedia(req, res) {
+  var idDispositivo = req.params.idDispositivo
+
+  console.log(`Recuperando os ultimos Medias`)
+
+  dashModel
+    .buscarUltimosMedia(idDispositivo)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar as ultimas usbs.', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function buscarMediaEmTempoReal(req, res) {
+  var idDispositivo = req.params.idDispositivo
+
+  console.log(`Recuperando Media em tempo real`)
+
+  dashModel
+    .buscarMediaEmTempoReal(idDispositivo)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log(
+        'Houve um erro ao buscar as ultimas medidas.',
+        erro.sqlMessage
+      )
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+//insght
+function buscarUltimosInsight(req, res) {
+  var idDispositivo = req.params.idDispositivo
+
+  console.log(`Recuperando os ultimos Insights`)
+
+  dashModel
+    .buscarUltimosInsight(idDispositivo)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar as ultimas usbs.', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function buscarInsightEmTempoReal(req, res) {
+  var idDispositivo = req.params.idDispositivo
+
+  console.log(`Recuperando Insight em tempo real`)
+
+  dashModel
+    .buscarInsightEmTempoReal(idDispositivo)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log(
+        'Houve um erro ao buscar as ultimas medidas.',
+        erro.sqlMessage
+      )
+      res.status(500).json(erro.sqlMessage)
+    })
+}
 
 module.exports = {
   autenticar,
-  statusUsb,
-  usoCpuMensal,
-  usoRamMensal,
-  usoDiscoMensal,
-  buscarInsightCpu,
-  buscarInsightRam,
-  buscarInsightDisco,
-  buscarAnaliseGeral,
-  buscarAvisos
+  buscarMaquinas,
+  buscarUltimasMedidas,
+  buscarMedidasEmTempoReal,
+  buscarAvisosEmTempoReal,
+  buscarUltimosAvisos,
+  buscarUltimosUsb,
+  buscarUsbEmTempoReal,
+  buscarUltimosMedia,
+  buscarMediaEmTempoReal,
+  buscarUltimosInsight,
+  buscarInsightEmTempoReal
 }

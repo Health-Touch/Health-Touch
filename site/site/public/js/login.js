@@ -1,18 +1,3 @@
-//Função que ativa todas as outras.
-function main() {
-  entrar()
-  buscarSetor()
-  buscarStatusUsb()
-  buscarUsoCpuMensal()
-  buscarUsoRamMensal()
-  buscarUsoDiscoMensal()
-  buscarInsightCpu()
-  buscarInsightRam()
-  buscarInsightDisco()
-  buscarAnaliseGeral()
-  buscarAvisos()
-}
-
 function entrar() {
   // aguardar();
 
@@ -125,7 +110,45 @@ function home() {
   window.location = 'index.html'
 }
 
-// Começo da dash setor
+function buscarMaquinas() {
+  console.log('Entrei na função maquina')
+  fetch('/dashboard/maquinas', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(function (resposta) {
+      console.log('ESTOU NO THEN DO maquina()!')
+
+      if (resposta.ok) {
+        console.log(resposta)
+
+        resposta.json().then(json => {
+          console.log(json)
+          console.log(JSON.stringify(json))
+          console.log(JSON.stringify(json.maquina))
+
+          console.log(json.maquina)
+
+          sessionStorage.MAQUINAS = JSON.stringify(json.maquina)
+        })
+      } else {
+        console.log('Houve um erro no maquina!')
+
+        resposta.text().then(texto => {
+          console.error(texto)
+          // finalizarAguardar(texto);
+        })
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+    })
+
+  return false
+}
+
 function buscarSetor() {
   console.log('Entrei na função validar setor')
   fetch('/dashboard/autenticar', {
@@ -162,346 +185,6 @@ function buscarSetor() {
     })
 
   return false
-}
-
-function buscarStatusUsb() {
-  console.log('Entrei na função usb')
-  fetch('/dashboard/statusUsb', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(function (resposta) {
-      console.log('ESTOU NO THEN DO entrar()!')
-
-      if (resposta.ok) {
-        console.log(resposta)
-
-        resposta.json().then(json => {
-          console.log(json)
-          console.log(JSON.stringify(json))
-
-          sessionStorage.STATUS_USB = json.status
-        })
-      } else {
-        console.log('Houve um erro!')
-
-        resposta.text().then(texto => {
-          console.error(texto)
-          // finalizarAguardar(texto);
-        })
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-    })
-
-  return false
-}
-
-function buscarUsoCpuMensal() {
-  console.log('Entrei na função a')
-  fetch('/dashboard/cpuMensal', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(function (resposta) {
-      console.log('ESTOU NO THEN DO entrar()!')
-
-      if (resposta.ok) {
-        console.log(resposta)
-
-        resposta.json().then(json => {
-          console.log(json)
-          console.log(JSON.stringify(json))
-
-          sessionStorage.CPU_MENSAL = json.usoCpuMensal
-        })
-      } else {
-        console.log('Houve um erro!')
-
-        resposta.text().then(texto => {
-          console.error(texto)
-          // finalizarAguardar(texto);
-        })
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-    })
-
-  return false
-}
-
-function buscarUsoRamMensal() {
-  console.log('Entrei na função b')
-  fetch('/dashboard/ramMensal', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(function (resposta) {
-      console.log('ESTOU NO THEN DO entrar()!')
-
-      if (resposta.ok) {
-        console.log(resposta)
-
-        resposta.json().then(json => {
-          console.log(json)
-          console.log(JSON.stringify(json))
-
-          sessionStorage.RAM_MENSAL = json.usoRamMensal
-        })
-      } else {
-        console.log('Houve um erro!')
-
-        resposta.text().then(texto => {
-          console.error(texto)
-          // finalizarAguardar(texto);
-        })
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-    })
-
-  return false
-}
-
-function buscarUsoDiscoMensal() {
-  console.log('Entrei na função c')
-  fetch('/dashboard/discoMensal', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(function (resposta) {
-      console.log('ESTOU NO THEN DO entrar()!')
-
-      if (resposta.ok) {
-        console.log(resposta)
-
-        resposta.json().then(json => {
-          console.log(json)
-          console.log(JSON.stringify(json))
-
-          sessionStorage.DISCO_MENSAL = json.usoDiscoMensal
-        })
-      } else {
-        console.log('Houve um erro!')
-
-        resposta.text().then(texto => {
-          console.error(texto)
-          // finalizarAguardar(texto);
-        })
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-    })
-
-  return false
-}
-
-function buscarInsightCpu() {
-  console.log('Entrei na função c')
-  fetch('/dashboard/insightCpu', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(function (resposta) {
-      console.log('ESTOU NO THEN DO entrar()!')
-
-      if (resposta.ok) {
-        console.log(resposta)
-
-        resposta.json().then(json => {
-          console.log(json)
-          console.log(JSON.stringify(json))
-
-          sessionStorage.INSIGHT_CPU = json.insightCpu
-        })
-      } else {
-        console.log('Houve um erro!')
-
-        resposta.text().then(texto => {
-          console.error(texto)
-          // finalizarAguardar(texto);
-        })
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-    })
-
-  return false
-}
-
-function buscarInsightRam() {
-  console.log('Entrei na função c')
-  fetch('/dashboard/insightRam', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(function (resposta) {
-      console.log('ESTOU NO THEN DO entrar()!')
-
-      if (resposta.ok) {
-        console.log(resposta)
-
-        resposta.json().then(json => {
-          console.log(json)
-          console.log(JSON.stringify(json))
-
-          sessionStorage.INSIGHT_RAM = json.insightRam
-        })
-      } else {
-        console.log('Houve um erro!')
-
-        resposta.text().then(texto => {
-          console.error(texto)
-          // finalizarAguardar(texto);
-        })
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-    })
-
-  return false
-}
-
-function buscarInsightDisco() {
-  console.log('Entrei na função c')
-  fetch('/dashboard/insightDisco', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(function (resposta) {
-      console.log('ESTOU NO THEN DO entrar()!')
-
-      if (resposta.ok) {
-        console.log(resposta)
-
-        resposta.json().then(json => {
-          console.log(json)
-          console.log(JSON.stringify(json))
-
-          sessionStorage.INSIGHT_DISCO = json.insightDisco
-        })
-      } else {
-        console.log('Houve um erro!')
-
-        resposta.text().then(texto => {
-          console.error(texto)
-          // finalizarAguardar(texto);
-        })
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-    })
-
-  return false
-}
-
-function buscarAnaliseGeral() {
-  console.log('Entrei na função analise')
-  fetch('/dashboard/analiseGeral', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(function (resposta) {
-      console.log('ESTOU NO THEN DO entrar()!')
-
-      if (resposta.ok) {
-        console.log(resposta)
-
-        resposta.json().then(json => {
-          console.log(json)
-          console.log(JSON.stringify(json))
-
-          sessionStorage.USO_CPU = json.usoCpu
-          sessionStorage.USO_RAM = json.usoRam
-          sessionStorage.USO_DISCO = json.usoDisco
-        })
-      } else {
-        console.log('Houve um erro!')
-
-        resposta.text().then(texto => {
-          console.error(texto)
-          // finalizarAguardar(texto);
-        })
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-    })
-
-  return false
-}
-
-function buscarAvisos() {
-  console.log('Entrei na função aviso')
-  fetch('/dashboard/avisos', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(function (resposta) {
-      console.log('ESTOU NO THEN DO aviso()!')
-      console.log('AAAAAAAAAAAAAAAAA EU VOU CORINGAR' + resposta)
-      console.log('AAAAAAAAAAAAAAAAA EU VOU CORINGAR 2' + resposta.ok)
-
-      if (resposta.ok) {
-        console.log(resposta)
-
-        resposta.json().then(json => {
-          console.log(json)
-          console.log(JSON.stringify(json))
-          console.log(JSON.stringify(json.aviso))
-
-          console.log(json.aviso)
-
-          sessionStorage.AVISOS = JSON.stringify(json.aviso)
-        })
-      } else {
-        console.log('Houve um erro no aviso!')
-
-        resposta.text().then(texto => {
-          console.error(texto)
-          // finalizarAguardar(texto);
-        })
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro)
-    })
-
-  return false
-}
-//Fim da dash setor
-
-function visualizarTermos() {
-  // cardErro.style.display = 'block'
-  console.log(
-    `Ao assinar esses termos eu garanto que não causarei problemas, não hackearei o site e serei responsavel jogando genshin impact.`
-  )
-  setTimeout(sumirMensagem, 10000)
 }
 
 //Função dos botões

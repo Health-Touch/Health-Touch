@@ -14,7 +14,7 @@
     <title>Análise Máquina | Health Touch</title>
 </head>
 <!-- <body onload="validarSessao(), validarSetor(), validarStatusUsb(), cpuMensal(), ramMensal(), discoMensal(), insightCpu(), insightRam(), insightDisco(), analiseGeral(), exibirAlertas()"> -->
-<body onload="validarSessao(), validarSetor()">
+<body onload="validarSessao(), validarSetor(), limparConsole()">
     <div class="divPai">
         <!-- inicio menu lateral -->
         <div class="divPaiLateral">
@@ -133,8 +133,8 @@
                 <span class="numSetor">Computador <span id="idComputador">1</span></span>
                 <span class="nomeSetor" id="nomeSetor">Pediatria</span>
                 <span class="numComputador">Sala <span id="idSala">1</span></span>
-                <button class="btn">Trocar</button>
-                <button class="btn btn2">Dash Detalhada</button>
+                <button class="btn" onclick="trocar()">Trocar</button>
+                <button class="btn btn2" onclick="detalhada()">Dash Detalhada</button>
             </div>
             <div class="kpeis">
                 <div class="cardPai">

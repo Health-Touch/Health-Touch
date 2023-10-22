@@ -12,121 +12,319 @@ function autenticar() {
   return database.executar(instrucao)
 }
 
-function statusUsb() {
+function buscarMaquinas() {
   console.log(
     "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): "
   )
   var instrucao = `
-  select count(idUsb) as status from usb where date(dtHoraInserção) = (SELECT CURDATE());
-    `
-  console.log('Executando a instrução SQL: \n' + instrucao)
-  return database.executar(instrucao)
-}
-
-function usoCpuMensal() {
-  console.log(
-    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): "
-  )
-  var instrucao = `
-  select format(avg(porcentagem),2) as usoCpuMensal from monitoramento where fkComponente = 1;
+  SELECT * from dispositivo;
   `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
 }
 
-function usoRamMensal() {
-  console.log(
-    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): "
-  )
-  var instrucao = `
-  select format(avg(porcentagem),2) as usoRamMensal from monitoramento where fkComponente = 2;
-  `
-  console.log('Executando a instrução SQL: \n' + instrucao)
-  return database.executar(instrucao)
+//analise atual
+function buscarUltimasMedidas(idDispositivo) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select top ${limite_linhas}
+        dht11_temperatura as temperatura, 
+        dht11_umidade as umidade,  
+                        momento,
+                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
+                    from medida
+                    where fk_aquario = ${idAquario}
+                    order by id desc`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `select * from monitoramento
+                    where fkDispositivo = ${idDispositivo}
+                    order by idMonitoramento desc limit 3`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
 }
 
-function usoDiscoMensal() {
-  console.log(
-    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): "
-  )
-  var instrucao = `
-  select format(avg(porcentagem),2) as usoDiscoMensal from monitoramento where fkComponente = 3;
-  `
-  console.log('Executando a instrução SQL: \n' + instrucao)
-  return database.executar(instrucao)
+function buscarMedidasEmTempoReal(idDispositivo) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select top 1
+        dht11_temperatura as temperatura, 
+        dht11_umidade as umidade,  
+                        CONVERT(varchar, momento, 108) as momento_grafico, 
+                        fk_aquario 
+                        from medida where fk_aquario = ${idAquario} 
+                    order by id desc`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `select * from monitoramento
+    where fkDispositivo = ${idDispositivo} 
+                    order by idMonitoramento desc limit 3`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
 }
 
-function buscarInsightCpu() {
-  console.log(
-    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): "
-  )
-  var instrucao = `
-  SELECT 
-    (SELECT avg(porcentagem) FROM monitoramento WHERE date(dataHora) = CURDATE() AND fkComponente = 1) - (SELECT avg(porcentagem) FROM monitoramento WHERE date(dataHora) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND fkComponente = 1) as insightCpu;
-  `
-  console.log('Executando a instrução SQL: \n' + instrucao)
-  return database.executar(instrucao)
+//avisos
+function buscarUltimosAvisos(idDispositivo) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select top ${limite_linhas}
+        dht11_temperatura as temperatura, 
+        dht11_umidade as umidade,  
+                        momento,
+                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
+                    from medida
+                    where fk_aquario = ${idAquario}
+                    order by id desc`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `SELECT idAviso, descricao, DATE_FORMAT(dtHr, '%d/%m/%Y %H:%i:%s') as dtHr FROM aviso where fkDispositivo = ${idDispositivo};`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
 }
 
-function buscarInsightRam() {
-  console.log(
-    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): "
-  )
-  var instrucao = `
-  SELECT 
-  (SELECT avg(porcentagem) FROM monitoramento WHERE date(dataHora) = CURDATE() AND fkComponente = 2) - (SELECT avg(porcentagem) FROM monitoramento WHERE date(dataHora) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND fkComponente = 2) as insightRam;
-  `
-  console.log('Executando a instrução SQL: \n' + instrucao)
-  return database.executar(instrucao)
+function buscarAvisosEmTempoReal(idDispositivo) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select top 1
+        dht11_temperatura as temperatura, 
+        dht11_umidade as umidade,  
+                        CONVERT(varchar, momento, 108) as momento_grafico, 
+                        fk_aquario 
+                        from medida where fk_aquario = ${idAquario} 
+                    order by id desc`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `SELECT idAviso, descricao, DATE_FORMAT(dtHr, '%d/%m/%Y %H:%i:%s') as dtHr FROM aviso where fkDispositivo = ${idDispositivo};`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
 }
 
-function buscarInsightDisco() {
-  console.log(
-    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): "
-  )
-  var instrucao = `
-  SELECT 
-    (SELECT avg(porcentagem) FROM monitoramento WHERE date(dataHora) = CURDATE() AND fkComponente = 3) - (SELECT avg(porcentagem) FROM monitoramento WHERE date(dataHora) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND fkComponente = 3) as insightDisco;
-  `
-  console.log('Executando a instrução SQL: \n' + instrucao)
-  return database.executar(instrucao)
+//usb
+function buscarUltimosUsb(idDispositivo) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select top ${limite_linhas}
+        dht11_temperatura as temperatura, 
+        dht11_umidade as umidade,  
+                        momento,
+                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
+                    from medida
+                    where fk_aquario = ${idAquario}
+                    order by id desc`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `select count(idUsb) as status
+    from usb join dispositivo on dispositivo.idDispositivo = usb.fkDispositivo where date(dtHoraInserção) = (SELECT CURDATE()) ;`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
 }
 
-function buscarAnaliseGeral() {
-  console.log(
-    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): "
-  )
-  var instrucao = `
-  SELECT
-    (SELECT porcentagem FROM monitoramento WHERE fkComponente = 1 AND idMonitoramento = (SELECT MAX(idMonitoramento) FROM monitoramento WHERE fkComponente = 1)) as usoCpu,
-    (SELECT porcentagem FROM monitoramento WHERE fkComponente = 2 AND idMonitoramento = (SELECT MAX(idMonitoramento) FROM monitoramento WHERE fkComponente = 2)) as usoRam,
-    (SELECT porcentagem FROM monitoramento WHERE fkComponente = 3 AND idMonitoramento = (SELECT MAX(idMonitoramento) FROM monitoramento WHERE fkComponente = 3)) as usoDisco;
-  `
-  console.log('Executando a instrução SQL: \n' + instrucao)
-  return database.executar(instrucao)
+function buscarUsbEmTempoReal(idDispositivo) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select top 1
+        dht11_temperatura as temperatura, 
+        dht11_umidade as umidade,  
+                        CONVERT(varchar, momento, 108) as momento_grafico, 
+                        fk_aquario 
+                        from medida where fk_aquario = ${idAquario} 
+                    order by id desc`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `select count(idUsb) as status
+    from usb join dispositivo on dispositivo.idDispositivo = usb.fkDispositivo where date(dtHoraInserção) = (SELECT CURDATE()) ;`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
 }
 
-function buscarAvisos() {
-  console.log(
-    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): "
-  )
-  var instrucao = `
-  SELECT idAviso, descricao, DATE_FORMAT(dtHr, '%d/%m/%Y %H:%i:%s') as dtHr FROM aviso;
-  `
-  console.log('Executando a instrução SQL: \n' + instrucao)
-  return database.executar(instrucao)
-}
-//Fim da dash setor
+//media
+function buscarUltimosMedia(idDispositivo) {
+  instrucaoSql = ''
 
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select top ${limite_linhas}
+        dht11_temperatura as temperatura, 
+        dht11_umidade as umidade,  
+                        momento,
+                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
+                    from medida
+                    where fk_aquario = ${idAquario}
+                    order by id desc`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `select
+    (select format(avg(porcentagem),2) from monitoramento where fkComponente = 1) as usoCpuMensal,
+    (select format(avg(porcentagem),2) from monitoramento where fkComponente = 2) as usoRamMensal,
+    (select format(avg(porcentagem),2) from monitoramento where fkComponente = 3) as usoDiscoMensal
+    from monitoramento join dispositivo on  idDispositivo = fkDispositivo where idDispositivo = ${idDispositivo} limit 1;`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+function buscarMediaEmTempoReal(idDispositivo) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select top 1
+        dht11_temperatura as temperatura, 
+        dht11_umidade as umidade,  
+                        CONVERT(varchar, momento, 108) as momento_grafico, 
+                        fk_aquario 
+                        from medida where fk_aquario = ${idAquario} 
+                    order by id desc`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `select
+    (select format(avg(porcentagem),2) from monitoramento where fkComponente = 1) as usoCpuMensal,
+    (select format(avg(porcentagem),2) from monitoramento where fkComponente = 2) as usoRamMensal,
+    (select format(avg(porcentagem),2) from monitoramento where fkComponente = 3) as usoDiscoMensal
+    from monitoramento join dispositivo on  idDispositivo = fkDispositivo where idDispositivo = ${idDispositivo} limit 1;`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+//Insight
+function buscarUltimosInsight(idDispositivo) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select top ${limite_linhas}
+        dht11_temperatura as temperatura, 
+        dht11_umidade as umidade,  
+                        momento,
+                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
+                    from medida
+                    where fk_aquario = ${idAquario}
+                    order by id desc`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `SELECT
+    FORMAT(
+      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 1 ORDER BY dataHora DESC LIMIT 20) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 1 ORDER BY dataHora DESC LIMIT 10) AS subquery)
+    , 2) AS insightCpuMensal,
+    FORMAT(
+      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 2 ORDER BY dataHora DESC LIMIT 20) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 2 ORDER BY dataHora DESC LIMIT 10) AS subquery)
+    , 2) AS insightRamMensal,
+    FORMAT(
+      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC LIMIT 20) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC LIMIT 10) AS subquery)
+    , 2) AS insightDiscoMensal
+  FROM dispositivo
+  WHERE idDispositivo = ${idDispositivo};`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+function buscarInsightEmTempoReal(idDispositivo) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select top 1
+        dht11_temperatura as temperatura, 
+        dht11_umidade as umidade,  
+                        CONVERT(varchar, momento, 108) as momento_grafico, 
+                        fk_aquario 
+                        from medida where fk_aquario = ${idAquario} 
+                    order by id desc`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `SELECT
+    FORMAT(
+      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 1 ORDER BY dataHora DESC LIMIT 20) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 1 ORDER BY dataHora DESC LIMIT 10) AS subquery)
+    , 2) AS insightCpuMensal,
+    FORMAT(
+      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 2 ORDER BY dataHora DESC LIMIT 20) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 2 ORDER BY dataHora DESC LIMIT 10) AS subquery)
+    , 2) AS insightRamMensal,
+    FORMAT(
+      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC LIMIT 20) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC LIMIT 10) AS subquery)
+    , 2) AS insightDiscoMensal
+  FROM dispositivo
+  WHERE idDispositivo = ${idDispositivo};`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
 module.exports = {
   autenticar,
-  statusUsb,
-  usoCpuMensal,
-  usoRamMensal,
-  usoDiscoMensal,
-  buscarInsightCpu,
-  buscarInsightRam,
-  buscarInsightDisco,
-  buscarAnaliseGeral,
-  buscarAvisos
+  buscarMaquinas,
+  buscarUltimasMedidas,
+  buscarMedidasEmTempoReal,
+  buscarAvisosEmTempoReal,
+  buscarUltimosAvisos,
+  buscarUltimosUsb,
+  buscarUsbEmTempoReal,
+  buscarUltimosMedia,
+  buscarMediaEmTempoReal,
+  buscarUltimosInsight,
+  buscarInsightEmTempoReal
 }

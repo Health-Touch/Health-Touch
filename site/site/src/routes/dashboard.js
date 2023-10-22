@@ -9,45 +9,53 @@ router.get('/autenticar', function (req, res) {
   dashController.autenticar(req, res)
 })
 
-router.get('/statusUsb', function (req, res) {
-  dashController.statusUsb(req, res)
+router.get('/maquinas', function (req, res) {
+  dashController.buscarMaquinas(req, res)
 })
 
-router.get('/statusUsb', function (req, res) {
-  dashController.statusUsb(req, res)
+//Analise atual
+router.get('/ultimas/:idDispositivo', function (req, res) {
+  dashController.buscarUltimasMedidas(req, res)
 })
 
-router.get('/cpuMensal', function (req, res) {
-  dashController.usoCpuMensal(req, res)
+router.get('/tempo-real/:idDispositivo', function (req, res) {
+  dashController.buscarMedidasEmTempoReal(req, res)
 })
 
-router.get('/ramMensal', function (req, res) {
-  dashController.usoRamMensal(req, res)
+//Avisos
+router.get('/ultimos/:idDispositivo', function (req, res) {
+  dashController.buscarUltimosAvisos(req, res)
 })
 
-router.get('/discoMensal', function (req, res) {
-  dashController.usoDiscoMensal(req, res)
+router.get('/avisos/tempo-real/:idDispositivo', function (req, res) {
+  dashController.buscarAvisosEmTempoReal(req, res)
 })
 
-router.get('/insightCpu', function (req, res) {
-  dashController.buscarInsightCpu(req, res)
+//Usb
+router.get('/usb/:idDispositivo', function (req, res) {
+  dashController.buscarUltimosUsb(req, res)
 })
 
-router.get('/insightRam', function (req, res) {
-  dashController.buscarInsightRam(req, res)
+router.get('/usb/tempo-real/:idDispositivo', function (req, res) {
+  dashController.buscarUsbEmTempoReal(req, res)
 })
 
-router.get('/insightDisco', function (req, res) {
-  dashController.buscarInsightDisco(req, res)
+//Média
+router.get('/media/:idDispositivo', function (req, res) {
+  dashController.buscarUltimosMedia(req, res)
 })
 
-router.get('/analiseGeral', function (req, res) {
-  dashController.buscarAnaliseGeral(req, res)
+router.get('/media/tempo-real/:idDispositivo', function (req, res) {
+  dashController.buscarMediaEmTempoReal(req, res)
 })
 
-router.get('/avisos', function (req, res) {
-  dashController.buscarAvisos(req, res)
+//Insight
+router.get('/insight/:idDispositivo', function (req, res) {
+  dashController.buscarUltimosInsight(req, res)
 })
-//Fim da dash setor
+
+router.get('/insight/tempo-real/:idDispositivo', function (req, res) {
+  dashController.buscarInsightEmTempoReal(req, res)
+})
 
 module.exports = router
