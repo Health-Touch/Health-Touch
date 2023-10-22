@@ -9,17 +9,19 @@
 </head>
 
 <body onload="atualizarFeed()">
-    <div class="divPai" >
+    <div class="divPai">
         <!-- inicio menu lateral -->
         <div class="divPaiLateral">
             <div class="filhoLateral">
 
                 <div class="divNomeEmpresa">
 
-                    <p id="nomeEmpresa">Bem Vindo <br><span>  Nome da Empresa </span></p>
+                    <p id="nomeEmpresa">Bem Vindo <br><span> Nome da Empresa </span></p>
                 </div>
 
-                <div class="divMainMenu"><p id="pMainMenu">MAIN MENU</p></div>
+                <div class="divMainMenu">
+                    <p id="pMainMenu">MAIN MENU</p>
+                </div>
 
                 <div class="divPaiOpcoesMenu">
                     <div class="divHome">
@@ -67,7 +69,9 @@
 
                 <div class="divEspacoV2"></div>
 
-                <div class="divHelp"><p id="pHelp">HELP</p></div>
+                <div class="divHelp">
+                    <p id="pHelp">HELP</p>
+                </div>
 
                 <div class="divPaiHelpMenu">
                     <div class="divHelpDesk">
@@ -83,7 +87,7 @@
                     </div>
 
                     <img id="logoMenuLateral" src="assets/img/logoMenu.png">
-                
+
                 </div>
 
             </div>
@@ -123,6 +127,7 @@
         </div>
     </div>
 </body>
+
 </html>
 
 <script>
@@ -131,7 +136,7 @@
 
     function atualizarFeed() {
         fetch("/avisos/listar").then(function (resposta) {
-            
+
             if (resposta.ok) {
                 // if (resposta.status == 204) {
                 //     var feed = document.getElementById("feed_container");
@@ -144,15 +149,12 @@
 
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
-                    
 
-                    // var feed = document.getElementById("feed_container");
-                    // feed.innerHTML = "";
                     for (let i = 0; i < resposta.length; i++) {
 
                         var publicacao = resposta[i];
-                         
-                        
+
+
                         all.innerHTML += ` 
                         <div class="cardPai" onclick="mostrarComputadores(${publicacao.idSetor})">
                             <div class="cardFilho">
@@ -162,7 +164,7 @@
                                 </div>
                                 <span class="infoCard" >${publicacao.nome}</span>
                             </div>
-                            <input type="hidden" id="valorSetor" value=${i+1}>
+                            <input type="hidden" id="valorSetor" value=${i + 1}>
                         </div>`
                     }
                     // finalizarAguardar();
@@ -177,26 +179,17 @@
     }
 
     function mostrarComputadores(idSetor) {
-        
-        // return id.get(parametro);
-         console.log(idSetor)
-         alert(idSetor)
-         sessionStorage.IDSETOR = idSetor
-        // nomeEmpresa.innerHTML = NumeroSetor; 
+
+        console.log(idSetor)
+
+        alert(idSetor)
+
+        sessionStorage.IDSETOR = idSetor
+
         all.innerHTML = ``;
 
-        // var idSetor = 2
-        fetch("/avisos/listarComputadores",{
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
-            idSetorServer: idSetor
-        })
-        }).then(function (resposta) {
+        fetch(`/avisos/listarComputadores/${idSetor}`).then(function (resposta) {
+
             if (resposta.ok) {
                 // if (resposta.status == 204) {
                 //     var feed = document.getElementById("feed_container");
@@ -210,17 +203,24 @@
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
                     
-
-                    // var feed = document.getElementById("feed_container");
-                    // feed.innerHTML = "";
                     for (let i = 0; i < resposta.length; i++) {
 
-                        var Computador = resposta[i];
-            
+                        var publicacao = resposta[i];
+
+
                         all.innerHTML += ` 
-                            <p>Id Maquina: ${Computador.idMaquina}</p><br>
-                            <p>SO Maquina: ${Computador.SO}</p>
-                        `
+                        <div class="cardPai" onclick="SalvarComputador(${publicacao.idMaquina})">
+                            <div class="cardFilho">
+                                <div class="cardTexto">
+                                    <span class="txtUso" id="feed2"> Computador: ${publicacao.idMaquina}</span>
+                                    <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
+                                </div>
+                                <span class="infoCard" > Sala: ${publicacao.sala} <br>
+                                                        Andar: ${publicacao.andar}<br>  
+                                                        Setor: ${publicacao.nome}<br> 
+                                </span>
+                            </div>
+                        </div>`
                     }
                     // finalizarAguardar();
                 });
@@ -231,5 +231,12 @@
             console.error(resposta);
             // finalizarAguardar();
         });
+    }
+
+    function SalvarComputador(idMaquina){
+
+        sessionStorage.ID_MAQUINA = idMaquina;
+        alert(idMaquina)
+        
     }
 </script>

@@ -15,12 +15,12 @@ function listar(req, res) {
 }
 
 function listarComputadores(req, res) {
-    var setor = req.body.idSetorServer;
-    if (setor == undefined) {
-        res.status(400).send('Seu setor está undefined!')
+    var idSetor = req.params.idSetor;
+    if (idSetor == undefined) {
+        res.status(400).send('Seu idS está undefined!')
     }
     else{
-        avisoModel.listarComputadores(setor).then(function (resultado) {
+        avisoModel.listarComputadores(idSetor).then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
             } else {

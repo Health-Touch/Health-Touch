@@ -10,13 +10,13 @@ function listar() {
 }
 
 
-function listarComputadores(setor) {
-    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+function listarComputadores(idSetor) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n");
     var instrucao = `
-    select  maquina.idMaquina, maquina.SO, maquina.IP, LocalSala.sala, LocalSala.andar, setor.idSetor, setor.nome, empresa.NomeFantasia from maquina 
-    join LocalSala on fklocal = idLocalSala
-        join setor on fksetor = idSetor
-                join empresa on fkEmpresa = idEmpresa where setor.idSetor = ${setor};
+    select  maquina.idMaquina,LocalSala.sala, LocalSala.andar,setor.nome from maquina 
+			join LocalSala on fklocal = idLocalSala
+				join setor on fksetor = idSetor
+					join empresa on fkEmpresa = idEmpresa where setor.idSetor = ${idSetor};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
