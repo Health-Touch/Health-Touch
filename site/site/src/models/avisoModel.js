@@ -10,13 +10,13 @@ function listar() {
 }
 
 
-function listarComputadores(idSetor) {
+function listarComputadores(idSetor, nome) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n");
     var instrucao = `
     select  maquina.idMaquina,LocalSala.sala, LocalSala.andar,setor.nome from maquina 
 			join LocalSala on fklocal = idLocalSala
 				join setor on fksetor = idSetor
-					join empresa on fkEmpresa = idEmpresa where setor.idSetor = ${idSetor};
+					join empresa on fkEmpresa = idEmpresa where setor.idSetor = ${idSetor} and setor.nome = '${nome}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

@@ -34,6 +34,8 @@ router.post("/cadastrarFuncionario", function (req, res) {
 router.post("/cadastrarMaquina", function (req, res) {
     usuarioController.cadastrarMaquina(req, res);
 })
-
+router.post("/cadastrarSetores", function (req, res) {
+    usuarioController.cadastrarSetores(req, res);
+})
 
 module.exports = router;

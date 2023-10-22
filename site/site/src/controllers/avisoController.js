@@ -16,11 +16,13 @@ function listar(req, res) {
 
 function listarComputadores(req, res) {
     var idSetor = req.params.idSetor;
-    if (idSetor == undefined) {
+    var nome = req.params.nomeSetor;
+
+    if (idSetor == undefined || nome == undefined) {
         res.status(400).send('Seu idS está undefined!')
     }
     else{
-        avisoModel.listarComputadores(idSetor).then(function (resultado) {
+        avisoModel.listarComputadores(idSetor, nome).then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
             } else {

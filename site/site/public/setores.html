@@ -121,6 +121,12 @@
 
             <!-- começo conteudo pagina -->
             <div class="divPaiConteudo">
+                <div class="cadastrarSetro">
+                    <h1>Cadastre aqui o Setor</h1>
+                    <div class="entradaSetor">
+                     Nome do Setor<input id="ipt_nomeSetor" type="text">
+                     <button onclick="cadastrarSetores()">Cadastrar</button>
+                </div>
                 <div class="all" id="all">
                 </div>
             </div>
@@ -156,7 +162,7 @@
 
 
                         all.innerHTML += ` 
-                        <div class="cardPai" onclick="mostrarComputadores(${publicacao.idSetor})">
+                        <div class="cardPai" onclick="mostrarComputadores(${publicacao.idSetor}, ${publicacao.nome})">
                             <div class="cardFilho">
                                 <div class="cardTexto">
                                     <span class="txtUso" id="feed2" > Setor ${publicacao.idSetor}</span>
@@ -178,17 +184,18 @@
         });
     }
 
-    function mostrarComputadores(idSetor) {
+    function mostrarComputadores(idSetor, nome) {
 
         console.log(idSetor)
 
         alert(idSetor)
-
+        alert(nomeSetor)
         sessionStorage.IDSETOR = idSetor
+        sessionStorage.NOME_SETOR = nome
 
         all.innerHTML = ``;
 
-        fetch(`/avisos/listarComputadores/${idSetor}`).then(function (resposta) {
+        fetch(`/avisos/listarComputadores/${idSetor}/${nome}`).then(function (resposta) {
 
             if (resposta.ok) {
                 // if (resposta.status == 204) {
@@ -239,4 +246,47 @@
         alert(idMaquina)
         
     }
+
+    function cadastrarSetores() {
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    
+    var nomeSetorVar = ipt_nomeSetor.value
+
+    sessionStorage.NOME_SETOR = nomeSetorVar;
+    // sessionStorage.ID_SETOR = json.idSetor
+   
+   
+
+    if (nomeSetorVar == '' ) {
+      // cardErro.style.display = "block"
+      console.log("Mensagem de erro para todos os campos em branco")
+
+
+      return false
+    } 
+    else {
+    //   setInterval(sumirMensagem, 10000)
+
+      // Enviando o valor da nova input
+     
+      fetch('/usuarios/cadastrarSetores', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+        
+          nomeSetorServer:nomeSetorVar
+          
+          
+        })
+      })
+       
+
+      return false
+    }
+  }
 </script>
