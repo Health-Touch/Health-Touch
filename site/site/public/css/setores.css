@@ -1,7 +1,7 @@
 * {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow-x: hidden;
+    
 }
 
 .divPai {
@@ -82,6 +82,7 @@
 #pMenuLateral {
     color: white;
     font-size: 11px;
+    text-decoration: none;
 }
 
 .divEstatisticas {
@@ -361,7 +362,7 @@
 
 .divPaiConteudo {
     width: 100%;
-    /* height: 64vh; */
+    height: 64vh;
     margin-top: 98px;
     display: flex;
     align-items: start;
@@ -370,6 +371,7 @@
     max-height: 85%;
     /* Ajuste a altura máxima conforme necessário */
     overflow-y: auto;
+    overflow-x: hidden;
 
 }
 
@@ -445,7 +447,7 @@
 .cadastrarSetor {
     width: 39%;
     height:10vh;
-    border-radius: 0.3125rem;
+    border-radius: 2vh 2vh 2vh;
     background: #FFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     background-color: #fff;
@@ -456,7 +458,7 @@
     /* margin-bottom: 10vh; */
     position: relative;
     left: 9%;
-    bottom: 4%;
+    bottom: 2%;
 }
 
 .cadastrarSetor>h1 {
