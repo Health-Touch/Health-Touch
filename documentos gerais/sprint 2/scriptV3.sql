@@ -1,12 +1,10 @@
-#criar o db dps apagar a linha do create dtbse e deixar só a linha do use dt e as linhas das tabelas 
-# para deixar mais limpos o código deixar os select e desc no final do código de todos os create table e inserts
-# apertar no botão "raio amarelo para executar todo o script do banco de dados sem precisar usar o ctrl enter
 create database if not exists HealthTouch;
+drop database HealthTouch;
 use HealthTouch;
 
 create table Plano (
 idPlano Int primary key auto_increment,
-tipoPlano varchar(20),
+tipoPlano varchar(45),
 descricao varchar(45)
 );
 
@@ -34,7 +32,6 @@ insert into Empresa values
 (null, 'teste', '12345678912345', '2023-10-10', 1191234567, 3);
 
 select * from Empresa;
-select max(idEmpresa) from Empresa;
 
 create table NivelAcesso (
 idNivelAcesso int primary key auto_increment,
@@ -54,7 +51,8 @@ select * from NivelAcesso;
 
 create table statusColaborador (
 idStatusColaborador int primary key auto_increment,
-statusColaborador varchar(45));
+statusColaborador varchar(45)
+);
 
 insert into statusColaborador values
 (null, 'ativo');
@@ -75,10 +73,9 @@ fkStatus int, constraint foreign key(fkStatus) references statusColaborador(idSt
 fkNivelAcesso int, constraint foreign key(fkNivelAcesso) references NivelAcesso(idNivelAcesso) 
 );
 
-select * from Colaborador;
-desc Colaborador;
+insert into Colaborador values (null, 'rafa', 'rafa@gmail.com', 'rafa123', 37637602885, 1, 1, 1);
 
-insert into Colaborador values (null, 'rafa', 'rafa@gmail.com', 'rafa123', 37637602885, 1, 1, 1) ;
+select * from Colaborador;
 
 create table Telefone (
 idTelefone int primary key auto_increment,
@@ -87,17 +84,23 @@ TelFixo char(10),
 fkColaborador int, constraint foreign key(fkColaborador) references Colaborador (idColaborador)
 );
 
+insert into Telefone values
+(null, 11912345678, 1109876543, 1);
+
 select * from Telefone;
 
 create table Endereco (
 idEndereco int primary key auto_increment,
-rua varchar(30),
+rua varchar(45),
 num int,
-estado varchar(30),
+estado varchar(45),
 CEP char(8),
 cidade varchar(45),
 fkEmpresa int, constraint foreign key(fkEmpresa) references Empresa(idEmpresa)
 );
+
+insert into Endereco values
+(null, "rua teste", 284, "são paulo", 08121722, "são paulo", 1);
 
 select * from Endereco;
 
@@ -137,7 +140,8 @@ select * from tipoMaquina;
 
 create table statusMaquina (
 idStatusMaquina int primary key auto_increment,
-statusMaquina varchar(45));
+statusMaquina varchar(45)
+);
 
 insert into statusMaquina values
 (null, 'ativo');
@@ -151,13 +155,15 @@ create table Maquina (
 idMaquina int primary key auto_increment,
 SO varchar(45),
 IP char(9),
-andar varchar(30),
 fkEmpresa int, constraint foreign key(fkEmpresa) references Empresa(idEmpresa),
 fkLocal int, constraint foreign key(fkLocal) references LocalSala(idLocalSala),
 fkPlanoEmpresa int, constraint foreign key(fkPlanoEmpresa) references Plano(idPlano),
 fkStatusMaquina int, constraint foreign key(fkStatusMaquina) references statusMaquina(idStatusMaquina),
 fkTipoMaquina int, constraint foreign key(fkTipoMaquina) references TipoMaquina(idTipoMaquina)
 );
+
+insert into Maquina values 
+(null, "windows 11", 123456789, 1, 1, 1, 1, 1);
 
 select * from Maquina;
 
@@ -170,6 +176,9 @@ fkEmpresa int, constraint foreign key(fkEmpresa) references Empresa(idEmpresa),
 fkPlanoEmpresa int, constraint foreign key(fkPlanoEmpresa) references Plano(idPlano),
 fkTipoMaquina int, constraint foreign key(fkTipoMaquina) references TipoMaquina(idTipoMaquina)
 );
+
+insert into USB values
+(null, "usbTeste", "2023-10-16 12:24:22.333", 1, 1, 3, 1);
 
 select * from USB;
 
@@ -195,6 +204,15 @@ fkPlanoEmpresa int, constraint foreign key(fkPlanoEmpresa) references Plano(idPl
 fkTipoMaquina int, constraint foreign key(fkTipoMaquina) references TipoMaquina(idTipoMaquina)
 );
 
+insert into Componente values
+(null, "cpu", "9 nucleos", 1, 1, 1, 1);
+
+insert into Componente values
+(null, "disco", "500gb", 1, 1, 1, 1);
+
+insert into Componente values
+(null, "ram", "16gb", 1, 1, 1, 1);
+
 select * from Componente;
 
 create table Monitoramento (
@@ -208,4 +226,37 @@ fkTipoMaquina int, constraint foreign key(fkTipoMaquina) references TipoMaquina(
 fkEmpresaMaquina int, constraint foreign key(fkEmpresaMaquina) references Maquina(idMaquina)
 );
 
-select * from Monitoramento;
+select * from Monitoramento; 
+
+create table ProcessosLooca (
+idProcessosLooca int primary key auto_increment,
+nome varchar(45),
+PID int,
+usoCPU varchar(45),
+fkMaquina int, constraint foreign key(fkMaquina) references Maquina(idMaquina),
+fkEmpresa int, constraint foreign key(fkEmpresa) references Empresa(idEmpresa),
+fkTipoMaquina int, constraint foreign key(fkTipoMaquina) references TipoMaquina(idTipoMaquina),
+fkStatusMaquina int, constraint foreign key(fkStatusMaquina) references StatusMaquina(idStatusMaquina)
+);
+
+select * from ProcessosLooca;
+
+create table NivelAvisos (
+idNivelAvisos int primary key auto_increment,
+nivelAvisos varchar(45),
+dataHora date);
+
+select * from NivelAvisos;
+
+create table avisos (
+idAvisos int primary key auto_increment,
+dataHora date,
+fkMonitoramento int, constraint foreign key(fkMonitoramento) references Monitoramento(idMonitoramento),
+fkComponente int, constraint foreign key(fkComponente) references Componente(idComponente),
+fkMaquina int, constraint foreign key(fkMaquina) references Maquina(idMaquina),
+fkEmpresa int, constraint foreign key(fkEmpresa) references Empresa(idEmpresa),
+fkPlanoEmpresa int, constraint foreign key(fkPlanoEmpresa) references Plano(idPlano),
+fkTipoMaquina int, constraint foreign key(fkTipoMaquina) references TipoMaquina(idTipoMaquina),
+fkNivelAviso int, constraint foreign key(fkNivelAviso) references Avisos(idAvisos));
+
+select * from avisos;

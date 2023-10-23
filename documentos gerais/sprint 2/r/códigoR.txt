@@ -1,0 +1,16 @@
+falas sprint 2:
+- introdução + equipe
+- contexto
+- diagrama técnico
+- modelagem 
+- proto persona
+- caso de uso 
+- one page
+- dashboards
+- script de instalação
+- R (tony)
+- listar processos via nano
+- kotlin + jar
+- vm
+- backlog
+- próximos passos + finalização

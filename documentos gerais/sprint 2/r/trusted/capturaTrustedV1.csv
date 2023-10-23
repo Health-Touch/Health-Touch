@@ -1,0 +1,220 @@
+id;porcentagem;data;componente;id máquina;fkPlanoEmpresa;fkTipoMaquina;fkEmpresaMaquina
+1;2.5;22/10/2023 15:27;cpu;1;ultra;computador;health touch
+2;38.9;22/10/2023 15:27;disco;1;ultra;computador;health touch
+3;67.4;22/10/2023 15:27;ram;1;ultra;computador;health touch
+4;2.5;22/10/2023 15:27;cpu;1;ultra;computador;health touch
+5;38.9;22/10/2023 15:27;disco;1;ultra;computador;health touch
+6;67.3;22/10/2023 15:27;ram;1;ultra;computador;health touch
+7;4.3;22/10/2023 15:27;cpu;1;ultra;computador;health touch
+8;38.9;22/10/2023 15:27;disco;1;ultra;computador;health touch
+9;67.3;22/10/2023 15:27;ram;1;ultra;computador;health touch
+10;7.5;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+11;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+12;67.3;22/10/2023 15:28;ram;1;ultra;computador;health touch
+13;7.2;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+14;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+15;68.1;22/10/2023 15:28;ram;1;ultra;computador;health touch
+16;7.6;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+17;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+18;68.2;22/10/2023 15:28;ram;1;ultra;computador;health touch
+19;5.5;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+20;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+21;68.1;22/10/2023 15:28;ram;1;ultra;computador;health touch
+22;5.2;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+23;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+24;68.2;22/10/2023 15:28;ram;1;ultra;computador;health touch
+25;6.3;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+26;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+27;68.2;22/10/2023 15:28;ram;1;ultra;computador;health touch
+28;5.7;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+29;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+30;68.1;22/10/2023 15:28;ram;1;ultra;computador;health touch
+31;6.7;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+32;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+33;68.0;22/10/2023 15:28;ram;1;ultra;computador;health touch
+34;6.0;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+35;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+36;67.8;22/10/2023 15:28;ram;1;ultra;computador;health touch
+37;49.5;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+38;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+39;67.4;22/10/2023 15:28;ram;1;ultra;computador;health touch
+40;9.0;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+41;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+42;67.5;22/10/2023 15:28;ram;1;ultra;computador;health touch
+43;6.8;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+44;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+45;67.5;22/10/2023 15:28;ram;1;ultra;computador;health touch
+46;4.0;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+47;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+48;67.1;22/10/2023 15:28;ram;1;ultra;computador;health touch
+49;3.0;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+50;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+51;66.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+52;1.6;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+53;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+54;66.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+55;2.9;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+56;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+57;66.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+58;2.1;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+59;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+60;66.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+61;3.1;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+62;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+63;66.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+64;2.5;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+65;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+66;66.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+67;3.8;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+68;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+69;66.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+70;2.8;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+71;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+72;66.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+73;2.3;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+74;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+75;66.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+76;1.6;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+77;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+78;66.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+79;2.8;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+80;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+81;66.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+82;2.5;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+83;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+84;66.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+85;2.7;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+86;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+87;66.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+88;2.4;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+89;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+90;66.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+91;2.5;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+92;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+93;66.6;22/10/2023 15:28;ram;1;ultra;computador;health touch
+94;2.7;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+95;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+96;66.6;22/10/2023 15:28;ram;1;ultra;computador;health touch
+97;3.5;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+98;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+99;66.0;22/10/2023 15:28;ram;1;ultra;computador;health touch
+100;3.0;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+101;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+102;66.0;22/10/2023 15:28;ram;1;ultra;computador;health touch
+103;3.4;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+104;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+105;66.0;22/10/2023 15:28;ram;1;ultra;computador;health touch
+106;3.3;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+107;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+108;66.1;22/10/2023 15:28;ram;1;ultra;computador;health touch
+109;2.7;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+110;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+111;66.1;22/10/2023 15:28;ram;1;ultra;computador;health touch
+112;4.4;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+113;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+114;66.1;22/10/2023 15:28;ram;1;ultra;computador;health touch
+115;2.8;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+116;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+117;66.0;22/10/2023 15:28;ram;1;ultra;computador;health touch
+118;3.7;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+119;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+120;66.0;22/10/2023 15:28;ram;1;ultra;computador;health touch
+121;3.5;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+122;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+123;66.0;22/10/2023 15:28;ram;1;ultra;computador;health touch
+124;3.0;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+125;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+126;66.0;22/10/2023 15:28;ram;1;ultra;computador;health touch
+127;4.0;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+128;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+129;66.0;22/10/2023 15:28;ram;1;ultra;computador;health touch
+130;2.7;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+131;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+132;66.0;22/10/2023 15:28;ram;1;ultra;computador;health touch
+133;4.3;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+134;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+135;65.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+136;3.3;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+137;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+138;65.6;22/10/2023 15:28;ram;1;ultra;computador;health touch
+139;4.8;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+140;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+141;65.5;22/10/2023 15:28;ram;1;ultra;computador;health touch
+142;6.0;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+143;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+144;65.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+145;1.8;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+146;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+147;65.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+148;4.7;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+149;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+150;65.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+151;2.3;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+152;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+153;65.7;22/10/2023 15:28;ram;1;ultra;computador;health touch
+154;2.8;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+155;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+156;65.8;22/10/2023 15:28;ram;1;ultra;computador;health touch
+157;3.5;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+158;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+159;65.8;22/10/2023 15:28;ram;1;ultra;computador;health touch
+160;2.5;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+161;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+162;65.9;22/10/2023 15:28;ram;1;ultra;computador;health touch
+163;1.8;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+164;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+165;65.8;22/10/2023 15:28;ram;1;ultra;computador;health touch
+166;3.0;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+167;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+168;65.8;22/10/2023 15:28;ram;1;ultra;computador;health touch
+169;4.5;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+170;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+171;65.8;22/10/2023 15:28;ram;1;ultra;computador;health touch
+172;5.5;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+173;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+174;65.8;22/10/2023 15:28;ram;1;ultra;computador;health touch
+175;3.0;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+176;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+177;65.8;22/10/2023 15:28;ram;1;ultra;computador;health touch
+178;3.8;22/10/2023 15:28;cpu;1;ultra;computador;health touch
+179;38.9;22/10/2023 15:28;disco;1;ultra;computador;health touch
+180;65.8;22/10/2023 15:28;ram;1;ultra;computador;health touch
+181;4.5;22/10/2023 15:29;cpu;1;ultra;computador;health touch
+182;38.9;22/10/2023 15:29;disco;1;ultra;computador;health touch
+183;65.8;22/10/2023 15:29;ram;1;ultra;computador;health touch
+184;3.6;22/10/2023 15:29;cpu;1;ultra;computador;health touch
+185;38.9;22/10/2023 15:29;disco;1;ultra;computador;health touch
+186;65.9;22/10/2023 15:29;ram;1;ultra;computador;health touch
+187;2.5;22/10/2023 15:29;cpu;1;ultra;computador;health touch
+188;38.9;22/10/2023 15:29;disco;1;ultra;computador;health touch
+189;65.8;22/10/2023 15:29;ram;1;ultra;computador;health touch
+190;2.5;22/10/2023 15:29;cpu;1;ultra;computador;health touch
+191;38.9;22/10/2023 15:29;disco;1;ultra;computador;health touch
+192;65.8;22/10/2023 15:29;ram;1;ultra;computador;health touch
+193;4.0;22/10/2023 15:29;cpu;1;ultra;computador;health touch
+194;38.9;22/10/2023 15:29;disco;1;ultra;computador;health touch
+195;65.8;22/10/2023 15:29;ram;1;ultra;computador;health touch
+196;3.1;22/10/2023 15:29;cpu;1;ultra;computador;health touch
+197;38.9;22/10/2023 15:29;disco;1;ultra;computador;health touch
+198;65.7;22/10/2023 15:29;ram;1;ultra;computador;health touch
+199;3.3;22/10/2023 15:29;cpu;1;ultra;computador;health touch
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;

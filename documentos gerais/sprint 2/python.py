@@ -9,8 +9,8 @@ import email.message
 def mysql_connection(host, user, passwd, database=None):
     connection = connect(
         host = host,
-        user = user,
-        passwd = passwd,
+        user = root,
+        passwd = sptech,
         database = database
     )
     return connection
