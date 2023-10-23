@@ -121,11 +121,12 @@
 
             <!-- começo conteudo pagina -->
             <div class="divPaiConteudo">
-                <div class="cadastrarSetro">
+                <div class="cadastrarSetor">
                     <h1>Cadastre aqui o Setor</h1>
                     <div class="entradaSetor">
-                     Nome do Setor<input id="ipt_nomeSetor" type="text">
-                     <button onclick="cadastrarSetores()">Cadastrar</button>
+                        <input id="ipt_nomeSetor" type="text" placeholder="Nome Setor">
+                        <button class="btn_cadastrarSetor" onclick="cadastrarSetores()">Cadastrar</button>
+                    </div>
                 </div>
                 <div class="all" id="all">
                 </div>
@@ -136,6 +137,7 @@
 
 </html>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 <script>
     var Empresa = sessionStorage.NOME_FANTASIA_COLABORADOR;
     nomeEmpresa.innerHTML = Empresa;
@@ -280,11 +282,10 @@
         
           nomeSetorServer:nomeSetorVar
           
-          
         })
       })
        
-
+      window.location = 'setores.html'
       return false
     }
   }

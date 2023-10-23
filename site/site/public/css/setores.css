@@ -1,6 +1,7 @@
 * {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
 }
 
 .divPai {
@@ -11,7 +12,7 @@
 }
 
 /* começo do menu lateral*/
-.divPaiLateral {    
+.divPaiLateral {
     background-color: #020F1F;
     display: flex;
     justify-content: center;
@@ -61,7 +62,7 @@
     top: 8%;
 }
 
-.divPaiOpcoesMenu a{
+.divPaiOpcoesMenu a {
     text-decoration: none;
 }
 
@@ -130,7 +131,7 @@
     height: 4.2vh;
 }
 
-.divCadastroComputador{
+.divCadastroComputador {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -233,8 +234,9 @@
     height: 0.1vh;
     position: relative;
     top: 17%;
-    
+
 }
+
 /* fim do menu lateral */
 
 /* começo da cabeçalho */
@@ -242,7 +244,7 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
-}   
+}
 
 .filhoCabecalho {
     width: 100%;
@@ -304,8 +306,8 @@
 
 .sinoIconCabecalho {
     width: 1.5vw;
-    height: 
-    3vh;
+    height:
+        3vh;
 }
 
 .esquerdaCabecalho {
@@ -322,7 +324,7 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     outline: none;
     display: flex;
-   margin-left: 30px;
+    margin-left: 30px;
 }
 
 .inputLogin::placeholder {
@@ -338,10 +340,11 @@
     position: relative;
     right: 13%;
 }
+
 /* fim do cabeçalho */
 
 /* começo do conteudo */
-.all{
+.all {
     display: flex;
     align-items: center;
     justify-content: start;
@@ -349,88 +352,132 @@
     /* margin-top: 60px; */
     flex-wrap: wrap;
     width: 100%;
-    height: 26vh;
+    height: 50vh;
     position: relative;
     left: 8%;
     /* margin-top: 2%; */
-    
+
 }
+
 .divPaiConteudo {
     width: 100%;
-    height: 64vh;
+    /* height: 64vh; */
     margin-top: 98px;
     display: flex;
     align-items: start;
     justify-content: center;
-    max-height: 85%; /* Ajuste a altura máxima conforme necessário */
-    overflow-y: auto; 
-    
+    flex-direction: column;
+    max-height: 85%;
+    /* Ajuste a altura máxima conforme necessário */
+    overflow-y: auto;
+
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     width: 1px;
 }
 
-.cardPai{
-    height: 18vh;
+.cardPai {
+    height: 20vh;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 1px 5px 15px 1px;
     margin: 10px;
 
 }
-.cardPai:hover{
-cursor: pointer;
+
+.cardPai:hover {
+    cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.35) 10px 15px 20px 2px;
 }
 
-.cardFilho{
+.cardFilho {
     border-left: solid 5px #26aba7;
     margin: 10px 0 0 10px;
     padding: 5px;
 
 }
 
-.cardTexto{
+.cardTexto {
     display: flex;
     justify-content: space-around;
     width: 200px;
 }
 
-.txtUso{
+.txtUso {
     font-size: x-large;
     font-weight: 350;
-    width: 80%;
+    width: 85%;
 }
-.div-img{
+
+.div-img {
     width: 24px;
     height: 25px;
-    background-color: #a8dddcb6;  
+    background-color: #a8dddcb6;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.imgCard{
+
+.imgCard {
     width: 18px;
     height: 18px;
     z-index: 999;
 }
 
-.infoCard{
-    font-size:medium;
+.infoCard {
+    font-size: medium;
     font-size: 200;
     /* margin: 10px 0 0 20px; */
 }
 
-.infoStatus{
-    font-size:small;
+.infoStatus {
+    font-size: small;
     font-weight: 200;
     margin: 20px 9px;
-   
+
 }
-.statusCard{
+
+.statusCard {
     height: 10px;
 }
 
+.cadastrarSetor {
+    width: 39%;
+    height:10vh;
+    border-radius: 0.3125rem;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    /* margin-bottom: 10vh; */
+    position: relative;
+    left: 9%;
+    bottom: 4%;
+}
 
+.cadastrarSetor>h1 {
+    font-family: Inria Sans;
+    font-size:3.5vh;
+}
+
+.entradaSetor > input {
+    height: 4vh;
+    border: none;
+    border-radius: 0.3125rem;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn_cadastrarSetor{
+    background-color: #26aba7;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    height: 5vh;
+    border: none;
+    border-radius: 0.3125rem;
+}
 
 /* fim do conteudo */
