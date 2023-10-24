@@ -14,6 +14,9 @@ router.get("/listarComputadores/:idSetor", function (req, res) {
 router.get("/listarUsb", function (req, res) {
     avisoController.listarUsb(req, res);
 });
+router.get("/listarSetor/:idMaquina", function (req, res) {
+    avisoController.listarSetor(req, res);
+});
 
 router.get("/listar/:idUsuario", function (req, res) {
     avisoController.listarPorUsuario(req, res);

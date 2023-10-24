@@ -50,7 +50,16 @@ function listarComputadores(idSetor) {
 function listarUsb() {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarUsb()");
     var instrucao = `
-    select idUSB, nomeUsb,   DATE_FORMAT(dtHoraInsercao, '%m/%d/%Y %H:%i:%s') as dtHoraInsercao, fkMaquina  from USB join Maquina on fkMaquina = idMaquina where fkMaquina = 1;
+    select idUSB, nomeUsb,   DATE_FORMAT(dtHoraInserção, '%m/%d/%Y %H:%i:%s') as dtHoraInsercao, fkMaquina  from USB join Maquina on fkMaquina = idMaquina where fkMaquina = 1;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function listarSetor(idMaquina) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarSetor()");
+    var instrucao = `
+    select idSetor, nome from setor join LocalSala on idSetor = fkSetor join Maquina on fkLocal = idLocalSala where idMaquina = ${idMaquina};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -133,6 +142,7 @@ module.exports = {
     listarTodosComputadores,
     listarTodosFuncionarios,
     listarUsb,
+    listarSetor,
     listarPorUsuario,
     pesquisarDescricao,
     publicar,

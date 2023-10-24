@@ -1,13 +1,13 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidasCpu(cpu, fkMaquina) {
+function buscarUltimasMedidasCpu(idMaquina) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "cpu" and Monitoramento.fkMaquina = ${fkMaquina};`;
+        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%Hh') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "cpu" and Monitoramento.fkMaquina = ${idMaquina};`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "cpu" and Monitoramento.fkMaquina = ${fkMaquina};`;
+        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%Hh') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "cpu" and Monitoramento.fkMaquina = ${idMaquina};`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -17,15 +17,34 @@ function buscarUltimasMedidasCpu(cpu, fkMaquina) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoRealCpu(cpu) {
+function buscarMedidasEmTempoRealCpu(idMaquina) {
+console.log(idMaquina + "entrei")
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%Hh') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "cpu" and Monitoramento.fkMaquina = ${idMaquina};`;
+        
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%Hh') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "cpu" and Monitoramento.fkMaquina = ${idMaquina};`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarUltimasMedidasDisco(idMaquina) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "cpu" and Monitoramento.fkMaquina = ${fkMaquina};`;
-
+        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%Hh') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "disco" and Monitoramento.fkMaquina = ${idMaquina};`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "cpu" and Monitoramento.fkMaquina = ${fkMaquina};`;
+        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%Hh') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "disco" and Monitoramento.fkMaquina = ${idMaquina};`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -35,32 +54,15 @@ function buscarMedidasEmTempoRealCpu(cpu) {
     return database.executar(instrucaoSql);
 }
 
-function buscarUltimasMedidasDisco(disco) {
+function buscarMedidasEmTempoRealDisco(idMaquina) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "disco";`;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "disco";`;
-    } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-        return
-    }
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-function buscarMedidasEmTempoRealDisco(disco) {
-
-    instrucaoSql = ''
-
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "disco";`;
+        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%Hh') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "disco" and Monitoramento.fkMaquina = ${idMaquina};`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "disco";`;
+        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%Hh') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "disco" and Monitoramento.fkMaquina = ${idMaquina};`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -75,9 +77,9 @@ function buscarUltimasMedidasRam(ram) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "ram";`;
+        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%Hh') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "ram";`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "ram";`;
+        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%Hh') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "ram";`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -92,10 +94,10 @@ function buscarMedidasEmTempoRealRam(ram) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "ram";`;
+        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%Hh') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "ram";`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "ram";`;
+        instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%Hh') AS horario from Monitoramento join Componente on idComponente = fkComponente where nome = "ram";`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
