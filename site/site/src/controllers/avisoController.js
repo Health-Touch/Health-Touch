@@ -35,6 +35,27 @@ function listarComputadores(req, res) {
     }
 }
 
+function verificarSetor(req, res) {
+    var idSetor = req.params.idSetor;
+    
+    if (idSetor == undefined) {
+        res.status(400).send('Seu idSetor está undefined!')
+    }
+    else{
+        avisoModel.verificarSetor(idSetor).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
+}
+
 function listarTodosComputadores(req, res) {
     avisoModel.listarTodosComputadores().then(function (resultado) {
         if (resultado.length > 0) {
@@ -207,6 +228,7 @@ module.exports = {
     listar,
     listarComputadores,
     listarTodosComputadores,
+    verificarSetor,
     listarTodosFuncionarios,
     listarUsb,
     listarSetor,

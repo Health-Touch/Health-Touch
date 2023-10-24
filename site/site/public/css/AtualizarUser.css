@@ -376,6 +376,10 @@
     flex-direction: column;
 }
 
+.AtualizarImg h1{
+    font-size: 20px;
+}
+
 .AtualizarImg>img {
     width: 50%;
     height: 40%;
@@ -388,7 +392,6 @@
     height: 12%;
     /* background-color: #01F; */
     text-align: center;
-    font-family: Inria Sans;
     /* border-radius: 6.3125rem; */
 }
 
@@ -449,10 +452,14 @@
     align-items: center;
 }
 
+#FotoUser {
+    width: 10vw;
+    height: 22vh;
+}
+
 .Campo>p {
     width: 25%;
     text-align: start;
-    font-family: Inter;
     color: rgba(0, 0, 0, 0.50);
 }
 

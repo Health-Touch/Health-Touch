@@ -132,10 +132,9 @@
         <!-- começo conteudo pagina -->
         <div class="divPaiConteudo">
             <div class="AtualizarImg">
-                <input type="file" id="input_ImgUser">
                 <img src="assets/img/ExemploUser.jpg" id="FotoUser" alt="" >
-                <h1>Anthony Bento</h1>
-                <h3>CEO</h3>
+                <h1 id="idNomeFoto">Anthony Bento</h1>
+                <h3 id="cargoFoto">CEO</h3>
             </div>
             <div class="AtualizarDados">
                 <div class="divAtualizarDadosLE">
@@ -190,8 +189,9 @@
 
 <script>
 
-var nome = sessionStorage.NOME_COLABORADOR;
+    var nome = sessionStorage.NOME_COLABORADOR;
     tituloPerfil.innerHTML = nome;
+    idNomeFoto.innerHTML = nome;
 
     var cargo = sessionStorage.NIVELACESSO_COLABORADOR;
     if (cargo == "RL") {
@@ -200,7 +200,9 @@ var nome = sessionStorage.NOME_COLABORADOR;
         cargo = "Gerente TI"
     }
 
-    cargoPerfil.innerHTML = cargo
+    cargoPerfil.innerHTML = cargo;
+    cargoFoto.innerHTML = cargo;
+
     var Empresa = sessionStorage.NOME_FANTASIA_COLABORADOR;
     nomeEmpresa.innerHTML = Empresa;
 </script>

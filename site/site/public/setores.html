@@ -170,7 +170,7 @@
 
 
                         all.innerHTML += ` 
-                        <div class="cardPai" onclick="mostrarComputadores(${publicacao.idSetor})">
+                        <div class="cardPai" onclick="VerificarSetor(${publicacao.idSetor})">
                             <div class="cardFilho">
                                 <div class="cardTexto">
                                     <span class="txtUso" id="feed2" > Setor ${publicacao.idSetor}</span>
@@ -194,6 +194,7 @@
 
     function mostrarComputadores(idSetor) {
 
+        
         console.log(idSetor)
 
         sessionStorage.IDSETOR = idSetor
@@ -295,6 +296,40 @@
             return false
         }
     }
+
+    
+    function VerificarSetor(idSetor) {
+        fetch(`/avisos/verificarSetor/${idSetor}`).then(function (resposta) {
+
+            if (resposta.ok) {
+                
+                console.log("ENTREII")
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    // var Verificar = resposta;
+                    // alert(resposta.qtdRegistrar)
+                    // var res = resposta.json
+
+
+                    var qtd = resposta[0].qtdRegistrar
+                    console.log(qtd)
+                    if (qtd == 0) {
+                        swal.fire ('Nenhuma Máquina Cadastrada')
+                    } else {
+                        mostrarComputadores(idSetor);
+                    }
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
+    }
+    
 
 
     var nome = sessionStorage.NOME_COLABORADOR;

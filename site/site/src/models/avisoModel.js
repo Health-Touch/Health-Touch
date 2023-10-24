@@ -20,6 +20,18 @@ function listarTodosFuncionarios() {
     return database.executar(instrucao);
 }
 
+
+function verificarSetor(idSetor) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n");
+    var instrucao = `
+    select count(maquina.idMaquina) as qtdRegistrar from maquina 
+                                    join LocalSala on fklocal = idLocalSala
+                                    join setor on fksetor = idSetor where setor.idSetor = ${idSetor} ;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function listarTodosComputadores() {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n");
     var instrucao = `
@@ -141,6 +153,7 @@ module.exports = {
     listarComputadores,
     listarTodosComputadores,
     listarTodosFuncionarios,
+    verificarSetor,
     listarUsb,
     listarSetor,
     listarPorUsuario,

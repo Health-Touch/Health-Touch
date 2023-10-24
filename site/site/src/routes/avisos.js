@@ -11,6 +11,10 @@ router.get("/listarComputadores/:idSetor", function (req, res) {
     avisoController.listarComputadores(req, res);
 });
 
+router.get("/verificarSetor/:idSetor", function (req, res) {
+    avisoController.verificarSetor(req, res);
+});
+
 router.get("/listarUsb", function (req, res) {
     avisoController.listarUsb(req, res);
 });
