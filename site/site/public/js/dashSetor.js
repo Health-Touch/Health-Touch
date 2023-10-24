@@ -1,7 +1,7 @@
 function validarSetor() {
-  var idComputador = sessionStorage.ID_COMPUTADOR
+  var idComputador = sessionStorage.ID_MAQUINA
   var setor = sessionStorage.NOME_SETOR
-  var sala = sessionStorage.ID_SALA
+  var sala = sessionStorage.IDSETOR
 
   var computador = document.getElementById('idComputador')
   var nomeSetor = document.getElementById('nomeSetor')
@@ -31,18 +31,18 @@ function exibirMenuPerfil() {
 }
 
 //Começo Analise atual componente
-function obterdados(idDispositivo) {
-  fetch(`/dashboard/tempo-real/${idDispositivo}`)
+function obterdados(idMaquina) {
+  fetch(`/dashboard/tempo-real/${idMaquina}`)
     .then(resposta => {
       if (resposta.status == 200) {
         resposta.json().then(resposta => {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`)
 
-          // alertar(resposta, idDispositivo)
+          // alertar(resposta, idMaquina)
         })
       } else {
         console.error(
-          `Nenhum dado encontrado para o id ${idDispositivo} ou erro na API`
+          `Nenhum dado encontrado para o id ${idMaquina} ou erro na API`
         )
       }
     })
@@ -55,7 +55,7 @@ function obterdados(idDispositivo) {
 
 function atualizacaoPeriodica() {
   JSON.parse(sessionStorage.MAQUINAS).forEach(item => {
-    obterdados(item.idDispositivo)
+    obterdados(item.idMaquina)
   })
   setTimeout(atualizacaoPeriodica, 5000)
 }
@@ -66,7 +66,7 @@ window.onload = exibirDadosDoUsuario()
 function exibirDadosDoUsuario() {
   var maquinas = JSON.parse(sessionStorage.MAQUINAS)
   maquinas.forEach(item => {
-    obterDadosGrafico(item.idDispositivo)
+    obterDadosGrafico(item.idMaquina)
   })
 
   // var avisos = JSON.parse(sessionStorage.AVISOS);
@@ -98,19 +98,19 @@ function exibirDadosDoUsuario() {
 
 //     Para ajustar o "select", ajuste o comando sql em src/models
 
-function obterDadosGrafico(idDispositivo) {
+function obterDadosGrafico(idMaquina) {
   if (proximaAtualizacao != undefined) {
     clearTimeout(proximaAtualizacao)
   }
 
-  fetch(`/dashboard/ultimas/${idDispositivo}`, { cache: 'no-store' })
+  fetch(`/dashboard/ultimas/${idMaquina}`, { cache: 'no-store' })
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`)
           resposta.reverse()
 
-          plotarGrafico(resposta, idDispositivo)
+          plotarGrafico(resposta, idMaquina)
         })
       } else {
         console.error('Nenhum dado encontrado ou erro na API')
@@ -121,7 +121,7 @@ function obterDadosGrafico(idDispositivo) {
     })
 }
 
-function plotarGrafico(resposta, idDispositivo) {
+function plotarGrafico(resposta, idMaquina) {
   console.log('iniciando plotagem do gráfico...')
 
   // Criando estrutura para plotar gráfico - labels
@@ -131,14 +131,14 @@ function plotarGrafico(resposta, idDispositivo) {
   maquinas.forEach(item => {
     if (item.fkComponente === 1) {
       var usoCpu = document.getElementById('percentCpu')
-      var txtUsoCpu = item.porcentagem
+      var txtUsoCpu = `${item.porcentagem}%`
       usoCpu.innerHTML = txtUsoCpu
 
       var graphCpu = document.getElementById('usoCpu')
-      graphCpu.style.background = `linear-gradient(90deg, rgba(114,240,172,1) ${txtUsoCpu}, rgba(221,221,221,1) 0%)`
+      graphCpu.style.background = `linear-gradient(90deg, rgba(114,240,172,1) ${txtUsoCpu}$, rgba(221,221,221,1) 0%)`
     } else if (item.fkComponente === 2) {
       var usoRam = document.getElementById('percentRam')
-      var txtUsoRam = item.porcentagem
+      var txtUsoRam = `${item.porcentagem}%`
       usoRam.innerHTML = txtUsoRam
 
       var graphRam = document.getElementById('usoRam')
@@ -147,7 +147,7 @@ function plotarGrafico(resposta, idDispositivo) {
       graphRam.style.background = ram
     } else if (item.fkComponente === 3) {
       var usoDisco = document.getElementById('percentDisco')
-      var txtUsoDisco = item.porcentagem
+      var txtUsoDisco = `${item.porcentagem}%`
       usoDisco.innerHTML = txtUsoDisco
 
       var graphDisco = document.getElementById('usoDisco')
@@ -181,20 +181,20 @@ function plotarGrafico(resposta, idDispositivo) {
   // console.log(dados.datasets)
   // console.log('----------------------------------------------')
 
-  setTimeout(() => atualizarGrafico(idDispositivo), 2000)
+  setTimeout(() => atualizarGrafico(idMaquina), 2000)
 }
 
-function atualizarGrafico(idDispositivo) {
-  fetch(`/dashboard/tempo-real/${idDispositivo}`, { cache: 'no-store' })
+function atualizarGrafico(idMaquina) {
+  fetch(`/dashboard/tempo-real/${idMaquina}`, { cache: 'no-store' })
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (novoRegistro) {
-          obterdados(idDispositivo)
-          // alertar(novoRegistro, idDispositivo);
+          obterdados(idMaquina)
+          // alertar(novoRegistro, idMaquina);
           console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`)
           console.log(`Dados atuais do gráfico:`)
 
-          // let avisoCaptura = document.getElementById(`avisoCaptura${idDispositivo}`)
+          // let avisoCaptura = document.getElementById(`avisoCaptura${idMaquina}`)
           // avisoCaptura.innerHTML = ""
 
           //aq a gente muda os novos valores dos dados
@@ -204,14 +204,14 @@ function atualizarGrafico(idDispositivo) {
           maquinas.forEach(item => {
             if (item.fkComponente === 1) {
               var usoCpu = document.getElementById('percentCpu')
-              var txtUsoCpu = item.porcentagem
+              var txtUsoCpu = `${item.porcentagem}%`
               usoCpu.innerHTML = txtUsoCpu
 
               var graphCpu = document.getElementById('usoCpu')
               graphCpu.style.background = `linear-gradient(90deg, rgba(114,240,172,1) ${txtUsoCpu}, rgba(221,221,221,1) 0%)`
             } else if (item.fkComponente === 2) {
               var usoRam = document.getElementById('percentRam')
-              var txtUsoRam = item.porcentagem
+              var txtUsoRam = `${item.porcentagem}%`
               usoRam.innerHTML = txtUsoRam
 
               var graphRam = document.getElementById('usoRam')
@@ -220,7 +220,7 @@ function atualizarGrafico(idDispositivo) {
               graphRam.style.background = ram
             } else if (item.fkComponente === 3) {
               var usoDisco = document.getElementById('percentDisco')
-              var txtUsoDisco = item.porcentagem
+              var txtUsoDisco = `${item.porcentagem}%`
               usoDisco.innerHTML = txtUsoDisco
 
               var graphDisco = document.getElementById('usoDisco')
@@ -231,17 +231,14 @@ function atualizarGrafico(idDispositivo) {
 
           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
           proximaAtualizacao = setTimeout(
-            () => atualizarGrafico(idDispositivo),
+            () => atualizarGrafico(idMaquina),
             2000
           )
         })
       } else {
         console.error('Nenhum dado encontrado ou erro na API')
         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-        proximaAtualizacao = setTimeout(
-          () => atualizarGrafico(idDispositivo),
-          2000
-        )
+        proximaAtualizacao = setTimeout(() => atualizarGrafico(idMaquina), 2000)
       }
     })
     .catch(function (error) {
@@ -251,18 +248,18 @@ function atualizarGrafico(idDispositivo) {
 //Fim Analise atual componente
 
 //Começo Avisos
-function obteravisos(idDispositivo) {
-  fetch(`/dashboard/avisos/tempo-real/${idDispositivo}`)
+function obteravisos(idMaquina) {
+  fetch(`/dashboard/avisos/tempo-real/${idMaquina}`)
     .then(resposta => {
       if (resposta.status == 200) {
         resposta.json().then(resposta => {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`)
 
-          // alertar(resposta, idDispositivo)
+          // alertar(resposta, idMaquina)
         })
       } else {
         console.error(
-          `Nenhum dado encontrado para o id ${idDispositivo} ou erro na API`
+          `Nenhum dado encontrado para o id ${idMaquina} ou erro na API`
         )
       }
     })
@@ -280,23 +277,23 @@ function atualizacaoPeriodicaAviso() {
   setTimeout(atualizacaoPeriodicaAviso, 5000)
 }
 
-idDispositivo = sessionStorage.ID_COMPUTADOR
-// window.onload = obterAvisosGrafico(idDispositivo)
+idMaquina = sessionStorage.ID_MAQUINA
+// window.onload = obterAvisosGrafico(idMaquina)
 window.onload = exibirAvisosDoUsuario()
 
 function exibirAvisosDoUsuario() {
   var maquinas = JSON.parse(sessionStorage.MAQUINAS)
   maquinas.forEach(item => {
-    obterAvisosGrafico(item.idDispositivo)
+    obterAvisosGrafico(item.idMaquina)
   })
 }
 
-function obterAvisosGrafico(idDispositivo) {
+function obterAvisosGrafico(idMaquina) {
   if (proximaAtualizacao != undefined) {
     clearTimeout(proximaAtualizacao)
   }
 
-  fetch(`/dashboard/ultimos/${idDispositivo}`, { cache: 'no-store' })
+  fetch(`/dashboard/ultimos/${idMaquina}`, { cache: 'no-store' })
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta) {
@@ -314,7 +311,7 @@ function obterAvisosGrafico(idDispositivo) {
             sessionStorage.AVISOS = JSON.stringify(json.aviso)
           }
 
-          plotarAviso(resposta, idDispositivo)
+          plotarAviso(resposta, idMaquina)
         })
       } else {
         console.error('Nenhum dado encontrado ou erro na API')
@@ -325,7 +322,7 @@ function obterAvisosGrafico(idDispositivo) {
     })
 }
 
-function plotarAviso(resposta, idDispositivo) {
+function plotarAviso(resposta, idMaquina) {
   console.log('iniciando plotagem do aviso...')
 
   // Criando estrutura para plotar gráfico - labels
@@ -374,15 +371,15 @@ function plotarAviso(resposta, idDispositivo) {
   )
   console.log(resposta)
 
-  setTimeout(() => atualizarAviso(idDispositivo), 2000)
+  setTimeout(() => atualizarAviso(idMaquina), 2000)
 }
 
-function atualizarAviso(idDispositivo) {
-  fetch(`/dashboard/avisos/tempo-real/${idDispositivo}`, { cache: 'no-store' })
+function atualizarAviso(idMaquina) {
+  fetch(`/dashboard/avisos/tempo-real/${idMaquina}`, { cache: 'no-store' })
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (novoRegistro) {
-          obteravisos(idDispositivo)
+          obteravisos(idMaquina)
           // alertar(novoRegistro, idAviso);
           console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`)
           console.log(`Dados atuais do gráfico:`)
@@ -432,18 +429,12 @@ function atualizarAviso(idDispositivo) {
           })
 
           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-          proximaAtualizacao = setTimeout(
-            () => atualizarAviso(idDispositivo),
-            2000
-          )
+          proximaAtualizacao = setTimeout(() => atualizarAviso(idMaquina), 2000)
         })
       } else {
         console.error('Nenhum dado encontrado ou erro na API')
         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-        proximaAtualizacao = setTimeout(
-          () => atualizarAviso(idDispositivo),
-          2000
-        )
+        proximaAtualizacao = setTimeout(() => atualizarAviso(idMaquina), 2000)
       }
     })
     .catch(function (error) {
@@ -453,18 +444,18 @@ function atualizarAviso(idDispositivo) {
 //Fim aviso
 
 //Começo usb
-function obterusb(idDispositivo) {
-  fetch(`/dashboard/usb/tempo-real/${idDispositivo}`)
+function obterusb(idMaquina) {
+  fetch(`/dashboard/usb/tempo-real/${idMaquina}`)
     .then(resposta => {
       if (resposta.status == 200) {
         resposta.json().then(resposta => {
           console.log(`Dados de usb recebidos: ${JSON.stringify(resposta)}`)
 
-          // alertar(resposta, idDispositivo)
+          // alertar(resposta, idMaquina)
         })
       } else {
         console.error(
-          `Nenhum dado de usb encontrado para o id ${idDispositivo} ou erro na API`
+          `Nenhum dado de usb encontrado para o id ${idMaquina} ou erro na API`
         )
       }
     })
@@ -477,7 +468,7 @@ function obterusb(idDispositivo) {
 
 function atualizacaoPeriodicaUsb() {
   JSON.parse(sessionStorage.MAQUINAS).forEach(item => {
-    obterusb(item.idDispositivo)
+    obterusb(item.idMaquina)
   })
   setTimeout(atualizacaoPeriodicaUsb, 5000)
 }
@@ -487,23 +478,23 @@ window.onload = exibirUsbDoUsuario()
 function exibirUsbDoUsuario() {
   var maquinas = JSON.parse(sessionStorage.MAQUINAS)
   maquinas.forEach(item => {
-    obterUsbGrafico(item.idDispositivo)
+    obterUsbGrafico(item.idMaquina)
   })
 }
 
-function obterUsbGrafico(idDispositivo) {
+function obterUsbGrafico(idMaquina) {
   if (proximaAtualizacao != undefined) {
     clearTimeout(proximaAtualizacao)
   }
 
-  fetch(`/dashboard/usb/${idDispositivo}`, { cache: 'no-store' })
+  fetch(`/dashboard/usb/${idMaquina}`, { cache: 'no-store' })
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Usb recebidos: ${JSON.stringify(resposta)}`)
           // resposta.reverse()
 
-          plotarUsb(resposta, idDispositivo)
+          plotarUsb(resposta, idMaquina)
         })
       } else {
         console.error('Nenhum dado encontrado ou erro na API')
@@ -516,7 +507,7 @@ function obterUsbGrafico(idDispositivo) {
     })
 }
 
-function plotarUsb(resposta, idDispositivo) {
+function plotarUsb(resposta, idMaquina) {
   console.log('iniciando plotagem do usb...')
 
   // Criando estrutura para plotar gráfico - labels
@@ -540,16 +531,16 @@ function plotarUsb(resposta, idDispositivo) {
   )
   console.log(resposta)
 
-  setTimeout(() => atualizarUsb(idDispositivo), 2000)
+  setTimeout(() => atualizarUsb(idMaquina), 2000)
 }
 
-function atualizarUsb(idDispositivo) {
-  fetch(`/dashboard/usb/tempo-real/${idDispositivo}`, { cache: 'no-store' })
+function atualizarUsb(idMaquina) {
+  fetch(`/dashboard/usb/tempo-real/${idMaquina}`, { cache: 'no-store' })
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (novoRegistro) {
-          obterusb(idDispositivo)
-          // alertar(novoRegistro, idDispositivo);
+          obterusb(idMaquina)
+          // alertar(novoRegistro, idMaquina);
           console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`)
           console.log(`Dados atuais do gráfico:`)
 
@@ -569,15 +560,12 @@ function atualizarUsb(idDispositivo) {
           })
 
           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-          proximaAtualizacao = setTimeout(
-            () => atualizarUsb(idDispositivo),
-            2000
-          )
+          proximaAtualizacao = setTimeout(() => atualizarUsb(idMaquina), 2000)
         })
       } else {
         console.error('Nenhum dado encontrado ou erro na API')
         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-        proximaAtualizacao = setTimeout(() => atualizarUsb(idDispositivo), 2000)
+        proximaAtualizacao = setTimeout(() => atualizarUsb(idMaquina), 2000)
       }
     })
     .catch(function (error) {
@@ -587,18 +575,18 @@ function atualizarUsb(idDispositivo) {
 //Fim usb
 
 //Começo media componente
-function obtermedia(idDispositivo) {
-  fetch(`/dashboard/media/tempo-real/${idDispositivo}`)
+function obtermedia(idMaquina) {
+  fetch(`/dashboard/media/tempo-real/${idMaquina}`)
     .then(resposta => {
       if (resposta.status == 200) {
         resposta.json().then(resposta => {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`)
 
-          // alertar(resposta, idDispositivo)
+          // alertar(resposta, idMaquina)
         })
       } else {
         console.error(
-          `Nenhum dado encontrado para o id ${idDispositivo} ou erro na API`
+          `Nenhum dado encontrado para o id ${idMaquina} ou erro na API`
         )
       }
     })
@@ -611,7 +599,7 @@ function obtermedia(idDispositivo) {
 
 function atualizacaoPeriodicaMedia() {
   JSON.parse(sessionStorage.MAQUINAS).forEach(item => {
-    obtermedia(item.idDispositivo)
+    obtermedia(item.idMaquina)
   })
   setTimeout(atualizacaoPeriodicaMedia, 5000)
 }
@@ -621,23 +609,23 @@ window.onload = exibirMediaDoUsuario()
 function exibirMediaDoUsuario() {
   var maquinas = JSON.parse(sessionStorage.MAQUINAS)
   maquinas.forEach(item => {
-    obterMediaGrafico(item.idDispositivo)
+    obterMediaGrafico(item.idMaquina)
   })
 }
 
-function obterMediaGrafico(idDispositivo) {
+function obterMediaGrafico(idMaquina) {
   if (proximaAtualizacao != undefined) {
     clearTimeout(proximaAtualizacao)
   }
 
-  fetch(`/dashboard/media/${idDispositivo}`, { cache: 'no-store' })
+  fetch(`/dashboard/media/${idMaquina}`, { cache: 'no-store' })
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`)
           // resposta.reverse()
 
-          plotarMedia(resposta, idDispositivo)
+          plotarMedia(resposta, idMaquina)
         })
       } else {
         console.error('Nenhum dado encontrado ou erro na API')
@@ -648,7 +636,7 @@ function obterMediaGrafico(idDispositivo) {
     })
 }
 
-function plotarMedia(resposta, idDispositivo) {
+function plotarMedia(resposta, idMaquina) {
   console.log('iniciando plotagem do gráfico...')
 
   // Criando estrutura para plotar gráfico - labels
@@ -675,16 +663,16 @@ function plotarMedia(resposta, idDispositivo) {
   )
   console.log(resposta)
 
-  setTimeout(() => atualizarMedia(idDispositivo), 2000)
+  setTimeout(() => atualizarMedia(idMaquina), 2000)
 }
 
-function atualizarMedia(idDispositivo) {
-  fetch(`/dashboard/media/tempo-real/${idDispositivo}`, { cache: 'no-store' })
+function atualizarMedia(idMaquina) {
+  fetch(`/dashboard/media/tempo-real/${idMaquina}`, { cache: 'no-store' })
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (novoRegistro) {
-          obtermedia(idDispositivo)
-          // alertar(novoRegistro, idDispositivo);
+          obtermedia(idMaquina)
+          // alertar(novoRegistro, idMaquina);
           console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`)
           console.log(`Dados atuais do gráfico:`)
 
@@ -707,18 +695,12 @@ function atualizarMedia(idDispositivo) {
           })
 
           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-          proximaAtualizacao = setTimeout(
-            () => atualizarMedia(idDispositivo),
-            2000
-          )
+          proximaAtualizacao = setTimeout(() => atualizarMedia(idMaquina), 2000)
         })
       } else {
         console.error('Nenhum dado encontrado ou erro na API')
         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-        proximaAtualizacao = setTimeout(
-          () => atualizarMedia(idDispositivo),
-          2000
-        )
+        proximaAtualizacao = setTimeout(() => atualizarMedia(idMaquina), 2000)
       }
     })
     .catch(function (error) {
@@ -728,18 +710,18 @@ function atualizarMedia(idDispositivo) {
 //Fim media componente
 
 //Começo insight componente
-function obterinsight(idDispositivo) {
-  fetch(`/dashboard/insight/tempo-real/${idDispositivo}`)
+function obterinsight(idMaquina) {
+  fetch(`/dashboard/insight/tempo-real/${idMaquina}`)
     .then(resposta => {
       if (resposta.status == 200) {
         resposta.json().then(resposta => {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`)
 
-          // alertar(resposta, idDispositivo)
+          // alertar(resposta, idMaquina)
         })
       } else {
         console.error(
-          `Nenhum dado encontrado para o id ${idDispositivo} ou erro na API`
+          `Nenhum dado encontrado para o id ${idMaquina} ou erro na API`
         )
       }
     })
@@ -752,7 +734,7 @@ function obterinsight(idDispositivo) {
 
 function atualizacaoPeriodicaInsight() {
   JSON.parse(sessionStorage.MAQUINAS).forEach(item => {
-    obterinsight(item.idDispositivo)
+    obterinsight(item.idMaquina)
   })
   setTimeout(atualizacaoPeriodicaInsight, 5000)
 }
@@ -762,23 +744,23 @@ window.onload = exibirInsightDoUsuario()
 function exibirInsightDoUsuario() {
   var maquinas = JSON.parse(sessionStorage.MAQUINAS)
   maquinas.forEach(item => {
-    obterInsightGrafico(item.idDispositivo)
+    obterInsightGrafico(item.idMaquina)
   })
 }
 
-function obterInsightGrafico(idDispositivo) {
+function obterInsightGrafico(idMaquina) {
   if (proximaAtualizacao != undefined) {
     clearTimeout(proximaAtualizacao)
   }
 
-  fetch(`/dashboard/insight/${idDispositivo}`, { cache: 'no-store' })
+  fetch(`/dashboard/insight/${idMaquina}`, { cache: 'no-store' })
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`)
           // resposta.reverse()
 
-          plotarInsight(resposta, idDispositivo)
+          plotarInsight(resposta, idMaquina)
         })
       } else {
         console.error('Nenhum dado encontrado ou erro na API')
@@ -789,7 +771,7 @@ function obterInsightGrafico(idDispositivo) {
     })
 }
 
-function plotarInsight(resposta, idDispositivo) {
+function plotarInsight(resposta, idMaquina) {
   console.log('iniciando plotagem do gráfico...')
 
   // Criando estrutura para plotar gráfico - labels
@@ -849,16 +831,16 @@ function plotarInsight(resposta, idDispositivo) {
   )
   console.log(resposta)
 
-  setTimeout(() => atualizarInsight(idDispositivo), 2000)
+  setTimeout(() => atualizarInsight(idMaquina), 2000)
 }
 
-function atualizarInsight(idDispositivo) {
-  fetch(`/dashboard/insight/tempo-real/${idDispositivo}`, { cache: 'no-store' })
+function atualizarInsight(idMaquina) {
+  fetch(`/dashboard/insight/tempo-real/${idMaquina}`, { cache: 'no-store' })
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (novoRegistro) {
-          obterinsight(idDispositivo)
-          // alertar(novoRegistro, idDispositivo);
+          obterinsight(idMaquina)
+          // alertar(novoRegistro, idMaquina);
           console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`)
           console.log(`Dados atuais do gráfico:`)
 
@@ -915,17 +897,14 @@ function atualizarInsight(idDispositivo) {
 
           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
           proximaAtualizacao = setTimeout(
-            () => atualizarInsight(idDispositivo),
+            () => atualizarInsight(idMaquina),
             2000
           )
         })
       } else {
         console.error('Nenhum dado encontrado ou erro na API')
         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-        proximaAtualizacao = setTimeout(
-          () => atualizarInsight(idDispositivo),
-          2000
-        )
+        proximaAtualizacao = setTimeout(() => atualizarInsight(idMaquina), 2000)
       }
     })
     .catch(function (error) {

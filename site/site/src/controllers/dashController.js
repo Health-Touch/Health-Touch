@@ -1,9 +1,9 @@
 // Começo da dash setor
 var dashModel = require('../models/dashModel')
 
-function autenticar2(req, res) {
+function setor(req, res) {
   dashModel
-    .autenticar2()
+    .setor()
     .then(function (resultado) {
       console.log(`\nResultados encontrados: ${resultado.length}`)
       console.log(`Resultados: ${JSON.stringify(resultado)}`) // transforma JSON em String
@@ -65,12 +65,12 @@ function buscarMaquinas(req, res) {
 //Analise atual
 function buscarUltimasMedidas(req, res) {
   // const limite_linhas = 7;
-  var idDispositivo = req.params.idDispositivo
+  var idMaquina = req.params.idMaquina
 
   console.log(`Recuperando as ultimas medidas`)
 
   dashModel
-    .buscarUltimasMedidas(idDispositivo)
+    .buscarUltimasMedidas(idMaquina)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado)
@@ -89,12 +89,12 @@ function buscarUltimasMedidas(req, res) {
 }
 
 function buscarMedidasEmTempoReal(req, res) {
-  var idDispositivo = req.params.idDispositivo
+  var idMaquina = req.params.idMaquina
 
   console.log(`Recuperando medidas em tempo real`)
 
   dashModel
-    .buscarMedidasEmTempoReal(idDispositivo)
+    .buscarMedidasEmTempoReal(idMaquina)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado)
@@ -114,12 +114,12 @@ function buscarMedidasEmTempoReal(req, res) {
 
 //avisos
 function buscarUltimosAvisos(req, res) {
-  var idDispositivo = req.params.idDispositivo
+  var idMaquina = req.params.idMaquina
 
   console.log(`Recuperando as ultimas medidas`)
 
   dashModel
-    .buscarUltimosAvisos(idDispositivo)
+    .buscarUltimosAvisos(idMaquina)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado)
@@ -138,12 +138,12 @@ function buscarUltimosAvisos(req, res) {
 }
 
 function buscarAvisosEmTempoReal(req, res) {
-  var idDispositivo = req.params.idDispositivo
+  var idMaquina = req.params.idMaquina
 
   console.log(`Recuperando Avisos em tempo real`)
 
   dashModel
-    .buscarAvisosEmTempoReal(idDispositivo)
+    .buscarAvisosEmTempoReal(idMaquina)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado)
@@ -163,12 +163,12 @@ function buscarAvisosEmTempoReal(req, res) {
 
 //usb
 function buscarUltimosUsb(req, res) {
-  var idDispositivo = req.params.idDispositivo
+  var idMaquina = req.params.idMaquina
 
   console.log(`Recuperando os ultimos usbs`)
 
   dashModel
-    .buscarUltimosUsb(idDispositivo)
+    .buscarUltimosUsb(idMaquina)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado)
@@ -184,12 +184,12 @@ function buscarUltimosUsb(req, res) {
 }
 
 function buscarUsbEmTempoReal(req, res) {
-  var idDispositivo = req.params.idDispositivo
+  var idMaquina = req.params.idMaquina
 
   console.log(`Recuperando Usb em tempo real`)
 
   dashModel
-    .buscarUsbEmTempoReal(idDispositivo)
+    .buscarUsbEmTempoReal(idMaquina)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado)
@@ -209,12 +209,12 @@ function buscarUsbEmTempoReal(req, res) {
 
 //media
 function buscarUltimosMedia(req, res) {
-  var idDispositivo = req.params.idDispositivo
+  var idMaquina = req.params.idMaquina
 
   console.log(`Recuperando os ultimos Medias`)
 
   dashModel
-    .buscarUltimosMedia(idDispositivo)
+    .buscarUltimosMedia(idMaquina)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado)
@@ -230,12 +230,12 @@ function buscarUltimosMedia(req, res) {
 }
 
 function buscarMediaEmTempoReal(req, res) {
-  var idDispositivo = req.params.idDispositivo
+  var idMaquina = req.params.idMaquina
 
   console.log(`Recuperando Media em tempo real`)
 
   dashModel
-    .buscarMediaEmTempoReal(idDispositivo)
+    .buscarMediaEmTempoReal(idMaquina)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado)
@@ -255,12 +255,12 @@ function buscarMediaEmTempoReal(req, res) {
 
 //insght
 function buscarUltimosInsight(req, res) {
-  var idDispositivo = req.params.idDispositivo
+  var idMaquina = req.params.idMaquina
 
   console.log(`Recuperando os ultimos Insights`)
 
   dashModel
-    .buscarUltimosInsight(idDispositivo)
+    .buscarUltimosInsight(idMaquina)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado)
@@ -276,12 +276,12 @@ function buscarUltimosInsight(req, res) {
 }
 
 function buscarInsightEmTempoReal(req, res) {
-  var idDispositivo = req.params.idDispositivo
+  var idMaquina = req.params.idMaquina
 
   console.log(`Recuperando Insight em tempo real`)
 
   dashModel
-    .buscarInsightEmTempoReal(idDispositivo)
+    .buscarInsightEmTempoReal(idMaquina)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado)
@@ -300,7 +300,7 @@ function buscarInsightEmTempoReal(req, res) {
 }
 
 module.exports = {
-  autenticar2,
+  setor,
   buscarMaquinas,
   buscarUltimasMedidas,
   buscarMedidasEmTempoReal,

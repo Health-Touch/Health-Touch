@@ -1,12 +1,24 @@
 // Começo da dash setor
 var database = require('../database/config')
 
-function autenticar2() {
+function setor() {
   console.log(
     "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): "
   )
   var instrucao = `
-  select local.idLocal, local.setor, local.sala, local.andar, local.fkDispositivo, local.fkEmpresa, local.fkTipoDispositivo from local join dispositivo on local.fkDispositivo = dispositivo.idDispositivo join empresa on empresa.idEmpresa = local.fkEmpresa join plano on plano.idPlano = local.fkPlanoEmpresa join tipoDispositivo on tipoDispositivo.idTipoDispositivo where empresa.idEmpresa = 1 and tipoDispositivo.idTipoDispositivo = 1 and dispositivo.idDispositivo = 1;
+  select
+  m.idMaquina, m.fkEmpresa, m.fkPlanoEmpresa, 
+  m.fkTipoMaquina, m.fkStatusMaquina, m.fkLocal, 
+  l.idLocalSala, l.sala, l.andar, l.fkSetor, 
+  s.nome
+  from maquina as m join empresa as e on e.idEmpresa = m.fkEmpresa 
+  join plano as p on e.fkPlano = p.idPlano
+  join tipoMaquina as t on m.fkTipoMaquina = t.idTipoMaquina
+  join statusMaquina as sm on m.fkStatusMaquina = sm.idStatusMaquina
+  join localSala as l on m.fkLocal = l.idLocalSala
+  join setor as s on l.fkSetor = s.idSetor
+  where m.fkEmpresa = 1 and m.idMaquina = 1 
+  and m.fkTipoMaquina = 1 and m.fkStatusMaquina = 1;
     `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -17,14 +29,14 @@ function buscarMaquinas() {
     "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): "
   )
   var instrucao = `
-  SELECT * from dispositivo;
+  SELECT * from maquina;
   `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
 }
 
 //analise atual
-function buscarUltimasMedidas(idDispositivo) {
+function buscarUltimasMedidas(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
@@ -38,7 +50,7 @@ function buscarUltimasMedidas(idDispositivo) {
                     order by id desc`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select * from monitoramento
-                    where fkDispositivo = ${idDispositivo}
+                    where fkMaquina = ${idMaquina}
                     order by idMonitoramento desc limit 3`
   } else {
     console.log(
@@ -51,7 +63,7 @@ function buscarUltimasMedidas(idDispositivo) {
   return database.executar(instrucaoSql)
 }
 
-function buscarMedidasEmTempoReal(idDispositivo) {
+function buscarMedidasEmTempoReal(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
@@ -64,7 +76,7 @@ function buscarMedidasEmTempoReal(idDispositivo) {
                     order by id desc`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select * from monitoramento
-    where fkDispositivo = ${idDispositivo} 
+    where fkMaquina = ${idMaquina} 
                     order by idMonitoramento desc limit 3`
   } else {
     console.log(
@@ -78,7 +90,7 @@ function buscarMedidasEmTempoReal(idDispositivo) {
 }
 
 //avisos
-function buscarUltimosAvisos(idDispositivo) {
+function buscarUltimosAvisos(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
@@ -91,7 +103,18 @@ function buscarUltimosAvisos(idDispositivo) {
                     where fk_aquario = ${idAquario}
                     order by id desc`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
-    instrucaoSql = `SELECT idAviso, descricao, DATE_FORMAT(dtHr, '%d/%m/%Y %H:%i:%s') as dtHr FROM aviso where fkDispositivo = ${idDispositivo};`
+    instrucaoSql = `
+    SELECT a.idAvisos, DATE_FORMAT(a.dataHora, '%d/%m/%Y %H:%i:%s') as dtHr,
+    a.fkMonitoramento, a.fkComponente, a.fkMaquina, a.fkEmpresa,
+    a.fkPlanoEmpresa, a.fkTipoMaquina, a.fkNivelAviso
+    FROM avisos as a join monitoramento as mt on mt.idMonitoramento = a.fkMonitoramento
+    join componente as c on a.fkComponente = c.idComponente
+    join maquina as m on a.fkMaquina = m.idMaquina
+    join empresa as e on a.fkEmpresa = e.idEmpresa
+    join plano as p on a.fkPlanoEmpresa = p.idPlano
+    join tipoMaquina as t on a.fkTipoMaquina = t.idTipoMaquina
+    join nivelAvisos as n on a.fkNivelAviso = n.idNivelAvisos
+    where a.fkEmpresa = 1 and a.fkMaquina = ${idMaquina} and a.fkTipoMaquina = 1;`
   } else {
     console.log(
       '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
@@ -103,7 +126,7 @@ function buscarUltimosAvisos(idDispositivo) {
   return database.executar(instrucaoSql)
 }
 
-function buscarAvisosEmTempoReal(idDispositivo) {
+function buscarAvisosEmTempoReal(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
@@ -115,7 +138,18 @@ function buscarAvisosEmTempoReal(idDispositivo) {
                         from medida where fk_aquario = ${idAquario} 
                     order by id desc`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
-    instrucaoSql = `SELECT idAviso, descricao, DATE_FORMAT(dtHr, '%d/%m/%Y %H:%i:%s') as dtHr FROM aviso where fkDispositivo = ${idDispositivo};`
+    instrucaoSql = `    
+    SELECT a.idAvisos, DATE_FORMAT(a.dataHora, '%d/%m/%Y %H:%i:%s') as dtHr,
+    a.fkMonitoramento, a.fkComponente, a.fkMaquina, a.fkEmpresa,
+    a.fkPlanoEmpresa, a.fkTipoMaquina, a.fkNivelAviso
+    FROM avisos as a join monitoramento as mt on mt.idMonitoramento = a.fkMonitoramento
+    join componente as c on a.fkComponente = c.idComponente
+    join maquina as m on a.fkMaquina = m.idMaquina
+    join empresa as e on a.fkEmpresa = e.idEmpresa
+    join plano as p on a.fkPlanoEmpresa = p.idPlano
+    join tipoMaquina as t on a.fkTipoMaquina = t.idTipoMaquina
+    join nivelAvisos as n on a.fkNivelAviso = n.idNivelAvisos
+    where a.fkEmpresa = 1 and a.fkMaquina = ${idMaquina} and a.fkTipoMaquina = 1;`
   } else {
     console.log(
       '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
@@ -128,7 +162,7 @@ function buscarAvisosEmTempoReal(idDispositivo) {
 }
 
 //usb
-function buscarUltimosUsb(idDispositivo) {
+function buscarUltimosUsb(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
@@ -142,7 +176,8 @@ function buscarUltimosUsb(idDispositivo) {
                     order by id desc`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select count(idUsb) as status
-    from usb join dispositivo on dispositivo.idDispositivo = usb.fkDispositivo where date(dtHoraInserção) = (SELECT CURDATE()) ;`
+    from usb join maquina on maquina.idMaquina = usb.fkMaquina 
+    where date(dtHoraInserção) = (SELECT CURDATE());`
   } else {
     console.log(
       '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
@@ -154,7 +189,7 @@ function buscarUltimosUsb(idDispositivo) {
   return database.executar(instrucaoSql)
 }
 
-function buscarUsbEmTempoReal(idDispositivo) {
+function buscarUsbEmTempoReal(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
@@ -167,7 +202,8 @@ function buscarUsbEmTempoReal(idDispositivo) {
                     order by id desc`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select count(idUsb) as status
-    from usb join dispositivo on dispositivo.idDispositivo = usb.fkDispositivo where date(dtHoraInserção) = (SELECT CURDATE()) ;`
+    from usb join maquina on maquina.idMaquina = usb.fkMaquina 
+    where date(dtHoraInserção) = (SELECT CURDATE());`
   } else {
     console.log(
       '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
@@ -180,7 +216,7 @@ function buscarUsbEmTempoReal(idDispositivo) {
 }
 
 //media
-function buscarUltimosMedia(idDispositivo) {
+function buscarUltimosMedia(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
@@ -197,7 +233,12 @@ function buscarUltimosMedia(idDispositivo) {
     (select format(avg(porcentagem),2) from monitoramento where fkComponente = 1) as usoCpuMensal,
     (select format(avg(porcentagem),2) from monitoramento where fkComponente = 2) as usoRamMensal,
     (select format(avg(porcentagem),2) from monitoramento where fkComponente = 3) as usoDiscoMensal
-    from monitoramento join dispositivo on  idDispositivo = fkDispositivo where idDispositivo = ${idDispositivo} limit 1;`
+    from monitoramento as mt join maquina as m on  m.idMaquina = mt.fkMaquina 
+    join plano as p on mt.fkPlanoEmpresa = p.idPlano
+    join tipoMaquina as t on mt.fkTipoMaquina = t.idTipoMaquina
+    join empresa as e on mt.fkEmpresaMaquina = e.idEmpresa
+    where mt.fkMaquina = ${idMaquina} and mt.fkTipoMaquina = 1 and mt.fkEmpresaMaquina = 1
+    limit 1;`
   } else {
     console.log(
       '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
@@ -209,7 +250,7 @@ function buscarUltimosMedia(idDispositivo) {
   return database.executar(instrucaoSql)
 }
 
-function buscarMediaEmTempoReal(idDispositivo) {
+function buscarMediaEmTempoReal(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
@@ -225,7 +266,12 @@ function buscarMediaEmTempoReal(idDispositivo) {
     (select format(avg(porcentagem),2) from monitoramento where fkComponente = 1) as usoCpuMensal,
     (select format(avg(porcentagem),2) from monitoramento where fkComponente = 2) as usoRamMensal,
     (select format(avg(porcentagem),2) from monitoramento where fkComponente = 3) as usoDiscoMensal
-    from monitoramento join dispositivo on  idDispositivo = fkDispositivo where idDispositivo = ${idDispositivo} limit 1;`
+    from monitoramento as mt join maquina as m on  m.idMaquina = mt.fkMaquina 
+    join plano as p on mt.fkPlanoEmpresa = p.idPlano
+    join tipoMaquina as t on mt.fkTipoMaquina = t.idTipoMaquina
+    join empresa as e on mt.fkEmpresaMaquina = e.idEmpresa
+    where mt.fkMaquina = ${idMaquina} and mt.fkTipoMaquina = 1 and mt.fkEmpresaMaquina = 1
+    limit 1;`
   } else {
     console.log(
       '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
@@ -238,7 +284,7 @@ function buscarMediaEmTempoReal(idDispositivo) {
 }
 
 //Insight
-function buscarUltimosInsight(idDispositivo) {
+function buscarUltimosInsight(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
@@ -264,8 +310,11 @@ function buscarUltimosInsight(idDispositivo) {
       (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC LIMIT 20) AS subquery) -
       (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC LIMIT 10) AS subquery)
     , 2) AS insightDiscoMensal
-  FROM dispositivo
-  WHERE idDispositivo = ${idDispositivo};`
+  FROM maquina as m join monitoramento as mt on mt.fkMaquina = m.idMaquina
+  join empresa as e on m.fkEmpresa = e.idEmpresa
+  join statusMaquina as sm on m.fkStatusMaquina = sm.idStatusMaquina
+  join tipoMaquina as t on m.fkTipoMaquina = t.idTipoMaquina
+  WHERE m.idMaquina = ${idMaquina} and m.fkEmpresa = 1 and m.fkStatusMaquina = 1 and m.fkTipoMaquina = 1;`
   } else {
     console.log(
       '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
@@ -277,7 +326,7 @@ function buscarUltimosInsight(idDispositivo) {
   return database.executar(instrucaoSql)
 }
 
-function buscarInsightEmTempoReal(idDispositivo) {
+function buscarInsightEmTempoReal(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
@@ -302,8 +351,11 @@ function buscarInsightEmTempoReal(idDispositivo) {
       (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC LIMIT 20) AS subquery) -
       (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC LIMIT 10) AS subquery)
     , 2) AS insightDiscoMensal
-  FROM dispositivo
-  WHERE idDispositivo = ${idDispositivo};`
+  FROM maquina as m join monitoramento as mt on mt.fkMaquina = m.idMaquina
+  join empresa as e on m.fkEmpresa = e.idEmpresa
+  join statusMaquina as sm on m.fkStatusMaquina = sm.idStatusMaquina
+  join tipoMaquina as t on m.fkTipoMaquina = t.idTipoMaquina
+  WHERE m.idMaquina = ${idMaquina} and m.fkEmpresa = 1 and m.fkStatusMaquina = 1 and m.fkTipoMaquina = 1;`
   } else {
     console.log(
       '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
@@ -315,7 +367,7 @@ function buscarInsightEmTempoReal(idDispositivo) {
   return database.executar(instrucaoSql)
 }
 module.exports = {
-  autenticar2,
+  setor,
   buscarMaquinas,
   buscarUltimasMedidas,
   buscarMedidasEmTempoReal,

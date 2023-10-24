@@ -242,6 +242,8 @@
                                 </span>
                             </div>
                         </div>`
+
+                        sessionStorage.NOME_SETOR = publicacao.nome
                     }
                     // finalizarAguardar();
                 });
@@ -255,10 +257,9 @@
     }
 
     function SalvarComputador(idMaquina) {
-
         sessionStorage.ID_MAQUINA = idMaquina;
         alert(idMaquina)
-
+        window.location = "dashSetor.html"
     }
 
     function cadastrarSetores() {

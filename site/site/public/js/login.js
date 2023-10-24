@@ -152,7 +152,7 @@ function buscarMaquinas() {
 
 function buscarSetor() {
   console.log('Entrei na função validar setor')
-  fetch('/dashboard/autenticar', {
+  fetch('/dashboard/setor', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -168,7 +168,6 @@ function buscarSetor() {
           console.log(json)
           console.log(JSON.stringify(json))
 
-          sessionStorage.ID_COMPUTADOR = json.fkDispositivo
           sessionStorage.NOME_SETOR = json.setor
           sessionStorage.ID_SALA = json.sala
         })
