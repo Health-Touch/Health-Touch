@@ -35,7 +35,7 @@ while True:
         print("=" * 40)
         print("")
         
-        time.sleep(20)
+        time.sleep(30)
    
 
 

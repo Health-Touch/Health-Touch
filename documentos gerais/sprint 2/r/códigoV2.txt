@@ -1,0 +1,45 @@
+cpu <- subset(metricasTrusted, componente == "cpu")
+disco <- subset(metricasTrusted, componente == "disco")
+ram <- subset(metricasTrusted, componente == "ram")
+
+library(ggplot2)
+
+ggplot(cpu, aes(x = dataHora, y = porcentagem, fill = idMonitoramento)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "Uso da CPU em Diferentes Horários",
+       x = "Horários",
+       y = "Porcentagem",
+       fill = "Valores") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  scale_y_continuous(limits = c(0, 100))
+
+ggplot(ram, aes(x = dataHora, y = porcentagem, fill = idMonitoramento)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "Uso da RAM em Diferentes Horários",
+       x = "Horários",
+       y = "Porcentagem",
+       fill = "Valores") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  scale_y_continuous(limits = c(0, 100))
+
+ggplot(disco, aes(x = dataHora, y = porcentagem, fill = idMonitoramento)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "Uso do Disco em Diferentes Horários",
+       x = "Horários",
+       y = "Porcentagem",
+       fill = "Valores") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  scale_y_continuous(limits = c(0, 100))
+
+cores_personalizadas <- c("#FF5733", "#33FF57", "#3373FF", "#FF33D0")
+
+ggplot(capturaTrusted, aes(x = data, y = porcentagem, color = componente)) +
+  geom_point() +
+  labs(title = "Scatter Plot de Porcentagem em relação à Data",
+       x = "Data",
+       y = "Porcentagem") +
+  scale_color_manual(values = cores_personalizadas) +
+  theme_minimal()
