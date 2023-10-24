@@ -18,7 +18,8 @@
 
                 <div class="divNomeEmpresa">
 
-                    <p id="nomeEmpresa">Bem Vindo <br> Nome da Empresa</p>
+                    <p id="textoEmpresa">Bem Vindo</p>
+                    <p id="nomeEmpresa">Bem Vindo <br><span> Nome da Empresa </span></p>
                 </div>
 
                 <div class="divMainMenu">
@@ -27,61 +28,53 @@
 
                 <div class="divPaiOpcoesMenu">
                     <a href="setores.html" id="pMenuLateral">
-                    <div class="divHome">
-                        <img id="iconMenuLateralHome" src="assets/img/iconHome.png">
-                        <div class="divEspaco"></div>
-                        Home
-                    </div>
-                </a>
-
-                <a href="dashSetor.html" id="pMenuLateral">
-                    <div class="divEstatisticas">
-                        <img id="iconEstatiscasLateral" src="assets/img/estatisticasIcon.png">
-                        <div class="divEspaco"></div>
-                        Estatisticas
-                    </div>
-                </a>
-
-                <a href="AnaliseDetalhada.html" id="pMenuLateral">
-                    <div class="divDashboards">
-                        <img id="iconDashboardsLateral" src="assets/img/iconDashboard.png">
-                        <div class="divEspaco"></div>
-                        Dashboards
-                    </div>
-                </a>
-
-                <a href="cadastroMaquinas.html" id="pMenuLateral">
-                    <div class="divComputador">
-                        <img id="iconComputadorLateral" src="assets/img/iconComputador.png">
-                        <div class="divEspaco"></div>
-                        Cadastro Máquinas
-                    </div>
-                </a>
-
-                <a href="analiseMaquinaTI.html" id="pMenuLateral">
-                    <div class="divCadastroComputador">
-                        <img id="iconComputadorCadLateral" src="assets/img/iconPcConfig.png">
-                        <div class="divEspaco"></div>
-                        Análise Máquinas
-                    </div>
-                </a>
-
-                <a href="cadastroFuncionarios.html" id="pMenuLateral">
-                    <div class="divAnaliseEquipe">
-                        <img id="iconAnaliseEquipe" src="assets/img/iconEquipe.png">
-                        <div class="divEspaco"></div>
-                        Cadastro Equipe
-                    </div>
-                </a>
-
-                <a href="analiseFuncionario.html" id="pMenuLateral">
-                    <div class="divCadastroEquipe">
-                        <img id="iconCadastroEquipe" src="assets/img/IconEquipeConfig.png">
-                        <div class="divEspaco"></div>
-                            Análise Equipe
+                        <div class="divHome">
+                            <img id="iconMenuLateralHome" src="assets/img/grafico-de-setores.png">
+                            <div class="divEspaco"></div>
+                            Setores
                         </div>
-                    </div>
-                </a>    
+                    </a>
+
+                    <a href="cadastroMaquinas.html" id="pMenuLateral">
+                        <div class="divComputador">
+                            <img id="iconComputadorLateral" src="assets/img/computador (4).png">
+                            <div class="divEspaco"></div>
+                            Cadastro Máquinas
+                        </div>
+                    </a>
+
+                    <a href="analiseMaquinaTI.html" id="pMenuLateral">
+                        <div class="divCadastroComputador">
+                            <img id="iconComputadorCadLateral" src="assets/img/definicoes.png">
+                            <div class="divEspaco"></div>
+                            Análise Máquinas
+                        </div>
+                    </a>
+
+                    <a href="cadastroFuncionarios.html" id="pMenuLateral">
+                        <div class="divAnaliseEquipe">
+                            <img id="iconAnaliseEquipe" src="assets/img/carteira-de-identidade.png">
+                            <div class="divEspaco"></div>
+                            Cadastro Equipe
+                        </div>
+                    </a>
+
+                    <a href="analiseFuncionario.html" id="pMenuLateral">
+                        <div class="divDashboards">
+                            <img id="iconDashboardsLateral" src="assets/img/equipe.png">
+                            <div class="divEspaco"></div>
+                            Análise Funcionários
+                        </div>
+                    </a>
+
+                    <a href="" id="pMenuLateral">
+                        <div class="divCadastroEquipe">
+                            <img id="iconCadastroEquipe" src="assets/img/mais (2).png">
+                            <div class="divEspaco"></div>
+                            Dashboards
+                        </div>
+                    </a>
+                </div>
 
                 <div class="divEspacoV2"></div>
 
@@ -92,24 +85,22 @@
                 <div class="divPaiHelpMenu">
                     <a href="SuporteHealthTooch.html" id="pMenuLateral">
                         <div class="divHelpDesk">
-                            <img id="iconHelpDesk" src="assets/img/iconHelp.png">
+                            <img id="iconHelpDesk" src="assets/img/suporte-ao-cliente.png">
                             <div class="divEspaco"></div>
-                            HelpDesk                   
+                            HelpDesk
                         </div>
                     </a>
-
                     <a href="AtualizarUser.html" id="pMenuLateral">
                         <div class="divConfiguracoes">
-                            <img id="iconConfiguracoes" src="assets/img/iconConfig.png">
+                            <img id="iconConfiguracoes" src="assets/img/botao-de-roda-dentada-de-configuracoes.png">
                             <div class="divEspaco"></div>
                             Configurações
                         </div>
                     </a>
-
-                    <img id="logoMenuLateral" src="assets/img/logoMenu.png">
-
+                    <a href="index.html">
+                        <img id="logoMenuLateral" src="assets/img/logoMenu.png">
+                    </a>
                 </div>
-
             </div>
         </div>
         <!-- fim do menu lateral -->
@@ -334,5 +325,20 @@
             // finalizarAguardar();
         });
     }
+
+    var nome = sessionStorage.NOME_COLABORADOR;
+    tituloPerfil.innerHTML = nome;
+
+    var cargo = sessionStorage.NIVELACESSO_COLABORADOR;
+    if (cargo == "RL") {
+        cargo = "Representante"
+    }else if (cargo == "GT"){
+        cargo = "Gerente TI"
+    }
+
+    cargoPerfil.innerHTML = cargo
+
+    var Empresa = sessionStorage.NOME_FANTASIA_COLABORADOR;
+    nomeEmpresa.innerHTML = Empresa;
 
 </script>

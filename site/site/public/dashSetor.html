@@ -20,7 +20,8 @@
 
                 <div class="divNomeEmpresa">
 
-                    <p id="nomeEmpresa">Bem Vindo<br><span id="empresa">Nome da Empresa</span></p>
+                    <p id="textoEmpresa">Bem Vindo</p>
+                    <p id="nomeEmpresa">Bem Vindo <br><span> Nome da Empresa </span></p>
                 </div>
 
                 <div class="divMainMenu">
@@ -30,31 +31,15 @@
                 <div class="divPaiOpcoesMenu">
                     <a href="setores.html" id="pMenuLateral">
                         <div class="divHome">
-                            <img id="iconMenuLateralHome" src="assets/img/iconHome.png">
+                            <img id="iconMenuLateralHome" src="assets/img/grafico-de-setores.png">
                             <div class="divEspaco"></div>
-                            Home
-                        </div>
-                    </a>
-
-                    <a href="dashSetor.html" id="pMenuLateral">
-                        <div class="divEstatisticas">
-                            <img id="iconEstatiscasLateral" src="assets/img/estatisticasIcon.png">
-                            <div class="divEspaco"></div>
-                            Estatisticas
-                        </div>
-                    </a>
-
-                    <a href="AnaliseDetalhada.html" id="pMenuLateral">
-                        <div class="divDashboards">
-                            <img id="iconDashboardsLateral" src="assets/img/iconDashboard.png">
-                            <div class="divEspaco"></div>
-                            Dashboards
+                            Setores
                         </div>
                     </a>
 
                     <a href="cadastroMaquinas.html" id="pMenuLateral">
                         <div class="divComputador">
-                            <img id="iconComputadorLateral" src="assets/img/iconComputador.png">
+                            <img id="iconComputadorLateral" src="assets/img/computador (4).png">
                             <div class="divEspaco"></div>
                             Cadastro Máquinas
                         </div>
@@ -62,7 +47,7 @@
 
                     <a href="analiseMaquinaTI.html" id="pMenuLateral">
                         <div class="divCadastroComputador">
-                            <img id="iconComputadorCadLateral" src="assets/img/iconPcConfig.png">
+                            <img id="iconComputadorCadLateral" src="assets/img/definicoes.png">
                             <div class="divEspaco"></div>
                             Análise Máquinas
                         </div>
@@ -70,18 +55,25 @@
 
                     <a href="cadastroFuncionarios.html" id="pMenuLateral">
                         <div class="divAnaliseEquipe">
-                            <img id="iconAnaliseEquipe" src="assets/img/iconEquipe.png">
+                            <img id="iconAnaliseEquipe" src="assets/img/carteira-de-identidade.png">
                             <div class="divEspaco"></div>
                             Cadastro Equipe
                         </div>
                     </a>
 
-
                     <a href="analiseFuncionario.html" id="pMenuLateral">
-                        <div class="divCadastroEquipe">
-                            <img id="iconCadastroEquipe" src="assets/img/IconEquipeConfig.png">
+                        <div class="divDashboards">
+                            <img id="iconDashboardsLateral" src="assets/img/equipe.png">
                             <div class="divEspaco"></div>
-                            Análise Equipe
+                            Análise Funcionários
+                        </div>
+                    </a>
+
+                    <a href="" id="pMenuLateral">
+                        <div class="divCadastroEquipe">
+                            <img id="iconCadastroEquipe" src="assets/img/mais (2).png">
+                            <div class="divEspaco"></div>
+                            Dashboards
                         </div>
                     </a>
                 </div>
@@ -93,20 +85,23 @@
                 </div>
 
                 <div class="divPaiHelpMenu">
-                    <div class="divHelpDesk">
-                        <img id="iconHelpDesk" src="assets/img/iconHelp.png">
-                        <div class="divEspaco"></div>
-                        <a href="SuporteHealthTooch.html" id="pMenuLateral">HelpDesk</a>
-                    </div>
-
-                    <div class="divConfiguracoes">
-                        <img id="iconConfiguracoes" src="assets/img/iconConfig.png">
-                        <div class="divEspaco"></div>
-                        <a href="AtualizarUser.html" id="pMenuLateral">Configurações</a>
-                    </div>
-
-                    <img id="logoMenuLateral" src="assets/img/logoMenu.png">
-
+                    <a href="SuporteHealthTooch.html" id="pMenuLateral">
+                        <div class="divHelpDesk">
+                            <img id="iconHelpDesk" src="assets/img/suporte-ao-cliente.png">
+                            <div class="divEspaco"></div>
+                            HelpDesk
+                        </div>
+                    </a>
+                    <a href="AtualizarUser.html" id="pMenuLateral">
+                        <div class="divConfiguracoes">
+                            <img id="iconConfiguracoes" src="assets/img/botao-de-roda-dentada-de-configuracoes.png">
+                            <div class="divEspaco"></div>
+                            Configurações
+                        </div>
+                    </a>
+                    <a href="index.html">
+                        <img id="logoMenuLateral" src="assets/img/logoMenu.png">
+                    </a>
                 </div>
             </div>
         </div>
@@ -292,3 +287,8 @@
 </body>
 
 </html>
+
+<script>
+    var Empresa = sessionStorage.NOME_FANTASIA_COLABORADOR;
+    nomeEmpresa.innerHTML = Empresa;
+</script>

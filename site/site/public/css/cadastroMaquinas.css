@@ -12,7 +12,7 @@
 }
 
 /* começo do menu lateral*/
-.divPaiLateral {    
+.divPaiLateral {
     background-color: #020F1F;
     display: flex;
     justify-content: center;
@@ -36,9 +36,15 @@
     top: 2%;
 }
 
+#textoEmpresa {
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
 #nomeEmpresa {
     color: white;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -62,15 +68,16 @@
     top: 8%;
 }
 
-.divPaiOpcoesMenu a{
+.divPaiOpcoesMenu a {
     text-decoration: none;
 }
+
 
 .divHome {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 6.5vw;
+    width: 6.7vw;
 }
 
 #iconMenuLateralHome {
@@ -79,9 +86,9 @@
 }
 
 #pMenuLateral {
-    text-decoration: none;
     color: white;
     font-size: 11px;
+    text-decoration: none;
 }
 
 .divEstatisticas {
@@ -107,9 +114,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 8.4vw;
+    width: 8.5vw;
     position: relative;
-    top: 10%;
+    top: 18%;
 }
 
 #iconDashboardsLateral {
@@ -123,7 +130,7 @@
     align-items: center;
     width: 7.5vw;
     position: relative;
-    top: 13%;
+    top: 3%;
 }
 
 #iconComputadorLateral {
@@ -131,13 +138,13 @@
     height: 4.2vh;
 }
 
-.divCadastroComputador{
+.divCadastroComputador {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 7.5vw;
     position: relative;
-    top: 15%;
+    top: 8%;
 }
 
 #iconComputadorCadLateral {
@@ -149,38 +156,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 8.5vw;
-    position: relative;
-    top: 20%;
-}
-
-.divPaiOpcoesMenu {
-    width: 100%;
-    height: 40vh;
-    position: relative;
-    top: 8%;
-}
-
-.divPaiOpcoesMenu a{
-    text-decoration: none;
-}
-
-.divAnaliseEquipe {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 7.2vw;
     position: relative;
-    top: 20%;
-}
-
-.divCadastroEquipe {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 6.5vw;
-    position: relative;
-    top: 25%;
+    top: 13%;
 }
 
 #iconAnaliseEquipe {
@@ -188,6 +166,14 @@
     height: 4vh;
 }
 
+.divCadastroEquipe {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 8.2vw;
+    position: relative;
+    top: 23%;
+}
 
 #iconCadastroEquipe {
     width: 2vw;
@@ -255,8 +241,9 @@
     height: 0.1vh;
     position: relative;
     top: 17%;
-    
+
 }
+
 /* fim do menu lateral */
 
 /* começo da cabeçalho */
