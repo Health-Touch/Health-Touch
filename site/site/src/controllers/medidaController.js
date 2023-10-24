@@ -1,15 +1,14 @@
 var medidaModel = require("../models/medidaModel");
 
 function buscarUltimasMedidasCpu(req, res) {
-
+    console.log(idMaquina + "entrei controller")
     const limite_linhas = 7;
 
-    var cpu = req.params.cpu;
-    var fkMaquina =  req.params.fkMaquina;
+    var idMaquina =  req.params.idMaquina;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidasCpu(fkMaquina, cpu, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidasCpu(idMaquina, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -25,12 +24,12 @@ function buscarUltimasMedidasCpu(req, res) {
 
 function buscarMedidasEmTempoRealCpu(req, res) {
 
-    var cpu = req.params.cpu;
-    var fkMaquina =  req.params.fkMaquina;
+    
+    var idMaquina =  req.params.idMaquina;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoRealCpu(fkMaquina, cpu).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoRealCpu(idMaquina).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -47,11 +46,11 @@ function buscarUltimasMedidasDisco(req, res) {
 
     const limite_linhas = 7;
 
-    var disco = req.params.disco;
+    var idMaquina =  req.params.idMaquina;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidasDisco(disco, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidasDisco(idMaquina, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -67,11 +66,11 @@ function buscarUltimasMedidasDisco(req, res) {
 
 function buscarMedidasEmTempoRealDisco(req, res) {
 
-    var disco = req.params.disco;
+    var idMaquina =  req.params.idMaquina;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoRealDisco(disco).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoRealDisco(idMaquina).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -88,11 +87,11 @@ function buscarUltimasMedidasRam(req, res) {
 
     const limite_linhas = 7;
 
-    var ram = req.params.ram;
+    var idMaquina =  req.params.idMaquina;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidasRam(ram, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidasRam(idMaquina, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -108,11 +107,11 @@ function buscarUltimasMedidasRam(req, res) {
 
 function buscarMedidasEmTempoRealRam(req, res) {
 
-    var ram = req.params.ram;
+    var idMaquina =  req.params.idMaquina;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoRealRam(ram).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoRealRam(idMaquina).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

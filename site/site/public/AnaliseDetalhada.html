@@ -129,8 +129,9 @@
                         <b>Análise Detalhada</b>
                     </div>
                     <div class="divSubtitulo">
-                        <p><b>Computador 1</b> Pediatra setor1</p>
-                        <button class="botaoTrocar">Trocar</button> <button class="botaoHist">Histórico</button>
+                        <div class="dadosSetor"> <p><b>Computador <span id="idMaquinaNum"></span></b> <span id=setor class="setor"></span></p></div>
+                       
+                        <button class="botaoTrocar" onclick="trocar()">Trocar</button> <button class="botaoHist">Histórico</button>
                     </div>
                 </div>
                 <div class="divPaiUsb">
@@ -199,28 +200,29 @@
 </html>
 <script>
     
-
+    idMaquinaNum.innerHTML = sessionStorage.ID_MAQUINA
     Chart.defaults.color = '#FFFF';
+    
 
     //   Chart.defaults.backgroundColor = 'rgb(254, 91, 153)';
     window.onload = obterDadosGrafico();
     window.onload = obterDadosGraficoCpu();
     window.onload = obterDadosGraficoRam();
     window.onload = atualizarFeedUsb();
-
-    function obterDadosGrafico(disco) {
-
+    window.onload = atualizarFeedSetor();
+    function obterDadosGrafico(idMaquina) {
+        var idMaquina = sessionStorage.ID_MAQUINA
         // if (proximaAtualizacao != undefined) {
         //     clearTimeout(proximaAtualizacao);
         // }
 
-        fetch(`/medidas/ultimasDisco/${disco}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimasDisco/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico(resposta, disco);
+                    plotarGrafico(resposta, idMaquina);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -234,7 +236,7 @@
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, disco) {
+    function plotarGrafico(resposta, idMaquina) {
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -249,9 +251,8 @@
                 label: 'Uso de DISCO',
                 data: [],
                 fill: true,
-                backgroundColor: `rgb(169,223,216)`,
-                borderColor: `A9DFD8`,
-                border: 1 + "px",
+                backgroundColor: `rgb(80,213,165)`,
+                borderColor: `rgb(176,218,212)`,
                 tension: 0.1
             }]
         };
@@ -287,7 +288,7 @@
             config
         );
 
-        setTimeout(() => atualizarGrafico(disco, dados, myChart), 2000);
+        setTimeout(() => atualizarGrafico(idMaquina, dados, myChart), 2000);
     }
 
 
@@ -296,11 +297,11 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(disco, dados, myChart) {
+    function atualizarGrafico(idMaquina, dados, myChart) {
 
 
 
-        fetch(`/medidas/tempo-realDisco/${disco}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/tempo-realDisco/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
@@ -353,19 +354,19 @@
 
 
     // cpu
-    function obterDadosGraficoCpu(cpu) {
-
+    function obterDadosGraficoCpu(idMaquina) {
+        var idMaquina = sessionStorage.ID_MAQUINA
         // if (proximaAtualizacao != undefined) {
         //     clearTimeout(proximaAtualizacao);
         // }
 
-        fetch(`/medidas/ultimasCpu/${cpu}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimasCpu/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGraficoCpu(resposta, cpu);
+                    plotarGraficoCpu(resposta, idMaquina);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -379,7 +380,7 @@
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGraficoCpu(resposta, cpu) {
+    function plotarGraficoCpu(resposta, idMaquina) {
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -392,9 +393,10 @@
             datasets: [{
                 label: 'Uso de CPU',
                 data: [],
-                fill: false,
-                backgroundColor: ' rgb(254, 91, 153)',
-                tension: 0.1
+                fill: true,
+                backgroundColor: ' rgb(173, 0, 255)',
+                tension: 0.1,
+                borderColor:' rgb(206, 169, 223)'
             }]
         };
 
@@ -429,7 +431,7 @@
             config
         );
 
-        setTimeout(() => atualizarGraficoCpu(cpu, dados, myChart2), 2000);
+        setTimeout(() => atualizarGraficoCpu( dados, myChart2, idMaquina), 2000);
     }
 
 
@@ -438,11 +440,11 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGraficoCpu(cpu, dados, myChart2) {
+    function atualizarGraficoCpu(dados, myChart2, idMaquina) {
 
 
 
-        fetch(`/medidas/tempo-realCpu/${cpu}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/tempo-realCpu/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
@@ -494,19 +496,20 @@
     }
 
     // RAM
-    function obterDadosGraficoRam(ram) {
+    function obterDadosGraficoRam(idMaquina) {
+        var idMaquina = sessionStorage.ID_MAQUINA
 
         // if (proximaAtualizacao != undefined) {
         //     clearTimeout(proximaAtualizacao);
         // }
 
-        fetch(`/medidas/ultimasRam/${ram}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimasRam/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGraficoRam(resposta, ram);
+                    plotarGraficoRam(resposta, idMaquina);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -520,7 +523,7 @@
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGraficoRam(resposta, ram) {
+    function plotarGraficoRam(resposta, idMaquina) {
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -535,7 +538,7 @@
                 data: [],
                 fill: true,
                 backgroundColor: 'rgb(17,94,210)',
-                borderColor: '115ED2',
+                borderColor: 'rgb(0,26,255)',
                 tension: 0.1
             }]
         };
@@ -571,7 +574,7 @@
             config
         );
 
-        setTimeout(() => atualizarGraficoRam(ram, dados, myChart3), 2000);
+        setTimeout(() => atualizarGraficoRam(idMaquina, dados, myChart3), 2000);
     }
 
 
@@ -580,11 +583,11 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGraficoRam(ram, dados, myChart3) {
+    function atualizarGraficoRam(idMaquina, dados, myChart3) {
 
 
 
-        fetch(`/medidas/tempo-realRam/${ram}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/tempo-realRam/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
@@ -712,6 +715,90 @@
             console.error(resposta);
             finalizarAguardar();
         });
+    }
+
+    function atualizarFeedSetor() {
+        var idMaquina = sessionStorage.ID_MAQUINA
+        fetch(`/avisos/listarSetor/${idMaquina}`).then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    // var feed = document.getElementById("feed_container");
+                    // var mensagem = document.createElement("span");
+                    // mensagem.innerHTML = "Nenhum resultado encontrado."
+                    // feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("setor");
+                    
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+                        feed.innerHTML = `
+                        <span>${publicacao.nome}</span> <span>Setor ${publicacao.idSetor}</span>
+                        `
+                            
+
+
+                        // criando e manipulando elementos do HTML via JavaScript
+                        // var divPublicacao = document.createElement("div");
+                        // var spanID = document.createElement("span");
+                        // var spanTitulo = document.createElement("span");
+                        // var spanNome = document.createElement("span");
+                        // var divDescricao = document.createElement("div");
+                        // var divButtons = document.createElement("div");
+                        // var btnEditar = document.createElement("button");
+                        // var btnDeletar = document.createElement("button");
+
+
+                        // spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
+                        // spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
+                        // spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
+                        // divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+                        // btnEditar.innerHTML = "Editar";
+                        // btnDeletar.innerHTML = "Deletar";
+
+                        // divPublicacao.className = "publicacao";
+                        // spanTitulo.id = "inputNumero" + publicacao.idAviso;
+                        // spanNome.className = "publicacao-nome";
+                        // spanTitulo.className = "publicacao-titulo";
+                        // divDescricao.className = "publicacao-descricao";
+
+                        // divButtons.className = "div-buttons"
+
+                        // btnEditar.className = "publicacao-btn-editar"
+                        // btnEditar.id = "btnEditar" + publicacao.idAviso;
+                        // btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+
+                        // btnDeletar.className = "publicacao-btn-editar"
+                        // btnDeletar.id = "btnDeletar" + publicacao.idAviso;
+                        // btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+
+                        // divPublicacao.appendChild(spanID);
+                        // divPublicacao.appendChild(spanNome);
+                        // divPublicacao.appendChild(spanTitulo);
+                        // divPublicacao.appendChild(divDescricao);
+                        // divPublicacao.appendChild(divButtons);
+                        // divButtons.appendChild(btnEditar);
+                        // divButtons.appendChild(btnDeletar);
+                        // feed.appendChild(divPublicacao);
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
+
+    function trocar(){
+        window.location="setores.html"
     }
 
 
