@@ -79,6 +79,7 @@
 }
 
 #pMenuLateral {
+    text-decoration: none;
     color: white;
     font-size: 11px;
 }

@@ -76,14 +76,15 @@
 }
 
 #pMenuLateral {
+    text-decoration: none;
     color: white;
     font-size: 11px;
 }
 
-#pMenuLateral:hover{
+/* #pMenuLateral:hover{
     cursor: pointer;
     text-decoration: underline;
-}
+} */
 
 .divEstatisticas {
     display: flex;

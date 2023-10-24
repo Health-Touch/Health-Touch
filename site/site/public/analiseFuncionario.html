@@ -135,7 +135,7 @@
                         </ul>
                     </div>
                     <div class="divConteudo">
-                        <div  class="divConteudoScroll"  id="divConteudoScroll">
+                        <div class="divConteudoScroll" id="divConteudoScroll">
 
                         </div>
                     </div>
@@ -170,15 +170,13 @@
 
                         var Cargo = TodosFuncionarios.nivelAcesso
 
-                        if(Cargo == "RL")
-                        {
-                            Cargo = "Representante Legal"
+                        if (Cargo == "RL") {
+                            Cargo = "Representante"
                         }
-                        else if(Cargo == "GT")
-                        {
+                        else if (Cargo == "GT") {
                             Cargo = "Gerente TI"
                         }
-                        else{
+                        else {
                             Cargo = "Equipe TI"
                         }
 
@@ -192,7 +190,6 @@
                             <li id="liCargo">${Cargo}</li>
                             <li id="liUpdate" style="color:aliceblue">Ativar</li>
                             <li id="liDelete" style="color:aliceblue">Desativar</li>
-                            <li id="li3Pontos">. . .</li>
                         </div> 
                         `;
                     }
@@ -205,5 +202,20 @@
             console.error(resposta);
             // finalizarAguardar();
         });
+
+        var nome = sessionStorage.NOME_COLABORADOR;
+        tituloPerfil.innerHTML = nome;
+
+        var cargo = sessionStorage.NIVELACESSO_COLABORADOR;
+        if (cargo == "RL") {
+            cargo = "Representante"
+        } else if (cargo == "GT") {
+            cargo = "Gerente TI"
+        }
+
+        cargoPerfil.innerHTML = cargo
+
+        var Empresa = sessionStorage.NOME_FANTASIA_COLABORADOR;
+        nomeEmpresa.innerHTML = Empresa;
     }
 </script>
