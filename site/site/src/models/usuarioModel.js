@@ -30,7 +30,7 @@ function cadastrarEmpresa(nome, cnpj, telefone) {
   return database.executar(instrucao)
 }
 
-function cadastrarEndereco (cep, estado, cidade, rua, numero) {
+function cadastrarEndereco(cep, estado, cidade, rua, numero) {
   console.log(
     "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():",
     cep,
@@ -42,7 +42,7 @@ function cadastrarEndereco (cep, estado, cidade, rua, numero) {
 
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
-  
+
   var instrucao = `
   INSERT INTO Endereco (rua, num, estado, CEP,  cidade, fkEmpresa) VALUES ('${rua}', '${numero}','${estado}', '${cep}', '${cidade}',(select MAX(idEmpresa) from empresa));
     `
@@ -50,7 +50,7 @@ function cadastrarEndereco (cep, estado, cidade, rua, numero) {
   return database.executar(instrucao)
 }
 
-function cadastrarRl (nome, cpf, email, senha, nivel, status) {
+function cadastrarRl(nome, cpf, email, senha, nivel, status) {
   console.log(
     "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():",
     nome,
@@ -63,7 +63,7 @@ function cadastrarRl (nome, cpf, email, senha, nivel, status) {
 
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
-  
+
   var instrucao = `
   INSERT INTO Colaborador (nome, email, senha, CPF, fkStatus,  fkNivelAcesso,fkEmpresa) VALUES ('${nome}', '${email}','${senha}', '${cpf}', '${status}', '${nivel}', (select MAX(idEmpresa) from empresa));
     `
@@ -83,7 +83,7 @@ function registrar(NomeBotao) {
 
 function cadastrarFuncionario(nome, email, senha, cpf, fkEmpresa, fkStatus, fkNivelAcesso) {
   console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarFuncionario():", nome, email, senha, cpf, fkEmpresa, fkStatus, fkNivelAcesso);
-  
+
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
   var instrucao = `
@@ -95,7 +95,7 @@ function cadastrarFuncionario(nome, email, senha, cpf, fkEmpresa, fkStatus, fkNi
 }
 
 function cadastrarMaquina(so, ip, fkMaqEmpresa, fkPLanoEmpresa, fkStatusMaquina, fkTipoMaquina) {
-  console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarMaquina():", so, ip, fkMaqEmpresa, fkPLanoEmpresa, fkStatusMaquina, fkTipoMaquina);  
+  console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarMaquina():", so, ip, fkMaqEmpresa, fkPLanoEmpresa, fkStatusMaquina, fkTipoMaquina);
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
   var instrucao = `
@@ -108,7 +108,7 @@ function cadastrarMaquina(so, ip, fkMaqEmpresa, fkPLanoEmpresa, fkStatusMaquina,
 
 function cadastrarLocal(andar, sala, fkSetor) {
   console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n");
-  
+
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
   var instrucao = `
@@ -121,7 +121,7 @@ function cadastrarLocal(andar, sala, fkSetor) {
 
 function cadastrarSetores(nomeSetor) {
   console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSetores():", nomeSetor);
-  
+
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
   var instrucao = `
@@ -141,6 +141,48 @@ function listarSetores() {
   return database.executar(instrucao);
 }
 
+function atualizarDados(Nome, TelFixo, TelCel, cpf, idColaborador) {
+  console.log(
+    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente.",
+    Nome,
+    TelFixo,
+    TelCel,
+    cpf,
+    idColaborador
+  )
+
+  // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+  //  e na ordem de inserção dos dados.
+  var instrucao = `
+  update colaborador join telefone on fkColaborador = idColaborador 
+	set colaborador.nome = "${Nome}", 
+    telefone.telCel = "${TelCel}",
+    telefone.TelFixo = "${TelFixo}",
+    colaborador.cpf = "${cpf}"
+    where idColaborador = ${idColaborador};
+    `
+  console.log('Executando a instrução SQL: \n' + instrucao)
+  return database.executar(instrucao)
+}
+
+function atualizarSenha(NovaSenha, idColaborador) {
+  console.log(
+    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente.",
+    NovaSenha,
+    idColaborador
+  )
+
+  // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+  //  e na ordem de inserção dos dados.
+  var instrucao = `
+  update colaborador
+	set senha = "${NovaSenha}"
+    where idColaborador = ${idColaborador};
+    `
+  console.log('Executando a instrução SQL: \n' + instrucao)
+  return database.executar(instrucao)
+}
+
 module.exports = {
   entrar,
   cadastrarEmpresa,
@@ -151,5 +193,7 @@ module.exports = {
   cadastrarLocal,
   cadastrarSetores,
   registrar,
+  atualizarDados,
+  atualizarSenha,
   listarSetores
 }

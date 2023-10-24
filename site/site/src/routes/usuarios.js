@@ -47,4 +47,12 @@ router.get('/listarSetores', function (req, res) {
   usuarioController.listarSetores(req, res)
 })
 
+router.post('/atualizarDados', function (req, res) {
+  usuarioController.atualizarDados(req, res)
+})
+
+router.post('/atualizarSenha', function (req, res) {
+  usuarioController.atualizarSenha(req, res)
+})
+
 module.exports = router
