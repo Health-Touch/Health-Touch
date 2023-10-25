@@ -380,7 +380,7 @@
 .divTitulosCadastro {
     display: flex;
     justify-content: center;
-    width: 20vw;
+    width: 30vw;
     position: relative;
     right: 30%;
 }
@@ -389,11 +389,14 @@
     font-size: 23px;
     position: relative;
     top: 3vh;
+    width: 30vw;
+    left: 12%;
 }
 
 #tituloCadastroMaquinasV2 {
     font-size: 23px;
     color: #26ABA7;
+    width: 30vw;
 }
 
 .inputCad {

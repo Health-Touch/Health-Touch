@@ -208,6 +208,7 @@
         var fkPlanoEmpresa = sessionStorage.PLANO_EMPRESA
         var fkStatusMaquina = 1
         var fkTipoMaquina = inputTipoMaquina.value
+    
 
         fetch("/usuarios/cadastrarMaquina", {
             method: "POST",
@@ -273,12 +274,13 @@
                 botaoCadastroMaquinas();
 
             } else {
-                Swal.fire('HOUVE UM ERRO AO TENTAR REALIZAR O CADASTRO de LOCALLLLLLL')
+                Swal.fire('HOUVE UM ERRO AO TENTAR REALIZAR O CADASTRO ')
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
     }
+//   }
 
 
     function sumirMensagem() {

@@ -191,11 +191,20 @@ function botaoCadastroFuncionarios () {
     var email = inputEmail.value
     var senha = inputSenha.value
     var cpf = inputCPF.value
+    var confiSenha = inputConfirmarSenha.value
     var fkEmpresa = 1;
     var fkStatus = 1;
     var fkNivelAcesso = 3;
 
     var teste = sessionStorage.getItem('idEmpresa')
+    if (nome == '' || email == '' || senha == '' || cpf == '' ||  confiSenha == '') {
+      // cardErro.style.display = "block"
+      Swal.fire('HOUVE UM ERRO AO TENTAR REALIZAR O CADASTRO ')
+
+
+      return false
+    } 
+    else {
 
         fetch("/usuarios/cadastrarFuncionario", {
         method: "POST",
@@ -228,6 +237,7 @@ function botaoCadastroFuncionarios () {
     }).catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
     });
+}
 }
 function sumirMensagem() {
     cardErro.style.display = "none"
