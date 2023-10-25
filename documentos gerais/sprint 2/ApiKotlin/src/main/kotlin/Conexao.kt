@@ -9,7 +9,7 @@ object Conexao {
                 dataSource.driverClassName = "com.mysql.cj.jdbc.Driver"
                 dataSource.url = "jdbc:mysql://localhost:3306/HealthTouch"
                 dataSource.username = "root"
-                dataSource.password = "181004Mp."
+                dataSource.password = "sptech"
                 val novoJdbcTemplate = JdbcTemplate(dataSource)
                 field = novoJdbcTemplate
             }
