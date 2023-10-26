@@ -80,7 +80,7 @@ function entrar() {
       } else {
         Swal.fire({
           title: 'Login inválido!',
-          text: 'Algum campo está incorreto!',
+          text: 'Usuário não encontrado',
           icon: 'error',
           confirmButtonText: 'OK'
         })

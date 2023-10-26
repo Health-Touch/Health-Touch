@@ -29,7 +29,7 @@ fkPlano int, constraint foreign key(fkPlano) references Plano(idPlano)
 );
 
 insert into Empresa values 
-(null, 'teste', '12345678912345', '2023-10-10', 1191234567, 3);
+(null, 'sus santo andré', '12345678912345', '2023-10-10', 1191234567, 3);
 
 select * from Empresa;
 
@@ -55,10 +55,10 @@ statusColaborador varchar(45)
 );
 
 insert into statusColaborador values
-(null, 'ativo');
+(null, 'Ativo');
 
 insert into statusColaborador values
-(null, 'desativo');
+(null, 'Desativo');
 
 select * from statusColaborador;
 
@@ -73,7 +73,7 @@ fkStatus int, constraint foreign key(fkStatus) references statusColaborador(idSt
 fkNivelAcesso int, constraint foreign key(fkNivelAcesso) references NivelAcesso(idNivelAcesso) 
 );
 
-insert into Colaborador values (null, 'rafa', 'rafa@gmail.com', 'rafa123', 37637602885, 1, 1, 1);
+insert into Colaborador values (null, 'Fernanda Caramico', 'caramico@gmail.com', '123123', 37637602885, 1, 1, 1);
 
 select * from Colaborador;
 
@@ -100,7 +100,7 @@ fkEmpresa int, constraint foreign key(fkEmpresa) references Empresa(idEmpresa)
 );
 
 insert into Endereco values
-(null, "rua teste", 284, "são paulo", 08121722, "são paulo", 1);
+(null, "rua flores", 284, "são paulo", 08121722, "são paulo", 1);
 
 select * from Endereco;
 
@@ -109,7 +109,7 @@ idSetor int primary key auto_increment,
 nome varchar(45));
 
 insert into setor values
-(null, 'pediatria');
+(null, 'Pediatria');
 
 select * from setor;
 
@@ -131,10 +131,10 @@ tipo varchar(45)
 );
 
 insert into TipoMaquina values 
-(null, 'computador');
+(null, 'Computador');
 
 insert into TipoMaquina values 
-(null, 'toten');
+(null, 'Toten');
 
 select * from tipoMaquina;
 
@@ -144,10 +144,10 @@ statusMaquina varchar(45)
 );
 
 insert into statusMaquina values
-(null, 'ativo');
+(null, 'Ativo');
 
 insert into statusMaquina values
-(null, 'desativo');
+(null, 'Desativo');
 
 select * from statusMaquina;
 
@@ -163,7 +163,7 @@ fkTipoMaquina int, constraint foreign key(fkTipoMaquina) references TipoMaquina(
 );
 
 insert into Maquina values 
-(null, "windows 11", 123456789, 1, 1, 1, 1, 1);
+(null, "windows", 123456789, 1, 1, 1, 1, 1);
 
 select * from Maquina;
 
@@ -226,7 +226,7 @@ fkTipoMaquina int, constraint foreign key(fkTipoMaquina) references TipoMaquina(
 fkEmpresaMaquina int, constraint foreign key(fkEmpresaMaquina) references Maquina(idMaquina)
 );
 
-select * from Monitoramento; 
+select * from Monitoramento;
 
 create table ProcessosLooca (
 idProcessosLooca int primary key auto_increment,
