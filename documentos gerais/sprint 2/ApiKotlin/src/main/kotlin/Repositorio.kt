@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate
 import java.time.LocalDateTime
 
 import javax.swing.JOptionPane
+import javax.swing.JPasswordField
 
 
 class Repositorio {
@@ -105,7 +106,10 @@ class Repositorio {
     fun validarColaborador() {
 
         val email = JOptionPane.showInputDialog("Insira seu email")
-        val senha  = JOptionPane.showInputDialog("Insira sua senha")
+        // val senha  = JOptionPane.showInputDialog("Insira sua senha")
+        val senha = JPasswordField(10)
+        val acao = JOptionPane.showConfirmDialog(null,senha,"Insira sua senha",JOptionPane.OK_CANCEL_OPTION)
+        //System.exit(0)
 
 
 //
