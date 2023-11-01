@@ -473,4 +473,9 @@
     transform: scale(1.05) ;
     cursor: pointer;
 }
+.ContatoPipe{
+    height: 60vh;
+    width: 100%;
+    
+}
 /* fim do conteudo */
