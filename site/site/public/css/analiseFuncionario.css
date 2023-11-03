@@ -24,6 +24,8 @@
     margin: auto;
     background-color: white;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    position: relative;
+    top: -4%;
 }
 
 .divPerfilCabecalho {
@@ -64,14 +66,12 @@
 
 .emailIconCabecalho {
     width: 1.5vw;
-    height: 2.71vh;
-    /* Icon Quadraddo */
+    height: 3vh;
 }
 
 .sinoIconCabecalho {
     width: 1.5vw;
-    height: 2.71vh;
-    /* Icon Quadraddo */
+    height: 3vh;
 }
 
 .esquerdaCabecalho {
@@ -102,7 +102,7 @@
     width: 25px;
     height: 25px;
     position: relative;
-    right: 16%;
+    right: 20%;
 }
 
 
@@ -350,12 +350,26 @@
 
 /* começo do conteudo */
 .divPaiConteudo {
-        width: 85%;
-        height: 90%;
-        background-color: #FFF;
+        width: 95%;
+        height: 80%;
+        background-color: white;
         border-radius: 10px;
         margin: 10px;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        position: relative;
+        top: -5%;
+}
+
+#tituloFuncionario {
+    font-size: 28px;
+    position: relative;
+    top: 5%;
+    left: 13%;
+}
+
+.divPaiInformacao{
+    position: relative;
+    top: -8%;
 }
 
 span {
@@ -370,6 +384,7 @@ ul{
     display: flex;
     flex-direction:row;
 }
+
 .divPaiInformacao img{
     height:30px;
     width:30px;
@@ -379,44 +394,46 @@ ul{
     display:flex;
     align-items: center;
     position:relative;
-    top: 40px;
+    top: 90px;
     width: 70vw;
+    height: 5vh;
+    color: rgb(155, 155, 155);
+    background-color: rgb(255, 255, 255);
 }
 
 #idTeste {
-    /* font-size: 11px; */
     position: relative;
-    left: 10%;
+    left: 11.5%;
     z-index: 1;
+    font-size: 12px;
 }
 
 #idTeste2 {
     font-size: 15px;
     position: relative;
-    left: 16%;
+    left: 22%;
+    font-size: 12px;
 }
 
 #idTeste3 {
-    /* font-size: 11px; */
     position: relative;
-    left: 23%;
-    z-index:3
+    left: 38%;
+    z-index:3;
+    font-size: 12px;
 }
 #idTeste4{
-    /* font-size: 11px; */
     position: relative;
-    left: 34%;
-
+    left: 50.7%;
+    font-size: 12px;
 }
+
 #idTeste5{
-
+    font-size: 12px;
     position: relative;
-    left: 43%;
-
+    left: 59%;
 }
 
 .divConteudo{
-    /* background-color: #8E0A0A; */
     display:flex;
     flex-direction: column;
     position: relative;
@@ -425,16 +442,15 @@ ul{
     width:98%;
     margin:4%;
     height: 50%;
-    /* justify-content: center; */
 }
 
 .divConteudoScroll{
     height:90%;
     width: 95%;
-     max-height:60vh;
-    overflow-y:scroll ;
-    /* background:red; */
+    max-height:57vh;
+    overflow-y:scroll;
 }
+
 .divConteudo li{
     list-style: none;
 }
@@ -443,44 +459,53 @@ ul{
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     display:flex;
     flex-direction:row;
-    width: 87%;
+    width: 90%;
     height: 20px;
     border-radius: 35px;
     padding: 15px 30px;
     margin:20px;
-    /* background:red; */
+    position: relative;
+    top: -17px;
 }
 
 #liNumero{
     position:relative;
     left: 3.5%;
+    font-size: 14px;
 }
+
 #linome{
     position:relative;
     left: 8%;
     width:80px;
     text-align:center;
+    width: 12vw;
+    font-size: 14px;
 }
+
 #liemail{
     width: 120px;
     position:relative;
-    left: 9%;
+    left: 12%;
     text-align:center;
+    font-size: 14px;
 }
+
 #liStatus{
-    
     position:relative;
-    left: 15%;
+    left: 18%;
 }
+
 #liCargo{
     position:relative;
-    left: 20%;
+    left: 20.5%;
     width:100px;
     text-align:center;
 }
+
 #liUpdate{
     position:relative;
-    left: 25%;
+    left: 23%;
     border-radius: 30px;
     width: 8%;
     height:110%;
@@ -488,12 +513,12 @@ ul{
     display:flex;
     justify-content: center;
     padding:2px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 #liDelete{
-    
     position:relative;
-    left: 28%;
+    left: 26%;
     border-radius: 30px;
     width: 10%;
     height:110%;
@@ -501,21 +526,16 @@ ul{
     display:flex;
     justify-content: center;
     padding:2px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
-.active{
+.active {
     background-color: #4fff3081;
     border-radius:20px;
     width:70px;
     height: 25px;
     text-align: center;
-}
-#inactive{
-    background-color: #8E0A0A;
-    border-radius:20px;
-    width:70px;
-    height: 25px;
-    text-align:center
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 /* fim do conteudo */

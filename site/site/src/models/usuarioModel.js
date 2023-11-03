@@ -70,12 +70,12 @@ function cadastrarRl(nome, cpf, email, senha, nivel, status) {
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
 }
-function registrar(NomeBotao) {
 
+function registrar(nomeBotao, fkMaquina, fkEmpresa, fkPLanoEmpresa, fkTipoMaquina) {
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
   var instrucao = `
-      INSERT INTO click (NomeBotao) VALUES ('${NomeBotao}');
+      INSERT INTO AnaliseToten (nomeBotao, fkMaquina, fkEmpresa, fkPlanoEmpresa, fkTipoMaquina) VALUES ('${nomeBotao}', '${fkMaquina}', '${fkEmpresa}', '${fkPLanoEmpresa}', '${fkTipoMaquina}');
   `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);

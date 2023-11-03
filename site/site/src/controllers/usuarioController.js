@@ -39,17 +39,19 @@ function entrar(req, res) {
 
 function registrar(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-  var NomeBotao = req.body.NomeBotaoServer;
-
+  var nomeBotao = req.body.nomeBotaoServer;
+  var fkMaquina = req.body.empresaMaqServer;
+  var fkEmpresa = req.body.empresaServer;
+  var fkPlanoEmpresa = req.body.planoServer;
+  var fkTipoMaquina = req.body.tipoMaquinaServer;
 
   // Faça as validações dos valores
-  if (NomeBotao == undefined) {
+  if (nomeBotao == undefined || fkMaquina == undefined || fkEmpresa == undefined || fkPlanoEmpresa == undefined || fkTipoMaquina == undefined) {
     res.status(400).send("Seu nome está undefined!");
   }
   else {
-
     // Passe os valores como parâmetro e vá para o arquivo inovacaoModel.js
-    usuarioModel.registrar(NomeBotao)
+    usuarioModel.registrar(nomeBotao)
       .then(
         function (resultado) {
           res.json(resultado);
