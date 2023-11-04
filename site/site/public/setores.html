@@ -389,23 +389,21 @@
     }
     function filtrarSetores() {
         fetch(`/usuarios/filtrarSetores`).then(function (resposta) {
-
             if (resposta.ok) {
                 console.log("ENTREII")
 
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    const inputCad = document.getElementById('select_filtrarSetor');
+                    const selectSetor = document.getElementById('select_filtrarSetor');
 
                     for (let i = 0; i < resposta.length; i++) {
 
                         var setor = resposta[i];
 
                         var OptionSetor = document.createElement("option");
-                        // OptionSetor.setAttribute("Value", setor.idSetor)
                         OptionSetor.innerHTML = setor.nome;
-                        inputCad.appendChild(OptionSetor);
+                        selectSetor.appendChild(OptionSetor);
 
                     }
                     // finalizarAguardar();
