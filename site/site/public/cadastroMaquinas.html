@@ -239,7 +239,6 @@
 
                             <div class="divSo">
                                 <p id="pSo">Setor:</p>
-                                <!-- <input type="text" class="inputCad" placeholder="Pediatria"></input> -->
                                 <select id="inputSetor" class="inputCad">
                                     <option>Escolha um setor</option>
                                 </select>
@@ -387,7 +386,7 @@
                         var OptionSetor = document.createElement("option");
                         OptionSetor.setAttribute("Value", setor.idSetor)
                         OptionSetor.innerHTML = setor.nome;
-                        inputSetor.appendChild(OptionSetor);
+                        inputCad.appendChild(OptionSetor);
 
                     }
                     // finalizarAguardar();

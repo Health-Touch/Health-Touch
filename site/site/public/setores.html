@@ -69,7 +69,7 @@
     transition-duration: .3s;
 }
 </style>
-<body onload="atualizarFeed()">
+<body onload="atualizarFeed(), filtrarSetores()" >
     <div class="divPai">
         <!-- inicio menu lateral -->
         <div class="divPaiLateral">
@@ -204,14 +204,31 @@
 
             <!-- começo conteudo pagina -->
             <div class="divPaiConteudo">
-                <div class="cadastrarSetor" id="cadastrarSetor">
-                    <h1>Cadastre os Setores</h1>
-                    <div class="entradaSetor">
-                        <input id="ipt_nomeSetor" type="text" placeholder="Nome Setor">
-                        <button class="btn_cadastrarSetor" onclick="cadastrarSetores()">Cadastrar</button>
+                <div class="Setor">
+                    <div class="cadastrarSetor" id="cadastrarSetor">
+                        <h1>Cadastre os Setores</h1>
+                        <div class="entradaSetor">
+                            <input id="ipt_nomeSetor" type="text" placeholder="Nome Setor">
+                            <button class="btn_cadastrarSetor" onclick="cadastrarSetores()">Cadastrar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="div_Select">
+                        <select  id="select_filtrarSetor">
+                            <option value="hide">Setores</option>
+
+                        </select>
+    
+                        <select  id="select_filtrarStatus">
+                            <option value="hide">Status</option>
+                            <option value="correto">Correto</option>
+                            <option value="atencao">Atenção</option>
+                            <option value="critico">Crítico</option>
+                        </select>
                     </div>
                 </div>
-                <div class="all" id="all">
+                
+                <div class="all" id="all" >
                 </div>
             </div>
         </div>
@@ -369,6 +386,37 @@
             window.location = 'setores.html'
             return false
         }
+    }
+    function filtrarSetores() {
+        fetch(`/usuarios/filtrarSetores`).then(function (resposta) {
+
+            if (resposta.ok) {
+                console.log("ENTREII")
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    const inputCad = document.getElementById('select_filtrarSetor');
+
+                    for (let i = 0; i < resposta.length; i++) {
+
+                        var setor = resposta[i];
+
+                        var OptionSetor = document.createElement("option");
+                        // OptionSetor.setAttribute("Value", setor.idSetor)
+                        OptionSetor.innerHTML = setor.nome;
+                        inputCad.appendChild(OptionSetor);
+
+                    }
+                    // finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
     }
 
     

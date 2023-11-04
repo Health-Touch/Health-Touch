@@ -140,6 +140,14 @@ function listarSetores() {
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
 }
+function filtrarSetores() {
+  console.log("ACESSEI A TABELA SETOR \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+  var instrucao = `
+      Select nome from setor;
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
 
 function atualizarDados(Nome, TelFixo, TelCel, cpf, idColaborador) {
   console.log(
@@ -195,5 +203,6 @@ module.exports = {
   registrar,
   atualizarDados,
   atualizarSenha,
-  listarSetores
+  listarSetores,
+  filtrarSetores
 }

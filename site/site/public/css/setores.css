@@ -449,6 +449,11 @@
 .statusCard {
     height: 10px;
 }
+.Setor{
+    width:100%;
+    display:flex;
+    justify-content:space-around ;
+}
 
 .cadastrarSetor {
     width: 45%;
@@ -461,10 +466,11 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    margin:2rem 3rem;
     /* margin-bottom: 10vh; */
-    position: relative;
+    /* position: relative;
     left: 9%;
-    bottom: 2%;
+    bottom: 2%; */
 }
 
 .cadastrarSetor>h1 {
@@ -493,5 +499,28 @@
         transform: scale(1.05) ;
         cursor: pointer;
 }
+.div_Select{
+    display:flex;
+}
+#select_filtrarSetor{
+    padding:.5rem;
+    display:flex;
+    border-radius: 8px;;
+    width:10vh;
+    height:4vh;
+    margin:3rem 1rem;
+}
+#select_filtrarSetor:hover{
+    cursor:pointer
+}
+#select_filtrarStatus{
+    padding:.5rem;
+    display:flex;
+    border-radius: 8px;
+    width:10vh;
+    height:4vh;
+    margin:3rem 1rem;
+}
+
 
 /* fim do conteudo */
