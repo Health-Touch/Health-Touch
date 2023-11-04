@@ -148,6 +148,14 @@ function filtrarSetores() {
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
 }
+// function filtrarStatus() {
+//   console.log("ACESSEI A NivelAviso \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+//   var instrucao = `
+//       Select nivelAvisos from NivelAviso;
+//   `;
+//   console.log("Executando a instrução SQL: \n" + instrucao);
+//   return database.executar(instrucao);
+// }
 
 function atualizarDados(Nome, TelFixo, TelCel, cpf, idColaborador) {
   console.log(
