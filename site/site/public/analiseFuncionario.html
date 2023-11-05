@@ -274,6 +274,19 @@
                             <button onclick="desativar(${TodosFuncionarios.idColaborador})" id="liDelete" style="color:aliceblue">Desativar</button>
                         </div> 
                         `;
+
+                        var divs = document.getElementsByClassName("active");
+
+                        if (divs.length > 0) {
+                            var conteudo = divs[i].textContent;
+                            if (conteudo == "Desativo") {
+                                divs[i].style.backgroundColor = "#EC6B6B";
+                                divs[i].style.color = "#8E0A0A";
+                            } else {
+                                divs[i].style.backgroundColor = "#6BECA6";
+                                divs[i].style.color = "#1D8E0A";
+                            }
+                        }
                     }
                     // finalizarAguardar();
                 });
