@@ -252,11 +252,7 @@ ul {
     text-align:center;
 }
 
-#liStatus{
-    position:relative;
-    z-index:97;
-    left: 35%;
-}
+
 
 #liUpdate{
     position:relative;
@@ -269,10 +265,14 @@ ul {
     display:flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    border: none;
     padding:2px 5px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     cursor: pointer;
+    font-size: 13px;
 }
+
 #liDelete{
     position:relative;
     z-index:94;
@@ -284,9 +284,12 @@ ul {
     display:flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    border: none;
     padding:2px 5px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     cursor: pointer;
+    font-size: 13px;
 }
 #li3Pontos{
     position:relative;
@@ -297,11 +300,19 @@ ul {
 }
 
 .active{
+    font-size: 13px;
     border-radius:20px;
     width:70px;
     height: 25px;
+    display: flex;
+    justify-content: center;
     text-align: center;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    position:relative;
+    z-index:97;
+    left: 35%;
+    display: flex;
+    align-items: center;
 }
 
 /* fim do conteudo */

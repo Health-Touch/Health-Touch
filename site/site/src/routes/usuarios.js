@@ -65,5 +65,9 @@ router.post('/updateStatusMaq', function (req, res) {
   usuarioController.updateStatusMaq(req, res)
 })
 
+router.post('/updateStatusFunc', function (req, res) {
+  usuarioController.updateStatusFunc(req, res)
+})
+
 
 module.exports = router

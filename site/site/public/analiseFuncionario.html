@@ -228,6 +228,7 @@
 </body>
 
 </html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 <script>
     function atualizarTodosComputadores() {
         fetch("/avisos/listarTodosFuncionarios").then(function (resposta) {
@@ -269,8 +270,8 @@
                             <li id="liemail">${TodosFuncionarios.email}</li>
                             <li id="liStatus" class="active">${TodosFuncionarios.statusColaborador}</li>
                             <li id="liCargo">${Cargo}</li>
-                            <button id="liUpdate" style="color:aliceblue">Ativar</button>
-                            <button id="liDelete" style="color:aliceblue">Desativar</li>
+                            <button onclick="ativar(${TodosFuncionarios.idColaborador})" id="liUpdate" style="color:aliceblue">Ativar</button>
+                            <button onclick="desativar(${TodosFuncionarios.idColaborador})" id="liDelete" style="color:aliceblue">Desativar</button>
                         </div> 
                         `;
                     }
@@ -329,9 +330,9 @@ function limparSessao() {
   window.location = './login.html'
 }
 
-function ativar(idFuncionario) {
+function ativar(idColaborador) {
     var opcaoUpdate = 1
-    var idFuncionarioAtivar = idFuncionario
+    var idFuncionarioAtivar = idColaborador
 
         fetch("/usuarios/updateStatusFunc", {
             method: "POST",
@@ -342,7 +343,7 @@ function ativar(idFuncionario) {
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
                 opcaoUpdateServer: opcaoUpdate,
-                idFuncServer: idFuncionarioAtivar
+                idFuncionarioServer: idFuncionarioAtivar
             })
         }).then(function (resposta) {
 
@@ -356,7 +357,7 @@ function ativar(idFuncionario) {
                 Swal.fire('Houve um erro ao tentar atualizar o Funcionario')
             }
         }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
+            console.log(`erro no html`);
         });
 }
 
@@ -364,7 +365,7 @@ function desativar(idFuncionario) {
     var opcaoUpdate = 2
     var idFuncionarioDesativar = idFuncionario
 
-        fetch("/usuarios/updateStatusMaq", {
+        fetch("/usuarios/updateStatusFunc", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -387,7 +388,7 @@ function desativar(idFuncionario) {
                 Swal.fire('Houve um erro ao tentar atualizar o Funcionario')
             }
         }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
+            console.log(`erro no html`);
         });
 }
 </script>
