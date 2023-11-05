@@ -36,7 +36,7 @@
 
     <div class="wrapper active-popup">
       <div class="form-box login">
-        <h2>Registrar</h2>
+        <h2 id="tituloCadastros">Dados da Empresa</h2>
         <!-- <form action="#"> -->
           <div class="input-box">
             <span class="icon">
@@ -62,10 +62,6 @@
             <label>Telefone Fixo</label>
           </div>
           <div class="remember-forgot">
-            <label
-              ><input type="checkbox" id="termos" />Eu concordo com os termos &
-              condições</label
-            >
           </div>
           <button onclick="cadastrarEmpresa()" type="submit" class="btn">
             Registrar e Prosseguir
@@ -75,14 +71,12 @@
           </div>
         
       </div>
-      
     </div>
 
   </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 <script>
-
-  
   function cadastrarEmpresa() {
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -93,14 +87,13 @@
     var termos = document.getElementById('termos')
 
     if (nomeVar == '' || cnpjVar == '' || telefoneVar == '') {
-      // cardErro.style.display = "block"
-      console.log("Mensagem de erro para todos os campos em branco")
-
-
-      return false
-    } 
-    else {
-      setInterval(sumirMensagem, 10000)
+      swal.fire('Preencha todos os campos')
+      } else if (cnpjVar.length != 14) {
+        swal.fire('CNPJ precisa ter 14 caracteres')
+        } else if (telefoneVar.length != 10) {
+          swal.fire ('Telefone precisa ter 10 caracteres')
+    } else {
+      setInterval(sumirMensagem, 5000)
 
       // Enviando o valor da nova input
       fetch('/usuarios/cadastrarEmpresa', {
@@ -132,7 +125,7 @@
 
                     setTimeout(function () {
                         window.location = "cadastroEndereco.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 500); // apenas para exibir o loading
 
                 });
     

@@ -61,4 +61,9 @@ router.post('/atualizarSenha', function (req, res) {
   usuarioController.atualizarSenha(req, res)
 })
 
+router.post('/updateStatusMaq', function (req, res) {
+  usuarioController.updateStatusMaq(req, res)
+})
+
+
 module.exports = router

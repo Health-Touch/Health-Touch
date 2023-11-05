@@ -269,8 +269,8 @@
                             <li id="liemail">${TodosFuncionarios.email}</li>
                             <li id="liStatus" class="active">${TodosFuncionarios.statusColaborador}</li>
                             <li id="liCargo">${Cargo}</li>
-                            <li id="liUpdate" style="color:aliceblue">Ativar</li>
-                            <li id="liDelete" style="color:aliceblue">Desativar</li>
+                            <button id="liUpdate" style="color:aliceblue">Ativar</button>
+                            <button id="liDelete" style="color:aliceblue">Desativar</li>
                         </div> 
                         `;
                     }
@@ -327,5 +327,67 @@ function exibirMenuPerfil() {
 function limparSessao() {
   sessionStorage.clear();
   window.location = './login.html'
+}
+
+function ativar(idFuncionario) {
+    var opcaoUpdate = 1
+    var idFuncionarioAtivar = idFuncionario
+
+        fetch("/usuarios/updateStatusFunc", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                opcaoUpdateServer: opcaoUpdate,
+                idFuncServer: idFuncionarioAtivar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                window.location = "analiseFuncionario.html"
+
+            } else {
+                Swal.fire('Houve um erro ao tentar atualizar o Funcionario')
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+function desativar(idFuncionario) {
+    var opcaoUpdate = 2
+    var idFuncionarioDesativar = idFuncionario
+
+        fetch("/usuarios/updateStatusMaq", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                opcaoUpdateServer: opcaoUpdate,
+                idFuncionarioServer: idFuncionarioDesativar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                window.location = "analiseFuncionario.html"
+
+            } else {
+                Swal.fire('Houve um erro ao tentar atualizar o Funcionario')
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
 }
 </script>

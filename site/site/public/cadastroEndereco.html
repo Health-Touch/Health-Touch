@@ -30,23 +30,13 @@
             onclick="home()"
           />
         </div>
-
-        <div class="direitaCabecalho">
-          <div class="subDireitaCabecalho">
-            <div class="divSaibaMais">
-              <a href="/index.html#saibaMais">SAIBA MAIS</a>
-            </div>
-            <div class="divCadastro"><a href="cadastro.html">CADASTRO</a></div>
-            <div class="divLogin"><a href="login.html">LOGIN</a></div>
-          </div>
-        </div>
       </div>
     </div>
     <!-- fim do cabeçalho -->
 
     <div class="wrapper active-popup">
-      <div class="form-box login">
-        <h2>Registrar</h2>
+      <div class="form-box login">Z
+        <h2 id="tituloCadastros">Endereço</h2>
         <!-- <form action="#"> -->
           <div class="input-box">
             <span class="icon">
@@ -89,10 +79,7 @@
           </div>
 
           <div class="remember-forgot">
-            <label
-              ><input type="checkbox" id="termos" />Eu concordo com os termos &
-              condições</label
-            >
+      
           </div>
           <button onclick="cadastrarEndereco()" type="submit" class="btn">
             Registrar 
@@ -109,6 +96,8 @@
   
   </body>
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 <script>
 
 
@@ -124,13 +113,10 @@
     var termos = document.getElementById('termos')
 
     if (cepVar == '' || estadoVar == '' || cidadeVar == '' || ruaVar == '' || numeroVar == '') {
-      // cardErro.style.display = "block"
-      console.log("Mensagem de erro para todos os campos em branco")
-
-
-      return false
-    } 
-    else {
+      swal.fire('Preencha todos os campos')
+      } else if (cepVar.length != 8) {
+        swal.fire('Cep precisa ter 8 caracteres')
+    } else {
       setInterval(sumirMensagem, 10000)
 
       // Enviando o valor da nova input
@@ -161,7 +147,7 @@
 
             setTimeout(() => {
               window.location = 'cadastroRL.html'
-            }, '2000')
+            }, '500')
 
             limparFormulario()
           } else {

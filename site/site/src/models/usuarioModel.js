@@ -71,12 +71,12 @@ function cadastrarRl(nome, cpf, email, senha, nivel, status) {
   return database.executar(instrucao)
 }
 
-function registrar(nomeBotao, fkMaquina, fkEmpresa, fkPLanoEmpresa, fkTipoMaquina) {
+function registrar(nomeBotao, fkMaquina, fkEmpresa, fkPlanoEmpresa, fkTipoMaquina) {
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
   var instrucao = `
-      INSERT INTO AnaliseToten (nomeBotao, fkMaquina, fkEmpresa, fkPlanoEmpresa, fkTipoMaquina) VALUES ('${nomeBotao}', '${fkMaquina}', '${fkEmpresa}', '${fkPLanoEmpresa}', '${fkTipoMaquina}');
-  `;
+      INSERT INTO analiseToten (nomeBotao, dataHora, fkMaquina, fkEmpresa, fkPlanoEmpresa, fkTipoMaquina) VALUES ('${nomeBotao}', now(), '${fkMaquina}', '${fkEmpresa}', '${fkPlanoEmpresa}', '${fkTipoMaquina}');
+  `
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
 }
@@ -140,22 +140,6 @@ function listarSetores() {
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
 }
-function filtrarSetores() {
-  console.log("ACESSEI A TABELA SETOR \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
-  var instrucao = `
-      Select nome from setor;
-  `;
-  console.log("Executando a instrução SQL: \n" + instrucao);
-  return database.executar(instrucao);
-}
-// function filtrarStatus() {
-//   console.log("ACESSEI A NivelAviso \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
-//   var instrucao = `
-//       Select nivelAvisos from NivelAviso;
-//   `;
-//   console.log("Executando a instrução SQL: \n" + instrucao);
-//   return database.executar(instrucao);
-// }
 
 function atualizarDados(Nome, TelFixo, TelCel, cpf, idColaborador) {
   console.log(
@@ -199,6 +183,22 @@ function atualizarSenha(NovaSenha, idColaborador) {
   return database.executar(instrucao)
 }
 
+function updateStatusMaq(opcaoUpdate, idMaquina) {
+  console.log(
+    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente.",
+    opcaoUpdate,
+    idMaquina
+  )
+
+  // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+  //  e na ordem de inserção dos dados.
+  var instrucao = `
+  update maquina set fkStatusMaquina = ${opcaoUpdate} where idMaquina = ${idMaquina};
+  `
+  console.log('Executando a instrução SQL: \n' + instrucao)
+  return database.executar(instrucao)
+}
+
 module.exports = {
   entrar,
   cadastrarEmpresa,
@@ -211,6 +211,6 @@ module.exports = {
   registrar,
   atualizarDados,
   atualizarSenha,
-  listarSetores,
-  filtrarSetores
+  updateStatusMaq,
+  listarSetores
 }

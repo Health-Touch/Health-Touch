@@ -268,8 +268,10 @@ ul {
     background-color:#020F1F;
     display:flex;
     justify-content: center;
+    align-items: center;
     padding:2px 5px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    cursor: pointer;
 }
 #liDelete{
     position:relative;
@@ -281,8 +283,10 @@ ul {
     background-color:#020F1F;
     display:flex;
     justify-content: center;
+    align-items: center;
     padding:2px 5px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    cursor: pointer;
 }
 #li3Pontos{
     position:relative;
@@ -293,7 +297,6 @@ ul {
 }
 
 .active{
-    background-color: #4fff3081;
     border-radius:20px;
     width:70px;
     height: 25px;

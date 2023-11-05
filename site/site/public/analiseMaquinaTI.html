@@ -226,6 +226,7 @@
     </div>
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 <script>
 
     function atualizarTodosComputadores() {
@@ -255,10 +256,16 @@
                             <li id="liSistema">${TodosComputadores.so}</li>
                             <li id="liSetor">${TodosComputadores.nome}</li>
                             <li id="liStatus" class="active">${TodosComputadores.statusMaquina}</li>
-                            <li id="liUpdate" style="color:aliceblue" onclick="ativar()">Ativar</li>
-                            <li id="liDelete" style="color:aliceblue" onclick="desativar()">Desativar</li>
+                        <button id="liUpdate" style="color:aliceblue" onclick="ativar(${TodosComputadores.idMaquina})">Ativar</button>
+                        <button id="liDelete" style="color:aliceblue" onclick="desativar(${TodosComputadores.idMaquina})">Desativar</button>
                         </div> 
                         `;
+                        
+                        // if (TodosComputadores.idMaquina = "Desativo") {
+                        //     ${TodosComputadores.idMaquina}.style.backgroundColor = "red"
+                        // } else {
+                        //     TodosComputadores.idMaquina.style.backgroundColor = "green"   
+                        // }
                     }
                     // finalizarAguardar();
                 });
@@ -299,4 +306,78 @@ function limparSessao() {
   sessionStorage.clear();
   window.location = './login.html'
 }
+
+function ativar(idMaquina) {
+    var opcaoUpdate = 1
+    var idMaquinaAtivar = idMaquina
+
+        fetch("/usuarios/updateStatusMaq", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                opcaoUpdateServer: opcaoUpdate,
+                idMaquinaServer: idMaquinaAtivar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                window.location = "analiseMaquinaTI.html"
+
+            } else {
+                Swal.fire('Houve um erro ao tentar atualizar a Máquina')
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+function desativar(idMaquina) {
+    var opcaoUpdate = 2
+    var idMaquinaDesativar = idMaquina
+
+        fetch("/usuarios/updateStatusMaq", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                opcaoUpdateServer: opcaoUpdate,
+                idMaquinaServer: idMaquinaDesativar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                window.location = "analiseMaquinaTI.html"
+
+            } else {
+                Swal.fire('Houve um erro ao tentar atualizar a Máquina')
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+function mudarCor () {
+
+    var liStatus = document.getElement("liStatus");
+
+    if (liStatus.textContent == "Desativo") {
+        liStatus.style.backgroundColor = "red"
+    } else {
+        liStatus.style.backgroundColor = "#4fff3081"
+    }
+}
+
 </script>

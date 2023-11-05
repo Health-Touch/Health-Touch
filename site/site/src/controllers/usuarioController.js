@@ -39,11 +39,11 @@ function entrar(req, res) {
 
 function registrar(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-  var nomeBotao = req.body.nomeBotaoServer;
-  var fkMaquina = req.body.empresaMaqServer;
-  var fkEmpresa = req.body.empresaServer;
-  var fkPlanoEmpresa = req.body.planoServer;
-  var fkTipoMaquina = req.body.tipoMaquinaServer;
+  var nomeBotao = req.body.nomeBotaoServer
+  var fkMaquina = req.body.empresaMaqServer
+  var fkEmpresa = req.body.empresaServer
+  var fkPlanoEmpresa = req.body.planoServer
+  var fkTipoMaquina = req.body.tipoMaquinaServer
 
   // Faça as validações dos valores
   if (nomeBotao == undefined || fkMaquina == undefined || fkEmpresa == undefined || fkPlanoEmpresa == undefined || fkTipoMaquina == undefined) {
@@ -51,7 +51,7 @@ function registrar(req, res) {
   }
   else {
     // Passe os valores como parâmetro e vá para o arquivo inovacaoModel.js
-    usuarioModel.registrar(nomeBotao)
+    usuarioModel.registrar(nomeBotao, fkMaquina, fkEmpresa, fkPlanoEmpresa, fkTipoMaquina)
       .then(
         function (resultado) {
           res.json(resultado);
@@ -344,32 +344,6 @@ function listarSetores(req, res) {
     res.status(500).json(erro.sqlMessage);
   });
 }
-function filtrarSetores(req, res) {
-  usuarioModel.filtrarSetores().then(function (resultado) {
-    if (resultado.length > 0) {
-      res.status(200).json(resultado);
-    } else {
-      res.status(204).send("Nenhum resultado encontrado!")
-    }
-  }).catch(function (erro) {
-    console.log(erro);
-    console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
-    res.status(500).json(erro.sqlMessage);
-  });
-}
-// function filtrarStatus(req, res) {
-//   usuarioModel.filtrarStatus().then(function (resultado) {
-//     if (resultado.length > 0) {
-//       res.status(200).json(resultado);
-//     } else {
-//       res.status(204).send("Nenhum resultado encontrado!")
-//     }
-//   }).catch(function (erro) {
-//     console.log(erro);
-//     console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
-//     res.status(500).json(erro.sqlMessage);
-//   });
-// }
 
 function atualizarDados(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -446,6 +420,35 @@ function atualizarSenha(req, res) {
   }
 }
 
+function updateStatusMaq(req, res) {
+  // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+  var opcaoUpdate = req.body.opcaoUpdateServer;
+  var idMaquina = req.body.idMaquinaServer;
+
+  // Faça as validações dos valores
+  if (opcaoUpdate == undefined || idMaquina == undefined) {
+    res.status(400).send("Seu nome está undefined!");
+  } else {
+
+    // Passe os valores como parâmetro e vá para o arquivo inovacaoModel.js
+    usuarioModel.updateStatusMaq(opcaoUpdate, idMaquina)
+      .then(
+        function (resultado) {
+          res.json(resultado);
+        }
+      ).catch(
+        function (erro) {
+          console.log(erro);
+          console.log(
+            "\nHouve um erro ao atualizar o status! Erro: ",
+            erro.sqlMessage
+          );
+          res.status(500).json(erro.sqlMessage);
+        }
+      );
+  }
+}
+
 module.exports = {
   entrar,
   cadastrarEmpresa,
@@ -458,7 +461,6 @@ module.exports = {
   registrar,
   atualizarDados,
   atualizarSenha,
-  listarSetores,
-  filtrarSetores,
-  // filtrarStatus
+  updateStatusMaq,
+  listarSetores
 }
