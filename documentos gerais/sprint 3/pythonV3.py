@@ -41,6 +41,8 @@ query = "SELECT fkNivelAcesso FROM Colaborador WHERE email = %s AND senha = %s"
 cursor.execute(query, (email, senha))
 fkNivelAcesso = cursor.fetchone()
 
+
+
 # completando o nome dos cargos
 if fkNivelAcesso:
     fkNivelAcesso = fkNivelAcesso[0]

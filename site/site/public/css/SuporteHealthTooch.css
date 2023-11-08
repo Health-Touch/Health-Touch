@@ -339,6 +339,23 @@
     justify-content: center;
 }
 
+#pRodape {
+    position: relative;
+    top: 10%;
+}
+
+#iconPipefy {
+    width: 13vw;
+    height: 15vh;
+}
+
+.divIcone{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: 17%;
+}
+
 /* fim do cabeçalho */
 
 /* começo do conteudo */
@@ -370,7 +387,7 @@
 
 
 .tituloSuporteLe{
-    width: 100%;
+    width: 83%;
     height: 10%;  
     text-align: center; 
     color: #FFF;
@@ -384,11 +401,6 @@
     justify-content: space-around;
     padding: 10%;
     color: #FFF;
-}
-
-.divIcone{
-    display: flex;
-    flex-direction: row;
 }
 
 .Icone{
@@ -419,6 +431,7 @@
     top: 1rem;
 }
 
+/* começo do pipe */
 .FormularioSuporte{
     width: 90%;
     height: 80%;
@@ -473,9 +486,8 @@
     transform: scale(1.05) ;
     cursor: pointer;
 }
-.ContatoPipe{
-    height: 60vh;
+.ContatoPipe {
+    height: 80vh;
     width: 100%;
-    
 }
 /* fim do conteudo */
