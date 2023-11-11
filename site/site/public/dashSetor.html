@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dashSetor.css">
     <script src="./js/dashSetor.js"></script>
-    <script src="js/funcoes.js"></script>
+    <script src="../js/funcoes.js"></script>
     <link rel="shortcut icon" type="imagex/png" href="./assets/img/logo_icon.png" />
     <title>Análise Máquina | Health Touch</title>
 </head>
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="divPaiOpcoesMenu">
-                    <a href="setores.html" id="pMenuLateral">
+                    <a href="setores.html" class="pMenuLateral">
                         <div class="divHome">
                             <img id="iconMenuLateralHome" src="assets/img/grafico-de-setores.png">
                             <div class="divEspaco"></div>
@@ -37,7 +37,7 @@
                         </div>
                     </a>
 
-                    <a href="cadastroMaquinas.html" id="pMenuLateral">
+                    <a href="cadastro/cadastroMaquinas.html" class="pMenuLateral"  id="SumirCadMaq">
                         <div class="divComputador">
                             <img id="iconComputadorLateral" src="assets/img/computador (4).png">
                             <div class="divEspaco"></div>
@@ -45,7 +45,7 @@
                         </div>
                     </a>
 
-                    <a href="analiseMaquinaTI.html" id="pMenuLateral">
+                    <a href="analise/analiseMaquinaTI.html" class="pMenuLateral"  id="SumirAnaliseMaq">
                         <div class="divCadastroComputador">
                             <img id="iconComputadorCadLateral" src="assets/img/definicoes.png">
                             <div class="divEspaco"></div>
@@ -53,7 +53,7 @@
                         </div>
                     </a>
 
-                    <a href="cadastroFuncionarios.html" id="pMenuLateral">
+                    <a href="cadastro/cadastroFuncionarios.html" class="pMenuLateral" id="SumirCadEquipe">
                         <div class="divAnaliseEquipe">
                             <img id="iconAnaliseEquipe" src="assets/img/carteira-de-identidade.png">
                             <div class="divEspaco"></div>
@@ -61,7 +61,7 @@
                         </div>
                     </a>
 
-                    <a href="analiseFuncionario.html" id="pMenuLateral">
+                    <a href="analise/analiseFuncionario.html" class="pMenuLateral" id="SumirAnaliseFunc">
                         <div class="divDashboards">
                             <img id="iconDashboardsLateral" src="assets/img/equipe.png">
                             <div class="divEspaco"></div>
@@ -69,8 +69,8 @@
                         </div>
                     </a>
 
-                    <a href="" id="pMenuLateral">
-                        <div class="divCadastroEquipe">
+                    <a href="" class="pMenuLateral">
+                        <div class="divCadastroEquipe" id="divCadastroEquipe">
                             <img id="iconCadastroEquipe" src="assets/img/mais (2).png">
                             <div class="divEspaco"></div>
                             Dashboards
@@ -85,14 +85,14 @@
                 </div>
 
                 <div class="divPaiHelpMenu">
-                    <a href="SuporteHealthTooch.html" id="pMenuLateral">
+                    <a href="suporte/SuporteHealthTooch.html" class="pMenuLateral">
                         <div class="divHelpDesk">
                             <img id="iconHelpDesk" src="assets/img/suporte-ao-cliente.png">
                             <div class="divEspaco"></div>
                             HelpDesk
                         </div>
                     </a>
-                    <a href="AtualizarUser.html" id="pMenuLateral">
+                    <a href="atualizar/AtualizarUser.html" class="pMenuLateral">
                         <div class="divConfiguracoes">
                             <img id="iconConfiguracoes" src="assets/img/botao-de-roda-dentada-de-configuracoes.png">
                             <div class="divEspaco"></div>
@@ -289,6 +289,27 @@
 </html>
 
 <script>
+    var nome = sessionStorage.NOME_COLABORADOR;
+    tituloPerfil.innerHTML = nome;
+
     var Empresa = sessionStorage.NOME_FANTASIA_COLABORADOR;
     nomeEmpresa.innerHTML = Empresa;
+
+    var cargo = sessionStorage.NIVELACESSO_COLABORADOR;
+
+    if (cargo == "RL") {
+        cargo = "Representante"
+        SumirCadMaq.style.display = "none";
+        SumirAnaliseMaq.style.display = "none";
+    } else if (cargo == "GT") {
+        cargo = "Gerente TI"
+    } else {
+        cargo = "Equipe TI";
+        SumirCadMaq.style.display = "none";
+        SumirCadEquipe.style.display = "none";
+        SumirAnaliseFunc.style.display = "none";
+        divCadastroEquipe.style.top = "18%";
+    }
+
+    cargoPerfil.innerHTML = cargo
 </script>

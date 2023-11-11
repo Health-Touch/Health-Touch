@@ -4,73 +4,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/baseDash.css">
-    <link rel="stylesheet" href="css/analiseDetalhada.css">
+    <link rel="stylesheet" href="../css/baseDash.css">
+    <link rel="stylesheet" href="../css/analiseDetalhada.css">
     <title>Análise Detalhada | Health Touch</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/funcoes.js"></script>
-    <link rel="shortcut icon" type="imagex/png" href="./assets/img/logo_icon.png" />
+    <link rel="shortcut icon" type="imagex/png" href="../assets/img/logo_icon.png" />
 </head>
 <style>
     .setaPerfilCabecalho:hover {
-    cursor: pointer;
-}
-.menuPerfil ul {
-    padding: 0;
-}
-.btnSair {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 35px;
-    height: 35px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition-duration: .3s;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-    background-color: rgb(255, 65, 65);
-}
-.btnSair:hover {
-    width: 90px;
-    border-radius: 40px;
-    transition-duration: .3s;
-}
-.btnSair:hover .sign {
-    width: 45%;
-    transition-duration: .3s;
-}
-.btnSair:hover .txtBtn {
-    opacity: 1;
-    width: 70%;
-    transition-duration: .3s;
-}
-.sign {
-    width: 100%;
-    transition-duration: .3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.sign svg {
-    width: 17px;
-}
-.sign svg path {
-    fill: white;
-}
-.txtBtn {
-    position: absolute;
-    right: 0%;
-    width: 0%;
-    opacity: 0;
-    color: white;
-    font-size: 1em;
-    font-weight: 600;
-    transition-duration: .3s;
-}
+        cursor: pointer;
+    }
+
+    .menuPerfil ul {
+        padding: 0;
+    }
+
+    .btnSair {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 35px;
+        height: 35px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition-duration: .3s;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+        background-color: rgb(255, 65, 65);
+    }
+
+    .btnSair:hover {
+        width: 90px;
+        border-radius: 40px;
+        transition-duration: .3s;
+    }
+
+    .btnSair:hover .sign {
+        width: 45%;
+        transition-duration: .3s;
+    }
+
+    .btnSair:hover .txtBtn {
+        opacity: 1;
+        width: 70%;
+        transition-duration: .3s;
+    }
+
+    .sign {
+        width: 100%;
+        transition-duration: .3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sign svg {
+        width: 17px;
+    }
+
+    .sign svg path {
+        fill: white;
+    }
+
+    .txtBtn {
+        position: absolute;
+        right: 0%;
+        width: 0%;
+        opacity: 0;
+        color: white;
+        font-size: 1em;
+        font-weight: 600;
+        transition-duration: .3s;
+    }
 </style>
+
 <body>
 
     <div class="divPai">
@@ -89,49 +99,48 @@
                 </div>
 
                 <div class="divPaiOpcoesMenu">
-                    <a href="setores.html" id="pMenuLateral">
+                    <a href="../setores.html" class="pMenuLateral">
                         <div class="divHome">
-                            <img id="iconMenuLateralHome" src="assets/img/grafico-de-setores.png">
+                            <img id="iconMenuLateralHome" src="../assets/img/grafico-de-setores.png">
                             <div class="divEspaco"></div>
                             Setores
                         </div>
                     </a>
 
-                    <a href="cadastroMaquinas.html" id="pMenuLateral">
+                    <a href="../cadastro/cadastroMaquinas.html" class="pMenuLateral"  id="SumirCadMaq">
                         <div class="divComputador">
-                            <img id="iconComputadorLateral" src="assets/img/computador (4).png">
+                            <img id="iconComputadorLateral" src="../assets/img/computador (4).png">
                             <div class="divEspaco"></div>
                             Cadastro Máquinas
                         </div>
                     </a>
 
-                    <a href="analiseMaquinaTI.html" id="pMenuLateral">
+                    <a href="../analise/analiseMaquinaTI.html" class="pMenuLateral" id="SumirAnaliseMaq">
                         <div class="divCadastroComputador">
-                            <img id="iconComputadorCadLateral" src="assets/img/definicoes.png">
+                            <img id="iconComputadorCadLateral" src="../assets/img/definicoes.png">
                             <div class="divEspaco"></div>
                             Análise Máquinas
                         </div>
                     </a>
 
-                    <a href="cadastroFuncionarios.html" id="pMenuLateral">
+                    <a href="../cadastro/cadastroFuncionarios.html" class="pMenuLateral" id="SumirCadEquipe">
                         <div class="divAnaliseEquipe">
-                            <img id="iconAnaliseEquipe" src="assets/img/carteira-de-identidade.png">
+                            <img id="iconAnaliseEquipe" src="../assets/img/carteira-de-identidade.png">
                             <div class="divEspaco"></div>
                             Cadastro Equipe
                         </div>
                     </a>
 
-                    <a href="analiseFuncionario.html" id="pMenuLateral">
+                    <a href="../analise/analiseFuncionario.html" class="pMenuLateral" id="SumirAnaliseFunc">
                         <div class="divDashboards">
-                            <img id="iconDashboardsLateral" src="assets/img/equipe.png">
+                            <img id="iconDashboardsLateral" src="../assets/img/equipe.png">
                             <div class="divEspaco"></div>
                             Análise Funcionários
                         </div>
                     </a>
-
-                    <a href="" id="pMenuLateral">
-                        <div class="divCadastroEquipe">
-                            <img id="iconCadastroEquipe" src="assets/img/mais (2).png">
+                    <a href="" class="pMenuLateral">
+                        <div class="divCadastroEquipe"  id="divCadastroEquipe">
+                            <img id="iconCadastroEquipe" src="../assets/img/mais (2).png">
                             <div class="divEspaco"></div>
                             Dashboards
                         </div>
@@ -145,22 +154,22 @@
                 </div>
 
                 <div class="divPaiHelpMenu">
-                    <a href="SuporteHealthTooch.html" id="pMenuLateral">
+                    <a href="../suporte/SuporteHealthTooch.html" class="pMenuLateral">
                         <div class="divHelpDesk">
-                            <img id="iconHelpDesk" src="assets/img/suporte-ao-cliente.png">
+                            <img id="iconHelpDesk" src="../assets/img/suporte-ao-cliente.png">
                             <div class="divEspaco"></div>
                             HelpDesk
                         </div>
                     </a>
-                    <a href="AtualizarUser.html" id="pMenuLateral">
+                    <a href="../atualizar/AtualizarUser.html" class="pMenuLateral">
                         <div class="divConfiguracoes">
-                            <img id="iconConfiguracoes" src="assets/img/botao-de-roda-dentada-de-configuracoes.png">
+                            <img id="iconConfiguracoes" src="../assets/img/botao-de-roda-dentada-de-configuracoes.png">
                             <div class="divEspaco"></div>
                             Configurações
                         </div>
                     </a>
-                    <a href="index.html">
-                        <img id="logoMenuLateral" src="assets/img/logoMenu.png">
+                    <a href="../index.html">
+                        <img id="logoMenuLateral" src="../assets/img/logoMenu.png">
                     </a>
                 </div>
             </div>
@@ -173,20 +182,21 @@
 
                 <div class="esquerdaCabecalho">
                     <input type="text" class="inputLogin" placeholder="Pesquisar"></input>
-                    <img src="assets/img/lupa.png" class="lupaBusca">
+                    <img src="../assets/img/lupa.png" class="lupaBusca">
                 </div>
 
                 <div class="direitaCabecalho">
-                    <img class="emailIconCabecalho" src="assets/img/iconEmail.png">
-                    <img class="sinoIconCabecalho" src="assets/img/notificacaoIcon.png">
+                    <img class="emailIconCabecalho" src="../assets/img/iconEmail.png">
+                    <img class="sinoIconCabecalho" src="../assets/img/notificacaoIcon.png">
                     <div class="divPerfilCabecalho">
-                        <img class="iconPerfilCabecalho" src="assets/img/fotoPerfil.png">
+                        <img class="iconPerfilCabecalho" src="../assets/img/fotoPerfil.png">
                         <div class="textosIcon">
                             <p id="tituloPerfil">Anthony Bento</p>
                             <p id="cargoPerfil">CEO</p>
                         </div>
-                        <img class="setaPerfilCabecalho" src="assets/img/setaIcon.png" onclick="exibirMenuPerfil()" >
-                        <div id="menuPerfil" class="menuPerfil" style="display: none; position: absolute; z-index: 1; top: 58px;">
+                        <img class="setaPerfilCabecalho" src="../assets/img/setaIcon.png" onclick="exibirMenuPerfil()">
+                        <div id="menuPerfil" class="menuPerfil"
+                            style="display: none; position: absolute; z-index: 1; top: 58px;">
                             <ul>
                                 <button class="btnSair">
                                     <div class="sign"><svg viewBox="0 0 512 512">
@@ -212,9 +222,13 @@
                         <b>Análise Detalhada</b>
                     </div>
                     <div class="divSubtitulo">
-                        <div class="dadosSetor"> <p><b>Computador <span id="idMaquinaNum"></span></b> <span id=setor class="setor"></span></p></div>
-                       
-                        <button class="botaoTrocar" onclick="trocar()">Trocar</button> <button class="botaoHist">Histórico</button>
+                        <div class="dadosSetor">
+                            <p><b>Computador <span id="idMaquinaNum"></span></b> <span id=setor class="setor"></span>
+                            </p>
+                        </div>
+
+                        <button class="botaoTrocar" onclick="trocar()">Trocar</button> <button
+                            class="botaoHist">Histórico</button>
                     </div>
                 </div>
 
@@ -233,8 +247,8 @@
                         </div>
                     </div>
                 </div>
-                
-                    <div class="divDashs2">
+
+                <div class="divDashs2">
                     <div class="dash2">
                         <div class="grafico2">
                             <canvas id="myChartDisco" class="grafico2"></canvas>
@@ -242,22 +256,22 @@
 
                     </div>
 
-                <div class="divPaiUsb">
-                    <div class="entradasUsb">
-                        <p>Entradas USB</p>
-                        <div class="DivCampos">
-                            <div class="campo">
-                                <p id="campoId">Id</p>
-                                <p id="campoNome">Nome</p>
-                                <p id="campoStatus">Status</p>
-                                <p id="campoDt">Data & Hora</p>
-                            </div>
-                            <div id="dados">
+                    <div class="divPaiUsb">
+                        <div class="entradasUsb">
+                            <p>Entradas USB</p>
+                            <div class="DivCampos">
+                                <div class="campo">
+                                    <p id="campoId">Id</p>
+                                    <p id="campoNome">Nome</p>
+                                    <p id="campoStatus">Status</p>
+                                    <p id="campoDt">Data & Hora</p>
+                                </div>
+                                <div id="dados">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
 
             </div>
@@ -269,10 +283,10 @@
 
 </html>
 <script>
-    
+
     idMaquinaNum.innerHTML = sessionStorage.ID_MAQUINA
     Chart.defaults.color = '#FFFF';
-    
+
 
     //   Chart.defaults.backgroundColor = 'rgb(254, 91, 153)';
     window.onload = obterDadosGrafico();
@@ -521,7 +535,7 @@
             config
         );
 
-        setTimeout(() => atualizarGraficoCpu( dados, myChart2, idMaquina), 2000);
+        setTimeout(() => atualizarGraficoCpu(dados, myChart2, idMaquina), 2000);
     }
 
 
@@ -627,7 +641,7 @@
                 label: 'Uso de RAM',
                 data: [],
                 fill: true,
-            // backgroundColor: `rgb(79,179,148)`,
+                // backgroundColor: `rgb(79,179,148)`,
                 borderColor: `rgb(17, 94, 210)`,
                 borderWidth: 5,
                 tension: 0.5,
@@ -753,13 +767,13 @@
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
                     var feed = document.getElementById("dados");
-                    
+
                     for (let i = 0; i < resposta.length; i++) {
                         var publicacao = resposta[i];
                         feed.innerHTML += `<div class="Dados">
                                 <p id="campoId"> ${publicacao.idUSB}</p> <p id="campoNome">${publicacao.nomeUsb}</p>  <p id="campoStatus">Desconectado</p>  <p id="campoDt">${publicacao.dtHoraInsercao}</p>
                             </div>`
-                            
+
 
 
                         // criando e manipulando elementos do HTML via JavaScript
@@ -833,13 +847,13 @@
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
                     var feed = document.getElementById("setor");
-                    
+
                     for (let i = 0; i < resposta.length; i++) {
                         var publicacao = resposta[i];
                         feed.innerHTML = `
                         <span>${publicacao.nome}</span> <span>Setor ${publicacao.idSetor}</span>
                         `
-                            
+
 
 
                         // criando e manipulando elementos do HTML via JavaScript
@@ -897,8 +911,8 @@
         });
     }
 
-    function trocar(){
-        window.location="setores.html"
+    function trocar() {
+        window.location = "../setores.html"
     }
 
     var nome = sessionStorage.NOME_COLABORADOR;
@@ -907,22 +921,35 @@
     var cargo = sessionStorage.NIVELACESSO_COLABORADOR;
     if (cargo == "RL") {
         cargo = "Representante"
-    }else if (cargo == "GT"){
+        SumirCadMaq.style.display = "none";
+        SumirAnaliseMaq.style.display = "none";
+    } else if (cargo == "GT") {
         cargo = "Gerente TI"
     }
+    else{
+        cargo = "Equipe TI";
+        SumirCadMaq.style.display = "none";
+        SumirCadEquipe.style.display = "none";
+        SumirAnaliseFunc.style.display = "none";
+        divCadastroEquipe.style.top = "18%";
+    }
 
-
+    cargoPerfil.innerHTML = cargo
 
     var Empresa = sessionStorage.NOME_FANTASIA_COLABORADOR;
     nomeEmpresa.innerHTML = Empresa;
 
-function exibirMenuPerfil() {
-  var menu = document.getElementById('menuPerfil')
-  if (menu.style.display === 'block') {
-    menu.style.display = 'none'
-  } else {
-    menu.style.display = 'block'
-  }
-}
+    function exibirMenuPerfil() {
+        var menu = document.getElementById('menuPerfil')
+        if (menu.style.display === 'block') {
+            menu.style.display = 'none'
+        } else {
+            menu.style.display = 'block'
+        }
+    }
 
+    function limparSessao() {
+        sessionStorage.clear();
+        window.location = '../login.html'
+    }
 </script>

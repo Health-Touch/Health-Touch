@@ -85,7 +85,7 @@
     height: 4vh;
 }
 
-#pMenuLateral {
+.pMenuLateral {
     color: white;
     font-size: 11px;
     text-decoration: none;
@@ -257,7 +257,7 @@
     width: 100%;
     height: 10vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     /* margin: auto; */
     background-color: #fff;
 }

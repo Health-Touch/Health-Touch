@@ -81,7 +81,7 @@
     height: 4vh;
 }
 
-#pMenuLateral {
+.pMenuLateral {
     color: white;
     font-size: 11px;
     text-decoration: none;
@@ -154,7 +154,7 @@
     align-items: center;
     width: 7.2vw;
     position: relative;
-    top: 13%;
+    top: 9%;
 }
 
 #iconAnaliseEquipe {
