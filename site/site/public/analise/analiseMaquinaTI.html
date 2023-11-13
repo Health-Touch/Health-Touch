@@ -225,6 +225,8 @@
                         <li id="idTeste3">Setor</li>
                         <li id="idTeste4">Status</li>
                     </ul>
+                    <select id="select_filtrarSetor">
+                    </select>
 
                     <div class="divConteudo">
                         <div class="divConteudoScroll" id="divConteudoScroll"></div>
@@ -243,7 +245,7 @@
 <script>
     var nome = sessionStorage.NOME_COLABORADOR;
     tituloPerfil.innerHTML = nome;
-
+    
     var cargo = sessionStorage.NIVELACESSO_COLABORADOR;
     if (cargo == "RL") {
         cargo = "Representante"
@@ -256,29 +258,56 @@
         SumirAnaliseFunc.style.display = "none";
         divCadastroEquipe.style.top = "18%";
     }
-
+    
     cargoPerfil.innerHTML = cargo
-
+    
     var Empresa = sessionStorage.NOME_FANTASIA_COLABORADOR;
     nomeEmpresa.innerHTML = Empresa;
+    
+    const selectSetor = document.getElementById('select_filtrarSetor');
+    setTimeout(() => {
+        selectSetor.addEventListener("change", function () {
+            var opcaoSelecionada = selectSetor.options[selectSetor.selectedIndex].value;
+            // pegar a opcao selectionada que vai ser igual a ela mesma;
+            /*
+            .split: ele vai separar o texto e elemento o antes e dps do traço, dps chama a função selecionada
+            */
+            //    selectSetor.value = `setor-${opcaoSelecionada}`
+            atualizarTodosComputadores(opcaoSelecionada)
+        })
+    }, 1000);
 
-    function atualizarTodosComputadores() {
+    function atualizarTodosComputadores(area) {
         fetch("/avisos/listarTodosComputadores").then(function (resposta) {
-
-            if (resposta.ok) {
-                // if (resposta.status == 204) {
-                //     var feed = document.getElementById("feed_container");
-                //     var mensagem = document.createElement("span");
-                //     mensagem.innerHTML = "Nenhum resultado encontrado."
-                //     feed.appendChild(mensagem);
-                //     throw "Nenhum resultado encontrado!!";
-                // }
+            if (resposta.ok) {     
                 console.log("ENTREII")
+                divConteudoScroll.innerHTML = ``
 
                 resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+                    console.log("Dados recebidos do setor: ", JSON.stringify(resposta));
+                    
+                    
+                    
+                    var OptionSetor = document.createElement("option")
+                    Option.innerHTML = "setores"
+                    Option.value = "0"
+                    selectSetor.appendChild(OptionSetor)
+                    selectSetor.innerHTML = ""
 
                     for (let i = 0; i < resposta.length; i++) {
+                        
+
+                        var setor = resposta[i]
+
+                        var OptionSetor = document.createElement("option")
+                        OptionSetor.innerHTML = setor.nome
+                        OptionSetor.value = setor.idSetor
+                        selectSetor.appendChild(OptionSetor)
+
+                        var zero = resposta[i]
+                        if(area !=0 && zero.idSetor != area && area!=undefined) {
+                            continue
+                        }
 
                         var TodosComputadores = resposta[i];
 
@@ -307,6 +336,11 @@
                             }
                         }
                     }
+                    if (area == undefined) {
+                        area = 0
+                    }
+                    selectSetor.value = `${0}`
+ 
                     // finalizarAguardar();
                 });
             } else {
@@ -395,5 +429,6 @@
             console.log(`#ERRO: ${resposta}`);
         });
     }
+    
 
 </script>

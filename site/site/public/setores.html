@@ -79,7 +79,7 @@
     }
 </style>
 
-<body onload="atualizarFeed(), filtrarSetores()">
+<body onload="atualizarFeed(),filtrar_Parametro()">
     <div class="divPai">
         <!-- inicio menu lateral -->
         <div class="divPaiLateral">
@@ -226,15 +226,9 @@
 
                     <div class="div_Select">
                         <select id="select_filtrarSetor">
-                            <option value="hide">Setores</option>
-
                         </select>
 
                         <select id="select_filtrarStatus">
-                            <option value="hide">Status</option>
-                            <option value="correto">Correto</option>
-                            <option value="atencao">Atenção</option>
-                            <option value="critico">Crítico</option>
                         </select>
                     </div>
                 </div>
@@ -250,27 +244,127 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 <script>
-    function atualizarFeed() {
+    const selectSetor = document.getElementById('select_filtrarSetor');
+    setTimeout(() => {
+        selectSetor.addEventListener("change", function () {
+            var opcaoSelecionada = selectSetor.options[selectSetor.selectedIndex].value;
+            opcaoSelecionada = opcaoSelecionada.split('-')[1];
+            // pegar a opcao selectionada que vai ser igual a ela mesma;
+            /*
+            .split: ele vai separar o texto e elemento o antes e dps do traço, dps chama a função selecionada
+            */
+            //    selectSetor.value = `setor-${opcaoSelecionada}`
+            atualizarFeed(opcaoSelecionada)
+        })
+    }, 1000);
+    const selectStatus = document.getElementById('select_filtrarStatus')
+    setTimeout(() => {
+        selectStatus.addEventListener("change", function () {
+            var Choosen = selecetStatus.options[selectStatus.selectedIndex].value;
+            filtrar_Parametro(choosen)
+        })
+    })
+    // na função filtrar_Parametro, traz os idAvisos, mas os idAvisos são capturados no banco quando o dado atinge um parametro,
+    // logo existem de 0 a n dados com classificacao para nivel critico 
+    // function filtrar_Parametro(triangulo) {
+    //     fetch("/avisos/filtrar_Parametro").then(function (resposta) {
+    //         // alert("entrei")
+
+    //         if (resposta.ok) {
+    //             all.innerHTML = ""
+    //             console.log("ENTREII no atualizar filtrar_Parametro")
+
+    //             resposta.json().then(function (resposta) {
+    //                 console.log("Dados recebidos Avisos: ", JSON.stringify(resposta));
+
+    //                 selectStatus.innerHTML = ""
+
+    //                 var OptionStatus = document.createElement("option");
+    //                 OptionStatus.innerHTML = "Status";
+    //                 OptionStatus.value = "0";
+    //                 selectStatus.appendChild(OptionStatus);
+
+    //                 for (let i = 0; i < resposta.length; i++) {
+
+    //                     var parametro = resposta[i];
+    //                     //  nal inha 250 pegando o elemento que é select, quando desce pra 256 craindo um elememtno option, colocando setores 
+    //                     // e id que serve pra aparecer no, motivo pra ter feito assim, que é sim um dia eu precis ficar atualizando um option nesse select
+    //                     //  eu vou ter que limpar o select e se eu limprar o select e não criar o 0 eu me fudi
+    //                     // 
+    //                     var OptionStatus = document.createElement("option");
+    //                     OptionStatus.innerHTML = aviso.nivelAviso;
+    //                     OptionStatus.value = `${aviso.idAviso}`
+    //                     selectStatus.appendChild(OptionStatus);
+
+
+    //                     var publicacao = resposta[i];
+    //                     if (triangulo != 0 && publicacao.idAviso != triangulo && triangulo != undefined) {
+    //                         continue
+    //                     }
+    //                     // adicionar um event listener no seelct setor função de recursividade só que vai passar o parâmetro 
+    //                     // e a partir desse parametro
+    //                     all.innerHTML += ` 
+    //                     <div class="cardPai" onclick="VerificarSetor(${publicacao.idSetor})">
+    //                         <div class="cardFilho">
+    //                             <div class="cardTexto">
+    //                                 <span class="txtUso" id="feed2" > Setor ${publicacao.idSetor}</span>
+    //                                 <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
+    //                             </div>
+    //                             <span class="infoCard" >${publicacao.nome}</span>
+    //                         </div>
+    //                         <input type="hidden" id="valorSetor" value=${i + 1}>
+    //                     </div>`
+    //                 }
+    //                 if (triangulo == undefined) {
+    //                     triangulo = 0
+    //                 }
+    //                 selectStatus.value = `${triangulo}`
+                    
+    //             });
+    //         } else {
+    //             throw ('Houve um erro na API!');
+    //         }
+    //     }).catch(function (resposta) {
+    //         console.error(resposta);
+    //         // finalizarAguardar();
+    //     });
+    // }
+    function atualizarFeed(area) {
         fetch("/avisos/listar").then(function (resposta) {
 
             if (resposta.ok) {
-                // if (resposta.status == 204) {
-                //     var feed = document.getElementById("feed_container");
-                //     var mensagem = document.createElement("span");
-                //     mensagem.innerHTML = "Nenhum resultado encontrado."
-                //     feed.appendChild(mensagem);
-                //     throw "Nenhum resultado encontrado!!";
-                // }
-                console.log("ENTREII")
+                all.innerHTML = ""
+                console.log("ENTREII no atualizar feed")
 
                 resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+                    console.log("Dados recebidos quadrado setor: ", JSON.stringify(resposta));
+
+                    selectSetor.innerHTML = ""
+
+                    var OptionSetor = document.createElement("option");
+                    OptionSetor.innerHTML = "setores";
+                    OptionSetor.value = "setor-0";
+                    selectSetor.appendChild(OptionSetor);
 
                     for (let i = 0; i < resposta.length; i++) {
 
+                        var setor = resposta[i];
+                        //  nal inha 250 pegando o elemento que é select, quando desce pra 256 craindo um elememtno option, colocando setores 
+                        // e id que serve pra aparecer no, motivo pra ter feito assim, que é sim um dia eu precis ficar atualizando um option nesse select
+                        //  eu vou ter que limpar o select e se eu limprar o select e não criar o 0 eu me fudi
+                        // 
+                        var OptionSetor = document.createElement("option");
+                        OptionSetor.innerHTML = setor.nome;
+                        OptionSetor.value = `setor-${setor.idSetor}`
+                        selectSetor.appendChild(OptionSetor);
+
+
                         var publicacao = resposta[i];
-
-
+                        if (area != 0 && publicacao.idSetor != area && area != undefined) {
+                            continue
+                        }
+                        // adicionar um event listener no seelct setor função de recursividade só que vai passar o parâmetro 
+                        // e a partir desse parametro
                         all.innerHTML += ` 
                         <div class="cardPai" onclick="VerificarSetor(${publicacao.idSetor})">
                             <div class="cardFilho">
@@ -283,6 +377,10 @@
                             <input type="hidden" id="valorSetor" value=${i + 1}>
                         </div>`
                     }
+                    if (area == undefined) {
+                        area = 0
+                    }
+                    selectSetor.value = `setor-${area}`
                     // finalizarAguardar();
                 });
             } else {
@@ -398,62 +496,6 @@
             return false
         }
     }
-    function filtrarSetores() {
-        fetch(`/usuarios/filtrarSetores`).then(function (resposta) {
-            if (resposta.ok) {
-                console.log("ENTREII")
-
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    const selectSetor = document.getElementById('select_filtrarSetor');
-
-                    for (let i = 0; i < resposta.length; i++) {
-
-                        var setor = resposta[i];
-
-                        var OptionSetor = document.createElement("option");
-                        OptionSetor.innerHTML = setor.nome;
-                        selectSetor.appendChild(OptionSetor);
-
-                    }
-                    // finalizarAguardar();
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            // finalizarAguardar();
-        });
-    }
-    // function filtrarStatus() {
-    //     fetch(`/usuarios/filtrarStatus`).then(function (resposta) {
-    //         if (resposta.ok) {
-    //             resposta.json().then(function (resposta) {
-    //                 console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-    //                 const selectStatus = document.getElementById('select_filtrarStatus');
-
-    //                 for (let i = 0; i < resposta.length; i++) {
-
-    //                     var status = resposta[i];
-
-    //                     var OptionStatus = document.createElement("option");
-    //                     OptionStatus.innerHTML = status.nome;
-    //                     selectStatus.appendChild(OptionStatus);
-
-    //                 }
-    //             });
-    //         } else {
-    //             throw ('Houve um erro na API!');
-    //         }
-    //     }).catch(function (resposta) {
-    //         console.error(resposta);
-    //     });
-    // }
-
-
     function VerificarSetor(idSetor) {
         fetch(`/avisos/verificarSetor/${idSetor}`).then(function (resposta) {
 

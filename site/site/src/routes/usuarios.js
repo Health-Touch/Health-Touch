@@ -46,12 +46,6 @@ router.post('/cadastrarSetores', function (req, res) {
 router.get('/listarSetores', function (req, res) {
   usuarioController.listarSetores(req, res)
 })
-router.get('/filtrarSetores', function (req, res) {
-  usuarioController.filtrarSetores(req, res)
-})
-// router.get('/filtrarStatus', function (req, res) {
-//   usuarioController.filtrarStatus(req, res)
-// })
 
 router.post('/atualizarDados', function (req, res) {
   usuarioController.atualizarDados(req, res)
