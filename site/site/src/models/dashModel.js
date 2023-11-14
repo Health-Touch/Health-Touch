@@ -104,17 +104,17 @@ function buscarUltimosAvisos(idMaquina) {
                     order by id desc`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `
-    SELECT a.idAvisos, DATE_FORMAT(a.dataHora, '%d/%m/%Y %H:%i:%s') as dtHr,
+    SELECT a.idAviso, DATE_FORMAT(a.dataHora, '%d/%m/%Y %H:%i:%s') as dtHr,
     a.fkMonitoramento, a.fkComponente, a.fkMaquina, a.fkEmpresa,
-    a.fkPlanoEmpresa, a.fkTipoMaquina, a.fkNivelAviso
-    FROM avisos as a join monitoramento as mt on mt.idMonitoramento = a.fkMonitoramento
+    a.fkPlanoEmpresa, a.fkTipoMaquina, a.nivelAviso, c.nome as componente, mt.porcentagem
+    FROM aviso as a join monitoramento as mt on mt.idMonitoramento = a.fkMonitoramento
     join componente as c on a.fkComponente = c.idComponente
     join maquina as m on a.fkMaquina = m.idMaquina
     join empresa as e on a.fkEmpresa = e.idEmpresa
     join plano as p on a.fkPlanoEmpresa = p.idPlano
     join tipoMaquina as t on a.fkTipoMaquina = t.idTipoMaquina
-    join nivelAvisos as n on a.fkNivelAviso = n.idNivelAvisos
-    where a.fkEmpresa = 1 and a.fkMaquina = ${idMaquina} and a.fkTipoMaquina = 1;`
+    where a.fkEmpresa = 1 and a.fkMaquina = 1 and a.fkTipoMaquina = 1
+    order by dtHr;`
   } else {
     console.log(
       '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
@@ -139,17 +139,17 @@ function buscarAvisosEmTempoReal(idMaquina) {
                     order by id desc`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `    
-    SELECT a.idAvisos, DATE_FORMAT(a.dataHora, '%d/%m/%Y %H:%i:%s') as dtHr,
+    SELECT a.idAviso, DATE_FORMAT(a.dataHora, '%d/%m/%Y %H:%i:%s') as dtHr,
     a.fkMonitoramento, a.fkComponente, a.fkMaquina, a.fkEmpresa,
-    a.fkPlanoEmpresa, a.fkTipoMaquina, a.fkNivelAviso
-    FROM avisos as a join monitoramento as mt on mt.idMonitoramento = a.fkMonitoramento
+    a.fkPlanoEmpresa, a.fkTipoMaquina, a.nivelAviso, c.nome as componente, mt.porcentagem
+    FROM aviso as a join monitoramento as mt on mt.idMonitoramento = a.fkMonitoramento
     join componente as c on a.fkComponente = c.idComponente
     join maquina as m on a.fkMaquina = m.idMaquina
     join empresa as e on a.fkEmpresa = e.idEmpresa
     join plano as p on a.fkPlanoEmpresa = p.idPlano
     join tipoMaquina as t on a.fkTipoMaquina = t.idTipoMaquina
-    join nivelAvisos as n on a.fkNivelAviso = n.idNivelAvisos
-    where a.fkEmpresa = 1 and a.fkMaquina = ${idMaquina} and a.fkTipoMaquina = 1;`
+    where a.fkEmpresa = 1 and a.fkMaquina = 1 and a.fkTipoMaquina = 1
+    order by dtHr;`
   } else {
     console.log(
       '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'

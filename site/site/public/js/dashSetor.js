@@ -330,40 +330,27 @@ function plotarAviso(resposta, idMaquina) {
   var z = JSON.stringify(resposta)
   var avisos = JSON.parse(z)
   avisos.forEach(item => {
-    var i = item.descricao.indexOf('90')
-    var i2 = item.descricao.indexOf('80')
-    var i3 = item.descricao.indexOf('100')
+    var nivel = item.nivelAviso
 
-    var z = item.descricao.indexOf('70')
-    var z2 = item.descricao.indexOf('60')
-    var z3 = item.descricao.indexOf('ATIVO')
-    console.log(`TESTANDO !!!!! ${item.descricao}`)
-
-    if (i != -1 || i2 != -1 || i3 != -1) {
+    if (nivel == 'Alerta') {
       document.getElementById('boxAvisos').innerHTML += `
   <div class="infoAviso">
-                  <span class="tituloAviso">${item.descricao}</span>
+                  <span class="tituloAviso">${item.componente} ESTÁ EM ${item.porcentagem}%</span>
+                  <span class="dataAviso">${item.dtHr}</span>
+                  <img src="assets/img/aviso-orange.png" alt="" class="iconAviso">
+              </div>
+  `
+    } else if (nivel == 'Crítico') {
+      document.getElementById('boxAvisos').innerHTML += `
+  <div class="infoAviso">
+                  <span class="tituloAviso">${item.componente} ESTÁ EM ${item.porcentagem}%</span>
                   <span class="dataAviso">${item.dtHr}</span>
                   <img src="assets/img/aviso-red.png" alt="" class="iconAviso">
               </div>
   `
-    } else if (z != -1 || z2 != -1 || z3 != -1) {
-      document.getElementById('boxAvisos').innerHTML += `
-      <div class="infoAviso">
-                      <span class="tituloAviso">${item.descricao}</span>
-                      <span class="dataAviso">${item.dtHr}</span>
-                      <img src="assets/img/aviso-orange.png" alt="" class="iconAviso">
-                  </div>
-      `
-    } else {
-      document.getElementById('boxAvisos').innerHTML += `
-      <div class="infoAviso">
-                      <span class="tituloAviso">${item.descricao}</span>
-                      <span class="dataAviso">${item.dtHr}</span>
-                      <img src="assets/img/aviso.png" alt="" class="iconAviso">
-                  </div>
-      `
     }
+
+    console.log(`TESTANDO !!!!! ${item.descricao}`)
   })
   console.log('----------------------------------------------')
   console.log(
@@ -388,43 +375,30 @@ function atualizarAviso(idMaquina) {
           var avisos = JSON.parse(z)
           //teste
           avisos.forEach(item => {
-            document.getElementById('boxAvisos').innerHTML = ''
+            document.getElementById('boxAvisos').innerHTML =
+              '<span class="tituloBox">Histórico de Avisos</span>'
             console.log(`TESTANDO !!!!! ${item.descricao}`)
           })
 
           avisos.forEach(item => {
-            var i = item.descricao.indexOf('90')
-            var i2 = item.descricao.indexOf('80')
-            var i3 = item.descricao.indexOf('100')
+            var nivel = item.nivelAviso
 
-            var z = item.descricao.indexOf('70')
-            var z2 = item.descricao.indexOf('60')
-            console.log(`TESTANDO !!!!! ${item.descricao}`)
-
-            if (i != -1 || i2 != -1 || i3 != -1) {
+            if (nivel == 'Alerta') {
               document.getElementById('boxAvisos').innerHTML += `
           <div class="infoAviso">
-                          <span class="tituloAviso">${item.descricao}</span>
+                          <span class="tituloAviso">${item.componente} ESTÁ EM ${item.porcentagem}%</span>
+                          <span class="dataAviso">${item.dtHr}</span>
+                          <img src="assets/img/aviso-orange.png" alt="" class="iconAviso">
+                      </div>
+          `
+            } else {
+              document.getElementById('boxAvisos').innerHTML += `
+          <div class="infoAviso">
+                          <span class="tituloAviso">${item.componente} ESTÁ EM ${item.porcentagem}%</span>
                           <span class="dataAviso">${item.dtHr}</span>
                           <img src="assets/img/aviso-red.png" alt="" class="iconAviso">
                       </div>
           `
-            } else if (z != -1 || z2 != -1) {
-              document.getElementById('boxAvisos').innerHTML += `
-              <div class="infoAviso">
-                              <span class="tituloAviso">${item.descricao}</span>
-                              <span class="dataAviso">${item.dtHr}</span>
-                              <img src="assets/img/aviso-orange.png" alt="" class="iconAviso">
-                          </div>
-              `
-            } else {
-              document.getElementById('boxAvisos').innerHTML += `
-              <div class="infoAviso">
-                              <span class="tituloAviso">${item.descricao}</span>
-                              <span class="dataAviso">${item.dtHr}</span>
-                              <img src="assets/img/aviso.png" alt="" class="iconAviso">
-                          </div>
-              `
             }
           })
 
