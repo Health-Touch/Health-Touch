@@ -14,9 +14,9 @@ function validarSessao() {
 
   if (email != null && colaborador != null) {
     // window.alert(`Seja bem-vindo, ${nome}!`);
-    tituloPerfil.innerHTML = colaborador
-    cargoPerfil.innerHTML = cargo
-    nomeEmpresa.innerHTML = empresa
+    // tituloPerfil.innerHTML = colaborador
+    // cargoPerfil.innerHTML = cargo
+    // nomeEmpresa.innerHTML = empresa
 
     // finalizarAguardar();
   } else {
@@ -28,7 +28,7 @@ function limparSessao() {
   // aguardar();
   sessionStorage.clear()
   // finalizarAguardar();
-  window.location = './login.html'
+  window.location = '../login.html'
 }
 
 // carregamento (loading)

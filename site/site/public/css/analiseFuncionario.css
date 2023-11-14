@@ -9,7 +9,7 @@
 }
 
 .divPaiCabecalho {
-    width: 90vw;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     background-color: rgb(218, 218, 218);
@@ -187,7 +187,7 @@
     height: 4vh;
 }
 
-#pMenuLateral {
+.pMenuLateral {
     color: white;
     font-size: 11px;
     text-decoration: none;

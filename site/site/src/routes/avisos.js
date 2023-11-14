@@ -6,6 +6,9 @@ var avisoController = require("../controllers/avisoController");
 router.get("/listar", function (req, res) {
     avisoController.listar(req, res);
 });
+router.get("/filtrar_Parametro", function (req, res) {
+    avisoController.filtrar_Parametro(req, res);
+});
 
 router.get("/listarComputadores/:idSetor", function (req, res) {
     avisoController.listarComputadores(req, res);

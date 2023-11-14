@@ -15,11 +15,11 @@ conn = connect(
     database='HealthTouch'
 )
 
+cursor = conn.cursor()
+
 print("Bem Vindo à Aplicação Health Touch")
 email = input("Digite seu e-mail:")
 senha = input("Digite sua senha:")
-
-cursor = conn.cursor()
 
 # puxando todos os dados do colaborador
 query = "SELECT * FROM Colaborador WHERE email = %s AND senha = %s"
@@ -31,7 +31,7 @@ query = "SELECT nome FROM Colaborador WHERE email = %s AND senha = %s"
 cursor.execute(query, (email, senha))
 nome = cursor.fetchone()
 
-# puxando a fk empresa
+# puxando a fkEmpresa
 query = "SELECT fkEmpresa FROM Colaborador WHERE email = %s AND senha = %s"
 cursor.execute(query, (email, senha))
 fkEmpresa = cursor.fetchone()
@@ -40,7 +40,6 @@ fkEmpresa = cursor.fetchone()
 query = "SELECT fkNivelAcesso FROM Colaborador WHERE email = %s AND senha = %s"
 cursor.execute(query, (email, senha))
 fkNivelAcesso = cursor.fetchone()
-
 
 
 # completando o nome dos cargos
@@ -56,7 +55,8 @@ if fkNivelAcesso:
 
 # validando login
 if resultado:
-    print(f"Login bem-sucedido. Logado como {nome[0]} {cargo}")
+    print('\r\n')
+    print(f"Login bem-sucedido. Logado como {nome[0]} - {cargo}")
 
     # conectando com o workbench para fazer os inserts
     def mysql_connection(host, user, passwd, database=None):
@@ -71,7 +71,19 @@ if resultado:
     # aqui colocar suas credencias do banco
     connection = mysql_connection('localhost', 'root', 'sptech', 'HealthTouch')
 
-    # puxando a fkMaquina
+    # puxando todas as máquinas cadastradas
+    query = "select idMaquina, SO, IP, sala, andar, nome from Maquina JOIN LocalSala on fkLocal = idLocalSala join setor on fkSetor = idSetor;"
+    cursor.execute(query)
+    maquinas = cursor.fetchall()
+
+    # printando as máquinas disponíveis
+    print('\r\n')
+    print('Lista de máquinas disponíveis para monitoramento:\r\n')
+    for maquina in maquinas:
+        print("ID da Máquina:", maquina[0],"- Sistema Operacional:", maquina[1],"- Endereço IP:",
+              maquina[2],"- Sala:", maquina[3],"- Andar:", maquina[4], "- Setor:", maquina[5], "\n")
+
+    # usuário escolhendo a máquina que quer monitorar
     idMaquinaSelect = input("Qual o ID da máquina que você quer monitorar?")
     query = "SELECT idMaquina FROM Maquina WHERE idMaquina = %s"
     cursor.execute(query, (idMaquinaSelect,))
@@ -91,7 +103,7 @@ if resultado:
         cursor.execute(query, (idMaquinaSelect,))
         fkTipoMaquina = cursor.fetchone()
 
-        #rodando o monitoramento
+        # rodando o monitoramento
         while True:
             uso_cpu = round(psutil.cpu_percent(interval=1), 2)
             uso_disco = round(psutil.disk_usage('/').percent, 2)

@@ -18,7 +18,7 @@ function trocar() {
 }
 
 function detalhada() {
-  window.location = '/AnaliseDetalhada.html'
+  window.location = 'analise/AnaliseDetalhada.html'
 }
 
 function exibirMenuPerfil() {

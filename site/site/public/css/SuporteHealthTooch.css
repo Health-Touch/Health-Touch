@@ -81,7 +81,7 @@
     height: 4vh;
 }
 
-#pMenuLateral {
+.pMenuLateral {
     color: white;
     font-size: 11px;
     text-decoration: none;
