@@ -10,6 +10,16 @@
 </head>
 
 <style>
+        #select_filtrarSetor{
+        position: relative;
+        top: 5%;
+        left: 80%;
+    }
+
+    select {
+        font-weight: bold;
+    }
+
     .setaPerfilCabecalho:hover {
         cursor: pointer;
     }
@@ -225,6 +235,8 @@
                         <li id="idTeste4">Status</li>
                         <li id="idTeste5">Cargo</li>
                     </ul>
+                    <select id="select_filtrarSetor">
+                    </select>
                     <div class="divConteudo">
                         <div class="divConteudoScroll" id="divConteudoScroll">
 
@@ -240,6 +252,15 @@
 </html>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 <script>
+    const selectCargo = document.getElementById('select_filtrarSetor');
+        setTimeout(() => {
+            selectCargo.addEventListener("change", function () {
+                var opcaoSelecionada = selectCargo.options[selectCargo.selectedIndex].value;
+                filtrarCargo(opcaoSelecionada)
+            })
+        }, 1000);
+
+
     function atualizarTodosComputadores() {
         fetch("/avisos/listarTodosFuncionarios").then(function (resposta) {
 
@@ -256,9 +277,20 @@
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    for (let i = 0; i < resposta.length; i++) {
+                    var OptionCargo = document.createElement("option")
+                    OptionCargo.innerHTML = "Filtrar" 
+                    OptionCargo.value = "0"
+                    OptionCargo.disabled = true
+                    OptionCargo.selected = true
+                    OptionCargo.hidden = true
+                    selectCargo.appendChild(OptionCargo)
 
+                    var cargos = []
+                    for (let i = 0; i < resposta.length; i++) {
+   
                         var TodosFuncionarios = resposta[i];
+                        console.log("CORINGA")
+                        console.log(Cargo)
 
                         var Cargo = TodosFuncionarios.nivelAcesso
 
@@ -270,6 +302,18 @@
                         }
                         else {
                             Cargo = "Equipe TI"
+                        }
+
+                        var z = resposta[i]
+
+                        if (!cargos.includes(z.nivelAcesso)){
+                        var OptionCargo = document.createElement("option")
+                        var valor = z.nivelAcesso
+                        OptionCargo.innerHTML = Cargo
+                        OptionCargo.value = valor.toUpperCase()
+
+                        selectCargo.appendChild(OptionCargo)
+                        cargos.push(valor)
                         }
 
                         divConteudoScroll.innerHTML += `
@@ -299,6 +343,82 @@
                         }
                     }
                     // finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
+    }
+
+    function filtrarCargo(cargo) {
+        fetch(`/avisos/filtrarFuncionarios/${cargo}`).then(function (resposta) {
+            console.log(cargo)
+
+            if (resposta.ok) {
+                console.log("ENTREII no atualizar feed")
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos quadrado setor: ", JSON.stringify(resposta));
+
+
+                    for (let i = 0; i < resposta.length; i++) {
+   
+                        var TodosFuncionarios = resposta[i];
+                        console.log("CORINGA")
+                        console.log(Cargo)
+
+                        var Cargo = TodosFuncionarios.nivelAcesso
+
+                        if (Cargo == "RL") {
+                            Cargo = "Representante"
+                        }
+                        else if (Cargo == "GT") {
+                            Cargo = "Gerente TI"
+                        }
+                        else {
+                            Cargo = "Equipe TI"
+                        }
+                    }
+
+                    divConteudoScroll.innerHTML = ""
+
+
+
+                    for (let i = 0; i < resposta.length; i++) {
+                        var TodosComputadores = resposta[i];
+                        var TodosFuncionarios = resposta[i];
+                        console.log(TodosComputadores)
+
+                        divConteudoScroll.innerHTML += `
+                        <div class="divfilhoConteudo" id="divfilhoConteudo" >
+                            <li><img id="Computador" src="../assets/img/fotoPerfil.png" alt="foto-perfil"></li>
+                            <li id="liNumero">${TodosFuncionarios.idColaborador}</li>
+                            <li id="linome">${TodosFuncionarios.nome}</li>
+                            <li id="liemail">${TodosFuncionarios.email}</li>
+                            <li id="liStatus" class="active">${TodosFuncionarios.statusColaborador}</li>
+                            <li id="liCargo">${Cargo}</li>
+                            <button onclick="ativar(${TodosFuncionarios.idColaborador})" id="liUpdate" style="color:aliceblue">Ativar</button>
+                            <button onclick="desativar(${TodosFuncionarios.idColaborador})" id="liDelete" style="color:aliceblue">Desativar</button>
+                        </div> 
+                        `;
+
+                        var divs = document.getElementsByClassName("active");
+
+                        if (divs.length > 0) {
+                            var conteudo = divs[i].textContent;
+                            if (conteudo == "Desativo") {
+                                divs[i].style.backgroundColor = "#EC6B6B";
+                                divs[i].style.color = "#8E0A0A";
+                            } else {
+                                divs[i].style.backgroundColor = "#6BECA6";
+                                divs[i].style.color = "#1D8E0A";
+                            }
+                        }
+
+                }
                 });
             } else {
                 throw ('Houve um erro na API!');

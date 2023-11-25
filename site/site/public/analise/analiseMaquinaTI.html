@@ -11,6 +11,16 @@
 </head>
 
 <style>
+    #select_filtrarSetor{
+        position: relative;
+        top: 5%;
+        left: 80%;
+    }
+
+    select {
+        font-weight: bold;
+    }
+
     .setaPerfilCabecalho:hover {
         cursor: pointer;
     }
@@ -265,17 +275,17 @@
     nomeEmpresa.innerHTML = Empresa;
     
     const selectSetor = document.getElementById('select_filtrarSetor');
-    setTimeout(() => {
-        selectSetor.addEventListener("change", function () {
-            var opcaoSelecionada = selectSetor.options[selectSetor.selectedIndex].value;
-            // pegar a opcao selectionada que vai ser igual a ela mesma;
-            /*
-            .split: ele vai separar o texto e elemento o antes e dps do traço, dps chama a função selecionada
-            */
-            //    selectSetor.value = `setor-${opcaoSelecionada}`
-            atualizarTodosComputadores(opcaoSelecionada)
-        })
-    }, 1000);
+        setTimeout(() => {
+            selectSetor.addEventListener("change", function () {
+                var opcaoSelecionada = selectSetor.options[selectSetor.selectedIndex].value;
+                // pegar a opcao selectionada que vai ser igual a ela mesma;
+                /*
+                .split: ele vai separar o texto e elemento o antes e dps do traço, dps chama a função selecionada
+                */
+                //    selectSetor.value = `setor-${opcaoSelecionada}`
+                filtrarMaquina(opcaoSelecionada)
+            })
+        }, 1000);
 
     function atualizarTodosComputadores(area) {
         fetch("/avisos/listarTodosComputadores").then(function (resposta) {
@@ -285,24 +295,31 @@
 
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos do setor: ", JSON.stringify(resposta));
-                    
-                    
-                    
+
+
                     var OptionSetor = document.createElement("option")
-                    Option.innerHTML = "setores"
-                    Option.value = "0"
+                    OptionSetor.innerHTML = "Filtrar" 
+                    OptionSetor.value = "0"
+                    OptionSetor.disabled = true
+                    OptionSetor.selected = true
+                    OptionSetor.hidden = true
                     selectSetor.appendChild(OptionSetor)
-                    selectSetor.innerHTML = ""
+                    // selectSetor.innerHTML = ""
 
+
+                    var setores = []
                     for (let i = 0; i < resposta.length; i++) {
-                        
-
                         var setor = resposta[i]
 
+                        if (!setores.includes(setor.nome)){
                         var OptionSetor = document.createElement("option")
-                        OptionSetor.innerHTML = setor.nome
-                        OptionSetor.value = setor.idSetor
+                        var valor = setor.nome
+                        OptionSetor.innerHTML = valor
+                        OptionSetor.value = valor.toLowerCase()
+                        
                         selectSetor.appendChild(OptionSetor)
+                        setores.push(valor)
+                        }
 
                         var zero = resposta[i]
                         if(area !=0 && zero.idSetor != area && area!=undefined) {
@@ -339,7 +356,7 @@
                     if (area == undefined) {
                         area = 0
                     }
-                    selectSetor.value = `${0}`
+                    // selectSetor.value = `${0}`
  
                     // finalizarAguardar();
                 });
@@ -352,7 +369,59 @@
         });
     }
 
+    function filtrarMaquina(setor) {
+        fetch(`/avisos/filtrarComputadores/${setor}`).then(function (resposta) {
 
+            if (resposta.ok) {
+                console.log("ENTREII no atualizar feed")
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos quadrado setor: ", JSON.stringify(resposta));
+
+                    divConteudoScroll.innerHTML = ""
+
+                    for (let i = 0; i < resposta.length; i++) {
+                        var TodosComputadores = resposta[i];
+                        console.log(TodosComputadores)
+
+                        divConteudoScroll.innerHTML += `
+                        <div class="divfilhoConteudo">
+                            <li><img id="Computador" src="../assets/AnaliseMaquinas/computadorIcon.png" alt="Computador"></li>
+                            <li id="liNumero">${TodosComputadores.idMaquina}</li>
+                            <li id="liSistema">${TodosComputadores.so}</li>
+                            <li id="liSetor">${TodosComputadores.nome}</li>
+                            <li id="liStatus" class="active">${TodosComputadores.statusMaquina}</li>
+                        <button id="liUpdate" style="color:aliceblue" onclick="ativar(${TodosComputadores.idMaquina})">Ativar</button>
+                        <button id="liDelete" style="color:aliceblue" onclick="desativar(${TodosComputadores.idMaquina})">Desativar</button>
+                        </div> 
+                        `;
+
+                        var divs = document.getElementsByClassName("active");
+
+                        if (divs.length > 0) {
+                            var conteudo = divs[i].textContent;
+                            if (conteudo == "Desativo") {
+                                divs[i].style.backgroundColor = "#EC6B6B";
+                                divs[i].style.color = "#8E0A0A";
+                            } else {
+                                divs[i].style.backgroundColor = "#6BECA6";
+                                divs[i].style.color = "#1D8E0A";
+                            }
+                        }
+                    }
+                    if (setor == undefined) {
+                        setor = 0
+                    }
+                    
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
+    }
 
     function exibirMenuPerfil() {
         var menu = document.getElementById('menuPerfil')
