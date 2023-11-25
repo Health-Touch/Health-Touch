@@ -77,6 +77,18 @@
         font-weight: 600;
         transition-duration: .3s;
     }
+
+    .statusVerde{
+        background-color: green;
+    }
+    
+    .statusVermelho{
+        background-color: red;
+    }
+
+    .statusAmarelo{
+        background-color: yellow;
+    }
 </style>
 
 <body onload="atualizarFeed(),filtrar_Parametro()">
@@ -371,6 +383,7 @@
                                 <div class="cardTexto">
                                     <span class="txtUso" id="feed2" > Setor ${publicacao.idSetor}</span>
                                     <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
+                                    
                                 </div>
                                 <span class="infoCard" >${publicacao.nome}</span>
                             </div>
@@ -421,6 +434,17 @@
                     for (let i = 0; i < resposta.length; i++) {
 
                         var publicacao = resposta[i];
+                        var exibir = ""
+                        if (publicacao.maxNivelAviso == null) {
+                            publicacao.maxNivelAviso == "otimo"
+                            exibir = `<p class="statusVerde">OTIMO0</p>`
+                        }
+                        else if (publicacao.maxNivelAviso == "Crítico") {
+                            exibir = `<p class="statusVermelho">Crítico</p>`
+                        }
+                        else if (publicacao.maxNivelAviso == "Alerta") {
+                            exibir = `<p class="statusAmarelo">Alerta</p>`
+                        }
 
 
                         all.innerHTML += ` 
@@ -428,7 +452,9 @@
                             <div class="cardFilho">
                                 <div class="cardTexto">
                                     <span class="txtUso" id="feed2"> Computador: ${publicacao.idMaquina}</span>
-                                    <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
+                                    <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard">
+                                        <br> 
+                                        ${exibir}  </div>
                                 </div>
                                 <span class="infoCard" > Sala: ${publicacao.sala} <br>
                                                         Andar: ${publicacao.andar}<br>  

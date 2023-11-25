@@ -58,10 +58,23 @@ function listarTodosComputadores() {
 function listarComputadores(idSetor) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n");
     var instrucao = `
-    select  maquina.idMaquina,LocalSala.sala, LocalSala.andar,setor.nome from maquina 
-			join LocalSala on fklocal = idLocalSala
-				join setor on fksetor = idSetor
-					join empresa on fkEmpresa = idEmpresa where setor.idSetor = ${idSetor};
+    SELECT 
+    maquina.idMaquina,
+    LocalSala.sala,
+    LocalSala.andar,
+    setor.nome,
+    MAX(aviso.nivelAviso) as maxNivelAviso
+FROM 
+    maquina
+    JOIN LocalSala ON fklocal = idLocalSala
+    JOIN setor ON fksetor = idSetor
+    JOIN empresa ON fkEmpresa = idEmpresa 
+    LEFT JOIN aviso ON fkMaquina = idMaquina
+WHERE 
+    setor.idSetor = ${idSetor}
+GROUP BY 
+    maquina.idMaquina, LocalSala.sala, LocalSala.andar, setor.nome;
+;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
