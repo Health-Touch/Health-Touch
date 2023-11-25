@@ -15,8 +15,24 @@ function filtrar_Parametro() {
     "ACESSEI O listarStatus \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()"
   )
   var instrucao = `
-        Select idAviso, NivelAviso from aviso ;
+  Select distinct NivelAviso from aviso;
     `
+  console.log('Executando a instrução SQL: \n' + instrucao)
+  return database.executar(instrucao)
+}
+
+function filtrarStatus(status) {
+  console.log(
+    "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n"
+  )
+  var instrucao = `
+  SELECT DISTINCT
+  s.idSetor, s.nome
+  FROM aviso as a JOIN maquina as m ON m.idMaquina = a.fkMaquina
+  JOIN localSala as l ON m.fkLocal = l.idLocalSala
+  JOIN setor as s ON l.fkSetor = s.idSetor
+  WHERE a.nivelAviso = '${status}';
+      `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
 }
@@ -256,5 +272,6 @@ module.exports = {
   deletar,
   filtrar_Parametro,
   filtrarComputadores,
-  filtrarFuncionarios
+  filtrarFuncionarios,
+  filtrarStatus
 }

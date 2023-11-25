@@ -502,11 +502,15 @@
 .div_Select{
     display:flex;
 }
+select {
+    font-weight: bold;
+}
+
 #select_filtrarSetor{
-    padding:.5rem;
+    /* padding:.5rem; */
     display:flex;
-    border-radius: 8px;;
-    width:10vh;
+    border-radius: 8px;
+    width:auto;
     height:4vh;
     margin:3rem 1rem;
 }
@@ -514,10 +518,10 @@
     cursor:pointer
 }
 #select_filtrarStatus{
-    padding:.5rem;
+    /* padding:.5rem; */
     display:flex;
     border-radius: 8px;
-    width:10vh;
+    width:auto;
     height:4vh;
     margin:3rem 1rem;
 }
