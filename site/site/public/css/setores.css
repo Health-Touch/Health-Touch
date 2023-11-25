@@ -506,25 +506,31 @@ select {
     font-weight: bold;
 }
 
-#select_filtrarSetor{
-    /* padding:.5rem; */
+#select_filtrarSetor,#select_filtrarStatus,#selectStatusMaquina,#totalMaquinas{
     display:flex;
     border-radius: 8px;
     width:auto;
     height:4vh;
     margin:3rem 1rem;
 }
-#select_filtrarSetor:hover{
+#select_filtrarSetor:hover, #select_filtrarStatus:hover,#selectStatusMaquina:hover{
     cursor:pointer
 }
-#select_filtrarStatus{
-    /* padding:.5rem; */
-    display:flex;
-    border-radius: 8px;
-    width:auto;
-    height:4vh;
-    margin:3rem 1rem;
+
+#totalMaquinas{
+    background-color: white;
+    font-weight: 600;
+    padding: 0 5px;
+    text-align: center;
+    /* display: flex;
+    align-items: center; */
 }
 
-
+#iconMaquina{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 2px;
+    margin-left: 5px;
+}
 /* fim do conteudo */

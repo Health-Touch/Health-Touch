@@ -21,6 +21,41 @@ function filtrar_Parametro() {
   return database.executar(instrucao)
 }
 
+function filtrarParametroMaquina(idSetor) {
+  console.log(
+    "ACESSEI O listarStatus \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()"
+  )
+  var instrucao = `
+  SELECT DISTINCT
+  aviso.nivelAviso as maxNivelAviso
+FROM 
+  maquina
+  JOIN LocalSala ON fklocal = idLocalSala
+  JOIN setor ON fksetor = idSetor
+  JOIN empresa ON fkEmpresa = idEmpresa 
+  LEFT JOIN aviso ON fkMaquina = idMaquina
+WHERE 
+  setor.idSetor = ${idSetor};
+    `
+  console.log('Executando a instrução SQL: \n' + instrucao)
+  return database.executar(instrucao)
+}
+
+function verificarMaquinas(idEmpresa) {
+  console.log(
+    "ACESSEI O listarStatus \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()"
+  )
+  var instrucao = `
+  SELECT
+  MAX(e.fkPlano) as qtdTotal, COUNT(m.idMaquina) as qtdAtual
+  FROM empresa as e JOIN maquina as m
+  ON e.idEmpresa = m.fkEmpresa
+  WHERE e.idEmpresa = ${idEmpresa};
+    `
+  console.log('Executando a instrução SQL: \n' + instrucao)
+  return database.executar(instrucao)
+}
+
 function filtrarStatus(status) {
   console.log(
     "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n"
@@ -32,6 +67,34 @@ function filtrarStatus(status) {
   JOIN localSala as l ON m.fkLocal = l.idLocalSala
   JOIN setor as s ON l.fkSetor = s.idSetor
   WHERE a.nivelAviso = '${status}';
+      `
+  console.log('Executando a instrução SQL: \n' + instrucao)
+  return database.executar(instrucao)
+}
+
+function filtrarStatusMaquina(status, idSetor) {
+  console.log(
+    "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n"
+  )
+  var instrucao = `
+  SELECT 
+  maquina.idMaquina,
+  LocalSala.sala,
+  LocalSala.andar,
+  setor.nome,
+  MAX(aviso.nivelAviso) as maxNivelAviso
+FROM 
+  maquina
+  JOIN LocalSala ON fklocal = idLocalSala
+  JOIN setor ON fksetor = idSetor
+  JOIN empresa ON fkEmpresa = idEmpresa 
+  LEFT JOIN aviso ON fkMaquina = idMaquina
+WHERE 
+  setor.idSetor = ${idSetor}
+GROUP BY 
+  maquina.idMaquina, LocalSala.sala, LocalSala.andar, setor.nome
+HAVING 
+  maxNivelAviso = "${status}";
       `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -129,7 +192,6 @@ WHERE
     setor.idSetor = ${idSetor}
 GROUP BY 
     maquina.idMaquina, LocalSala.sala, LocalSala.andar, setor.nome;
-;
     `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -273,5 +335,8 @@ module.exports = {
   filtrar_Parametro,
   filtrarComputadores,
   filtrarFuncionarios,
-  filtrarStatus
+  filtrarStatus,
+  filtrarParametroMaquina,
+  filtrarStatusMaquina,
+  verificarMaquinas
 }

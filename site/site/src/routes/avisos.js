@@ -11,8 +11,16 @@ router.get('/filtrar_Parametro', function (req, res) {
   avisoController.filtrar_Parametro(req, res)
 })
 
+router.get('/filtrarParametroMaquina/:idSetor', function (req, res) {
+  avisoController.filtrarParametroMaquina(req, res)
+})
+
 router.get('/filtrarStatus/:status', function (req, res) {
   avisoController.filtrarStatus(req, res)
+})
+
+router.get('/filtrarStatusMaquina/:status/:idSetor', function (req, res) {
+  avisoController.filtrarStatusMaquina(req, res)
 })
 
 router.get('/listarComputadores/:idSetor', function (req, res) {
@@ -21,6 +29,10 @@ router.get('/listarComputadores/:idSetor', function (req, res) {
 
 router.get('/verificarSetor/:idSetor', function (req, res) {
   avisoController.verificarSetor(req, res)
+})
+
+router.get('/verificarMaquinas/:idEmpresa', function (req, res) {
+  avisoController.verificarMaquinas(req, res)
 })
 
 router.get('/listarUsb', function (req, res) {

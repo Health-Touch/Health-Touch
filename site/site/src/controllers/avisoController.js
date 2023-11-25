@@ -32,6 +32,26 @@ function filtrar_Parametro(req, res) {
       res.status(500).json(erro.sqlMessage)
     })
 }
+function filtrarParametroMaquina(req, res) {
+  var idSetor = req.params.idSetor
+
+  console.log('CORINGA 777')
+  console.log(idSetor)
+  avisoModel
+    .filtrarParametroMaquina(idSetor)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar os avisos: ', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
 
 function filtrarStatus(req, res) {
   var status = req.params.status
@@ -40,6 +60,50 @@ function filtrarStatus(req, res) {
   console.log(status)
   avisoModel
     .filtrarStatus(status)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar os avisos: ', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function verificarMaquinas(req, res) {
+  var idEmpresa = req.params.idEmpresa
+
+  console.log('Hello World')
+  console.log(idEmpresa)
+  avisoModel
+    .verificarMaquinas(idEmpresa)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar os avisos: ', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function filtrarStatusMaquina(req, res) {
+  var status = req.params.status
+  var idSetor = req.params.idSetor
+
+  console.log('i just want you there tomorrow')
+  console.log(status)
+  console.log(idSetor)
+  avisoModel
+    .filtrarStatusMaquina(status, idSetor)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado)
@@ -338,5 +402,8 @@ module.exports = {
   filtrar_Parametro,
   filtrarComputadores,
   filtrarFuncionarios,
-  filtrarStatus
+  filtrarStatus,
+  filtrarParametroMaquina,
+  filtrarStatusMaquina,
+  verificarMaquinas
 }

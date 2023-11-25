@@ -94,7 +94,9 @@
     }
   </style>
 
-  <body onload="atualizarFeed(),filtrar_Parametro()">
+  <body
+    onload="atualizarFeed(),filtrar_Parametro(),filtrarParametroMaquina(),verificarMaquinas()"
+  >
     <div class="divPai">
       <!-- inicio menu lateral -->
       <div class="divPaiLateral">
@@ -294,7 +296,16 @@
 
             <div class="div_Select">
               <select id="select_filtrarSetor"></select>
+              <select id="selectStatusMaquina"></select>
 
+              <div id="totalMaquinas">
+                <span id="qtdMaquinas"
+                  ><span id="qtdMaquinasAtual"></span>/<span
+                    id="qtdMaquinasTotal"
+                  ></span
+                ></span>
+                <img id="iconMaquina" src="assets/img/computador3.png" alt="" />
+              </div>
               <select id="select_filtrarStatus"></select>
             </div>
           </div>
@@ -324,20 +335,23 @@
   }, 1000)
 
   const selectStatus = document.getElementById('select_filtrarStatus')
+
   setTimeout(() => {
     selectStatus.addEventListener('change', function () {
       var selecao = selectStatus.options[selectStatus.selectedIndex].value
       filtrar_Parametro(selecao)
     })
   })
+
+  const totalMaquinas = document.getElementById('totalMaquinas')
   // na função filtrar_Parametro, traz os idAvisos, mas os idAvisos são capturados no banco quando o dado atinge um parametro,
   // logo existem de 0 a n dados com classificacao para nivel critico
   function filtrar_Parametro(triangulo) {
+    selectStatusMaquina.style.display = 'none'
+    totalMaquinas.style.display = 'none'
     fetch('/avisos/filtrar_Parametro')
       .then(function (resposta) {
         // alert("entrei")
-        console.log('CORINGA')
-        console.log(triangulo)
         if (resposta.ok) {
           //   all.innerHTML = ''
           console.log('ENTREII no atualizar filtrar_Parametro')
@@ -508,7 +522,7 @@
               }
               // adicionar um event listener no seelct setor função de recursividade só que vai passar o parâmetro
               // e a partir desse parametro
-              all.innerHTML += ` 
+              all.innerHTML += `
                         <div class="cardPai" onclick="VerificarSetor(${
                           publicacao.idSetor
                         })">
@@ -518,7 +532,7 @@
                                       publicacao.idSetor
                                     }</span>
                                     <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
-                                    
+
                                 </div>
                                 <span class="infoCard" >${
                                   publicacao.nome
@@ -554,6 +568,12 @@
     fetch(`/avisos/listarComputadores/${idSetor}`)
       .then(function (resposta) {
         if (resposta.ok) {
+          //CORINGA
+          selectSetor.style.display = 'none'
+          selectStatus.style.display = 'none'
+          selectStatusMaquina.style.display = 'block'
+          totalMaquinas.style.display = 'flex'
+
           // if (resposta.status == 204) {
           //     var feed = document.getElementById("feed_container");
           //     var mensagem = document.createElement("span");
@@ -571,25 +591,25 @@
               var exibir = ''
               if (publicacao.maxNivelAviso == null) {
                 publicacao.maxNivelAviso == 'otimo'
-                exibir = `<p class="statusVerde">OTIMO0</p>`
+                exibir = `<p class="statusVerde">OTIMO</p>`
               } else if (publicacao.maxNivelAviso == 'Crítico') {
                 exibir = `<p class="statusVermelho">Crítico</p>`
               } else if (publicacao.maxNivelAviso == 'Alerta') {
                 exibir = `<p class="statusAmarelo">Alerta</p>`
               }
 
-              all.innerHTML += ` 
+              all.innerHTML += `
                         <div class="cardPai" onclick="SalvarComputador(${publicacao.idMaquina})">
                             <div class="cardFilho">
                                 <div class="cardTexto">
                                     <span class="txtUso" id="feed2"> Computador: ${publicacao.idMaquina}</span>
                                     <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard">
-                                        <br> 
+                                        <br>
                                         ${exibir}  </div>
                                 </div>
                                 <span class="infoCard" > Sala: ${publicacao.sala} <br>
-                                                        Andar: ${publicacao.andar}<br>  
-                                                        Setor: ${publicacao.nome}<br> 
+                                                        Andar: ${publicacao.andar}<br>
+                                                        Setor: ${publicacao.nome}<br>
                                 </span>
                             </div>
                         </div>`
@@ -668,6 +688,187 @@
               swal.fire('Nenhuma Máquina Cadastrada')
             } else {
               mostrarComputadores(idSetor)
+              filtrarParametroMaquina(idSetor)
+
+              //I want to buy you something
+              //But i dont have any money :()
+              const selectStatusMaquina = document.getElementById(
+                'selectStatusMaquina'
+              )
+              //vou ficar doida
+              selectStatusMaquina.addEventListener('change', function () {
+                var s =
+                  selectStatusMaquina.options[selectStatusMaquina.selectedIndex]
+                    .value
+                filtrarStatusMaquina(s, idSetor)
+                console.log('Domiti why not me?')
+                console.log(s)
+                console.log(idSetor)
+              })
+            }
+          })
+        } else {
+          throw 'Houve um erro na API!'
+        }
+      })
+      .catch(function (resposta) {
+        console.error(resposta)
+        // finalizarAguardar();
+      })
+  }
+
+  //aaaaaaaaaaaa
+  function filtrarParametroMaquina(idSetor) {
+    fetch(`/avisos/filtrarParametroMaquina/${idSetor}`)
+      .then(function (resposta) {
+        // alert("entrei")
+        if (resposta.ok) {
+          //   all.innerHTML = ''
+          console.log('ENTREII no atualizar filtrar_Parametro MAQUINA')
+          console.log(resposta)
+
+          resposta.json().then(function (resposta) {
+            console.log(resposta)
+            console.log('Dados recebidos Avisos 2: ', JSON.stringify(resposta))
+
+            // selectStatusMaquina.innerHTML = ''
+
+            var OptionStatus = document.createElement('option')
+            OptionStatus.innerHTML = 'Status'
+            OptionStatus.value = '0'
+            OptionStatus.disabled = true
+            OptionStatus.selected = true
+            OptionStatus.hidden = true
+            selectStatusMaquina.appendChild(OptionStatus)
+
+            for (let i = 0; i < resposta.length; i++) {
+              var aviso = resposta[i]
+              //  nal inha 250 pegando o elemento que é select, quando desce pra 256 craindo um elememtno option, colocando setores
+              // e id que serve pra aparecer no, motivo pra ter feito assim, que é sim um dia eu precis ficar atualizando um option nesse select
+              //  eu vou ter que limpar o select e se eu limprar o select e não criar o 0 eu me fudi
+              //
+              var OptionStatus = document.createElement('option')
+              OptionStatus.innerHTML = aviso.maxNivelAviso
+              OptionStatus.value = `${aviso.maxNivelAviso}`
+              selectStatusMaquina.appendChild(OptionStatus)
+
+              var publicacao = resposta[i]
+              if (
+                idSetor != 0 &&
+                publicacao.idAviso != idSetor &&
+                idSetor != undefined
+              ) {
+                continue
+              }
+            }
+            if (idSetor == undefined) {
+              idSetor = 0
+            }
+            // selectStatusMaquina.value = `${idSetor}`
+
+            // if (idSetor != 0) {
+            // }
+          })
+        } else {
+          throw 'Houve um erro na API!'
+        }
+      })
+      .catch(function (resposta) {
+        console.error(resposta)
+        // finalizarAguardar();
+      })
+  }
+
+  function filtrarStatusMaquina(status, idSetor) {
+    console.log(idSetor)
+    console.log('aabshasfhksjkf')
+    fetch(`/avisos/filtrarStatusMaquina/${status}/${idSetor}`)
+      .then(function (resposta) {
+        if (resposta.ok) {
+          console.log('ENTREII no atualizar feed')
+
+          resposta.json().then(function (resposta) {
+            console.log(
+              'Dados recebidos quadrado setor: ',
+              JSON.stringify(resposta)
+            )
+
+            all.innerHTML = ''
+            for (let i = 0; i < resposta.length; i++) {
+              var publicacao = resposta[i]
+              var exibir = ''
+              if (publicacao.maxNivelAviso == null) {
+                publicacao.maxNivelAviso == 'otimo'
+                exibir = `<p class="statusVerde">OTIMO</p>`
+              } else if (publicacao.maxNivelAviso == 'Crítico') {
+                exibir = `<p class="statusVermelho">Crítico</p>`
+              } else if (publicacao.maxNivelAviso == 'Alerta') {
+                exibir = `<p class="statusAmarelo">Alerta</p>`
+              }
+
+              all.innerHTML += `
+                        <div class="cardPai" onclick="SalvarComputador(${publicacao.idMaquina})">
+                            <div class="cardFilho">
+                                <div class="cardTexto">
+                                    <span class="txtUso" id="feed2"> Computador: ${publicacao.idMaquina}</span>
+                                    <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard">
+                                        <br>
+                                        ${exibir}  </div>
+                                </div>
+                                <span class="infoCard" > Sala: ${publicacao.sala} <br>
+                                                        Andar: ${publicacao.andar}<br>
+                                                        Setor: ${publicacao.nome}<br>
+                                </span>
+                            </div>
+                        </div>`
+
+              sessionStorage.NOME_SETOR = publicacao.nome
+            }
+
+            if (status == undefined) {
+              status = 0
+            }
+          })
+        } else {
+          throw 'Houve um erro na API!'
+        }
+      })
+      .catch(function (resposta) {
+        console.error(resposta)
+        // finalizarAguardar();
+      })
+  }
+
+  function verificarMaquinas() {
+    var idEmpresa = sessionStorage.ID_EMPRESA_COLABORADOR
+    fetch(`/avisos/verificarMaquinas/${idEmpresa}`)
+      .then(function (resposta) {
+        if (resposta.ok) {
+          console.log('DEFTONES')
+
+          resposta.json().then(function (resposta) {
+            console.log('Dados recebidos: ', JSON.stringify(resposta))
+
+            var z = resposta
+
+            var qtdMaquinasAtual = document.getElementById('qtdMaquinasAtual')
+            var qtdMaquinasTotal = document.getElementById('qtdMaquinasTotal')
+
+            for (let i = 0; i < resposta.length; i++) {
+              var z = resposta[i]
+
+              console.log('Hello?: ', z.qtdAtual)
+              console.log('?: ', z.qtdTotal)
+
+              qtdMaquinasAtual.innerHTML = z.qtdAtual
+
+              if (z.qtdTotal == 1) {
+                qtdMaquinasTotal.innerHTML = 10
+              } else if (z.qtdTotal == 2) {
+                qtdMaquinasTotal.innerHTML = 15
+              } else {
+                qtdMaquinasTotal.innerHTML = '∞'
+              }
             }
           })
         } else {
