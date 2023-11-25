@@ -76,6 +76,18 @@ function listarUsb() {
     return database.executar(instrucao);
 }
 
+function listarConsulta() {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarUsb()");
+    var instrucao = `
+    SELECT count(nomeBotao) as consultaMensal
+FROM analiseToten 
+WHERE MONTH(dataHora) = MONTH((SELECT MAX(dataHora) FROM analiseToten))
+  AND YEAR(dataHora) = YEAR((SELECT MAX(dataHora) FROM analiseToten));
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function listarSetor(idMaquina) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarSetor()");
     var instrucao = `
@@ -163,6 +175,7 @@ module.exports = {
     listarTodosFuncionarios,
     verificarSetor,
     listarUsb,
+    listarConsulta,
     listarSetor,
     listarPorUsuario,
     pesquisarDescricao,

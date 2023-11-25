@@ -615,5 +615,9 @@
 #pDescDiaMenosUtilizado {
     font-size: 10px;
 }
+.grafico{
+    height: 33vh;
+    width: 100%;
+}
 
 /* fim do conteudo */

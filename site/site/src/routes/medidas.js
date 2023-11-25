@@ -27,4 +27,11 @@ router.get("/tempo-realRam/:idMaquina", function (req, res) {
     medidaController.buscarMedidasEmTempoRealRam(req, res);
 })
 
+router.get("/ultimasSetor/:idMaquina", function (req, res) {
+    medidaController.buscarUltimasMedidasSetor(req, res);
+});
+
+router.get("/tempo-realSetor/:idMaquina", function (req, res) {
+    medidaController.buscarMedidasEmTempoRealSetor(req, res);
+})
 module.exports = router;
