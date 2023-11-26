@@ -34,4 +34,16 @@ router.get("/ultimasSetor/:idMaquina", function (req, res) {
 router.get("/tempo-realSetor/:idMaquina", function (req, res) {
     medidaController.buscarMedidasEmTempoRealSetor(req, res);
 })
+
+router.get("/tempo-medidasRede/:idMaquina", function (req, res) {
+    medidaController.buscarMedidasRede(req, res);
+})
+
+router.get("/buscarGraficoPing/:idMaquina", function (req, res) {
+    medidaController.buscarGraficoPing(req, res);
+})
+
+router.get("/atualizarGrafico/:idMaquina", function (req, res) {
+    medidaController.atualizarGrafico(req, res);
+})
 module.exports = router;

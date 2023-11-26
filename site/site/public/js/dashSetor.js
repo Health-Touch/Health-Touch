@@ -30,6 +30,10 @@ function exibirMenuPerfil() {
   }
 }
 
+function rede() {
+  window.location = 'analise/analiseRede.html'
+}
+
 //Começo Analise atual componente
 function obterdados(idMaquina) {
   fetch(`/dashboard/tempo-real/${idMaquina}`)
