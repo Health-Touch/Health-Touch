@@ -41,7 +41,7 @@
                     <a href="../cadastro/cadastroMaquinas.html" id="pMenuLateral">
                         <div class="divComputador">
                             <img id="iconComputadorLateral" src="../assets/img/computador (4).png">
-                            <div class="divEspaco" ></div>
+                            <div class="divEspaco"></div>
                             Cadastro Máquinas
                         </div>
                     </a>
@@ -149,7 +149,6 @@
                     <div class="divTitulo">
                         <p id="pTituloSetor">Análise Geral dos Setores <span id="numSala"></span></p>
                         <button class="btnTrocar" onclick="trocarComputador()">Trocar</button>
-                        <button class="btnTrocarHistorico" onclick="trocarComputador()">Histórico</button>
                     </div>
 
                     <div class="divPaiGraficos">
@@ -170,7 +169,7 @@
                                     <div class="conteudoKpi">
                                         <p id="pTituloKpi">Total de Consultas <br> no Mês Atual</p>
                                         <p id="pTotalConsultas"></p>
-                                        <p id="pDescConsultas">+ 20% que o mês passado</p>
+                                        <p id="pDescConsultas"></p>
                                     </div>
 
                                     <div class="iconKpi">
@@ -184,8 +183,8 @@
 
                                     <div class="conteudoKpi">
                                         <p id="pTituloKpi">Toten Mais Utilizado <br> no Mês Atual</p>
-                                        <p id="pTotenMaisUtilizado">Toten 2</p>
-                                        <p id="pDescTotenMaisUtilizado">Mês Passado: Toten 1</p>
+                                        <p id="pTotenMaisUtilizado"></p>
+                                        <p id="pDescTotenMaisUtilizado"></p>
                                     </div>
 
                                     <div class="iconKpi">
@@ -199,8 +198,8 @@
 
                                     <div class="conteudoKpi">
                                         <p id="pTituloKpi">Setor Mais Utilizado <br> no Mês Atual</p>
-                                        <p id="pSetorMaisUtilizado">Pediatria</p>
-                                        <p id="pDescSetorMaisUtilizado">Mês Passado: Odontologia</p>
+                                        <p id="pSetorMaisUtilizado"></p>
+                                        <p id="pDescSetorMaisUtilizado"></p>
                                     </div>
 
                                     <div class="iconKpi">
@@ -212,8 +211,8 @@
 
                                     <div class="conteudoKpi">
                                         <p id="pTituloKpi">Setor Menos Utilizado <br> no Mês Atual</p>
-                                        <p id="pSetorMenosUtilizado">Odontologia</p>
-                                        <p id="pDescSetorMenosUtilizado">Mês Passado: Pediatria</p>
+                                        <p id="pSetorMenosUtilizado"></p>
+                                        <p id="pDescSetorMenosUtilizado"></p>
                                     </div>
 
                                     <div class="iconKpi">
@@ -227,8 +226,8 @@
 
                                     <div class="conteudoKpi">
                                         <p id="pTituloKpi">Dia Mais Movimentado <br> no Mês Atual</p>
-                                        <p id="pDiaMaisUtilizado">Dia 12</p>
-                                        <p id="pDescDiaMaisUtilizado">Mês Passado: Dia 14</p>
+                                        <p id="pDiaMaisUtilizado"></p>
+                                        <p id="pDescDiaMaisUtilizado"></p>
                                     </div>
 
                                     <div class="iconKpi">
@@ -240,8 +239,8 @@
 
                                     <div class="conteudoKpi">
                                         <p id="pTituloKpi">Dia Menos Movimentado <br> no Mês Atual</p>
-                                        <p id="pDiaMenosUtilizado">Dia 28</p>
-                                        <p id="pDescDiaMenosUtilizado">Mês Passado: 26</p>
+                                        <p id="pDiaMenosUtilizado"></p>
+                                        <p id="pDescDiaMenosUtilizado"></p>
                                     </div>
 
                                     <div class="iconKpi">
@@ -263,8 +262,22 @@
 </html>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 <script>
-  window.onload = obterDadosGraficoSetor();
-  window.onload = atualizarFeedConsulta();
+
+    window.onload = obterDadosGraficoSetor();
+    window.onload = atualizarFeedConsulta();
+    window.onload = obterSetorMaisUtilizado();
+    window.onload = obterSetorMaisUtilizadoSub();
+    window.onload = obterSetorMenosUtilizado();
+    window.onload = obterSetorMenosUtilizadoSub();
+    window.onload = obterDiaMaisMovimentado();
+    window.onload = obterDiaMaisMovimentadoSub();
+    window.onload = obterDiaMenosMovimentado();
+    window.onload = obterDiaMenosMovimentadoSub();
+    window.onload = totenMaisUtilizado();
+    window.onload = totenMaisUtilizadoSub();
+    window.onload = consultasSub();
+
+
     function trocarComputador() {
         window.location = "../setores.html"
     }
@@ -392,8 +405,6 @@
     //     Para ajustar o "select", ajuste o comando sql em src/models
     function atualizarGraficoSetor(idMaquina, dados, myChart3) {
 
-
-
         fetch(`/medidas/tempo-realSetor/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
@@ -446,7 +457,7 @@
     }
 
     function atualizarFeedConsulta() {
-     
+
         fetch(`/avisos/listarConsulta/`).then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
@@ -475,6 +486,206 @@
         }).catch(function (resposta) {
             console.error(resposta);
             // finalizarAguardar();
+        });
+    }
+
+    function obterSetorMaisUtilizado() {
+        fetch(`/avisos/setorMaisUtilizado`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("setor mais utilizado: ", JSON.stringify(resposta));
+
+                    pSetorMaisUtilizado.innerHTML = `${resposta[0].nomeBotao}`
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+    function obterSetorMaisUtilizadoSub() {
+        fetch(`/avisos/setorMaisUtilizadoSub`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("setor mais utilizado: ", JSON.stringify(resposta));
+
+                    pDescSetorMaisUtilizado.innerHTML = `Mês passado: ${resposta[0].nomeBotao}`
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+    function obterSetorMenosUtilizado() {
+        var idMaquina = sessionStorage.ID_MAQUINA
+        fetch(`/avisos/setorMenosUtilizado`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("setor menos utilizado: ", JSON.stringify(resposta));
+
+                    pSetorMenosUtilizado.innerHTML = `${resposta[0].nomeBotao}`
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+    
+    function obterSetorMenosUtilizadoSub() {
+        var idMaquina = sessionStorage.ID_MAQUINA
+        fetch(`/avisos/setorMenosUtilizadoSub`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("setor menos utilizado: ", JSON.stringify(resposta));
+
+                    pDescSetorMenosUtilizado.innerHTML = `Mês passado: ${resposta[0].nomeBotao}`
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+    function obterDiaMaisMovimentado() {
+        fetch(`/avisos/diaMaisMovimentado`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("dia mais movimentado: ", JSON.stringify(resposta));
+
+                    pDiaMaisUtilizado.innerHTML = `Dia ${resposta[0].dia}`
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+    function obterDiaMaisMovimentadoSub() {
+        fetch(`/avisos/diaMaisMovimentadoSub`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("dia mais movimentado: ", JSON.stringify(resposta));
+
+                    pDescDiaMaisUtilizado.innerHTML = `Mês Passado: Dia ${resposta[0].dia}`
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+    function obterDiaMenosMovimentado() {
+        fetch(`/avisos/diaMenosMovimentado`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("dia menos movimentado: ", JSON.stringify(resposta));
+
+                    pDiaMenosUtilizado.innerHTML = `Dia ${resposta[0].dia}`
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+    function obterDiaMenosMovimentadoSub() {
+        fetch(`/avisos/diaMenosMovimentadoSub`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("dia menos movimentado: ", JSON.stringify(resposta));
+
+                    pDescDiaMenosUtilizado.innerHTML = `Mês passado: Dia ${resposta[0].dia}`
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+    function totenMaisUtilizado() {
+        fetch(`/avisos/totenMaisUtilizado`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("toten mais: ", JSON.stringify(resposta));
+
+                    pTotenMaisUtilizado.innerHTML = `Toten ${resposta[0].fkMaquina}`
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+    function totenMaisUtilizadoSub() {
+        fetch(`/avisos/totenMaisUtilizadoSub`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("toten menos: ", JSON.stringify(resposta));
+
+                    pDescTotenMaisUtilizado.innerHTML = `Mês passado: Toten ${resposta[0].fkMaquina}`
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+    function consultasSub() {
+        fetch(`/avisos/subConsulta`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("sub consulta: ", JSON.stringify(resposta));
+
+                    if (resposta[0].percentual > 0) {
+                        pDescConsultas.innerHTML = `+ ${resposta[0].percentual}% que o mês passado`
+                    } else {
+                        pDescConsultas.innerHTML = `${resposta[0].percentual}% que o mês passado`
+                    }
+
+                    if (pDescConsultas.innerHTML.includes('+')) {
+                        pDescConsultas.style.color = "#1dd800"
+                    } else {
+                        pDescConsultas.style.color = "#FD3333"
+                    }
+                    
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
         });
     }
 

@@ -81,4 +81,49 @@ router.get('/listarTodosFuncionarios', function (req, res) {
 router.get('/filtrarFuncionarios/:cargo', function (req, res) {
   avisoController.filtrarFuncionarios(req, res)
 })
+
+router.get('/setorMaisUtilizado', function (req, res) {
+  avisoController.setorMaisUtilizado(req, res)
+})
+
+router.get('/setorMaisUtilizadoSub', function (req, res) {
+  avisoController.setorMaisUtilizadoSub(req, res)
+})
+
+router.get('/setorMenosUtilizado', function (req, res) {
+  avisoController.setorMenosUtilizado(req, res)
+})
+
+router.get('/setorMenosUtilizadoSub', function (req, res) {
+  avisoController.setorMenosUtilizadoSub(req, res)
+})
+
+router.get('/diaMaisMovimentado', function (req, res) {
+  avisoController.diaMaisMovimentado(req, res)
+})
+
+router.get('/diaMaisMovimentadoSub', function (req, res) {
+  avisoController.diaMaisMovimentadoSub(req, res)
+})
+
+router.get('/diaMenosMovimentado', function (req, res) {
+  avisoController.diaMenosMovimentado(req, res)
+})
+
+router.get('/diaMenosMovimentadoSub', function (req, res) {
+  avisoController.diaMenosMovimentadoSub(req, res)
+})
+
+router.get('/totenMaisUtilizado', function (req, res) {
+  avisoController.totenMaisUtilizado(req, res)
+})
+
+router.get('/totenMaisUtilizadoSub', function (req, res) {
+  avisoController.totenMaisUtilizadoSub(req, res)
+})
+
+router.get('/subConsulta', function (req, res) {
+  avisoController.subConsulta(req, res)
+})
+
 module.exports = router

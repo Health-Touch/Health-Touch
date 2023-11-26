@@ -3,6 +3,35 @@ create database HealthTouch;
 use HealthTouch;
 
 select * from analiseToten;
+insert into analiseToten values 
+(null, "Dentista", '2023-10-23', 2, 2, 2 ,2);
+
+
+SELECT count(nomeBotao) as consultaMensal
+FROM analiseToten 
+WHERE MONTH(dataHora) = MONTH((SELECT MAX(dataHora) FROM analiseToten))
+  AND YEAR(dataHora) = YEAR((SELECT MAX(dataHora) FROM analiseToten));
+  
+SELECT
+  consultaMensal,
+  consultaAnterior,
+  ROUND((consultaMensal - consultaAnterior) / consultaAnterior * 100, 0) AS percentual
+FROM (
+  SELECT
+    count(nomeBotao) AS consultaMensal
+  FROM analiseToten
+  WHERE MONTH(dataHora) = MONTH((SELECT MAX(dataHora) FROM analiseToten))
+  AND YEAR(dataHora) = YEAR((SELECT MAX(dataHora) FROM analiseToten))
+) AS consultaMensal
+CROSS JOIN (
+  SELECT
+    count(nomeBotao) AS consultaAnterior
+  FROM analiseToten
+  WHERE MONTH(dataHora) = MONTH((SELECT MAX(dataHora) FROM analiseToten) - INTERVAL 1 MONTH)
+  AND YEAR(dataHora) = YEAR((SELECT MAX(dataHora) FROM analiseToten) - INTERVAL 1 MONTH)
+) AS consultaAnterior;
+
+select * from analiseToten;
 SELECT count(nomeBotao) as consultaMensal
 FROM analiseToten join Maquina on fkMaquina = 2
 WHERE MONTH(dataHora) = MONTH((SELECT MAX(dataHora) FROM analiseToten))

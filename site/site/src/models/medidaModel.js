@@ -252,6 +252,6 @@ module.exports = {
   buscarUltimasMedidasSetor,
   buscarMedidasEmTempoRealSetor,
   buscarMedidasRede,
-    atualizarGrafico,
-    buscarGraficoPing
+  atualizarGrafico,
+  buscarGraficoPing
 }

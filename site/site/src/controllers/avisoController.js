@@ -385,6 +385,182 @@ function deletar(req, res) {
     })
 }
 
+function setorMaisUtilizado(req, res) {
+  avisoModel.setorMaisUtilizado()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar os avisos: ', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function setorMaisUtilizadoSub(req, res) {
+  avisoModel.setorMaisUtilizadoSub()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar os avisos: ', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function setorMenosUtilizado(req, res) {
+  avisoModel.setorMenosUtilizado()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar os avisos: ', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function setorMenosUtilizadoSub(req, res) {
+  avisoModel.setorMenosUtilizadoSub()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar os avisos: ', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function diaMaisMovimentado(req, res) {
+  avisoModel.diaMaisMovimentado()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar os avisos: ', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function diaMaisMovimentadoSub(req, res) {
+  avisoModel.diaMaisMovimentadoSub()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar os avisos: ', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function diaMenosMovimentado(req, res) {
+  avisoModel.diaMenosMovimentado()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar os avisos: ', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function diaMenosMovimentadoSub(req, res) {
+  avisoModel.diaMenosMovimentadoSub()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar os avisos: ', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function totenMaisUtilizado(req, res) {
+  avisoModel.totenMaisUtilizado()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar os avisos: ', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function totenMaisUtilizadoSub(req, res) {
+  avisoModel.totenMaisUtilizadoSub()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar os avisos: ', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function subConsulta(req, res) {
+  avisoModel.subConsulta()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar os avisos: ', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
 module.exports = {
   listar,
   listarComputadores,
@@ -405,5 +581,16 @@ module.exports = {
   filtrarStatus,
   filtrarParametroMaquina,
   filtrarStatusMaquina,
-  verificarMaquinas
+  verificarMaquinas,
+  setorMaisUtilizado,
+  setorMaisUtilizadoSub,
+  setorMenosUtilizado,
+  setorMenosUtilizadoSub,
+  diaMaisMovimentado,
+  diaMaisMovimentadoSub,
+  diaMenosMovimentado,
+  diaMenosMovimentadoSub,
+  totenMaisUtilizado,
+  totenMaisUtilizadoSub,
+  subConsulta
 }
