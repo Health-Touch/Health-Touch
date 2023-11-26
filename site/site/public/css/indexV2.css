@@ -19,6 +19,15 @@
     align-items: center;
 }
 
+.divDashboardsGeral {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 8.5vw;
+    position: relative;
+    top: -5%;
+}
+
 .direitaCabecalho {
     width: 15vw;
     font-weight: bold;

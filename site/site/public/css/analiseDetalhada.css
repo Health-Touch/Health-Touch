@@ -20,8 +20,15 @@ body{
     display: flex;
     flex-direction: column;
     font-size: 23px;
-  
+}
 
+.divDashboardsGeral {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 8.5vw;
+    position: relative;
+    top: -5%;
 }
 
 .divSubtitulo {

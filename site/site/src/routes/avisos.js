@@ -126,4 +126,8 @@ router.get('/subConsulta', function (req, res) {
   avisoController.subConsulta(req, res)
 })
 
+router.get('/mesAtual', function (req, res) {
+  avisoController.mesAtual(req, res)
+})
+
 module.exports = router

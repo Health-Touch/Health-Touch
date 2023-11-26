@@ -30,6 +30,15 @@
                 </div>
 
                 <div class="divPaiOpcoesMenu">
+
+                    <a href="../analise/analiseFuncionario.html" id="pMenuLateral">
+                        <div class="divDashboardsGeral">
+                            <img id="iconDashboardsLateral" src="../assets/img/painel (2).png">
+                            <div class="divEspaco"></div>
+                            Dashboard Geral
+                        </div>
+                    </a>
+
                     <a href="../setores.html" id="pMenuLateral">
                         <div class="divHome">
                             <img id="iconMenuLateralHome" src="../assets/img/grafico-de-setores.png">
@@ -145,11 +154,13 @@
             <!-- começo conteudo pagina -->
             <div class="divPaiConteudo">
                 <div class="filhoConteudo">
-
+                    <p id="pTituloNome"></p> 
                     <div class="divTitulo">
                         <p id="pTituloSetor">Análise Geral dos Setores <span id="numSala"></span></p>
                         <button class="btnTrocar" onclick="trocarComputador()">Trocar</button>
+                        <button class="btnTrocar2" onclick="trocarComputador()">Setores</button>
                     </div>
+                    <p id="pTituloMes"></p>
 
                     <div class="divPaiGraficos">
                         <div class="divPaiEsquerda">
@@ -276,7 +287,7 @@
     window.onload = totenMaisUtilizado();
     window.onload = totenMaisUtilizadoSub();
     window.onload = consultasSub();
-
+    window.onload = mesAtual();
 
     function trocarComputador() {
         window.location = "../setores.html"
@@ -347,14 +358,23 @@
                 label: 'Setores',
                 data: [],
                 fill: true,
-                // backgroundColor: `rgb(79,179,148)`,
-                borderColor: `rgb(17, 94, 210)`,
-                borderWidth: 5,
-                tension: 0.5,
-                pointBorderWidth: 0,
-                pointBackgroundColor: `rgb(17, 94, 210)`,
-                pointRadius: 1
             }]
+        };
+
+        let options = {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Opções Mais Utilizadas nos Totens',
+                    font: {
+                        size: 16,
+                    }
+                }
+            },
+            barWidth: 'auto',
+            // Alterando o tamanho do gráfico para 55% da altura da janela
+            height: window.innerHeight * 0.55,
+            width: window.innerWidth * 0.4
         };
 
         console.log('----------------------------------------------')
@@ -380,13 +400,10 @@
         const config = {
             type: 'bar',
             data: dados,
+            options: options
         };
 
-        const ctx3 = document.getElementById(`myChartSetor`).getContext('2d');
-        const gradient = ctx3.createLinearGradient(0, 0, 0, 250);
-        gradient.addColorStop(0, 'rgba(13, 20, 215, 1)');
-        gradient.addColorStop(1, 'rgba(8, 14, 50, 0.1');
-        dados.datasets[0].backgroundColor = gradient;
+        dados.datasets[0].backgroundColor = `#26ABA7`;
 
         // Adicionando gráfico criado em div na tela
         let myChart3 = new Chart(
@@ -540,7 +557,7 @@
             console.error(resposta);
         });
     }
-    
+
     function obterSetorMenosUtilizadoSub() {
         var idMaquina = sessionStorage.ID_MAQUINA
         fetch(`/avisos/setorMenosUtilizadoSub`).then(function (resposta) {
@@ -678,7 +695,7 @@
                     } else {
                         pDescConsultas.style.color = "#FD3333"
                     }
-                    
+
 
                 });
             } else {
@@ -688,5 +705,75 @@
             console.error(resposta);
         });
     }
+
+    function mesAtual() {
+        fetch(`/avisos/mesAtual`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("mesAtual ", JSON.stringify(resposta));
+
+                    var respostaFinal = 0
+                    if (resposta[0].mêsAtual == 11) {
+                        respostaFinal = "Novembro"
+                    } else if (resposta[0].mêsAtual == 12) {
+                        respostaFinal = "Dezembro"
+                    } else if (resposta[0].mêsAtual == 1) {
+                        respostaFinal = "Janeiro"
+                    } else if (resposta[0].mêsAtual == 2) {
+                        respostaFinal = "Fevereiro"
+                    } else if (resposta[0].mêsAtual == 3) {
+                        respostaFinal = "Março"
+                    } else if (resposta[0].mêsAtual == 4) {
+                        respostaFinal = "Abril"
+                    } else if (resposta[0].mêsAtual == 5) {
+                        respostaFinal = "Maio"
+                    } else if (resposta[0].mêsAtual == 6) {
+                        respostaFinal = "Junho"
+                    } else if (resposta[0].mêsAtual == 7) {
+                        respostaFinal = "Julho"
+                    } else if (resposta[0].mêsAtual == 8) {
+                        respostaFinal = "Agosto"
+                    } else if (resposta[0].mêsAtual == 9) {
+                        respostaFinal = "Setembro"
+                    } else {
+                        respostaFinal = "Outubro"
+                    }
+
+                    pTituloMes.innerHTML = `Mês atual: ${respostaFinal}`
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+    var cargo = sessionStorage.NIVELACESSO_COLABORADOR;
+
+    if (cargo == "RL") {
+        cargo = "Representante"
+        SumirCadMaq.style.display = "none";
+        SumirAnaliseMaq.style.display = "none";
+    } else if (cargo == "GT") {
+        cargo = "Gerente TI"
+    }
+    else {
+        cargo = "Equipe TI";
+        SumirCadMaq.style.display = "none";
+        SumirCadEquipe.style.display = "none";
+        SumirAnaliseFunc.style.display = "none";
+        divCadastroEquipe.style.top = "18%";
+    }
+
+    cargoPerfil.innerHTML = cargo;
+    nomeEmpresa.innerHTML = sessionStorage.NOME_FANTASIA_COLABORADOR;
+    pTituloNome.innerHTML = sessionStorage.NOME_FANTASIA_COLABORADOR;
+    tituloPerfil.innerHTML = sessionStorage.NOME_COLABORADOR;
+    pNomeSetor.innerHTML = sessionStorage.NOME_SETOR;
+    numSala.innerHTML = sessionStorage.ID_SALA;
+    numComputador.innerHTML = sessionStorage.ID_MAQUINA;
+
 
 </script>

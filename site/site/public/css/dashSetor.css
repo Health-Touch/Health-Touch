@@ -703,6 +703,15 @@ input[disabled] {
     background: linear-gradient(90deg, rgba(225,229,34,1) 70%, rgba(221,221,221,1) 0%);
 }
 
+.divDashboardsGeral {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 8.5vw;
+    position: relative;
+    top: -5%;
+}
+
 .infoAviso{
     border-radius: 5px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 4px 3px 0px, rgba(0, 0, 0, 0.3) 0px 5px 5px -15px;

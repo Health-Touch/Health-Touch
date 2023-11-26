@@ -116,6 +116,15 @@
     top: 18%;
 }
 
+.divDashboardsGeral {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 8.5vw;
+    position: relative;
+    top: -5%;
+}
+
 #iconDashboardsLateral {
     width: 1.8vw;
     height: 3.8vh;
@@ -429,25 +438,20 @@
     flex-direction: column;
 }
 
-.divTitulo {
-    display: flex;
-    align-items: start;
-    width: 60%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    position: relative;
-    top: 5%;
-}
-
-#pTituloSetor {
-    font-size: 25px;
-    font-weight: bold;
-}
-
 .btnTrocar {
     border: none;
     background-color: #38b0ac;
+    color: #fff;
+    padding: 5px;
+    border-radius: 15px;
+    width: 130px;
+    box-shadow: rgba(50, 50, 93, 0.1) 0px 8px 0px 0px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    cursor: pointer;
+}
+
+.btnTrocar2 {
+    border: none;
+    background-color: #020F1F;
     color: #fff;
     padding: 5px;
     border-radius: 15px;
@@ -471,16 +475,21 @@
     width: 79vw;
     height: 60vh;
     position: relative;
-    top: 17%;
+    top: 10%;
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
+.grafico{
+    height: 55vh; 
+    width: 40vw;
+}
+
 .divPaiEsquerda {
-    background-color: #020F1F;
-    width: 35vw;
-    height: 60vh;
+    background-color: white;
+    width: 40vw;
+    height: 45vh;
     border-radius: 20px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
@@ -514,7 +523,7 @@
 }
 
 .divKpi {
-    background-color: #020F1F;
+    background-color: white;
     width: 17vw;
     height: 17vh;
     border-radius: 15px;
@@ -539,7 +548,6 @@
     position: relative;
     left: 10%;
     top: -60%;
-    color: white;
 }
 
 #pTituloKpi {
@@ -615,9 +623,34 @@
 #pDescDiaMenosUtilizado {
     font-size: 10px;
 }
-.grafico{
-    height: 50vh;
-    width: 100%;
+
+#pTituloNome {
+    font-size: 20px;
+    font-weight: 630;
+}
+
+.divTitulo {
+    display: flex;
+    align-items: start;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    top: 3%;
+    position: relative;
+    right: 1%;
+}
+
+#pTituloSetor {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#pTituloMes {
+    position: relative;
+    top: 5%;
+    font-weight: 630;
 }
 
 /* fim do conteudo */

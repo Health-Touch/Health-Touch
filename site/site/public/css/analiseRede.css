@@ -654,6 +654,15 @@
     justify-content: center;
 }
 
+.divDashboardsGeral {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 8.5vw;
+    position: relative;
+    top: -5%;
+}
+
 .espacoModal {
     height: 5vh;
 }

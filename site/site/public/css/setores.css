@@ -21,6 +21,15 @@
     height: 100vh;
 }
 
+.divDashboardsGeral {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 8.5vw;
+    position: relative;
+    top: -5%;
+}
+
 .filhoLateral {
     width: 10vw;
     height: 96vh;
