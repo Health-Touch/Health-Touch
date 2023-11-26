@@ -577,6 +577,80 @@ function mesAtual(req, res) {
     })
 }
 
+function listarJanela(req, res) {
+  var idMaquina = req.params.idMaquina
+  avisoModel.listarJanela(idMaquina).then(function (resultado) {
+      if (resultado.length > 0) {
+          res.status(200).json(resultado);
+      } else {
+          res.status(204).send("Nenhum resultado encontrado!")
+      }
+  }).catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+  });
+}
+
+function janelaMes(req, res) {
+  var idMaquina = req.params.idMaquina
+  avisoModel.janelaMes(idMaquina).then(function (resultado) {
+      if (resultado.length > 0) {
+          res.status(200).json(resultado);
+      } else {
+          res.status(204).send("Nenhum resultado encontrado!")
+      }
+  }).catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+  });
+}
+
+function janelaAtivas(req, res) {
+  var idMaquina = req.params.idMaquina
+  avisoModel.janelaAtivas(idMaquina).then(function (resultado) {
+      if (resultado.length > 0) {
+          res.status(200).json(resultado);
+      } else {
+          res.status(204).send("Nenhum resultado encontrado!")
+      }
+  }).catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+  });
+}
+
+function listarRam(req, res) {
+  var idMaquina = req.params.idMaquina
+  avisoModel.listarRam(idMaquina).then(function (resultado) {
+      if (resultado.length > 0) {
+          res.status(200).json(resultado);
+      } else {
+          res.status(204).send("Nenhum resultado encontrado!")
+      }
+  }).catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+  });
+}
+function listarMensalRam(req, res) {
+  var idMaquina = req.params.idMaquina
+  avisoModel.listarMensalRam(idMaquina).then(function (resultado) {
+      if (resultado.length > 0) {
+          res.status(200).json(resultado);
+      } else {
+          res.status(204).send("Nenhum resultado encontrado!")
+      }
+  }).catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+  });
+}
+
 module.exports = {
   listar,
   listarComputadores,
@@ -609,5 +683,10 @@ module.exports = {
   totenMaisUtilizado,
   totenMaisUtilizadoSub,
   subConsulta,
-  mesAtual
+  mesAtual,
+  listarJanela,
+  janelaMes,
+  janelaAtivas,
+  listarRam,
+  listarMensalRam
 }

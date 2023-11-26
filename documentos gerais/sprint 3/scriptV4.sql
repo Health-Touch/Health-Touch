@@ -1,41 +1,7 @@
-drop database HealthTouch;
+
 create database HealthTouch;
 use HealthTouch;
 
-select * from analiseToten;
-insert into analiseToten values 
-(null, "Dentista", '2023-10-23', 2, 2, 2 ,2);
-
-
-SELECT count(nomeBotao) as consultaMensal
-FROM analiseToten 
-WHERE MONTH(dataHora) = MONTH((SELECT MAX(dataHora) FROM analiseToten))
-  AND YEAR(dataHora) = YEAR((SELECT MAX(dataHora) FROM analiseToten));
-  
-SELECT
-  consultaMensal,
-  consultaAnterior,
-  ROUND((consultaMensal - consultaAnterior) / consultaAnterior * 100, 0) AS percentual
-FROM (
-  SELECT
-    count(nomeBotao) AS consultaMensal
-  FROM analiseToten
-  WHERE MONTH(dataHora) = MONTH((SELECT MAX(dataHora) FROM analiseToten))
-  AND YEAR(dataHora) = YEAR((SELECT MAX(dataHora) FROM analiseToten))
-) AS consultaMensal
-CROSS JOIN (
-  SELECT
-    count(nomeBotao) AS consultaAnterior
-  FROM analiseToten
-  WHERE MONTH(dataHora) = MONTH((SELECT MAX(dataHora) FROM analiseToten) - INTERVAL 1 MONTH)
-  AND YEAR(dataHora) = YEAR((SELECT MAX(dataHora) FROM analiseToten) - INTERVAL 1 MONTH)
-) AS consultaAnterior;
-
-select * from analiseToten;
-SELECT count(nomeBotao) as consultaMensal
-FROM analiseToten join Maquina on fkMaquina = 2
-WHERE MONTH(dataHora) = MONTH((SELECT MAX(dataHora) FROM analiseToten))
-  AND YEAR(dataHora) = YEAR((SELECT MAX(dataHora) FROM analiseToten));
 
 create table Plano (
 idPlano Int primary key auto_increment,
@@ -226,14 +192,13 @@ insert into statusMaquina values
 select * from statusMaquina;
 
 -- Máquina --
-
+drop table Maquina;
 create table Maquina (
 idMaquina int auto_increment,
 SO varchar(45),
 IP char(9),
 fkEmpresa int, 
-fkPlano int, 
-constraint fk_empresa_maquina foreign key(fkEmpresa, fkPlano) references Empresa(idEmpresa, fkPlano),
+constraint fk_empresa_maquina foreign key(fkEmpresa) references Empresa(idEmpresa),
 fkLocal int, 
 constraint fk_local_sala_maquina  foreign key(fkLocal) references LocalSala(idLocalSala),
 fkPlanoEmpresa int, 
@@ -345,6 +310,13 @@ fkEmpresaMaquina int,
 constraint fk_empresa_monitoramento  foreign key(fkEmpresaMaquina) references Maquina(idMaquina),
 constraint pk_composta_monitoramnto primary key (idMonitoramento,fkComponente,fkMaquina,  fkPlanoEmpresa, fkTipoMaquina, fkEmpresaMaquina)
 );
+
+insert into Monitoramento values
+(null, 55.44, '2020-09-14 20:18:17', 3, 1,1,1,1),
+(null, 40.44, '2020-09-14 22:18:17', 3, 1,1,1,1),
+(null, 30.44, '2020-09-14 23:18:17', 3, 1,1,1,1),
+(null, 70.44, '2020-09-14 23:18:17', 3, 1,1,1,1),
+(null, 60.44, '2020-09-14 23:18:17', 3, 1,1,1,1);
 
 -- Processo --
 
@@ -459,3 +431,26 @@ primary key (idMonitoramentoRede, fkRede, fkMaquina, fkEmpresa, fkPlanoEmpresa, 
 );
 
 select * from monitoramentoRede;
+
+create table Janela (
+idJanela int auto_increment ,
+pidJanela int,
+tituloJanela varchar(150),
+dtjanela datetime,
+statusJanela boolean,
+fkMaquina int, 
+constraint fk_maquina_janela foreign key(fkMaquina) references Maquina(idMaquina),
+fkEmpresa int, 
+constraint fk_empresa_janela foreign key(fkEmpresa) references Empresa(idEmpresa),
+fkPlanoEmpresa int, 
+constraint fk_plano_empresa_janela foreign key(fkPlanoEmpresa) references Plano(idPlano),
+fkTipoMaquina int, 
+constraint fk_tipo_maquina_janela foreign key(fkTipoMaquina) references TipoMaquina(idTipoMaquina),
+constraint pk_composta_janela primary key (idJanela,fkMaquina, fkEmpresa,fkPlanoEmpresa,fkTipoMaquina)
+);
+
+insert into Janela values
+(null, 3232323, "fajosfnasjnfjaf", "2023-12-20 00:55:20", 0, 1,1,1,1),
+(null, 1212414, "asfasfasfas", "2023-12-20 00:55:20", 1, 1,1,1,1),
+(null, 4574454, "ansdoasnda", "2023-12-20 00:55:20", 0, 1,1,1,1),
+(null, 4574454, "gdfwefwefwe", "2023-12-20 00:55:20",1, 1,1,1,1);

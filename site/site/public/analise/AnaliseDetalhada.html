@@ -228,7 +228,7 @@
                         </div>
 
                         <button class="botaoTrocar" onclick="trocar()">Trocar</button> <button
-                            class="botaoHist">Histórico</button>
+                            class="botaoHist" onclick="analiseJanel()">Analisar</button>
                     </div>
                 </div>
 
@@ -294,6 +294,10 @@
     window.onload = obterDadosGraficoRam();
     window.onload = atualizarFeedUsb();
     window.onload = atualizarFeedSetor();
+
+    function analiseJanel(){
+        window.location.href = 'analiseJanela.html'
+    }
     function obterDadosGrafico(idMaquina) {
         var idMaquina = sessionStorage.ID_MAQUINA
         // if (proximaAtualizacao != undefined) {

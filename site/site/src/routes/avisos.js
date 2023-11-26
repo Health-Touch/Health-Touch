@@ -130,4 +130,23 @@ router.get('/mesAtual', function (req, res) {
   avisoController.mesAtual(req, res)
 })
 
+router.get("/listarJanela/:idMaquina", function (req, res) {
+  avisoController.listarJanela(req, res);
+});
+
+router.get("/janelaMes/:idMaquina", function (req, res) {
+  avisoController.janelaMes(req, res);
+});
+
+router.get("/janelaAtivas/:idMaquina", function (req, res) {
+  avisoController.janelaAtivas(req, res);
+});
+
+router.get("/listarRam/:idMaquina", function (req, res) {
+  avisoController.listarRam(req, res);
+});
+router.get("/listarMensalRam/:idMaquina", function (req, res) {
+  avisoController.listarMensalRam(req, res);
+});
+
 module.exports = router
