@@ -37,6 +37,10 @@ function Processo() {
   window.location = 'analise/AnaliseProcessos.html'
 }
 
+function picos() {
+  window.location = 'analise/AnalisePicos.html'
+}
+
 //Começo Analise atual componente
 function obterdados(idMaquina) {
   fetch(`/dashboard/tempo-real/${idMaquina}`)

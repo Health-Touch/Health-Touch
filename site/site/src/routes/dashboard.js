@@ -58,4 +58,45 @@ router.get('/insight/tempo-real/:idMaquina', function (req, res) {
   dashController.buscarInsightEmTempoReal(req, res)
 })
 
+//Fazendo o individual aq
+//Picos
+router.get('/pico/:idMaquina', function (req, res) {
+  dashController.buscarUltimosPico(req, res)
+})
+
+//Estado Ram
+router.get('/estadoRam/:idMaquina', function (req, res) {
+  dashController.buscarEstadoRam(req, res)
+})
+
+//Relatorio Ram
+router.get('/relatorioRam/:idMaquina', function (req, res) {
+  dashController.buscarRelatorioRam(req, res)
+})
+
+//Scatter
+router.get('/scatter/:idMaquina', function (req, res) {
+  dashController.plotarScatter(req, res)
+})
+
+//Barra
+router.get('/barra/:idMaquina', function (req, res) {
+  dashController.plotarBarra(req, res)
+})
+
+//Linha
+router.get('/linha/:idMaquina', function (req, res) {
+  dashController.plotarLinha(req, res)
+})
+
+//ListaProcessos
+router.get('/listaProcessos/:idMaquina', function (req, res) {
+  dashController.plotarListaProcessos(req, res)
+})
+
+//WordCloud
+router.get('/wordCloud/:idMaquina', function (req, res) {
+  dashController.plotarWordCloud(req, res)
+})
+
 module.exports = router

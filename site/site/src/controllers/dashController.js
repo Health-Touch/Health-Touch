@@ -299,6 +299,197 @@ function buscarInsightEmTempoReal(req, res) {
     })
 }
 
+//Individual
+//Picos
+function buscarUltimosPico(req, res) {
+  var idMaquina = req.params.idMaquina
+
+  console.log(`Recuperando os ultimos Picos`)
+
+  dashModel
+    .buscarUltimosPico(idMaquina)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar as ultimas usbs.', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+//Estado Ram
+function buscarEstadoRam(req, res) {
+  var idMaquina = req.params.idMaquina
+
+  console.log(`Recuperando os ultimos Picos`)
+
+  dashModel
+    .buscarEstadoRam(idMaquina)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar as ultimas usbs.', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+//Relatorio Ram
+function buscarRelatorioRam(req, res) {
+  var idMaquina = req.params.idMaquina
+
+  console.log(`Recuperando os ultimos Picos`)
+
+  dashModel
+    .buscarRelatorioRam(idMaquina)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar as ultimas usbs.', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+//Scatter
+function plotarScatter(req, res) {
+  var idMaquina = req.params.idMaquina
+
+  console.log(`ERA PRA VIM VALORES AQ`)
+  console.log(
+    `****************************************************************************************************************************************************************************************************************************************`
+  )
+
+  dashModel
+    .plotarScatter(idMaquina)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar as ultimas usbs.', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+//Barra
+function plotarBarra(req, res) {
+  var idMaquina = req.params.idMaquina
+
+  console.log(`ERA PRA VIM VALORES AQ`)
+  console.log(
+    `****************************************************************************************************************************************************************************************************************************************`
+  )
+
+  dashModel
+    .plotarBarra(idMaquina)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar as ultimas usbs.', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+//Linha
+function plotarLinha(req, res) {
+  var idMaquina = req.params.idMaquina
+
+  console.log(`ERA PRA VIM VALORES AQ`)
+  console.log(
+    `****************************************************************************************************************************************************************************************************************************************`
+  )
+
+  dashModel
+    .plotarLinha(idMaquina)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar as ultimas usbs.', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+//ListaProcessos
+function plotarListaProcessos(req, res) {
+  var idMaquina = req.params.idMaquina
+
+  console.log(`ERA PRA VIM VALORES AQ`)
+  console.log(
+    `****************************************************************************************************************************************************************************************************************************************`
+  )
+
+  dashModel
+    .plotarListaProcessos(idMaquina)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar as ultimas usbs.', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
+
+//WordCloud
+function plotarWordCloud(req, res) {
+  var idMaquina = req.params.idMaquina
+
+  console.log(`ERA PRA VIM VALORES AQ`)
+  console.log(
+    `****************************************************************************************************************************************************************************************************************************************`
+  )
+
+  dashModel
+    .plotarWordCloud(idMaquina)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado)
+      } else {
+        res.status(204).send('Nenhum resultado encontrado!')
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro)
+      console.log('Houve um erro ao buscar as ultimas usbs.', erro.sqlMessage)
+      res.status(500).json(erro.sqlMessage)
+    })
+}
 module.exports = {
   setor,
   buscarMaquinas,
@@ -311,5 +502,13 @@ module.exports = {
   buscarUltimosMedia,
   buscarMediaEmTempoReal,
   buscarUltimosInsight,
-  buscarInsightEmTempoReal
+  buscarInsightEmTempoReal,
+  buscarUltimosPico,
+  buscarEstadoRam,
+  buscarRelatorioRam,
+  plotarScatter,
+  plotarBarra,
+  plotarLinha,
+  plotarListaProcessos,
+  plotarWordCloud
 }

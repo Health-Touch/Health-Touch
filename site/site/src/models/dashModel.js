@@ -40,10 +40,14 @@ function buscarUltimasMedidas(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `SELECT TOP 3 *
-    FROM Monitoramento
-    WHERE fkMaquina = 1
-    ORDER BY idMonitoramento DESC;`
+    instrucaoSql = `select top ${limite_linhas}
+        dht11_temperatura as temperatura, 
+        dht11_umidade as umidade,  
+                        momento,
+                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
+                    from medida
+                    where fk_aquario = ${idAquario}
+                    order by id desc`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select * from monitoramento
                     where fkMaquina = ${idMaquina}
@@ -100,17 +104,17 @@ function buscarUltimosAvisos(idMaquina) {
                     order by id desc`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `
-    SELECT a.idAviso, DATE_FORMAT(a.dataHora, '%d/%m/%Y %H:%i:%s') as dtHr,
+    SELECT a.idAvisos, DATE_FORMAT(a.dataHora, '%d/%m/%Y %H:%i:%s') as dtHr,
     a.fkMonitoramento, a.fkComponente, a.fkMaquina, a.fkEmpresa,
-    a.fkPlanoEmpresa, a.fkTipoMaquina, a.nivelAviso, c.nome as componente, mt.porcentagem
-    FROM aviso as a join monitoramento as mt on mt.idMonitoramento = a.fkMonitoramento
+    a.fkPlanoEmpresa, a.fkTipoMaquina, a.fkNivelAviso
+    FROM avisos as a join monitoramento as mt on mt.idMonitoramento = a.fkMonitoramento
     join componente as c on a.fkComponente = c.idComponente
     join maquina as m on a.fkMaquina = m.idMaquina
     join empresa as e on a.fkEmpresa = e.idEmpresa
     join plano as p on a.fkPlanoEmpresa = p.idPlano
     join tipoMaquina as t on a.fkTipoMaquina = t.idTipoMaquina
-    where a.fkEmpresa = 1 and a.fkMaquina = 1 and a.fkTipoMaquina = 1
-    order by dtHr;`
+    join nivelAvisos as n on a.fkNivelAviso = n.idNivelAvisos
+    where a.fkEmpresa = 1 and a.fkMaquina = ${idMaquina} and a.fkTipoMaquina = 1;`
   } else {
     console.log(
       '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
@@ -135,17 +139,17 @@ function buscarAvisosEmTempoReal(idMaquina) {
                     order by id desc`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `    
-    SELECT a.idAviso, DATE_FORMAT(a.dataHora, '%d/%m/%Y %H:%i:%s') as dtHr,
+    SELECT a.idAvisos, DATE_FORMAT(a.dataHora, '%d/%m/%Y %H:%i:%s') as dtHr,
     a.fkMonitoramento, a.fkComponente, a.fkMaquina, a.fkEmpresa,
-    a.fkPlanoEmpresa, a.fkTipoMaquina, a.nivelAviso, c.nome as componente, mt.porcentagem
-    FROM aviso as a join monitoramento as mt on mt.idMonitoramento = a.fkMonitoramento
+    a.fkPlanoEmpresa, a.fkTipoMaquina, a.fkNivelAviso
+    FROM avisos as a join monitoramento as mt on mt.idMonitoramento = a.fkMonitoramento
     join componente as c on a.fkComponente = c.idComponente
     join maquina as m on a.fkMaquina = m.idMaquina
     join empresa as e on a.fkEmpresa = e.idEmpresa
     join plano as p on a.fkPlanoEmpresa = p.idPlano
     join tipoMaquina as t on a.fkTipoMaquina = t.idTipoMaquina
-    where a.fkEmpresa = 1 and a.fkMaquina = 1 and a.fkTipoMaquina = 1
-    order by dtHr;`
+    join nivelAvisos as n on a.fkNivelAviso = n.idNivelAvisos
+    where a.fkEmpresa = 1 and a.fkMaquina = ${idMaquina} and a.fkTipoMaquina = 1;`
   } else {
     console.log(
       '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
@@ -362,6 +366,211 @@ function buscarInsightEmTempoReal(idMaquina) {
   console.log('Executando a instrução SQL: \n' + instrucaoSql)
   return database.executar(instrucaoSql)
 }
+
+//individual yas
+
+//Picos
+function buscarUltimosPico(idMaquina) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `SELECT
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = 'Crítico') as picoCPU,
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 2 AND nivelAviso = 'Crítico') as picoRAM;`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `SELECT
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = 'Crítico') as picoCPU,
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 2 AND nivelAviso = 'Crítico') as picoRAM;`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+//Estado Ram
+function buscarEstadoRam(idMaquina) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `SELECT TOP 1 ramUsada, ramDisponivel
+    FROM Monitoramento
+    WHERE ramUsada IS NOT NULL AND ramDisponivel IS NOT NULL
+    ORDER BY idMonitoramento DESC;
+    `
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `SELECT ramUsada, ramDisponivel FROM Monitoramento 
+    WHERE ramUsada IS NOT NULL AND ramDisponivel IS NOT NULL 
+    ORDER BY idMonitoramento DESC LIMIT 1;`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+//Relatorio Ram
+function buscarRelatorioRam(idMaquina) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `SELECT
+    (SELECT ROUND(AVG(porcentagem), 2) FROM MonitoramentoYasmin WHERE fkComponente = 1) as media,
+    (ROUND(((SELECT COUNT(*) FROM aviso WHERE fkComponente = 1) * 1.0 / (SELECT COUNT(*) FROM aviso)) * 100, 0)) as frequencia,
+    (SELECT MAX(porcentagem) FROM MonitoramentoYasmin WHERE fkComponente = 1) as max;
+`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `SELECT
+    (SELECT ROUND(AVG(porcentagem), 2) FROM MonitoramentoYasmin WHERE fkComponente = 1) as media,
+    (ROUND(((SELECT COUNT(*) FROM aviso WHERE fkComponente = 1) * 1.0 / (SELECT COUNT(*) FROM aviso)) * 100, 0)) as frequencia,
+    (SELECT MAX(porcentagem) FROM MonitoramentoYasmin WHERE fkComponente = 1) as max;
+`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+//Scatter
+function plotarScatter(idMaquina) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `SELECT porcentagem AS usoCpu,
+    temperatura AS tempCpu
+FROM Monitoramento;
+`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `SELECT porcentagem AS usoCpu,
+    temperatura AS tempCpu
+    FROM Monitoramento;`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+//Barra
+function plotarBarra(idMaquina) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `SELECT
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = 'Crítico' AND DATEPART(WEEKDAY, dataHora) = 2) AS seg,
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = 'Crítico' AND DATEPART(WEEKDAY, dataHora) = 3) AS ter,
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = 'Crítico' AND DATEPART(WEEKDAY, dataHora) = 4) AS qua,
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = 'Crítico' AND DATEPART(WEEKDAY, dataHora) = 5) AS qui,
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = 'Crítico' AND DATEPART(WEEKDAY, dataHora) = 6) AS sex,
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = 'Crítico' AND DATEPART(WEEKDAY, dataHora) = 7) AS sab,
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = 'Crítico' AND DATEPART(WEEKDAY, dataHora) = 1) AS dom;
+`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `SELECT
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = "Crítico" AND DAYOFWEEK(dataHora) = 2) AS seg,
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = "Crítico" AND DAYOFWEEK(dataHora) = 3) AS ter,
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = "Crítico" AND DAYOFWEEK(dataHora) = 4) AS qua,
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = "Crítico" AND DAYOFWEEK(dataHora) = 5) AS qui,
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = "Crítico" AND DAYOFWEEK(dataHora) = 6) AS sex,
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = "Crítico" AND DAYOFWEEK(dataHora) = 7) AS sab,
+    (SELECT COUNT(*) FROM aviso WHERE fkComponente = 1 AND nivelAviso = "Crítico" AND DAYOFWEEK(dataHora) = 1) AS dom;`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+//Linha
+function plotarLinha(idMaquina) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `SELECT
+    (SELECT ROUND(AVG(porcentagem), 2) FROM Monitoramento WHERE fkComponente = 1 AND DATEPART(HOUR, dataHora) = 9) AS hr1,
+    (SELECT ROUND(AVG(porcentagem), 2) FROM Monitoramento WHERE fkComponente = 1 AND DATEPART(HOUR, dataHora) = 10) AS hr2,
+    (SELECT ROUND(AVG(porcentagem), 2) FROM Monitoramento WHERE fkComponente = 1 AND DATEPART(HOUR, dataHora) = 11) AS hr3,
+    (SELECT ROUND(AVG(porcentagem), 2) FROM Monitoramento WHERE fkComponente = 1 AND DATEPART(HOUR, dataHora) = 12) AS hr4,
+    (SELECT ROUND(AVG(porcentagem), 2) FROM Monitoramento WHERE fkComponente = 1 AND DATEPART(HOUR, dataHora) = 13) AS hr5,
+    (SELECT ROUND(AVG(porcentagem), 2) FROM Monitoramento WHERE fkComponente = 1 AND DATEPART(HOUR, dataHora) = 14) AS hr6,
+    (SELECT ROUND(AVG(porcentagem), 2) FROM Monitoramento WHERE fkComponente = 1 AND DATEPART(HOUR, dataHora) = 15) AS hr7,
+    (SELECT ROUND(AVG(porcentagem), 2) FROM Monitoramento WHERE fkComponente = 1 AND DATEPART(HOUR, dataHora) = 16) AS hr8,
+    (SELECT ROUND(AVG(porcentagem), 2) FROM Monitoramento WHERE fkComponente = 1 AND DATEPART(HOUR, dataHora) = 17) AS hr9;
+`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `SELECT
+    (SELECT ROUND(AVG(porcentagem),2) FROM Monitoramento WHERE fkComponente = 1 AND EXTRACT(HOUR FROM dataHora) = 9) AS hr1,
+    (SELECT ROUND(AVG(porcentagem),2) FROM Monitoramento WHERE fkComponente = 1 AND EXTRACT(HOUR FROM dataHora) = 10) AS hr2,
+    (SELECT ROUND(AVG(porcentagem),2) FROM Monitoramento WHERE fkComponente = 1 AND EXTRACT(HOUR FROM dataHora) = 11) AS hr3,
+    (SELECT ROUND(AVG(porcentagem),2) FROM Monitoramento WHERE fkComponente = 1 AND EXTRACT(HOUR FROM dataHora) = 12) AS hr4,
+    (SELECT ROUND(AVG(porcentagem),2) FROM Monitoramento WHERE fkComponente = 1 AND EXTRACT(HOUR FROM dataHora) = 13) AS hr5,
+    (SELECT ROUND(AVG(porcentagem),2) FROM Monitoramento WHERE fkComponente = 1 AND EXTRACT(HOUR FROM dataHora) = 14) AS hr6,
+    (SELECT ROUND(AVG(porcentagem),2) FROM Monitoramento WHERE fkComponente = 1 AND EXTRACT(HOUR FROM dataHora) = 15) AS hr7,
+    (SELECT ROUND(AVG(porcentagem),2) FROM Monitoramento WHERE fkComponente = 1 AND EXTRACT(HOUR FROM dataHora) = 16) AS hr8,
+      (SELECT ROUND(AVG(porcentagem),2) FROM Monitoramento WHERE fkComponente = 1 AND EXTRACT(HOUR FROM dataHora) = 16) AS hr9;`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+//ListaProcessos
+function plotarListaProcessos(idMaquina) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `SELECT TOP 5 * FROM processo
+    ORDER BY usoCPU DESC;
+    `
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `SELECT * FROM processo ORDER BY usoCPU DESC LIMIT 5;`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+//WordCloud
+function plotarWordCloud(idMaquina) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `SELECT nome, COUNT(*) AS quantidade FROM Processo GROUP BY nome;`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `SELECT nome, COUNT(*) AS quantidade FROM Processo GROUP BY nome;`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
 module.exports = {
   setor,
   buscarMaquinas,
@@ -374,5 +583,13 @@ module.exports = {
   buscarUltimosMedia,
   buscarMediaEmTempoReal,
   buscarUltimosInsight,
-  buscarInsightEmTempoReal
+  buscarInsightEmTempoReal,
+  buscarUltimosPico,
+  buscarEstadoRam,
+  buscarRelatorioRam,
+  plotarScatter,
+  plotarBarra,
+  plotarLinha,
+  plotarListaProcessos,
+  plotarWordCloud
 }

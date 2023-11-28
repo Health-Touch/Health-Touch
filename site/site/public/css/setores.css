@@ -531,6 +531,7 @@ select {
     font-weight: 600;
     padding: 0 5px;
     text-align: center;
+    align-items: center;
     /* display: flex;
     align-items: center; */
 }
