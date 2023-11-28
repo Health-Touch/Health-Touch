@@ -1,0 +1,27 @@
+upload <- csv[, c("upload", "dataHora")]
+download <- csv[, c("download", "dataHora")]
+ping <- csv[, c("ping", "dataHora")]
+
+library(ggplot2)
+
+ggplot(upload, aes(x = dataHora, y = upload)) +
+  geom_bar(stat = "identity") +
+  geom_hline(yintercept = 7, color = "red") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("Métricas Upload")
+
+ggplot(download, aes(x = dataHora, y = download)) +
+  geom_bar(stat = "identity") +
+  geom_hline(yintercept = 7, color = "red") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("Métricas Download")
+
+ggplot(ping, aes(x = dataHora, y = ping)) +
+  geom_bar(stat = "identity") +
+  geom_hline(yintercept = 14, color = "red") + 
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("Métricas Ping")
+

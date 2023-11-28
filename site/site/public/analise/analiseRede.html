@@ -254,47 +254,6 @@
 
                         <div class="divAlertas">
                             <canvas id="myChartPing" style="height:70vh; width:40vw;"></canvas>
-                            <!-- <p id="tituloAlertas">Histórico Alertas</p>
-
-                            <div class="espaco1"></div>
-
-                            <div class="boxAvisos">
-                                <img id="iconAlerta" src="../assets/img/aviso-orange.png">
-
-                                <p id="statusAlerta">Upload Baixo</p>
-
-                                <p id="dataAlerta">02/10/2023 <br> 9:30:14</p>
-                            </div>
-
-                            <div class="espaco2"></div>
-
-                            <div class="boxAvisos">
-                                <img id="iconAlerta" src="../assets/img/aviso-red.png">
-
-                                <p id="statusAlerta">Upload Baixo</p>
-
-                                <p id="dataAlerta">02/10/2023 <br> 9:30:14</p>
-                            </div>
-
-                            <div class="espaco2"></div>
-
-                            <div class="boxAvisos">
-                                <img id="iconAlerta" src="../assets/img/aviso-orange.png">
-
-                                <p id="statusAlerta">Upload Baixo</p>
-
-                                <p id="dataAlerta">02/10/2023 <br> 9:30:14</p>
-                            </div>
-
-                            <div class="espaco2"></div>
-
-                            <div class="boxAvisos">
-                                <img id="iconAlerta" src="../assets/img/aviso-red.png">
-
-                                <p id="statusAlerta">Upload Baixo</p>
-
-                                <p id="dataAlerta">02/10/2023 <br> 9:30:14</p>
-                            </div> -->
                         </div>
                     </div>
 
@@ -339,7 +298,7 @@
                     var elementoP = document.getElementById('pUploadRede');
                     pUploadRede.innerHTML = `${resposta.upload} mb`
 
-                    if (resposta.upload >= 8) {
+                    if (resposta.upload >= 7) {
                         pStatusUpload.innerHTML = "↑ Upload Estável"
                     } else {
                         pStatusUpload.innerHTML = "↓ Upload Instável"
@@ -371,7 +330,7 @@
                     var elementoP = document.getElementById('pUpload');
                     pDownloadRede.innerHTML = `${resposta.download} mb`
 
-                    if (resposta.download >= 8) {
+                    if (resposta.download >= 7) {
                         pStatusDownload.innerHTML = "↑ Download Estável"
                     } else {
                         pStatusDownload.innerHTML = "↓ Download Instável"
@@ -402,7 +361,7 @@
                     var elementoP = document.getElementById('pPingRede');
                     pPingRede.innerHTML = `${resposta.ping} ms`
 
-                    if (resposta.ping <= 10) {
+                    if (resposta.ping <= 14) {
                         pStatusPing.innerHTML = "↑ Ping Estável"
                     } else {
                         pStatusPing.innerHTML = "↓ Ping Instável"
