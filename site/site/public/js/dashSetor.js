@@ -33,6 +33,9 @@ function exibirMenuPerfil() {
 function rede() {
   window.location = 'analise/analiseRede.html'
 }
+function Processo() {
+  window.location = 'analise/AnaliseProcessos.html'
+}
 
 //Começo Analise atual componente
 function obterdados(idMaquina) {

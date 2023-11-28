@@ -151,14 +151,14 @@ function buscarMedidasRede(idMaquina, limite_linhas) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
-      instrucaoSql = `select download, upload, FORMAT(dataHora, 'HH:mm') 
+    instrucaoSql = `select download, upload, FORMAT(dataHora, 'HH:mm') 
       AS Horário from monitoramentoRede where fkMaquina = ${idMaquina} order by idMonitoramentoRede desc limit ${limite_linhas};`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-      instrucaoSql = `select download, upload, FORMAT(dataHora, 'HH:mm') 
+    instrucaoSql = `select download, upload, FORMAT(dataHora, 'HH:mm') 
       AS Horário from monitoramentoRede where fkMaquina = ${idMaquina} order by idMonitoramentoRede desc limit ${limite_linhas};`;
   } else {
-      console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-      return
+    console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+    return
   }
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -170,15 +170,15 @@ function atualizarGrafico(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
-      instrucaoSql = `select download, upload, FORMAT(dataHora, 'HH:mm') 
+    instrucaoSql = `select download, upload, FORMAT(dataHora, 'HH:mm') 
       AS Horário from monitoramentoRede where fkMaquina = ${idMaquina} order by idMonitoramentoRede;`;
 
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-      instrucaoSql = `select download, upload, FORMAT(dataHora, 'HH:mm') 
+    instrucaoSql = `select download, upload, FORMAT(dataHora, 'HH:mm') 
       AS Horário from monitoramentoRede where fkMaquina = ${idMaquina} order by idMonitoramentoRede;`;
   } else {
-      console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-      return
+    console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+    return
   }
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -190,7 +190,7 @@ function buscarGraficoPing(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
-      instrucaoSql = `SELECT
+    instrucaoSql = `SELECT
       legenda,
       valor
     FROM (
@@ -211,7 +211,7 @@ function buscarGraficoPing(idMaquina) {
     ) AS t
     ORDER BY legenda;`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-      instrucaoSql = `SELECT
+    instrucaoSql = `SELECT
       legenda,
       valor
     FROM (
@@ -232,8 +232,8 @@ function buscarGraficoPing(idMaquina) {
     ) AS t
     ORDER BY legenda;`;
   } else {
-      console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-      return
+    console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+    return
   }
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -242,6 +242,101 @@ function buscarGraficoPing(idMaquina) {
 // fim do individual do tony
 
 
+//Começo Individual Maria 
+function buscarUltimasMedidasRamProcessos( idMaquina) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 3 and idMaquina = ${idMaquina};`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 3 and idMaquina = ${idMaquina};`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+function buscarUltimasMedidasCpuProcessos( idMaquina) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 1 and idMaquina = ${idMaquina};`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 1 and idMaquina = ${idMaquina};`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+function buscarMedidasEmTempoRealRamProcessos(idMaquina) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 3 and idMaquina = ${idMaquina};`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 3 and idMaquina = ${idMaquina};`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+function buscarMedidasEmTempoRealCpuProcessos(idMaquina) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 1 and idMaquina = ${idMaquina};`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 1 and idMaquina = ${idMaquina};`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+function obterDadosGraficoComponentesAtual(idMaquina) {
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == 'producao') {
+    instrucaoSql = `select porcentagem, fkComponente from monitoramento
+    where fkMaquina = ${idMaquina}
+    order by idMonitoramento desc limit 2;`
+  } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+    instrucaoSql = `select porcentagem, fkComponente from monitoramento
+    where fkMaquina = ${idMaquina}
+    order by idMonitoramento desc limit 2;`
+  } else {
+    console.log(
+      '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+    )
+    return
+  }
+
+  console.log('Executando a instrução SQL: \n' + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+
+//Final Individual Maria 
 module.exports = {
   buscarUltimasMedidasCpu,
   buscarMedidasEmTempoRealCpu,
@@ -253,5 +348,10 @@ module.exports = {
   buscarMedidasEmTempoRealSetor,
   buscarMedidasRede,
   atualizarGrafico,
-  buscarGraficoPing
+  buscarGraficoPing,
+  obterDadosGraficoComponentesAtual,
+  buscarUltimasMedidasRamProcessos,
+  buscarMedidasEmTempoRealRamProcessos,
+  buscarUltimasMedidasCpuProcessos,
+  buscarMedidasEmTempoRealCpuProcessos
 }

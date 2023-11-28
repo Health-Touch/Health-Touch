@@ -536,6 +536,47 @@ function listarMensalRam(idMaquina) {
   return database.executar(instrucao);
 }
 
+
+// Começo Individual Maria
+function listarProcessos(idMaquina) {
+  console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarProcessos():", idMaquina);
+  var instrucao = `
+  select processo.PID, processo.nome, truncate(processo.uso_ram,4) as uso_ram, truncate( processo.uso_cpu,4)as uso_cpu
+   from processo join maquina on idMaquina = fkMaquina where
+   idMaquina = ${idMaquina};
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
+function buscarTotalProcesso(idMaquina) {
+  console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarTotalProcesso():", idMaquina);
+  var instrucao = `
+  select max(Processo.total_processos) as total_processos from Processo where fkMaquina = ${idMaquina};
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
+function buscarTotalThreads(idMaquina) {
+  console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function  buscarTotalThreads():", idMaquina);
+  var instrucao = `
+  select max(Processo.total_threads) as total_threads from Processo where fkMaquina = ${idMaquina};
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
+function PesquisarProcessos(nomePesquisa) {
+  console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function Pesquisar():", nomePesquisa);
+  var instrucao = `
+  select processo.PID, processo.nome, processo.uso_cpu, 
+  processo.uso_ram
+    from processo where nome = "${nomePesquisa}";
+
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
+// Final Individual Maria
+
 module.exports = {
   listar,
   listarComputadores,
@@ -573,5 +614,9 @@ module.exports = {
   janelaMes,
   janelaAtivas,
   listarRam,
-  listarMensalRam
+  listarMensalRam,
+  listarProcessos,
+  buscarTotalProcesso,
+  buscarTotalThreads,
+  PesquisarProcessos
 }

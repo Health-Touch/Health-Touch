@@ -149,4 +149,25 @@ router.get("/listarMensalRam/:idMaquina", function (req, res) {
   avisoController.listarMensalRam(req, res);
 });
 
+// Começo Individual Maria
+router.get("/listarProcessos/:idMaquina", function (req, res) {
+  avisoController.listarProcessos(req, res);
+});
+router.get("/buscarTotalProcesso/:idMaquina", function (req, res) {
+  avisoController.buscarTotalProcesso(req, res);
+});
+router.get("/buscarTotalThreads/:idMaquina", function (req, res) {
+  avisoController.buscarTotalThreads(req, res);
+});
+router.get("/PesquisarProcessos/:nomePesquisa", function (req, res) {
+  avisoController.PesquisarProcessos(req, res);
+});
+
+
+
+// Final Individual Maria
+
+
+
+
 module.exports = router

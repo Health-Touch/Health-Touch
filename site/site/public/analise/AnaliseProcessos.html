@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="imagex/png" href="./../assets/img/logo_icon.png" />
+    <title>Analise de Processos| Health Touch</title>
+
+    <link rel="stylesheet" href="../css/AnaliseProcessos.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<style>
+    .setaPerfilCabecalho:hover {
+        cursor: pointer;
+    }
+
+    .menuPerfil ul {
+        padding: 0;
+    }
+
+    .btnSair {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 35px;
+        height: 35px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition-duration: .3s;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+        background-color: rgb(255, 65, 65);
+    }
+
+    .btnSair:hover {
+        width: 90px;
+        border-radius: 40px;
+        transition-duration: .3s;
+    }
+
+    .btnSair:hover .sign {
+        width: 45%;
+        transition-duration: .3s;
+    }
+
+    .btnSair:hover .txtBtn {
+        opacity: 1;
+        width: 70%;
+        transition-duration: .3s;
+    }
+
+    .sign {
+        width: 100%;
+        transition-duration: .3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sign svg {
+        width: 17px;
+    }
+
+    .sign svg path {
+        fill: white;
+    }
+
+    .txtBtn {
+        position: absolute;
+        right: 0%;
+        width: 0%;
+        opacity: 0;
+        color: white;
+        font-size: 1em;
+        font-weight: 600;
+        transition-duration: .3s;
+    }
+</style>
+
+<body
+    onload="listarProcessos(), buscarTotalProcesso(), buscarTotalTreads(), obterDadosGraficoAtual(), obterDadosGraficoRamProcessos(), atribuir()">
+
+    <div class="divPai">
+        <!-- inicio menu lateral -->
+        <div class="divPaiLateral">
+            <div class="filhoLateral">
+
+                <div class="divNomeEmpresa">
+
+                    <p id="textoEmpresa">Bem Vindo</p>
+                    <p id="nomeEmpresa"></p>
+                </div>
+
+                <div class="divMainMenu">
+                    <p id="pMainMenu">MAIN MENU</p>
+                </div>
+
+                <div class="divPaiOpcoesMenu">
+                    <a href="../setores.html" id="pMenuLateral">
+                        <div class="divHome">
+                            <img id="iconMenuLateralHome" src="../assets/img/grafico-de-setores.png">
+                            <div class="divEspaco"></div>
+                            Setores
+                        </div>
+                    </a>
+
+                    <a href="../cadastro/cadastroMaquinas.html" id="pMenuLateral">
+                        <div class="divComputador" id="SumirCadMaq">
+                            <img id="iconComputadorLateral" src="../assets/img/computador (4).png">
+                            <div class="divEspaco"></div>
+                            Cadastro Máquinas
+                        </div>
+                    </a>
+
+                    <a href="../analise/analiseMaquinaTI.html" id="pMenuLateral">
+                        <div class="divCadastroComputador" id="SumirAnaliseMaq">
+                            <img id="iconComputadorCadLateral" src="../assets/img/definicoes.png">
+                            <div class="divEspaco"></div>
+                            Análise Máquinas
+                        </div>
+                    </a>
+
+                    <a href="../cadastro/cadastroFuncionarios.html" id="pMenuLateral">
+                        <div class="divAnaliseEquipe" id="SumirCadEquipe">
+                            <img id="iconAnaliseEquipe" src="../assets/img/carteira-de-identidade.png">
+                            <div class="divEspaco"></div>
+                            Cadastro Equipe
+                        </div>
+                    </a>
+
+                    <a href="../analise/analiseFuncionario.html" id="pMenuLateral">
+                        <div class="divDashboards" id="SumirAnaliseFunc">
+                            <img id="iconDashboardsLateral" src="../assets/img/equipe.png">
+                            <div class="divEspaco"></div>
+                            Análise Funcionários
+                        </div>
+                    </a>
+
+                    <a href="" id="pMenuLateral">
+                        <div class="divCadastroEquipe" >
+                            <img id="iconCadastroEquipe" src="../assets/img/mais (2).png">
+                            <div class="divEspaco"></div>
+                            Dashboards
+                        </div>
+                    </a>
+                </div>
+
+                <div class="divEspacoV2"></div>
+
+                <div class="divHelp">
+                    <p id="pHelp">HELP</p>
+                </div>
+
+                <div class="divPaiHelpMenu">
+                    <a href="../suporte/SuporteHealthTooch.html" id="pMenuLateral">
+                        <div class="divHelpDesk">
+                            <img id="iconHelpDesk" src="../assets/img/suporte-ao-cliente.png">
+                            <div class="divEspaco"></div>
+                            HelpDesk
+                        </div>
+                    </a>
+                    <a href="../atualizar/AtualizarUser.html" id="pMenuLateral">
+                        <div class="divConfiguracoes">
+                            <img id="iconConfiguracoes" src="../assets/img/botao-de-roda-dentada-de-configuracoes.png">
+                            <div class="divEspaco"></div>
+                            Configurações
+                        </div>
+                    </a>
+                    <a href="../index.html">
+                        <img id="logoMenuLateral" src="../assets/img/logoMenu.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- fim do menu lateral -->
+
+        <!-- inicio do cabeçalho -->
+        <div class="divPaiCabecalho">
+            <div class="filhoCabecalho">
+
+                <div class="esquerdaCabecalho"></div>
+
+                <div class="direitaCabecalho">
+                    <img class="sinoIconCabecalho" src="../assets/img/notificacaoIcon.png">
+                    <div class="divPerfilCabecalho">
+                        <img class="iconPerfilCabecalho" src="../assets/img/usuario-de-perfil.png">
+                        <div class="textosIcon">
+                            <p id="tituloPerfil">Anthony Bento</p>
+                            <p id="cargoPerfil">CEO</p>
+                        </div>
+                        <img class="setaPerfilCabecalho" src="../assets/img/setaIcon.png" onclick="exibirMenuPerfil()">
+                        <div id="menuPerfil" class="menuPerfil"
+                            style="display: none; position: absolute; z-index: 1; top: 58px;">
+                            <ul>
+                                <button class="btnSair">
+                                    <div class="sign"><svg viewBox="0 0 512 512">
+                                            <path
+                                                d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                                            </path>
+                                        </svg></div>
+
+                                    <div class="txtBtn" onclick="limparSessao()">Sair</div>
+                                </button>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- fim do cabeçalho -->
+            <!-- começo conteudo pagina -->
+            <div class="mainPai">
+                <div class="mainFilho">
+                    <div class="titulo">
+                        <span class="numSetor">Computador <span id="numComputador">1</span></span>
+                        <span class="nomeSetor" id="pNomeSetor">Pediatria</span>
+                        <span class="numComputador">Setor <span id="numSetor">1</span></span>
+                        <button class="btn" onclick="trocar()">Trocar</button>
+                        <div class="pesquisa">
+                            <span class="pesquisar">PESQUISE UM PROCESSO:</span>
+                            <input type="text" class="inputLogin" id="pesquisa_processo"
+                                placeholder="Pesquisar"></input>
+                            <img src="../assets/img/lupa.png" class="lupaBusca">
+                            <button class="btn btn4" onclick="Pesquisar()">Pesquisar</button>
+                        </div>
+                    </div>
+
+                    <div class="todos">
+                        <div class="kpeis">
+                            <!-- <div class="cardPai">
+                            <div class="cardFilho">
+                                <div class="cardTexto">
+                                    <span class="txtUso">Uso do USB Atual</span>
+                                    <img src="../assets/img/usb.png" alt="" class="imgCard">
+                                </div>
+                                <span class="infoCard" id="statusUsb">Inativo</span>
+                            </div>
+                        </div> -->
+                            <div class="cima">
+                                <div class="box">
+                                    <span class="tituloBox">Uso Atual dos Componentes</span>
+                                    <!-- <div class="infoBox"> -->
+                                    <span class="nomeComponente">CPU</span>
+                                    <div class="divUso">
+                                        <input type="text" class="usoComponente cpu" id="usoCpu" disabled>
+                                        <span class="porcentUso" id="percentCpu">50%</span>
+                                    </div>
+                                    <!-- </div> -->
+
+                                    <!-- <div class="infoBox"> -->
+                                    <span class="nomeComponente">MEMÓRIA</span>
+                                    <div class="divUso">
+                                        <input type="text" class="usoComponente ram" id="usoRam" disabled>
+                                        <span class="porcentUso" id="percentRam">70%</span>
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+
+                                <div class="cardPai">
+                                    <div class="cardFilho">
+                                        <div class="cardTexto">
+                                            <span class="txtUso">Total de Processos Atual</span>
+                                            <img src="../assets/img/cpu.png" alt="" class="imgCard">
+                                        </div>
+                                        <span class="infoCard"><span id="usoCpuMensal">60</span></span>
+                                    </div>
+                                    <!-- <div class="statusCard">
+                                <span class="infoStatus"><img class="setaStatus" id="setaCpu"
+                                        src="../assets/img/green-arrow.png" alt=""><span class="corStatus"
+                                        id="insightCpu">+5,3</span> Desde o último mês</span>
+                            </div> -->
+                                </div>
+
+                                <div class="cardPai">
+                                    <div class="cardFilho">
+                                        <div class="cardTexto">
+                                            <span class="txtUso">Total de Threads</span>
+                                            <img src="../assets/img/ram.png" alt="" class="imgCard">
+                                        </div>
+                                        <span class="infoCard"><span id="sp_total_threads">50</span></span>
+                                    </div>
+                                    <!-- <div class="statusCard">
+                                <span class="infoStatus"><img class="setaStatus" id="setaRam"
+                                        src="../assets/img/red-arrow.png" alt=""><span class="corStatus red"
+                                        id="insightRam">-35,6</span> Desde o último mês</span>
+                            </div> -->
+                                </div>
+
+
+                            </div>
+
+                            <div class="chart">
+                                <div class="select">
+                                    <select name="" id="opcoes">
+                                        <option value="0">Uso RAM</option>
+                                        <option value="1">Uso CPU</option>
+                                    </select>
+                                </div>
+                                <div class="dash" id="graficoRam" style="display: block;">
+                                    <div class="grafico">
+                                        <canvas id="myChartRam" class="grafico"></canvas>
+                                    </div>
+                                </div>
+                                <div class="dash" id="graficoCpu" style="display: none;">
+                                    <div class="grafico">
+                                        <canvas id="myChartCpu" class="grafico"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="all">
+
+                            <div class="processos">
+                                <div class="boxes">
+
+                                    <div class="box-process boxAvisos" id="boxAvisos">
+                                        <span class="process">Processos</span>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- fim conteudo pagina -->
+        </div>
+        <!-- fim do cabeçalho -->
+    </div>
+
+
+</body>
+
+</html>
+<script>
+    mudar()
+    
+
+
+
+function mudar() {
+    var selectComponente = document.getElementById("opcoes");
+    var ram = document.getElementById("graficoRam");
+    var cpu = document.getElementById("graficoCpu");
+
+
+    selectComponente.addEventListener("change", function () {
+
+        if (selectComponente.value == 0) {
+            ram.style.display = "block"
+            cpu.style.display = "none"
+            obterDadosGraficoRamProcessos()
+        } else if (selectComponente.value == 1) {
+            console.log("entreiiiiii")
+            ram.style.display = "none"
+            cpu.style.display = "block"
+            obterDadosGraficoCPUProcessos()
+        }
+
+    });   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Começo Listar os Processos 
+    
+
+   
+   
+    function listarProcessos() {
+        var boxAvisos = document.getElementById("boxAvisos")
+        var idMaquina = sessionStorage.ID_MAQUINA
+        fetch(`/avisos/listarProcessos/${idMaquina}`).then(function (resposta) {
+
+            if (resposta.ok) {
+
+                console.log("ENTREII Listar Processos")
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos quadrado : ", JSON.stringify(resposta));
+
+
+
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+
+                        boxAvisos.innerHTML += ` 
+                        <div class="infoAviso" id="info_processo">
+                            <img src="../assets/img/cpu.png" alt="" class="imgCard">
+                            <div class="txt-process">
+                                            <span>PID:</span>
+                                            <span>Nome: </span>
+                                            <span>Uso de Ram: </span>
+                                            <span>Uso de Cpu: </span>
+                                        </div>
+                                        <div class="txt-process">
+                            <span class="dataAviso">${publicacao.PID}</span>
+                            <span class="tituloAviso">${publicacao.nome}</span>
+                            <span class="uso">${publicacao.uso_ram}</span>
+                            <span class="uso">${publicacao.uso_cpu}</span>
+                            </div></div> `
+                    }
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
+    }
+
+
+// Final Listar os Processos 
+
+// Começo Buscar Total dos Processos 
+
+    function buscarTotalProcesso() {
+        var idMaquina = sessionStorage.ID_MAQUINA
+        fetch(`/avisos/buscarTotalProcesso/${idMaquina}`).then(function (resposta) {
+
+            if (resposta.ok) {
+                // var publicacao = resposta
+                console.log("ENTREII Listar Processos")
+
+                resposta.json().then(function (resposta) {
+
+                    // console.log(`DEBUG resposta: ${resposta}`)
+                    console.log("Dados recebidos teste : ", JSON.stringify(resposta));
+
+                    usoCpuMensal.innerHTML = `${resposta[0].total_processos}`
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
+    }
+
+    // Final Buscar Total dos Processos 
+
+
+    // Começo Buscar Total de Treads
+
+    function buscarTotalTreads() {
+        var idMaquina = sessionStorage.ID_MAQUINA
+        fetch(`/avisos/buscarTotalThreads/${idMaquina}`).then(function (resposta) {
+
+            if (resposta.ok) {
+                // var publicacao = resposta
+                console.log("ENTREII Listar Processos")
+
+                resposta.json().then(function (resposta) {
+
+                    // console.log(`DEBUG resposta: ${resposta}`)
+                    console.log("Dados recebidos teste : ", JSON.stringify(resposta));
+
+                    sp_total_threads.innerHTML = `${resposta[0].total_threads}`
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
+    }
+
+// Final Buscar Total de Treads
+
+// Começo Pesquisar Processo
+
+    function Pesquisar() {
+        var idMaquina = sessionStorage.ID_MAQUINA
+        var nomePesquisa = pesquisa_processo.value
+
+        sessionStorage.NOME_PESQUISA = nomePesquisa
+        console.log(nomePesquisa)
+        if (nomePesquisa == '') {
+            Swal.fire({
+                title: 'Pesquisa Inválida',
+                text: 'Por favor preencha o campo!',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            })
+            console.log('(Mensagem de erro para todos os campos em branco)')
+
+            return false
+        }
+
+
+        fetch(`/avisos/PesquisarProcessos/${nomePesquisa}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                console.log("ENTREI Listar Processos");
+                return response.json();
+            } else {
+                throw new Error('Houve um erro na API!');
+            }
+        }).then(resposta => {
+            pesquisa_processo.value = ""
+
+            boxAvisos.innerHTML = `<span class="process">Processos</span>`;
+
+            for (let i = 0; i < resposta.length; i++) {
+                var pesquisa = resposta[i];
+                boxAvisos.innerHTML +=
+                    `<div class="infoAviso" id="info_processo">
+                            <img src="../assets/img/cpu.png" alt="" class="imgCard">
+                            <div class="txt-process">
+                                            <span>PID:</span>
+                                            <span>Nome: </span>
+                                            <span>Uso de Ram: </span>
+                                            <span>Uso de Cpu: </span>
+                                        </div>
+                                        <div class="txt-process">
+                            <span class="dataAviso">${pesquisa.PID}</span>
+                            <span class="tituloAviso">${pesquisa.nome}</span>
+                            <span class="uso">${pesquisa.uso_ram}</span>
+                            <span class="uso">${pesquisa.uso_cpu}</span>
+                            </div></div> `
+            }
+        }).catch(function (error) {
+            console.error(error);
+            // finalizarAguardar();
+        });
+
+    }
+// Final Pesquisar Processo
+
+
+// Começo Gráfico Ram 
+    function obterDadosGraficoRamProcessos(idMaquina) {
+        var idMaquina = sessionStorage.ID_MAQUINA
+
+
+        fetch(`/medidas/ultimasRamProcesso/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoRamProcessos(resposta, idMaquina);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+  
+    function plotarGraficoRamProcessos(resposta, idMaquina) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+       
+        let labels = [];
+
+       
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Uso de RAM',
+                data: [],
+                fill: true,
+                borderColor: '#26ABA7',
+                // borderWidth: 0.1,
+                tension: 0.0
+            }]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.horario);
+            dados.datasets[0].data.push(registro.porcentagem);
+
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'line',
+            data: dados
+        };
+
+       
+        let myChart3 = new Chart(
+            document.getElementById(`myChartRam`),
+            config
+        );
+
+        setTimeout(() => atualizarGraficoRamProcessos(idMaquina, dados, myChart3), 2000);
+    }
+
+
+   
+    function atualizarGraficoRamProcessos(idMaquina, dados, myChart3) {
+
+
+
+        fetch(`/medidas/tempo-realRamProcessos/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+                   
+
+
+                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length]) {
+                        console.log("---------------------------------------------------------------")
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                        // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].porcentagem)
+                        console.log("Horário do último dado capturado:")
+                        console.log(dados.labels[dados.labels.length])
+                        console.log("---------------------------------------------------------------")
+                    } else {
+                        // tirando e colocando valores no gráfico
+                        dados.labels.shift(); // apagar o primeiro
+                        dados.labels.push(novoRegistro[0].horario); // incluir um novo momento
+
+                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[0].data.push(novoRegistro[0].porcentagem); // incluir uma nova medida de umidade
+
+                        // dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+                        // dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+                        myChart3.update();
+                    }
+
+                   
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                // proximaAtualizacao = setTimeout(() => atualizarGrafico(disco, dados, myChart), 2000);
+            }
+        })
+            .catch(function
+                (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+
+// Final Gráfico Ram 
+
+
+
+
+
+    //Começo Gráfico CPU
+
+    function obterDadosGraficoCPUProcessos(idMaquina) {
+        var idMaquina = sessionStorage.ID_MAQUINA
+
+
+        fetch(`/medidas/ultimasCpuProcesso/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoCPUProcessos(resposta, idMaquina);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+    function plotarGraficoCPUProcessos(resposta, idMaquina) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Uso de CPU',
+                data: [],
+                fill: true,
+                borderColor: '#020F1F',
+                // borderWidth: 0.1,
+                tension: 0.0
+            }]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.horario);
+            dados.datasets[0].data.push(registro.porcentagem);
+
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'line',
+            data: dados
+        };
+
+      
+        let myChart1 = new Chart(
+            document.getElementById(`myChartCpu`),
+            config
+        );
+
+        setTimeout(() => atualizarGraficoCPUProcessos(idMaquina, dados, myChart1), 2000);
+    }
+
+
+   
+    function atualizarGraficoCPUProcessos(idMaquina, dados, myChart1) {
+
+
+
+        fetch(`/medidas/tempo-realCpuProcessos/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+                    // let avisoCaptura = document.getElementById(`avisoCaptura${disco}`)
+                    // avisoCaptura.innerHTML = ""
+
+
+                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length]) {
+                        console.log("---------------------------------------------------------------")
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                        // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].porcentagem)
+                        console.log("Horário do último dado capturado:")
+                        console.log(dados.labels[dados.labels.length])
+                        console.log("---------------------------------------------------------------")
+                    } else {
+                        // tirando e colocando valores no gráfico
+                        dados.labels.shift(); // apagar o primeiro
+                        dados.labels.push(novoRegistro[0].horario); // incluir um novo momento
+
+                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[0].data.push(novoRegistro[0].porcentagem); // incluir uma nova medida de umidade
+
+                        // dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+                        // dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+                        myChart1.update();
+                    }
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    // proximaAtualizacao = setTimeout(() => atualizarGrafico(disco, dados, myChart), 2000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                // proximaAtualizacao = setTimeout(() => atualizarGrafico(disco, dados, myChart), 2000);
+            }
+        })
+            .catch(function
+                (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    // Final Gráfico CPU
+
+    // Começo Componentes Atual
+    function obterDadosGraficoAtual(idMaquina) {
+        var idMaquina = sessionStorage.ID_MAQUINA
+        var pCpu = document.getElementById("percentCpu")
+        var pRam = document.getElementById("percentRam")
+
+
+        console.log("AIIII Galera de calboy")
+        fetch(`/medidas/obterDadosGraficoComponentesAtual/${idMaquina}`).then(function (resposta) {
+
+            if (resposta.ok) {
+
+                console.log("ENTREII graphhh")
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos quadrado : ", JSON.stringify(resposta));
+
+
+
+                    for (let i = 0; i < resposta.length; i++) {
+                        var componente = resposta[i];
+
+                        var usoCpu = document.getElementById("usoCpu")
+                        var usoRam = document.getElementById("usoRam")
+
+                        if (componente.fkComponente == 1) {
+                            // var porctagemCpu =  `${Number(componente.porcentagem)}%`
+                            // console.log(porctagemCpu)
+                            // var cpuColor = `linear-gradient(90deg, #020F1F 99%, rgba(221,221,221,1) 0%);`
+
+                            // pCpu.innerHTML = `${componente.porcentagem}%`
+                            // usoCpu.style.background = cpuColor
+
+                            var usoCpu = document.getElementById('percentCpu')
+                            var txtUsoCpu = `${componente.porcentagem}%`
+                            pCpu.innerHTML = txtUsoCpu
+
+                            var graphCpu = document.getElementById('usoCpu')
+                            graphCpu.style.background = `linear-gradient(90deg, rgb(3, 14, 28) ${txtUsoCpu}, rgba(221,221,221,1) 0%)`
+
+                        }
+                        else if (componente.fkComponente == 3) {
+                            var usoRam = document.getElementById('percentRam')
+                            var txtUsoRam = `${componente.porcentagem}%`
+                            pRam.innerHTML = txtUsoRam
+
+                            var graphRam = document.getElementById('usoRam')
+                            var ram = `linear-gradient(90deg, rgb(38, 171, 167) ${txtUsoRam}, rgba(221,221,221,1) 0%)`
+                            graphRam.style.background = ram
+                        }
+
+
+                    }
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
+    }
+// Final Componentes Atual
+
+function atribuir() {
+nomeEmpresa.innerHTML = sessionStorage.NOME_FANTASIA_COLABORADOR;
+tituloPerfil.innerHTML = sessionStorage.NOME_COLABORADOR;
+pNomeSetor.innerHTML = sessionStorage.NOME_SETOR;
+numSetor.innerHTML = sessionStorage.IDSETOR;
+numComputador.innerHTML =sessionStorage.ID_MAQUINA
+    
+
+var cargo = sessionStorage.NIVELACESSO_COLABORADOR;
+console.log(cargo)
+
+if (cargo == "RL") {
+    cargo = "Representante"
+    SumirCadMaq.style.display = "none";
+    SumirAnaliseMaq.style.display = "none";
+} else if (cargo == "GT") {
+    cargo = "Gerente TI"
+}
+else {
+    cargo = "Equipe TI";
+    SumirCadMaq.style.display = "none";
+    SumirCadEquipe.style.display = "none";
+    SumirAnaliseFunc.style.display = "none";
+    divCadastroEquipe.style.top = "18%";
+}  
+
+cargoPerfil.innerHTML = cargo;
+
+
+    
+ 
+}
+
+</script>

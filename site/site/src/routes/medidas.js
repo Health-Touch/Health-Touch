@@ -46,4 +46,28 @@ router.get("/buscarGraficoPing/:idMaquina", function (req, res) {
 router.get("/atualizarGrafico/:idMaquina", function (req, res) {
     medidaController.atualizarGrafico(req, res);
 })
+
+
+
+
+// Começo Individual Maria
+router.get("/ultimasRamProcesso/:idMaquina", function (req, res) {
+    medidaController.buscarUltimasMedidasRamProcessos(req, res);
+});
+
+router.get("/tempo-realRamProcessos/:idMaquina", function (req, res) {
+    medidaController.buscarMedidasEmTempoRealRamProcessos(req, res);
+})
+
+router.get("/ultimasCpuProcesso/:idMaquina", function (req, res) {
+    medidaController.buscarUltimasMedidasCpuProcessos(req, res);
+});
+router.get("/tempo-realCpuProcessos/:idMaquina", function (req, res) {
+    medidaController.buscarMedidasEmTempoRealCpuProcessos(req, res);
+})
+router.get('/obterDadosGraficoComponentesAtual/:idMaquina', function (req, res) {
+    medidaController.obterDadosGraficoComponentesAtual(req, res)
+})
+
+//Final Individual Maria 
 module.exports = router;

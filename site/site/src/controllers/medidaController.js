@@ -246,6 +246,120 @@ function buscarGraficoPing(req, res) {
 }
 // fim do individual do tony
 
+// Começo Individual Maria
+
+function buscarUltimasMedidasRamProcessos(req, res) {
+
+    // const limite_linhas = 7;
+
+
+    var idMaquina =  req.params.idMaquina;
+
+    // console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+
+    medidaModel.buscarUltimasMedidasRamProcessos(idMaquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+function buscarUltimasMedidasCpuProcessos(req, res) {
+
+    // const limite_linhas = 7;
+
+
+    var idMaquina =  req.params.idMaquina;
+
+    // console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+
+    medidaModel.buscarUltimasMedidasCpuProcessos(idMaquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarMedidasEmTempoRealCpuProcessos(req, res) {
+
+    var idMaquina =  req.params.idMaquina;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarMedidasEmTempoRealCpuProcessos(idMaquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+function buscarMedidasEmTempoRealRamProcessos(req, res) {
+
+    var idMaquina =  req.params.idMaquina;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarMedidasEmTempoRealRamProcessos(idMaquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+
+function obterDadosGraficoComponentesAtual(req, res) {
+    // const limite_linhas = 7;
+    var idMaquina = req.params.idMaquina
+ 
+    console.log(`Recuperando as ultimas medidas`)
+  
+    medidaModel
+      .obterDadosGraficoComponentesAtual(idMaquina)
+      .then(function (resultado) {
+        if (resultado.length > 0) {
+          res.status(200).json(resultado)
+        } else {
+          res.status(204).send('Nenhum resultado encontrado!')
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro)
+        console.log(
+          'Houve um erro ao buscar as ultimas medidas.',
+          erro.sqlMessage
+        )
+        res.status(500).json(erro.sqlMessage)
+      })
+  }
+
+//Final Individual Maria 
+
+
+
+
 
 module.exports = {
     buscarUltimasMedidasCpu,
@@ -258,6 +372,11 @@ module.exports = {
     buscarMedidasEmTempoRealSetor,
     buscarMedidasRede,
     atualizarGrafico,
-    buscarGraficoPing
+    buscarGraficoPing,
+    obterDadosGraficoComponentesAtual,
+    buscarUltimasMedidasRamProcessos,
+    buscarMedidasEmTempoRealRamProcessos,
+    buscarUltimasMedidasCpuProcessos,
+    buscarMedidasEmTempoRealCpuProcessos
 
 }

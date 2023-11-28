@@ -580,76 +580,155 @@ function mesAtual(req, res) {
 function listarJanela(req, res) {
   var idMaquina = req.params.idMaquina
   avisoModel.listarJanela(idMaquina).then(function (resultado) {
-      if (resultado.length > 0) {
-          res.status(200).json(resultado);
-      } else {
-          res.status(204).send("Nenhum resultado encontrado!")
-      }
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!")
+    }
   }).catch(function (erro) {
-      console.log(erro);
-      console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
-      res.status(500).json(erro.sqlMessage);
+    console.log(erro);
+    console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
   });
 }
 
 function janelaMes(req, res) {
   var idMaquina = req.params.idMaquina
   avisoModel.janelaMes(idMaquina).then(function (resultado) {
-      if (resultado.length > 0) {
-          res.status(200).json(resultado);
-      } else {
-          res.status(204).send("Nenhum resultado encontrado!")
-      }
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!")
+    }
   }).catch(function (erro) {
-      console.log(erro);
-      console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
-      res.status(500).json(erro.sqlMessage);
+    console.log(erro);
+    console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
   });
 }
 
 function janelaAtivas(req, res) {
   var idMaquina = req.params.idMaquina
   avisoModel.janelaAtivas(idMaquina).then(function (resultado) {
-      if (resultado.length > 0) {
-          res.status(200).json(resultado);
-      } else {
-          res.status(204).send("Nenhum resultado encontrado!")
-      }
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!")
+    }
   }).catch(function (erro) {
-      console.log(erro);
-      console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
-      res.status(500).json(erro.sqlMessage);
+    console.log(erro);
+    console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
   });
 }
 
 function listarRam(req, res) {
   var idMaquina = req.params.idMaquina
   avisoModel.listarRam(idMaquina).then(function (resultado) {
-      if (resultado.length > 0) {
-          res.status(200).json(resultado);
-      } else {
-          res.status(204).send("Nenhum resultado encontrado!")
-      }
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!")
+    }
   }).catch(function (erro) {
-      console.log(erro);
-      console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
-      res.status(500).json(erro.sqlMessage);
+    console.log(erro);
+    console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
   });
 }
 function listarMensalRam(req, res) {
   var idMaquina = req.params.idMaquina
   avisoModel.listarMensalRam(idMaquina).then(function (resultado) {
-      if (resultado.length > 0) {
-          res.status(200).json(resultado);
-      } else {
-          res.status(204).send("Nenhum resultado encontrado!")
-      }
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!")
+    }
   }).catch(function (erro) {
-      console.log(erro);
-      console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
-      res.status(500).json(erro.sqlMessage);
+    console.log(erro);
+    console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
   });
 }
+
+
+
+
+// Começo Individual Maria
+function listarProcessos(req, res) {
+  var idMaquina = req.params.idMaquina
+
+  avisoModel.listarProcessos(idMaquina).then(function (resultado) {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!")
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+function buscarTotalProcesso(req, res) {
+  var idMaquina = req.params.idMaquina
+
+  avisoModel.buscarTotalProcesso(idMaquina).then(function (resultado) {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!")
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+function buscarTotalThreads(req, res) {
+  var idMaquina = req.params.idMaquina
+
+  avisoModel.buscarTotalThreads(idMaquina).then(function (resultado) {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!")
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
+function PesquisarProcessos(req, res) {
+  var nomePesquisa = req.params.nomePesquisa;
+  console.log(nomePesquisa + "2")
+
+  if (nomePesquisa == undefined) {
+    console.log("entrei no undefined")
+    return res.status(400).send("Sua pesquisa está undefined!");
+
+  }
+
+  avisoModel.PesquisarProcessos(nomePesquisa).then(function (resultado) {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!")
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+// Final Individual Maria
+
+
+
+
+
 
 module.exports = {
   listar,
@@ -688,5 +767,9 @@ module.exports = {
   janelaMes,
   janelaAtivas,
   listarRam,
-  listarMensalRam
+  listarMensalRam,
+  listarProcessos,
+  buscarTotalProcesso,
+  buscarTotalThreads,
+  PesquisarProcessos
 }
