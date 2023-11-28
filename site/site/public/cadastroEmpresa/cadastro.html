@@ -61,6 +61,18 @@
             <input type="text" id="input_telefone" />
             <label>Telefone Fixo</label>
           </div>
+          <div class="input-box">
+            <span class="icon">
+              <ion-icon name="lock-closed"></ion-icon>
+            </span>
+            <select name="Plano" id="select_plano">
+              <option value="" disabled selected hidden>Selecione o Plano</option>
+              <option value="Prime">Prime</option>
+              <option value="Plus">Plus</option>
+              <option value="Ultra">Ultra</option>
+            </select>
+            
+          </div>
           <div class="remember-forgot">
           </div>
           <button onclick="cadastrarEmpresa()" type="submit" class="btn">
@@ -83,16 +95,19 @@
     var nomeVar = input_nome.value
     var cnpjVar = input_cnpj.value
     var telefoneVar = input_telefone.value
+    var planoVar =  select_plano.value
 
     var termos = document.getElementById('termos')
 
-    if (nomeVar == '' || cnpjVar == '' || telefoneVar == '') {
+    if (nomeVar == '' || cnpjVar == '' || telefoneVar == ''||  planoVar== '') {
       swal.fire('Preencha todos os campos')
       } else if (cnpjVar.length != 14) {
         swal.fire('CNPJ precisa ter 14 caracteres')
         } else if (telefoneVar.length != 10) {
           swal.fire ('Telefone precisa ter 10 caracteres')
-    } else {
+    } else if (planoVar == "") {
+          swal.fire ('Plano precisa ser escolhido')
+    }else {
       setInterval(sumirMensagem, 5000)
 
       // Enviando o valor da nova input
@@ -106,7 +121,8 @@
           // Agora vá para o arquivo routes/usuario.js
           nomeServer: nomeVar,
           cnpjServer: cnpjVar,
-          telefoneServer: telefoneVar
+          telefoneServer: telefoneVar,
+          planoServer: planoVar
         })
       })
         .then(function (resposta) {

@@ -74,6 +74,7 @@ function cadastrarEmpresa(req, res) {
   var nome = req.body.nomeServer
   var cnpj = req.body.cnpjServer
   var telefone = req.body.telefoneServer
+  var plano = req.body.planoServer
   //var empresaId = req.body.empresaServer;
 
   // Faça as validações dos valores
@@ -83,14 +84,15 @@ function cadastrarEmpresa(req, res) {
     res.status(400).send('Seu cnpj está undefined!')
   } else if (telefone == undefined) {
     res.status(400).send('Sua telefone está undefined!')
+  }else if (plano == undefined) {
+    res.status(400).send('Seu plano está undefined!')
   }
   //else if (empresaId == undefined) {
   // res.status(400).send("Sua empresa está undefined!");
   //}
   else {
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-    usuarioModel
-      .cadastrarEmpresa(nome, cnpj, telefone)
+    usuarioModel.cadastrarEmpresa(nome, cnpj, telefone, plano)
       .then(function (resultado) {
         res.json(resultado)
       })
