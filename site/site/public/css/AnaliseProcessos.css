@@ -348,7 +348,7 @@ html{
     width: 2vw;
     height: 4.5vh;
     position: relative;
-    right: 10%;
+    right: 7%;
 }
 .pesquisar{
     text-align: center;
@@ -497,15 +497,15 @@ html{
     height: 115px;
 }
 .box-process{
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 11px;
-    background-color: #fff;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.15) 0 1.95px 2.6px 2px;
     width: 90%;
-    height: 455px;
+    height: 480px;
     overflow-x: hidden;
     
 }
@@ -619,8 +619,12 @@ input[disabled] {
     background-color: white;
     margin-left: 6px;
     margin-top: 20px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .grafico{
+    width: 40vw;
+    height: 40vh;
     margin-top: 36px;
     margin-left: 8px;
 }

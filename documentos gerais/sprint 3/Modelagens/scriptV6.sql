@@ -297,6 +297,13 @@ insert into Monitoramento values
 (null, 70.44, '2020-09-14 23:18:17', 3, 1,1,1,1),
 (null, 60.44, '2020-09-14 23:18:17', 3, 1,1,1,1);
 
+insert into Monitoramento values
+(null, 65.44, '2020-09-14 20:18:17', 3, 1,1,1,1);
+
+select porcentagem, fkComponente from monitoramento
+    where fkMaquina = 1 and fkComponente = 1 and fkComponente = 2
+    order by idMonitoramento desc limit 2;
+
 select * from Monitoramento;
 
 create table MonitoramentoYasmin (
@@ -323,7 +330,7 @@ INSERT INTO MonitoramentoYasmin (porcentagem, dataHora, ramDisponivel, ramUsada,
 VALUES
 ('30%', '2023-11-28 10:15:00', '8192MB', '4096MB', '2.4 GHz', 1, 1, 1, 1, 1);
 
-select * from Monitoramento Yasmin;
+select * from MonitoramentoYasmin;
 
 -- Processo --
 

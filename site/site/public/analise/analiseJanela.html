@@ -71,11 +71,7 @@
                     </a>
 
                     <a href="" id="pMenuLateral">
-                        <div class="divCadastroEquipe">
-                            <img id="iconCadastroEquipe" src="../assets/img/mais (2).png">
-                            <div class="divEspaco"></div>
-                            Dashboards
-                        </div>
+                        
                     </a>
                 </div>
 
@@ -113,13 +109,10 @@
             <div class="filhoCabecalho">
 
                 <div class="esquerdaCabecalho">
-                    <input type="text" class="inputLogin" placeholder="Pesquisar"></input>
-                    <img src="../assets/img/lupa.png" class="lupaBusca">
+                    
                 </div>
 
                 <div class="direitaCabecalho">
-                    <img class="emailIconCabecalho" src="../assets/img/iconEmail.png">
-                    <img class="sinoIconCabecalho" src="../assets/img/notificacaoIcon.png">
                     <div class="divPerfilCabecalho">
                         <img class="iconPerfilCabecalho" src="../assets/img/usuario-de-perfil.png">
                         <div class="textosIcon">
@@ -609,6 +602,30 @@
             // finalizarAguardar();
         });
     }
+
+    var cargo = sessionStorage.NIVELACESSO_COLABORADOR;
+
+    if (cargo == "RL") {
+        cargo = "Representante"
+        SumirCadMaq.style.display = "none";
+        SumirAnaliseMaq.style.display = "none";
+    } else if (cargo == "GT") {
+        cargo = "Gerente TI"
+    }
+    else {
+        cargo = "Equipe TI";
+        SumirCadMaq.style.display = "none";
+        SumirCadEquipe.style.display = "none";
+        SumirAnaliseFunc.style.display = "none";
+        divCadastroEquipe.style.top = "18%";
+    }
+
+    cargoPerfil.innerHTML = cargo;
+    nomeEmpresa.innerHTML = sessionStorage.NOME_FANTASIA_COLABORADOR;
+    tituloPerfil.innerHTML = sessionStorage.NOME_COLABORADOR;
+    pNomeSetor.innerHTML = sessionStorage.NOME_SETOR;
+    numSala.innerHTML = sessionStorage.ID_SALA;
+    numComputador.innerHTML = sessionStorage.ID_MAQUINA;
 
 
 
