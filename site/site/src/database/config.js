@@ -3,17 +3,20 @@ var sql = require('mssql')
 
 // CONEXÃO DO SQL SERVER - AZURE (NUVEM)
 var sqlServerConfig = {
-  server: 'SEU_SERVIDOR',
+  server: '54.145.218.19',
+  port: parseInt(1433,10),
   database: 'HealthTouch',
-  user: 'dbo',
+  user: 'sa',
   password: 'urubu100',
+  stream: false,
   pool: {
     max: 10,
     min: 0,
     idleTimeoutMillis: 30000
   },
   options: {
-    encrypt: true // for azure
+    encrypt: false,
+    trustServerCertificate: true,
   }
 }
 
@@ -22,7 +25,7 @@ var mySqlConfig = {
   host: 'localhost',
   database: 'HealthTouch',
   user: 'root',
-  password: 'biel2004'
+  password: 'sptech'
 }
 
 function executar(instrucao) {

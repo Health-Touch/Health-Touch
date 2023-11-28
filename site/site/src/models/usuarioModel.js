@@ -24,7 +24,7 @@ function cadastrarEmpresa(nome, cnpj, telefone) {
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
   var instrucao = `
-        INSERT INTO Empresa (NomeFantasia, CNPJ, inicioContrato, telFixo) VALUES ('${nome}', '${cnpj}', curdate(), '${telefone}');
+        INSERT INTO Empresa (NomeFantasia, CNPJ, inicioContrato, telFixo, fkPlano) VALUES ('${nome}', '${cnpj}', GETDATE(), '${telefone}', 3);
     `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -154,12 +154,9 @@ function atualizarDados(Nome, TelFixo, TelCel, cpf, idColaborador) {
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
   var instrucao = `
-  update colaborador join telefone on fkColaborador = idColaborador 
-	set colaborador.nome = "${Nome}", 
-    telefone.telCel = "${TelCel}",
-    telefone.TelFixo = "${TelFixo}",
-    colaborador.cpf = "${cpf}"
-    where idColaborador = ${idColaborador};
+  UPDATE Colaborador
+  SET nome = '${Nome}', cpf = '${cpf}'
+  FROM Colaborador WHERE colaborador.idColaborador = ${idColaborador};
     `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
