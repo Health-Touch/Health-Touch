@@ -456,20 +456,33 @@
               ) {
                 continue
               }
+
+
+              ImgExibir = ""
+              if (publicacao.UltimaAtt == null) {
+                ImgExibir = `<img id="IconeStatus" class="imgCardStatus" src="assets/img/checked.png">`
+              }
+              else if (publicacao.UltimaAtt == "Alerta"){
+                // IconeStatus.src = "assets/img/aviso.png"
+                ImgExibir = `<img id="IconeStatus" class="imgCardStatus" src="assets/img/aviso.png">`
+              }
+              else if (publicacao.UltimaAtt == "Crítico"){
+                // IconeStatus.src = "assets/img/aviso-red.png"
+                ImgExibir = `<img id="IconeStatus" class="imgCardStatus" src="assets/img/aviso-red.png">`
+              }
               // adicionar um event listener no seelct setor função de recursividade só que vai passar o parâmetro
               // e a partir desse parametro
               all.innerHTML += `
-                        <div class="cardPai" onclick="VerificarSetor(${publicacao.idSetor
-                })">
+                        <div class="cardPai" onclick="VerificarSetor(${publicacao.idSetor})">
                             <div class="cardFilho">
                                 <div class="cardTexto">
-                                    <span class="txtUso" id="feed2" > Setor ${publicacao.idSetor
-                }</span>
-                                    <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard"></div>
+                                    <span class="txtUso" id="feed2" > Setor ${publicacao.idSetor}</span>
+                                    <div class="div-img"><img src="assets/img/iconDashboard.png" alt="" class="imgCard">
+                                      ${ImgExibir}  
+                                    </div>
 
                                 </div>
-                                <span class="infoCard" >${publicacao.nome
-                }</span>
+                                <span class="infoCard" >${publicacao.nome}</span>
                             </div>
                             <input type="hidden" id="valorSetor" value=${i + 1}>
                         </div>`
@@ -522,12 +535,15 @@
               var publicacao = resposta[i]
               var exibir = ''
               if (publicacao.maxNivelAviso == null) {
-                publicacao.maxNivelAviso == 'otimo'
-                exibir = `<p class="statusVerde">OTIMO</p>`
-              } else if (publicacao.maxNivelAviso == 'Crítico') {
-                exibir = `<p class="statusVermelho">Crítico</p>`
-              } else if (publicacao.maxNivelAviso == 'Alerta') {
-                exibir = `<p class="statusAmarelo">Alerta</p>`
+                exibir = `<img id="IconeStatus" class="imgCardStatus" src="assets/img/checked.png">`
+              }
+              else if (publicacao.maxNivelAviso == "Alerta"){
+                // IconeStatus.src = "assets/img/aviso.png"
+                exibir = `<img id="IconeStatus" class="imgCardStatus" src="assets/img/aviso.png">`
+              }
+              else if (publicacao.maxNivelAviso == "Crítico"){
+                // IconeStatus.src = "assets/img/aviso-red.png"
+                exibir = `<img id="IconeStatus" class="imgCardStatus" src="assets/img/aviso-red.png">`
               }
 
               all.innerHTML += `

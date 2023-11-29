@@ -440,7 +440,19 @@
     width: 18px;
     height: 18px;
     z-index: 999;
+    position: relative;
+    left: 1.8vh;
 }
+
+.imgCardStatus {
+    width: 25px;
+    height: 25px;
+    z-index: 999;
+    position: relative;
+    top: 7vh;
+    right: 1.3vh;
+}
+
 
 .infoCard {
     font-size: 13px;
