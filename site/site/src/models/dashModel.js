@@ -40,14 +40,10 @@ function buscarUltimasMedidas(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select top ${limite_linhas}
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        momento,
-                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
-                    from medida
-                    where fk_aquario = ${idAquario}
-                    order by id desc`
+    instrucaoSql = `SELECT TOP 3 *
+    FROM monitoramento
+    WHERE fkMaquina = ${idMaquina}
+    ORDER BY idMonitoramento DESC;`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select * from monitoramento
                     where fkMaquina = ${idMaquina}
@@ -67,13 +63,10 @@ function buscarMedidasEmTempoReal(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select top 1
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        CONVERT(varchar, momento, 108) as momento_grafico, 
-                        fk_aquario 
-                        from medida where fk_aquario = ${idAquario} 
-                    order by id desc`
+    instrucaoSql = `SELECT TOP 3 *
+    FROM monitoramento
+    WHERE fkMaquina = ${idMaquina}
+    ORDER BY idMonitoramento DESC;`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select * from monitoramento
     where fkMaquina = ${idMaquina} 
@@ -94,14 +87,25 @@ function buscarUltimosAvisos(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select top ${limite_linhas}
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        momento,
-                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
-                    from medida
-                    where fk_aquario = ${idAquario}
-                    order by id desc`
+    instrucaoSql = `SELECT 
+    a.idAviso, 
+    CONVERT(VARCHAR, a.dataHora, 103) + ' ' + CONVERT(VARCHAR, a.dataHora, 108) as dtHr,
+    a.fkMonitoramento, 
+    a.fkComponente, 
+    a.fkMaquina, 
+    a.fkEmpresa,
+    a.fkPlanoEmpresa, 
+    a.fkTipoMaquina, 
+    a.nivelAviso,
+    mt.porcentagem
+FROM aviso as a 
+JOIN monitoramento as mt on mt.idMonitoramento = a.fkMonitoramento
+JOIN componente as c on a.fkComponente = c.idComponente
+JOIN maquina as m on a.fkMaquina = m.idMaquina
+JOIN empresa as e on a.fkEmpresa = e.idEmpresa
+JOIN plano as p on a.fkPlanoEmpresa = p.idPlano
+JOIN tipoMaquina as t on a.fkTipoMaquina = t.idTipoMaquina
+WHERE a.fkEmpresa = 1 AND a.fkMaquina = ${idMaquina} AND a.fkTipoMaquina = 1;`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `
     SELECT a.idAvisos, DATE_FORMAT(a.dataHora, '%d/%m/%Y %H:%i:%s') as dtHr,
@@ -130,13 +134,25 @@ function buscarAvisosEmTempoReal(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select top 1
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        CONVERT(varchar, momento, 108) as momento_grafico, 
-                        fk_aquario 
-                        from medida where fk_aquario = ${idAquario} 
-                    order by id desc`
+    instrucaoSql = `SELECT 
+    a.idAviso, 
+    CONVERT(VARCHAR, a.dataHora, 103) + ' ' + CONVERT(VARCHAR, a.dataHora, 108) as dtHr,
+    a.fkMonitoramento, 
+    a.fkComponente, 
+    a.fkMaquina, 
+    a.fkEmpresa,
+    a.fkPlanoEmpresa, 
+    a.fkTipoMaquina, 
+    a.nivelAviso,
+    mt.porcentagem
+FROM aviso as a 
+JOIN monitoramento as mt on mt.idMonitoramento = a.fkMonitoramento
+JOIN componente as c on a.fkComponente = c.idComponente
+JOIN maquina as m on a.fkMaquina = m.idMaquina
+JOIN empresa as e on a.fkEmpresa = e.idEmpresa
+JOIN plano as p on a.fkPlanoEmpresa = p.idPlano
+JOIN tipoMaquina as t on a.fkTipoMaquina = t.idTipoMaquina
+WHERE a.fkEmpresa = 1 AND a.fkMaquina = ${idMaquina} AND a.fkTipoMaquina = 1;`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `    
     SELECT a.idAvisos, DATE_FORMAT(a.dataHora, '%d/%m/%Y %H:%i:%s') as dtHr,
@@ -166,14 +182,10 @@ function buscarUltimosUsb(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select top ${limite_linhas}
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        momento,
-                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
-                    from medida
-                    where fk_aquario = ${idAquario}
-                    order by id desc`
+    instrucaoSql = `SELECT COUNT(idUsb) as status
+    FROM usb
+    JOIN maquina ON maquina.idMaquina = usb.fkMaquina 
+    WHERE CONVERT(DATE, dtHoraInserção) = CONVERT(DATE, GETDATE());`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select count(idUsb) as status
     from usb join maquina on maquina.idMaquina = usb.fkMaquina 
@@ -193,13 +205,10 @@ function buscarUsbEmTempoReal(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select top 1
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        CONVERT(varchar, momento, 108) as momento_grafico, 
-                        fk_aquario 
-                        from medida where fk_aquario = ${idAquario} 
-                    order by id desc`
+    instrucaoSql = `SELECT COUNT(idUsb) as status
+    FROM usb
+    JOIN maquina ON maquina.idMaquina = usb.fkMaquina 
+    WHERE CONVERT(DATE, dtHoraInserção) = CONVERT(DATE, GETDATE());`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select count(idUsb) as status
     from usb join maquina on maquina.idMaquina = usb.fkMaquina 
@@ -220,14 +229,16 @@ function buscarUltimosMedia(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select top ${limite_linhas}
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        momento,
-                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
-                    from medida
-                    where fk_aquario = ${idAquario}
-                    order by id desc`
+    instrucaoSql = `SELECT
+    (SELECT FORMAT(AVG(porcentagem), 'N2') FROM monitoramento WHERE fkComponente = 1) as usoCpuMensal,
+    (SELECT FORMAT(AVG(porcentagem), 'N2') FROM monitoramento WHERE fkComponente = 2) as usoRamMensal,
+    (SELECT FORMAT(AVG(porcentagem), 'N2') FROM monitoramento WHERE fkComponente = 3) as usoDiscoMensal
+FROM monitoramento AS mt
+JOIN maquina AS m ON m.idMaquina = mt.fkMaquina 
+JOIN plano AS p ON mt.fkPlanoEmpresa = p.idPlano
+JOIN tipoMaquina AS t ON mt.fkTipoMaquina = t.idTipoMaquina
+JOIN empresa AS e ON mt.fkEmpresaMaquina = e.idEmpresa
+WHERE mt.fkMaquina = ${idMaquina} AND mt.fkTipoMaquina = 1 AND mt.fkEmpresaMaquina = 1;`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select
     (select format(avg(porcentagem),2) from monitoramento where fkComponente = 1) as usoCpuMensal,
@@ -254,13 +265,16 @@ function buscarMediaEmTempoReal(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select top 1
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        CONVERT(varchar, momento, 108) as momento_grafico, 
-                        fk_aquario 
-                        from medida where fk_aquario = ${idAquario} 
-                    order by id desc`
+    instrucaoSql = `SELECT
+    (SELECT FORMAT(AVG(porcentagem), 'N2') FROM monitoramento WHERE fkComponente = 1) as usoCpuMensal,
+    (SELECT FORMAT(AVG(porcentagem), 'N2') FROM monitoramento WHERE fkComponente = 2) as usoRamMensal,
+    (SELECT FORMAT(AVG(porcentagem), 'N2') FROM monitoramento WHERE fkComponente = 3) as usoDiscoMensal
+FROM monitoramento AS mt
+JOIN maquina AS m ON m.idMaquina = mt.fkMaquina 
+JOIN plano AS p ON mt.fkPlanoEmpresa = p.idPlano
+JOIN tipoMaquina AS t ON mt.fkTipoMaquina = t.idTipoMaquina
+JOIN empresa AS e ON mt.fkEmpresaMaquina = e.idEmpresa
+WHERE mt.fkMaquina = ${idMaquina} AND mt.fkTipoMaquina = 1 AND mt.fkEmpresaMaquina = 1`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select
     (select format(avg(porcentagem),2) from monitoramento where fkComponente = 1) as usoCpuMensal,
@@ -288,14 +302,25 @@ function buscarUltimosInsight(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select top ${limite_linhas}
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        momento,
-                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
-                    from medida
-                    where fk_aquario = ${idAquario}
-                    order by id desc`
+    instrucaoSql = `SELECT
+    FORMAT(
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 20 porcentagem FROM monitoramento WHERE fkComponente = 1 ORDER BY dataHora DESC) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 10 porcentagem FROM monitoramento WHERE fkComponente = 1 ORDER BY dataHora DESC) AS subquery)
+    , 'N2') AS insightCpuMensal,
+    FORMAT(
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 20 porcentagem FROM monitoramento WHERE fkComponente = 2 ORDER BY dataHora DESC) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 10 porcentagem FROM monitoramento WHERE fkComponente = 2 ORDER BY dataHora DESC) AS subquery)
+    , 'N2') AS insightRamMensal,
+    FORMAT(
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 20 porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 10 porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC) AS subquery)
+    , 'N2') AS insightDiscoMensal
+FROM maquina AS m
+JOIN monitoramento AS mt ON mt.fkMaquina = m.idMaquina
+JOIN empresa AS e ON m.fkEmpresa = e.idEmpresa
+JOIN statusMaquina AS sm ON m.fkStatusMaquina = sm.idStatusMaquina
+JOIN tipoMaquina AS t ON m.fkTipoMaquina = t.idTipoMaquina
+WHERE m.idMaquina = ${idMaquina} AND m.fkEmpresa = 1 AND m.fkStatusMaquina = 1 AND m.fkTipoMaquina = 1;`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `SELECT
     FORMAT(
@@ -330,32 +355,45 @@ function buscarInsightEmTempoReal(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select top 1
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        CONVERT(varchar, momento, 108) as momento_grafico, 
-                        fk_aquario 
-                        from medida where fk_aquario = ${idAquario} 
-                    order by id desc`
+    instrucaoSql = `SELECT
+    FORMAT(
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 20 porcentagem FROM monitoramento WHERE fkComponente = 1 ORDER BY dataHora DESC) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 10 porcentagem FROM monitoramento WHERE fkComponente = 1 ORDER BY dataHora DESC) AS subquery)
+    , 'N2') AS insightCpuMensal,
+    FORMAT(
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 20 porcentagem FROM monitoramento WHERE fkComponente = 2 ORDER BY dataHora DESC) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 10 porcentagem FROM monitoramento WHERE fkComponente = 2 ORDER BY dataHora DESC) AS subquery)
+    , 'N2') AS insightRamMensal,
+    FORMAT(
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 20 porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 10 porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC) AS subquery)
+    , 'N2') AS insightDiscoMensal
+FROM maquina AS m
+JOIN monitoramento AS mt ON mt.fkMaquina = m.idMaquina
+JOIN empresa AS e ON m.fkEmpresa = e.idEmpresa
+JOIN statusMaquina AS sm ON m.fkStatusMaquina = sm.idStatusMaquina
+JOIN tipoMaquina AS t ON m.fkTipoMaquina = t.idTipoMaquina
+WHERE m.idMaquina = ${idMaquina} AND m.fkEmpresa = 1 AND m.fkStatusMaquina = 1 AND m.fkTipoMaquina = 1;`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `SELECT
     FORMAT(
-      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 1 ORDER BY dataHora DESC LIMIT 20) AS subquery) -
-      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 1 ORDER BY dataHora DESC LIMIT 10) AS subquery)
-    , 2) AS insightCpuMensal,
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 20 porcentagem FROM monitoramento WHERE fkComponente = 1 ORDER BY dataHora DESC) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 10 porcentagem FROM monitoramento WHERE fkComponente = 1 ORDER BY dataHora DESC) AS subquery)
+    , 'N2') AS insightCpuMensal,
     FORMAT(
-      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 2 ORDER BY dataHora DESC LIMIT 20) AS subquery) -
-      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 2 ORDER BY dataHora DESC LIMIT 10) AS subquery)
-    , 2) AS insightRamMensal,
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 20 porcentagem FROM monitoramento WHERE fkComponente = 2 ORDER BY dataHora DESC) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 10 porcentagem FROM monitoramento WHERE fkComponente = 2 ORDER BY dataHora DESC) AS subquery)
+    , 'N2') AS insightRamMensal,
     FORMAT(
-      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC LIMIT 20) AS subquery) -
-      (SELECT AVG(porcentagem) FROM (SELECT porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC LIMIT 10) AS subquery)
-    , 2) AS insightDiscoMensal
-  FROM maquina as m join monitoramento as mt on mt.fkMaquina = m.idMaquina
-  join empresa as e on m.fkEmpresa = e.idEmpresa
-  join statusMaquina as sm on m.fkStatusMaquina = sm.idStatusMaquina
-  join tipoMaquina as t on m.fkTipoMaquina = t.idTipoMaquina
-  WHERE m.idMaquina = ${idMaquina} and m.fkEmpresa = 1 and m.fkStatusMaquina = 1 and m.fkTipoMaquina = 1;`
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 20 porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC) AS subquery) -
+      (SELECT AVG(porcentagem) FROM (SELECT TOP 10 porcentagem FROM monitoramento WHERE fkComponente = 3 ORDER BY dataHora DESC) AS subquery)
+    , 'N2') AS insightDiscoMensal
+FROM maquina AS m
+JOIN monitoramento AS mt ON mt.fkMaquina = m.idMaquina
+JOIN empresa AS e ON m.fkEmpresa = e.idEmpresa
+JOIN statusMaquina AS sm ON m.fkStatusMaquina = sm.idStatusMaquina
+JOIN tipoMaquina AS t ON m.fkTipoMaquina = t.idTipoMaquina
+WHERE m.idMaquina = ${idMaquina} AND m.fkEmpresa = 1 AND m.fkStatusMaquina = 1 AND m.fkTipoMaquina = 1;`
   } else {
     console.log(
       '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
@@ -397,12 +435,12 @@ function buscarEstadoRam(idMaquina) {
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
     instrucaoSql = `SELECT TOP 1 ramUsada, ramDisponivel
-    FROM Monitoramento
+    FROM MonitoramentoYasmin
     WHERE ramUsada IS NOT NULL AND ramDisponivel IS NOT NULL
     ORDER BY idMonitoramento DESC;
     `
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
-    instrucaoSql = `SELECT ramUsada, ramDisponivel FROM Monitoramento 
+    instrucaoSql = `SELECT ramUsada, ramDisponivel FROM MonitoramentoYasmin
     WHERE ramUsada IS NOT NULL AND ramDisponivel IS NOT NULL 
     ORDER BY idMonitoramento DESC LIMIT 1;`
   } else {
@@ -540,7 +578,7 @@ function plotarListaProcessos(idMaquina) {
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
     instrucaoSql = `SELECT TOP 5 * FROM processo
-    ORDER BY usoCPU DESC;
+    ORDER BY uso_cpu DESC;
     `
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `SELECT * FROM processo ORDER BY usoCPU DESC LIMIT 5;`

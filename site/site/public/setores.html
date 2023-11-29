@@ -332,7 +332,7 @@
   // logo existem de 0 a n dados com classificacao para nivel critico
   function filtrar_Parametro(triangulo) {
     selectStatusMaquina.style.display = 'none'
-    totalMaquinas.style.display = 'none'
+   
     fetch('/avisos/filtrar_Parametro')
       .then(function (resposta) {
         // alert("entrei")
@@ -556,7 +556,6 @@
           selectSetor.style.display = 'none'
           selectStatus.style.display = 'none'
           selectStatusMaquina.style.display = 'block'
-          totalMaquinas.style.display = 'flex'
 
           // if (resposta.status == 204) {
           //     var feed = document.getElementById("feed_container");

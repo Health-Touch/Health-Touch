@@ -342,19 +342,28 @@ function plotarAviso(resposta, idMaquina) {
   var avisos = JSON.parse(z)
   avisos.forEach(item => {
     var nivel = item.nivelAviso
+    var componente = ""
+
+    if(item.fkComponente == 1){
+      componente = "CPU"
+    }else if (item.fkComponente == 2){
+      componente = "RAM"
+    } else if (item.fkComponente == 3){
+      componente = "DISCO"
+    }
 
     if (nivel == 'Alerta') {
       document.getElementById('boxAvisos').innerHTML += `
   <div class="infoAviso">
-                  <span class="tituloAviso">${item.componente} ESTÁ EM ${item.porcentagem}%</span>
+                  <span class="tituloAviso">${componente} ESTÁ EM ${item.porcentagem}%</span>
                   <span class="dataAviso">${item.dtHr}</span>
                   <img src="assets/img/aviso-orange.png" alt="" class="iconAviso">
               </div>
   `
-    } else if (nivel == 'Crítico') {
+    } else {
       document.getElementById('boxAvisos').innerHTML += `
   <div class="infoAviso">
-                  <span class="tituloAviso">${item.componente} ESTÁ EM ${item.porcentagem}%</span>
+                  <span class="tituloAviso">${componente} ESTÁ EM ${item.porcentagem}%</span>
                   <span class="dataAviso">${item.dtHr}</span>
                   <img src="assets/img/aviso-red.png" alt="" class="iconAviso">
               </div>
@@ -393,11 +402,20 @@ function atualizarAviso(idMaquina) {
 
           avisos.forEach(item => {
             var nivel = item.nivelAviso
+            var componente = ""
+
+            if(item.fkComponente == 1){
+              componente = "CPU"
+            }else if (item.fkComponente == 2){
+              componente = "RAM"
+            } else if (item.fkComponente == 3){
+              componente = "DISCO"
+            }
 
             if (nivel == 'Alerta') {
               document.getElementById('boxAvisos').innerHTML += `
           <div class="infoAviso">
-                          <span class="tituloAviso">${item.componente} ESTÁ EM ${item.porcentagem}%</span>
+                          <span class="tituloAviso">${componente} ESTÁ EM ${item.porcentagem}%</span>
                           <span class="dataAviso">${item.dtHr}</span>
                           <img src="assets/img/aviso-orange.png" alt="" class="iconAviso">
                       </div>
@@ -405,7 +423,7 @@ function atualizarAviso(idMaquina) {
             } else {
               document.getElementById('boxAvisos').innerHTML += `
           <div class="infoAviso">
-                          <span class="tituloAviso">${item.componente} ESTÁ EM ${item.porcentagem}%</span>
+                          <span class="tituloAviso">${componente} ESTÁ EM ${item.porcentagem}%</span>
                           <span class="dataAviso">${item.dtHr}</span>
                           <img src="assets/img/aviso-red.png" alt="" class="iconAviso">
                       </div>

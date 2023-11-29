@@ -33,7 +33,7 @@ FROM
   JOIN LocalSala ON fklocal = idLocalSala
   JOIN setor ON fksetor = idSetor
   JOIN empresa ON fkEmpresa = idEmpresa 
-  LEFT JOIN aviso ON fkMaquina = idMaquina
+  JOIN aviso ON fkMaquina = idMaquina
 WHERE 
   setor.idSetor = ${idSetor};
     `
@@ -88,13 +88,14 @@ FROM
   JOIN LocalSala ON fklocal = idLocalSala
   JOIN setor ON fksetor = idSetor
   JOIN empresa ON fkEmpresa = idEmpresa 
-  LEFT JOIN aviso ON fkMaquina = idMaquina
+  JOIN aviso ON fkMaquina = idMaquina
 WHERE 
   setor.idSetor = ${idSetor}
 GROUP BY 
   maquina.idMaquina, LocalSala.sala, LocalSala.andar, setor.nome
 HAVING 
-  maxNivelAviso = "${status}";
+  MAX(aviso.nivelAviso) = '${status}';
+
       `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -202,7 +203,13 @@ function listarUsb() {
     "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarUsb()"
   )
   var instrucao = `
-    select idUSB, nomeUsb,   DATE_FORMAT(dtHoraInserção, '%m/%d/%Y %H:%i:%s') as dtHoraInsercao, fkMaquina  from USB join Maquina on fkMaquina = idMaquina where fkMaquina = 1;
+  SELECT idUSB, 
+  nomeUsb,   
+  CONVERT(VARCHAR, dtHoraInserção, 101) + ' ' + CONVERT(VARCHAR, dtHoraInserção, 108) as dtHoraInsercao, 
+  fkMaquina  
+FROM USB 
+JOIN Maquina ON fkMaquina = idMaquina 
+WHERE fkMaquina = 1;
     `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -324,8 +331,12 @@ function setorMaisUtilizado() {
     "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function l()"
   )
   var instrucao = `
-  SELECT nomeBotao, COUNT(*) AS quantidade FROM analiseToten WHERE MONTH(dataHora) = MONTH(CURRENT_DATE())
-	GROUP BY nomeBotao ORDER BY quantidade DESC LIMIT 1;
+  SELECT nomeBotao, COUNT(*) AS quantidade
+FROM analiseToten
+WHERE MONTH(dataHora) = MONTH(GETDATE())
+GROUP BY nomeBotao
+ORDER BY quantidade DESC
+OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY;
   `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -336,8 +347,12 @@ function setorMaisUtilizadoSub() {
     "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function l()"
   )
   var instrucao = `
-  SELECT nomeBotao, COUNT(*) AS quantidade FROM analiseToten WHERE MONTH(dataHora) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH)
-	GROUP BY nomeBotao ORDER BY quantidade DESC LIMIT 1;
+  SELECT nomeBotao, COUNT(*) AS quantidade
+FROM analiseToten
+WHERE MONTH(dataHora) = MONTH(DATEADD(MONTH, -1, GETDATE()))
+GROUP BY nomeBotao
+ORDER BY quantidade DESC
+OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY;
   `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -348,8 +363,11 @@ function setorMenosUtilizado() {
     "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function l()"
   )
   var instrucao = `
-  SELECT nomeBotao, COUNT(*) AS quantidade FROM analiseToten WHERE MONTH(dataHora) = MONTH(CURRENT_DATE())
-	GROUP BY nomeBotao ORDER BY quantidade LIMIT 1;
+  SELECT TOP 1 nomeBotao, COUNT(*) AS quantidade
+FROM analiseToten
+WHERE MONTH(dataHora) = MONTH(GETDATE())
+GROUP BY nomeBotao
+ORDER BY quantidade DESC;
   `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -360,8 +378,11 @@ function setorMenosUtilizadoSub() {
     "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function l()"
   )
   var instrucao = `
-  SELECT nomeBotao, COUNT(*) AS quantidade FROM analiseToten WHERE MONTH(dataHora) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH)
-	GROUP BY nomeBotao ORDER BY quantidade LIMIT 1;
+  SELECT TOP 1 nomeBotao, COUNT(*) AS quantidade
+FROM analiseToten
+WHERE MONTH(dataHora) = MONTH(DATEADD(MONTH, -1, GETDATE()))
+GROUP BY nomeBotao
+ORDER BY quantidade DESC;
   `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -372,8 +393,11 @@ function diaMaisMovimentado() {
     "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function l()"
   )
   var instrucao = `
-  SELECT DAY(dataHora) AS dia, COUNT(*) AS quantidade FROM analiseToten WHERE MONTH(dataHora) = MONTH(CURRENT_DATE())
-	GROUP BY DAY(dataHora) ORDER BY quantidade DESC LIMIT 1;
+  SELECT TOP 1 DAY(dataHora) AS dia, COUNT(*) AS quantidade
+FROM analiseToten
+WHERE MONTH(dataHora) = MONTH(GETDATE())
+GROUP BY DAY(dataHora)
+ORDER BY quantidade DESC;
   `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -384,8 +408,11 @@ function diaMaisMovimentadoSub() {
     "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function l()"
   )
   var instrucao = `
-  SELECT DAY(dataHora) AS dia, COUNT(*) AS quantidade FROM analiseToten WHERE MONTH(dataHora) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH)
-	GROUP BY DAY(dataHora) ORDER BY quantidade DESC LIMIT 1;
+  SELECT TOP 1 DAY(dataHora) AS dia, COUNT(*) AS quantidade
+  FROM analiseToten
+  WHERE MONTH(dataHora) = MONTH(DATEADD(MONTH, -1, GETDATE()))
+  GROUP BY DAY(dataHora)
+  ORDER BY quantidade DESC;
   `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -397,8 +424,11 @@ function diaMenosMovimentado() {
     "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function l()"
   )
   var instrucao = `
-  SELECT DAY(dataHora) AS dia, COUNT(*) AS quantidade FROM analiseToten WHERE MONTH(dataHora) = MONTH(CURRENT_DATE())
-	GROUP BY DAY(dataHora) ORDER BY quantidade LIMIT 1;
+  SELECT TOP 1 DAY(dataHora) AS dia, COUNT(*) AS quantidade
+FROM analiseToten
+WHERE MONTH(dataHora) = MONTH(GETDATE())
+GROUP BY DAY(dataHora)
+ORDER BY quantidade DESC;
   `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -409,7 +439,11 @@ function diaMenosMovimentadoSub() {
     "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function l()"
   )
   var instrucao = `
-  SELECT DAY(dataHora) AS dia FROM analiseToten WHERE MONTH(dataHora) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH) GROUP BY DAY(dataHora) ORDER BY COUNT(*) ASC LIMIT 1;
+  SELECT TOP 1 DAY(dataHora) AS dia
+FROM analiseToten
+WHERE MONTH(dataHora) = MONTH(DATEADD(MONTH, -1, GETDATE()))
+GROUP BY DAY(dataHora)
+ORDER BY COUNT(*) ASC;
   `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -420,8 +454,11 @@ function totenMaisUtilizado() {
     "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function l()"
   )
   var instrucao = `
-  SELECT fkMaquina, COUNT(*) AS quantidade FROM analiseToten WHERE MONTH(dataHora) = MONTH(CURRENT_DATE())
-	GROUP BY fkMaquina ORDER BY quantidade DESC LIMIT 1;
+  SELECT TOP 1 fkMaquina, COUNT(*) AS quantidade
+FROM analiseToten
+WHERE MONTH(dataHora) = MONTH(GETDATE())
+GROUP BY fkMaquina
+ORDER BY quantidade DESC;
   `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -432,8 +469,12 @@ function totenMaisUtilizadoSub() {
     "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function l()"
   )
   var instrucao = `
-  SELECT fkMaquina, COUNT(*) AS quantidade FROM analiseToten WHERE MONTH(dataHora) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH)
-	GROUP BY fkMaquina ORDER BY quantidade DESC LIMIT 1;
+  SELECT fkMaquina, COUNT(*) AS quantidade
+FROM analiseToten
+WHERE MONTH(dataHora) = MONTH(DATEADD(MONTH, -1, GETDATE()))
+GROUP BY fkMaquina
+ORDER BY quantidade DESC
+OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY;
   `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
@@ -514,10 +555,8 @@ WHERE Janela.statusJanela = 1 AND Janela.fkMaquina = ${idMaquina};
 function listarRam(idMaquina) {
   console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarRam()");
   var instrucao = `
-  SELECT porcentagem FROM Monitoramento join Maquina on fkMaquina = ${idMaquina}
- ORDER BY idMonitoramento DESC
- LIMIT 1 
-;
+  SELECT TOP 1  porcentagem FROM Monitoramento join Maquina on fkMaquina =1
+ ORDER BY idMonitoramento DESC;
   `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -541,9 +580,13 @@ function listarMensalRam(idMaquina) {
 function listarProcessos(idMaquina) {
   console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarProcessos():", idMaquina);
   var instrucao = `
-  select processo.PID, processo.nome, truncate(processo.uso_ram,4) as uso_ram, truncate( processo.uso_cpu,4)as uso_cpu
-   from processo join maquina on idMaquina = fkMaquina where
-   idMaquina = ${idMaquina};
+  SELECT processo.PID, 
+  processo.nome, 
+  ROUND(processo.uso_ram, 4) as uso_ram, 
+  ROUND(processo.uso_cpu, 4) as uso_cpu
+FROM processo 
+JOIN maquina ON idMaquina = fkMaquina 
+WHERE idMaquina = ${idMaquina};
   `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -569,7 +612,7 @@ function PesquisarProcessos(nomePesquisa) {
   var instrucao = `
   select processo.PID, processo.nome, processo.uso_cpu, 
   processo.uso_ram
-    from processo where nome = "${nomePesquisa}";
+    from processo where nome = '${nomePesquisa}';
 
   `;
   console.log("Executando a instrução SQL: \n" + instrucao);
@@ -598,7 +641,8 @@ module.exports = {
   filtrarParametroMaquina,
   filtrarStatusMaquina,
   verificarMaquinas,
-  setorMaisUtilizado,
+  // aq
+  setorMaisUtilizado, 
   setorMaisUtilizadoSub,
   setorMenosUtilizado,
   setorMenosUtilizadoSub,
@@ -610,6 +654,7 @@ module.exports = {
   totenMaisUtilizadoSub,
   subConsulta,
   mesAtual,
+  // aq
   listarJanela,
   janelaMes,
   janelaAtivas,

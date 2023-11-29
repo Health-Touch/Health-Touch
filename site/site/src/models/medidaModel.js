@@ -150,8 +150,10 @@ function buscarMedidasRede(idMaquina, limite_linhas) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select download, upload, FORMAT(dataHora, 'HH:mm') 
-      AS Horário from monitoramentoRede where fkMaquina = ${idMaquina} order by idMonitoramentoRede desc limit ${limite_linhas};`
+    instrucaoSql = `SELECT TOP ${limite_linhas} download, upload, FORMAT(dataHora, 'HH:mm') AS Horário
+    FROM monitoramentoRede
+    WHERE fkMaquina = ${idMaquina}
+    ORDER BY idMonitoramentoRede DESC;`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select download, upload, FORMAT(dataHora, 'HH:mm') 
       AS Horário from monitoramentoRede where fkMaquina = ${idMaquina} order by idMonitoramentoRede desc limit ${limite_linhas};`
@@ -170,8 +172,10 @@ function atualizarGrafico(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select download, upload, FORMAT(dataHora, 'HH:mm') 
-      AS Horário from monitoramentoRede where fkMaquina = ${idMaquina} order by idMonitoramentoRede;`
+    instrucaoSql = `SELECT download, upload, FORMAT(dataHora, 'HH:mm') AS Horário
+    FROM monitoramentoRede
+    WHERE fkMaquina = ${idMaquina}
+    ORDER BY idMonitoramentoRede;`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select download, upload, FORMAT(dataHora, 'HH:mm') 
       AS Horário from monitoramentoRede where fkMaquina = ${idMaquina} order by idMonitoramentoRede;`
@@ -191,25 +195,31 @@ function buscarGraficoPing(idMaquina) {
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
     instrucaoSql = `SELECT
-      legenda,
-      valor
-    FROM (
-      SELECT
+    legenda,
+    valor
+FROM (
+    SELECT
         CASE
-          WHEN ping <= 10 THEN "< 10"
-          WHEN ping > 10 AND ping <= 20 THEN "Até 20"
-          WHEN ping > 20 AND ping <= 30 THEN "Até 30"
-          ELSE "Maior que 30"
+            WHEN ping <= 10 THEN '< 10'
+            WHEN ping > 10 AND ping <= 20 THEN 'Até 20'
+            WHEN ping > 20 AND ping <= 30 THEN 'Até 30'
+            ELSE 'Maior que 30'
         END AS legenda,
-        SUM(1) AS valor
-      FROM (
+        COUNT(*) AS valor
+    FROM (
         SELECT ping, dataHora, fkMaquina
         FROM monitoramentoRede
         WHERE fkMaquina = ${idMaquina}
-      ) AS t
-      GROUP BY legenda
     ) AS t
-    ORDER BY legenda;`
+    GROUP BY
+        CASE
+            WHEN ping <= 10 THEN '< 10'
+            WHEN ping > 10 AND ping <= 20 THEN 'Até 20'
+            WHEN ping > 20 AND ping <= 30 THEN 'Até 30'
+            ELSE 'Maior que 30'
+        END
+) AS t
+ORDER BY legenda;`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `SELECT
       legenda,
@@ -248,7 +258,7 @@ function buscarUltimasMedidasRamProcessos(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 3 and idMaquina = ${idMaquina};`
+    instrucaoSql = `select porcentagem, FORMAT(dataHora, 'HH:mm') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 3 and idMaquina = ${idMaquina};`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 3 and idMaquina = ${idMaquina};`
   } else {
@@ -266,7 +276,7 @@ function buscarUltimasMedidasCpuProcessos(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 1 and idMaquina = ${idMaquina};`
+    instrucaoSql = `select porcentagem, FORMAT(dataHora, 'HH:mm') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 1 and idMaquina = ${idMaquina};`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 1 and idMaquina = ${idMaquina};`
   } else {
@@ -284,7 +294,7 @@ function buscarMedidasEmTempoRealRamProcessos(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 3 and idMaquina = ${idMaquina};`
+    instrucaoSql = `select porcentagem, FORMAT(dataHora, 'HH:mm') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 3 and idMaquina = ${idMaquina};`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 3 and idMaquina = ${idMaquina};`
   } else {
@@ -301,7 +311,7 @@ function buscarMedidasEmTempoRealCpuProcessos(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 1 and idMaquina = ${idMaquina};`
+    instrucaoSql = `select porcentagem, FORMAT(dataHora, 'HH:mm') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 1 and idMaquina = ${idMaquina};`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select porcentagem, DATE_FORMAT(dataHora, '%H:%i:%s') AS horario from  maquina join monitoramento on monitoramento.fkMaquina = idMaquina where fkComponente = 1 and idMaquina = ${idMaquina};`
   } else {
@@ -318,9 +328,10 @@ function obterDadosGraficoComponentesAtual(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `select porcentagem, fkComponente from monitoramento
-    where fkMaquina = ${idMaquina}
-    order by idMonitoramento desc limit 2;`
+    instrucaoSql = `SELECT TOP 2 porcentagem, fkComponente
+FROM monitoramento
+WHERE fkMaquina = ${idMaquina}
+ORDER BY idMonitoramento DESC;`
   } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
     instrucaoSql = `select porcentagem, fkComponente from monitoramento
     where fkMaquina = ${idMaquina}
