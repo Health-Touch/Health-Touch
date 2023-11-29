@@ -222,8 +222,9 @@
                             </p>
                         </div>
 
-                        <button class="botaoTrocar" onclick="trocar()">Trocar</button> <button
-                            class="botaoHist" onclick="analiseJanel()">Analisar</button>
+                        <button class="botaoTrocar" onclick="trocar()">Trocar</button> 
+                        <button class="botaoHist" onclick="analiseJanel()">Analisar</button>
+                        <button class="botaoHist" onclick="AnaliseTodosComponentes()">Analisar</button>
                     </div>
                 </div>
 
@@ -293,6 +294,11 @@
     function analiseJanel(){
         window.location.href = 'analiseJanela.html'
     }
+
+    function AnaliseTodosComponentes(){
+        window.location.href = 'AnaliseTodosComp.html'
+    }
+
     function obterDadosGrafico(idMaquina) {
         var idMaquina = sessionStorage.ID_MAQUINA
         // if (proximaAtualizacao != undefined) {

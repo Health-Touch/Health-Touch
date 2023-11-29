@@ -31,7 +31,7 @@
 
                 <div class="divPaiOpcoesMenu">
 
-                    <a href="../analise/analiseFuncionario.html" id="pMenuLateral">
+                    <a href="../analise/analiseFuncionario.html" class="pMenuLateral">
                         <div class="divDashboardsGeral">
                             <img id="iconDashboardsLateral" src="../assets/img/painel (2).png">
                             <div class="divEspaco"></div>
@@ -39,7 +39,7 @@
                         </div>
                     </a>
 
-                    <a href="../setores.html" id="pMenuLateral">
+                    <a href="../setores.html" class="pMenuLateral">
                         <div class="divHome">
                             <img id="iconMenuLateralHome" src="../assets/img/grafico-de-setores.png">
                             <div class="divEspaco"></div>
@@ -47,7 +47,7 @@
                         </div>
                     </a>
 
-                    <a href="../cadastro/cadastroMaquinas.html" id="pMenuLateral">
+                    <a href="../cadastro/cadastroMaquinas.html" class="pMenuLateral" id="SumirCadMaq">
                         <div class="divComputador">
                             <img id="iconComputadorLateral" src="../assets/img/computador (4).png">
                             <div class="divEspaco"></div>
@@ -55,7 +55,7 @@
                         </div>
                     </a>
 
-                    <a href="../analise/analiseMaquinaTI.html" id="pMenuLateral">
+                    <a href="../analise/analiseMaquinaTI.html" class="pMenuLateral" id="SumirAnaliseMaq">
                         <div class="divCadastroComputador">
                             <img id="iconComputadorCadLateral" src="../assets/img/definicoes.png">
                             <div class="divEspaco"></div>
@@ -63,15 +63,15 @@
                         </div>
                     </a>
 
-                    <a href="../cadastro/cadastroFuncionarios.html" id="pMenuLateral">
-                        <div class="divAnaliseEquipe">
+                    <a href="../cadastro/cadastroFuncionarios.html" class="pMenuLateral">
+                        <div class="divAnaliseEquipe" id="divAnaliseEquipe">
                             <img id="iconAnaliseEquipe" src="../assets/img/carteira-de-identidade.png">
                             <div class="divEspaco"></div>
                             Cadastro Equipe
                         </div>
                     </a>
 
-                    <a href="../analise/analiseFuncionario.html" id="pMenuLateral">
+                    <a href="../analise/analiseFuncionario.html" class="pMenuLateral">
                         <div class="divDashboards">
                             <img id="iconDashboardsLateral" src="../assets/img/equipe.png">
                             <div class="divEspaco"></div>
@@ -91,14 +91,14 @@
                 </div>
 
                 <div class="divPaiHelpMenu">
-                    <a href="../suporte/SuporteHealthTooch.html" id="pMenuLateral">
+                    <a href="../suporte/SuporteHealthTooch.html" class="pMenuLateral">
                         <div class="divHelpDesk">
                             <img id="iconHelpDesk" src="../assets/img/suporte-ao-cliente.png">
                             <div class="divEspaco"></div>
                             HelpDesk
                         </div>
                     </a>
-                    <a href="../atualizar/AtualizarUser.html" id="pMenuLateral">
+                    <a href="../atualizar/AtualizarUser.html" class="pMenuLateral">
                         <div class="divConfiguracoes">
                             <img id="iconConfiguracoes" src="../assets/img/botao-de-roda-dentada-de-configuracoes.png">
                             <div class="divEspaco"></div>
@@ -752,6 +752,7 @@
         cargo = "Representante"
         SumirCadMaq.style.display = "none";
         SumirAnaliseMaq.style.display = "none";
+        divAnaliseEquipe.style.top = "10%";
     } else if (cargo == "GT") {
         cargo = "Gerente TI"
     }

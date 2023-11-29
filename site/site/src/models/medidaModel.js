@@ -348,6 +348,42 @@ ORDER BY idMonitoramento DESC;`
 }
 
 //Final Individual Maria
+
+//Começo Individual Nunes 
+
+
+function relacaoComponentes(idMaquina) {
+
+  instrucaoSql = ''
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+      instrucaoSql = ` 
+      SELECT porcentagem, DATE_FORMAT(dataHora, '%d-%m %H:%i') as DataHora, fkComponente
+      FROM monitoramento
+      WHERE fkMaquina = ${idMaquina}
+      ORDER BY dataHora DESC
+      LIMIT 99;
+      `;
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+      instrucaoSql = `
+      SELECT porcentagem, DATE_FORMAT(dataHora, '%d-%m %H:%i') as DataHora, fkComponente
+      FROM monitoramento
+      WHERE fkMaquina = ${idMaquina}
+      ORDER BY dataHora DESC
+      LIMIT 99;
+      `;
+  } else {
+      console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+      return
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+//Final Individual Nunes 
+
+
 module.exports = {
   buscarUltimasMedidasCpu,
   buscarMedidasEmTempoRealCpu,
@@ -364,5 +400,6 @@ module.exports = {
   buscarUltimasMedidasRamProcessos,
   buscarMedidasEmTempoRealRamProcessos,
   buscarUltimasMedidasCpuProcessos,
-  buscarMedidasEmTempoRealCpuProcessos
+  buscarMedidasEmTempoRealCpuProcessos,
+  relacaoComponentes
 }

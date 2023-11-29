@@ -68,6 +68,11 @@ router.get("/tempo-realCpuProcessos/:idMaquina", function (req, res) {
 router.get('/obterDadosGraficoComponentesAtual/:idMaquina', function (req, res) {
     medidaController.obterDadosGraficoComponentesAtual(req, res)
 })
-
 //Final Individual Maria 
+
+// Começo Individual Nunes
+router.get("/relacaoComponentes/:idMaquina", function (req, res) {
+    medidaController.relacaoComponentes(req, res);
+})
+//Final Individual Nunes 
 module.exports = router;
