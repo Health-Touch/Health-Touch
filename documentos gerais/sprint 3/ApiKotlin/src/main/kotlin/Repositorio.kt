@@ -11,9 +11,11 @@ import javax.swing.JPasswordField
 class Repositorio {
 
     lateinit var jdbcTemplate: JdbcTemplate
+    var  bdInterServer = Conexao.bdInterServer!!
 
     fun iniciar() {
         jdbcTemplate = Conexao.jdbcTemplate!!
+
     }
 
 //    fun cadastrar(campos:Usb){
@@ -38,49 +40,54 @@ class Repositorio {
 
 
 
-    fun cadastrar(campos:Usb): Int{
-
-         var total = grupoUsb.totalDispositvosUsb
-
-                var i = 0
-                var inserts = 0
-
-                while (i<total){
+    fun cadastrar(campos:Usb, fkEmpresa:Int , id_maquina:Int, fkTipoMaquina:Int, fkPlanoEmpresa:Int ){
+        val looca = Looca()
+        val usb = looca.dispositivosUsbGrupo.dispositivosUsb
 
 
-                    val nomeUSB = grupoUsb.dispositivosUsb[i].nome
-                     campos.nomeUsb = nomeUSB
-                    campos.dtHoraInsercao = LocalDateTime.now()
-                    campos.fkMaquina = 1
-                    campos.fkTipoMaquina = 1
-                    campos.fkEmpresa = 1
-                    campos.fkPlanoEmpresa = 1
 
+       usb.forEachIndexed{ p,usb ->
 
+           campos.dtHoraInsercao = LocalDateTime.now()
+            val nomeUSB = grupoUsb.dispositivosUsb[p].nome
+//
                     val dtHoraInsercao = campos.dtHoraInsercao
-                    val fkMaquina = campos.fkMaquina
-                    val fkTipoMaquina = campos.fkTipoMaquina
-                    val  fkEmpresa =  campos.fkEmpresa
-                    val fkPlanoEmpresa =campos.fkPlanoEmpresa
+           bdInterServer.update(
+               """
+               insert into USB(nomeUSB, dtHoraInserção, fkMaquina, fkEmpresa, fkPlanoEmpresa, fkTipoMaquina) values 
+               ('$nomeUSB','${dtHoraInsercao}',${id_maquina},${fkTipoMaquina},${fkEmpresa},${fkPlanoEmpresa})
+                """,
 
-                    inserts +=  jdbcTemplate.update(
-                        "insert into USB(nomeUSB, dtHoraInserção, fkMaquina, fkEmpresa, fkPlanoEmpresa, fkTipoMaquina) values ('$nomeUSB','${dtHoraInsercao}',${fkMaquina},${fkTipoMaquina},${fkEmpresa},${fkPlanoEmpresa})"
+           )
+       }
 
-
-                    )
-                    i++
-              }
-    return inserts
+//         var total = grupoUsb.totalDispositvosUsb
+//
+//                var i = 0
+//                var inserts = 0
+//
+//                while (i<total){
+//
+//
+//                    val nomeUSB = grupoUsb.dispositivosUsb[i].nome
+//                     campos.nomeUsb = nomeUSB
+//                    campos.dtHoraInsercao = LocalDateTime.now()
+//
+//
+//
+//                    val dtHoraInsercao = campos.dtHoraInsercao
+//
+//
+//                    inserts +=  bdInterServer.update(
+//                        "insert into USB(nomeUSB, dtHoraInserção, fkMaquina, fkEmpresa, fkPlanoEmpresa, fkTipoMaquina) values ('$nomeUSB','${dtHoraInsercao}',${id_maquina},${fkTipoMaquina},${fkEmpresa},${fkPlanoEmpresa})"
+//
+//
+//                    )
+//                    i++
+//
+//              }
+//    return inserts
     }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -107,13 +114,11 @@ class Repositorio {
 
         val email = JOptionPane.showInputDialog("Insira seu email")
         // val senha  = JOptionPane.showInputDialog("Insira sua senha")
-        val senha = JPasswordField(10)
-        val acao = JOptionPane.showConfirmDialog(null,senha,"Insira sua senha",JOptionPane.OK_CANCEL_OPTION)
+        val senha = JOptionPane.showInputDialog("Insira sua senha")
         //System.exit(0)
 
 
-//
-                val colaborador = jdbcTemplate.queryForObject(""" 
+                val colaborador = bdInterServer.queryForObject(""" 
                   select count(idColaborador) from Colaborador where email = '${email}' and senha = '${senha}'; 
                 """, Int::class.java);
 
@@ -137,7 +142,29 @@ class Repositorio {
 
                         when(opcao){
                             1 -> {
-                                cadastrar(campos = Usb())
+                                val id_maquina =  JOptionPane.showInputDialog("""
+                                 Qual é o Id da máquina que você quer capturar ?
+                                   """.trimIndent()).toInt()
+
+                                var fkEmpresa = bdInterServer.queryForObject(
+                                    """
+                                   select fkEmpresa from Colaborador where (email = '${email}' and senha = '${senha}');
+                                   """, Int::class.java
+                                );
+                                var fkTipoMaquina = bdInterServer.queryForObject(
+                                    """
+                                     select fkTipoMaquina from maquina where idMaquina = ${id_maquina};
+                                  """, Int::class.java
+                                );
+                                var fkPlanoEmpresa = bdInterServer.queryForObject(
+                                    """
+                                  select fkPlanoEmpresa from maquina where idMaquina = ${id_maquina};
+                                      """, Int::class.java
+                                );
+
+                                JOptionPane.showMessageDialog(null, "${id_maquina}, ${fkEmpresa}, ${fkTipoMaquina}, ${fkPlanoEmpresa}")
+
+                                cadastrar(campos = Usb(), fkEmpresa, id_maquina, fkTipoMaquina, fkPlanoEmpresa )
                                 JOptionPane.showMessageDialog(null,"""
                                   Você está capturando USB! 
                               """.trimIndent()

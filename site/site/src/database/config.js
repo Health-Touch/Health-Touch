@@ -25,7 +25,7 @@ var mySqlConfig = {
   host: 'localhost',
   database: 'HealthTouch',
   user: 'root',
-  password: 'Biel0501'
+  password: 'biel2004'
 }
 
 function executar(instrucao) {
