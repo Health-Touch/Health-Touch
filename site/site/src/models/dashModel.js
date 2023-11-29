@@ -87,7 +87,7 @@ function buscarUltimosAvisos(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `SELECT 
+    instrucaoSql = `SELECT TOP 100
     a.idAviso, 
     CONVERT(VARCHAR, a.dataHora, 103) + ' ' + CONVERT(VARCHAR, a.dataHora, 108) as dtHr,
     a.fkMonitoramento, 
@@ -134,7 +134,7 @@ function buscarAvisosEmTempoReal(idMaquina) {
   instrucaoSql = ''
 
   if (process.env.AMBIENTE_PROCESSO == 'producao') {
-    instrucaoSql = `SELECT 
+    instrucaoSql = `SELECT TOP 100
     a.idAviso, 
     CONVERT(VARCHAR, a.dataHora, 103) + ' ' + CONVERT(VARCHAR, a.dataHora, 108) as dtHr,
     a.fkMonitoramento, 

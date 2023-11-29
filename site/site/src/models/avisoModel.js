@@ -4,15 +4,19 @@ var database = require('../database/config')
 function listarAvisosCPU(idComputador) {
   console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
   var instrucao = `
-  SELECT DATE_FORMAT(dataHora, '%Y-%m') AS mes, COUNT(*) AS total_de_avisos FROM aviso WHERE
-fkMaquina = ${idComputador} and 
-  fkComponente = '1' and
-  dataHora >= CURDATE() - INTERVAL 12 MONTH
+  SELECT
+  FORMAT(dataHora, 'yyyy-MM') AS mes,
+  COUNT(*) AS total_de_avisos
+FROM
+  aviso
+WHERE
+  fkMaquina = ${idComputador} AND
+  fkComponente = '1' AND
+  dataHora >= DATEADD(MONTH, -12, GETDATE())
 GROUP BY
-  mes
+  FORMAT(dataHora, 'yyyy-MM')
 ORDER BY
   mes DESC;
-
   `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -20,14 +24,20 @@ ORDER BY
 function listarAvisosRAM(idMaquina) {
   console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
   var instrucao = `
-  SELECT DATE_FORMAT(dataHora, '%Y-%m') AS mes, COUNT(*) AS total_de_avisos FROM aviso WHERE
-fkMaquina = ${idMaquina} and 
-  fkComponente = '3' and
-  dataHora >= CURDATE() - INTERVAL 12 MONTH
+  SELECT
+  FORMAT(dataHora, 'yyyy-MM') AS mes,
+  COUNT(*) AS total_de_avisos
+FROM
+  aviso
+WHERE
+  fkMaquina = ${idMaquina} AND
+  fkComponente = '3' AND
+  dataHora >= DATEADD(MONTH, -12, GETDATE())
 GROUP BY
-  mes
+  FORMAT(dataHora, 'yyyy-MM')
 ORDER BY
   mes DESC;
+
 
   `;
   console.log("Executando a instrução SQL: \n" + instrucao);
@@ -37,17 +47,16 @@ function buscarMes(idMaquina) {
   console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
   var instrucao = `
   SELECT
-    DATE_FORMAT(dataHora, '%Y-%m') AS mes
+  FORMAT(dataHora, 'yyyy-MM') AS mes
 FROM
-    aviso
+  aviso
 WHERE
-	fkMaquina = 1 and 
-    dataHora >= CURDATE() - INTERVAL 12 MONTH
+  fkMaquina = 1 AND
+  dataHora >= DATEADD(MONTH, -12, GETDATE())
 GROUP BY
-    mes
+  FORMAT(dataHora, 'yyyy-MM')
 ORDER BY
-    mes DESC;
-
+  FORMAT(dataHora, 'yyyy-MM') DESC;
   `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);

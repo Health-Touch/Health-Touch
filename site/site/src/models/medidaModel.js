@@ -358,11 +358,19 @@ function relacaoComponentes(idMaquina) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
       instrucaoSql = ` 
-      SELECT porcentagem, DATE_FORMAT(dataHora, '%d-%m %H:%i') as DataHora, fkComponente
-      FROM monitoramento
-      WHERE fkMaquina = ${idMaquina}
-      ORDER BY dataHora DESC
-      LIMIT 99;
+      SELECT
+    porcentagem,
+    FORMAT(dataHora, 'dd-MM HH:mm') AS DataHora,
+    fkComponente
+FROM
+    monitoramento
+WHERE
+    fkMaquina = ${idMaquina}
+ORDER BY
+    dataHora DESC
+OFFSET 0 ROWS
+FETCH FIRST 99 ROWS ONLY;
+
       `;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
       instrucaoSql = `
