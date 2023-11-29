@@ -67,12 +67,20 @@ function listar() {
     "ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()"
   )
   var instrucao = `
-    SELECT max(nivelAviso) as UltimaAtt, idSetor, nome
-    FROM setor
-    left JOIN LocalSala ON idSetor = fkSetor
-    left join maquina on fkLocal = idLocalSala 
-    left join monitoramento on fkMaquina = idMaquina
-    left join aviso on idMonitoramento = fkMonitoramento where idSetor between  1 and 25 group by idSetor;
+  SELECT 
+  MAX(a.nivelAviso) as UltimaAtt, 
+  s.idSetor, 
+  s.nome
+FROM 
+  setor s
+  LEFT JOIN LocalSala ls ON s.idSetor = ls.fkSetor
+  LEFT JOIN maquina m ON ls.idLocalSala = m.fkLocal
+  LEFT JOIN monitoramento mo ON m.idMaquina = mo.fkMaquina
+  LEFT JOIN aviso a ON mo.idMonitoramento = a.fkMonitoramento
+WHERE 
+  s.idSetor BETWEEN 1 AND 25
+GROUP BY 
+  s.idSetor, s.nome;
     `
   console.log('Executando a instrução SQL: \n' + instrucao)
   return database.executar(instrucao)
