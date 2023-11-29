@@ -1,0 +1,38 @@
+.divPaiConteudo{
+    background-color:aliceblue;
+    display:flex;
+    justify-content: center;
+
+
+}
+#conteudo{
+    display:flex;
+    background: #FFF;
+    margin: 2%;
+    width: 75vw;
+    padding: 2%;
+    
+}
+#descricao{
+    display:flex;
+    width:110%;
+    
+
+    /* justify-content: center; */
+}
+#descricao p {
+    display:flex;
+    align-items: center;
+}
+#descricao img{
+    height:6vh;
+    width:6vh;
+    margin-right:2%;
+    margin-left:2%;
+}
+canvas{
+    position:relative;
+    left:27%;
+    top:15%;
+}
+

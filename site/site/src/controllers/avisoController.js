@@ -1,5 +1,79 @@
 var avisoModel = require('../models/avisoModel')
 
+
+function listarAvisosCPU(req, res) {
+  var idComputador = req.body.idComputadorServer;
+  console.log(idComputador)
+
+  if (idComputador == undefined) {
+      res.status(400).send("IdComputador está undefined!");
+  } else {
+  avisoModel.listarAvisosCPU(idComputador)
+          .then(
+              function (resultado) {
+                  res.json(resultado);
+              }
+          ).catch(
+              function (erro) {
+                  console.log(erro);
+                  console.log(
+                      "\nHouve um erro ao Buscar Dados Erro: ",
+                      erro.sqlMessage
+                  );
+                  res.status(500).json(erro.sqlMessage);
+              }
+          );
+  }
+}
+function buscarMes(req, res) {
+  var idComputador = req.body.idComputadorServer;
+  console.log(idComputador)
+
+  if (idComputador == undefined) {
+      res.status(400).send("IdComputador está undefined!");
+  } else {
+  avisoModel.buscarMes(idComputador)
+          .then(
+              function (resultado) {
+                  res.json(resultado);
+              }
+          ).catch(
+              function (erro) {
+                  console.log(erro);
+                  console.log(
+                      "\nHouve um erro ao Buscar Dados Erro: ",
+                      erro.sqlMessage
+                  );
+                  res.status(500).json(erro.sqlMessage);
+              }
+          );
+  }
+}
+function listarAvisosRAM(req, res) {
+
+  var idComputador = req.body.idComputadorServer;
+
+  if (idComputador == undefined) {
+      res.status(400).send("Algum campo está undefined!");
+  } else {
+  avisoModel.listarAvisosRAM(idComputador)
+          .then(
+              function (resultado) {
+                  res.json(resultado);
+              }
+          ).catch(
+              function (erro) {
+                  console.log(erro);
+                  console.log(
+                      "\nHouve um erro ao Buscar Dados Erro: ",
+                      erro.sqlMessage
+                  );
+                  res.status(500).json(erro.sqlMessage);
+              }
+          );
+  }
+}
+
 function listar(req, res) {
   avisoModel
     .listar()
@@ -771,5 +845,9 @@ module.exports = {
   listarProcessos,
   buscarTotalProcesso,
   buscarTotalThreads,
-  PesquisarProcessos
+  PesquisarProcessos,
+  listarAvisosCPU,
+  listarAvisosRAM,
+  buscarMes
+
 }

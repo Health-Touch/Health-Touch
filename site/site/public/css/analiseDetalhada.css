@@ -47,6 +47,26 @@ body{
     height: 5vh;
 
 }
+.botaoAviso{
+    border: none;
+    background-color: #38b0ac;
+    color: #fff;
+    padding: 5px;
+    border-radius: 15px;
+    width: 130px;
+    box-shadow: rgba(50, 50, 93, 0.1) 0px 8px 0px 0px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    position:relative;
+    left:6%;
+    
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.botaoAviso:hover{
+    transform: scale(1.05) ;
+    cursor: pointer;
+}
 
 .botaoTrocar {
         border: none;

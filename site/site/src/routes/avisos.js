@@ -7,6 +7,16 @@ router.get('/listar', function (req, res) {
   avisoController.listar(req, res)
 })
 
+router.post("/listarAvisosCPU", function (req, res) {
+  avisoController.listarAvisosCPU(req, res);
+});
+router.post("/listarAvisosRAM", function (req, res) {
+  avisoController.listarAvisosRAM(req, res);
+});
+router.post("/buscarMes", function (req, res) {
+  avisoController.buscarMes(req, res);
+});
+
 router.get('/filtrar_Parametro', function (req, res) {
   avisoController.filtrar_Parametro(req, res)
 })
